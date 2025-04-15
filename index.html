@@ -23,7 +23,7 @@
   
     <div class="nav-icons" id="navIcons">
       <input type="text" placeholder="Search..." class="search" />
-      <a href="profile.html">👤</a>
+      <a href="#" id="auth-btn">👤 Login/Signup</a>
       <a href="settings.html">⚙️</a>
     </div>
   </header>
@@ -185,7 +185,61 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
-  
+
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+  import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "your-project-id.firebaseapp.com",
+    projectId: "your-project-id",
+    storageBucket: "your-project-id.appspot.com",
+    messagingSenderId: "your-sender-id",
+    appId: "your-app-id"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const authBtn = document.getElementById("auth-btn");
+
+  // Check login state
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      authBtn.textContent = "Logout 🚪";
+      authBtn.href = "#";
+      authBtn.onclick = (e) => {
+        e.preventDefault();
+        signOut(auth)
+          .then(() => {
+            alert("Logged out successfully");
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("Logout failed");
+          });
+      };
+    } else {
+      authBtn.textContent = "👤 Login/Signup";
+      authBtn.href = "#";
+      authBtn.onclick = (e) => {
+        e.preventDefault();
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            alert(`Welcome ${result.user.displayName}`);
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Login failed");
+          });
+      };
+    }
+  });
+</script>
+
 </body>
 
 </html>
