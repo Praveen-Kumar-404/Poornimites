@@ -621,7 +621,7 @@ a:hover {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      authBtn.textContent = "Logout 🚪";
+      authBtn.textContent = "🚪";
       authBtn.href = "#";
       authBtn.onclick = (e) => {
         e.preventDefault();
@@ -633,7 +633,7 @@ a:hover {
           });
       };
     } else {
-      authBtn.textContent = "👤 Login/Signup";
+      authBtn.textContent = "👤";
       authBtn.href = "#";
       authBtn.onclick = (e) => {
         e.preventDefault();
