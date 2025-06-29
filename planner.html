@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Planner – Poornimites</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* === Planner-specific Styles === */
+    .planner-header {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #003366 0%, #004080 100%);
+      color: white;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .date-section {
+      text-align: center;
+    }
+    
+    .date-section .main-date {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .date-section .day-week {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .mini-calendar {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .weather-mood {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+    
+    .weather-info {
+      font-size: 1.2rem;
+    }
+    
+    .mood-tracker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .mood-scale {
+      display: flex;
+      gap: 0.25rem;
+    }
+    
+    .mood-scale span {
+      cursor: pointer;
+      font-size: 1.5rem;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    
+    .mood-scale span.active {
+      opacity: 1;
+    }
+    
+    .quote-section {
+      text-align: center;
+      font-style: italic;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .view-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f0f4ff;
+    }
+    
+    .view-btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid #0066cc;
+      background: white;
+      color: #0066cc;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .view-btn.active {
+      background: #0066cc;
+      color: white;
+    }
+    
+    .planner-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .planner-section {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 51, 102, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+    
+    .planner-section:hover {
+      transform: translateY(-2px);
+    }
+    
+    .planner-section .planner-section-header {
+      padding: 1rem 1.5rem;
+      background: #f0f4ff;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid #e0e8ff;
+    }
+    
+    .planner-section .planner-section-header:hover {
+      background: #e0e8ff;
+    }
+    
+    .planner-section .content {
+      display: none; /* Hidden by default */
+      padding: 1rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .priority-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .priority-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      background: #f8faff;
+      border-radius: 6px;
+      border-left: 4px solid #0066cc;
+    }
+    
+    .schedule-timeline {
+      display: grid;
+      gap: 0.5rem;
+    }
+    
+    .time-slot {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1rem;
+      padding: 0.75rem;
+      border-radius: 6px;
+      background: #f8faff;
+      border-left: 3px solid #ddd;
+    }
+    
+    .time-slot.busy {
+      border-left-color: #ff6b6b;
+      background: #fff5f5;
+    }
+    
+    .time-slot.work {
+      border-left-color: #4ecdc4;
+      background: #f0fffe;
+    }
+    
+    .time-slot.break {
+      border-left-color: #45b7d1;
+      background: #f0f9ff;
+    }
+    
+    .todo-category {
+      margin-bottom: 1.5rem;
+    }
+    
+    .todo-category h4 {
+      color: #004080;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      background: #f8faff;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    
+    .todo-item:hover {
+      background: #f0f4ff;
+    }
+    
+    .todo-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #0066cc;
+    }
+    
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .health-item {
+      padding: 1rem;
+      background: #f8faff;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .health-item .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .health-item .value {
+      font-weight: bold;
+      color: #004080;
+      font-size: 1.1rem;
+    }
+    
+    .habit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 0.75rem;
+    }
+    
+    .habit-item {
+      background: #f8faff;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+    
+    .habit-item:hover {
+      background: #f0f4ff;
+    }
+    
+    .habit-item.completed {
+      background: #e8f5e8;
+      border-color: #4caf50;
+    }
+    
+    .habit-item .habit-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e0e8ff;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0.5rem 0;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0066cc, #4ecdc4);
+      transition: width 0.3s ease;
+    }
+    
+    .journal-section {
+      display: grid;
+      gap: 1rem;
+    }
+    
+    .journal-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 1rem;
+      border: 2px solid #e0e8ff;
+      border-radius: 8px;
+      font-family: inherit;
+      resize: vertical;
+      outline: none;
+    }
+    
+    .journal-textarea:focus {
+      border-color: #0066cc;
+    }
+    
+    .gratitude-list {
+      display: grid;
+      gap: 0.5rem;
+    }
+    
+    .gratitude-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: #fff8e1;
+      border-radius: 6px;
+      border-left: 4px solid #ffc107;
+    }
+    
+    .rating-section {
+      text-align: center;
+      padding: 1rem;
+      background: #f8faff;
+      border-radius: 8px;
+    }
+    
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 0.25rem;
+      margin: 0.5rem 0;
+    }
+    
+    .star {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ddd;
+      transition: color 0.2s;
+    }
+    
+    .star.active {
+      color: #ffc107;
+    }
+    
+    .water-tracker {
+      display: flex;
+      justify-content: center;
+      gap: 0.25rem;
+      margin: 0.5rem 0;
+    }
+    
+    .water-glass {
+      width: 20px;
+      height: 30px;
+      border: 2px solid #4ecdc4;
+      border-radius: 0 0 10px 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .water-glass.filled {
+      background: #4ecdc4;
+    }
+    
+    @media (max-width: 768px) {
+      .planner-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      .planner-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+      
+      .health-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .habit-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1000; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto; /* Center the modal */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      width: 95%;
+      max-width: 95%;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-content h2 {
+      color: #004080;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .modal-content .content {
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === Header === -->
+  <header class="navbar">
+    <div class="logo">🎓 <a href="index.html">Poornimites</a></div>
+    <nav class="nav-links">
+      <a href="tools.html">Tools</a>
+      <a href="notes.html">Notes</a>
+      <a href="planner.html">Planner</a>
+      <a href="community.html">Community</a>
+      <a href="career.html">Career</a>
+    </nav>
+    <div class="nav-icons">
+      <a href="#" id="auth-btn">👤</a>
+      <a href="settings.html">⚙️</a>
+    </div>
+  </header>
+
+  <!-- === Planner Header / Basic Info === -->
+  <section class="planner-header">
+    <div class="date-section">
+      <div class="main-date" id="current-date">June 29, 2025</div>
+      <div class="day-week">
+        <span id="current-day">Sunday</span> • Week <span id="week-number">26</span>
+      </div>
+    </div>
+    
+    <div class="mini-calendar">
+      <div style="font-size: 0.9rem; margin-bottom: 0.5rem;">📅 June 2025</div>
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 0.8rem;">
+        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
+        <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
+        <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div>
+        <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div style="background: rgba(255,255,255,0.3); border-radius: 3px;">29</div>
+      </div>
+    </div>
+    
+    <div class="weather-mood">
+      <div class="weather-info">☀️ 24°C Sunny</div>
+      <div class="mood-tracker">
+        <span>Mood:</span>
+        <div class="mood-scale">
+          <span data-mood="1">😢</span>
+          <span data-mood="2">😕</span>
+          <span data-mood="3">😐</span>
+          <span data-mood="4" class="active">😊</span>
+          <span data-mood="5">😄</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="quote-section">
+      <div>💫 Quote of the Day</div>
+      <div>"Strive not to be a success, but rather to be of value." - Einstein</div>
+    </div>
+  </section>
+
+  <!-- === View Toggle === -->
+  <section class="view-toggle">
+    <button class="view-btn active" data-view="daily">📅 Daily</button>
+    <button class="view-btn" data-view="weekly">📊 Weekly</button>
+    <button class="view-btn" data-view="monthly">📆 Monthly</button>
+  </section>
+
+  <!-- === Main Planner Container === -->
+  <main class="planner-container">
+
+    <!-- 1. Priorities / Goals -->
+    <div class="planner-section" data-section-id="priorities-goals">
+      <summary>📌 Priorities & Goals</summary>
+      <div class="content">
+        <div style="margin-bottom: 1rem;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">⭐ Top 3 Daily Priorities</h4>
+          <ul class="priority-list">
+            <li class="priority-item">🎯 Finish React project components</li>
+            <li class="priority-item">💪 Gym session at 6 PM</li>
+            <li class="priority-item">📚 Read 20 pages of "Atomic Habits"</li>
+          </ul>
+        </div>
+        
+        <div style="margin-bottom: 1rem;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">🎯 Goals</h4>
+          <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
+            <div><strong>Today:</strong> Complete UI/UX designs for dashboard</div>
+            <div><strong>This Week:</strong> Deploy beta version to staging</div>
+            <div><strong>This Month:</strong> 50% of Q2 milestones completed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Schedule / Time Blocking -->
+    <div class="planner-section" data-section-id="schedule-time-blocking">
+      <summary>🕒 Schedule & Time Blocking</summary>
+      <div class="content">
+        <div class="schedule-timeline">
+          <div class="time-slot">
+            <div style="font-weight: bold;">06:00</div>
+            <div>🏃‍♂️ Morning Run & Meditation</div>
+          </div>
+          <div class="time-slot work">
+            <div style="font-weight: bold;">08:00</div>
+            <div>👥 Team Standup Meeting</div>
+          </div>
+          <div class="time-slot work">
+            <div style="font-weight: bold;">09:00</div>
+            <div>💻 Deep Work: React Components</div>
+          </div>
+          <div class="time-slot work">
+            <div style="font-weight: bold;">10:30</div>
+            <div>🔍 Code Review Session</div>
+          </div>
+          <div class="time-slot break">
+            <div style="font-weight: bold;">12:00</div>
+            <div>🍽️ Lunch Break</div>
+          </div>
+          <div class="time-slot busy">
+            <div style="font-weight: bold;">15:00</div>
+            <div>📞 Client Call - Project Updates</div>
+          </div>
+          <div class="time-slot break">
+            <div style="font-weight: bold;">17:00</div>
+            <div>☕ Break & Snack</div>
+          </div>
+          <div class="time-slot">
+            <div style="font-weight: bold;">18:00</div>
+            <div>💪 Gym Session</div>
+          </div>
+          <div class="time-slot">
+            <div style="font-weight: bold;">20:00</div>
+            <div>📚 Reading Time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. To-Do Lists -->
+    <div class="planner-section" data-section-id="todo-lists">
+      <summary>🗒️ To-Do Lists</summary>
+      <div class="content">
+        <div class="todo-category">
+          <h4>💼 Work Tasks</h4>
+          <ul class="todo-list">
+            <li class="todo-item">
+              <input type="checkbox" id="work1">
+              <label for="work1">Draft PR summary for new features</label>
+            </li>
+            <li class="todo-item">
+              <input type="checkbox" id="work2" checked>
+              <label for="work2">Update project documentation</label>
+            </li>
+            <li class="todo-item">
+              <input type="checkbox" id="work3">
+              <label for="work3">Review team's code submissions</label>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="todo-category">
+          <h4>🏠 Personal Tasks</h4>
+          <ul class="todo-list">
+            <li class="todo-item">
+              <input type="checkbox" id="personal1">
+              <label for="personal1">Call plumber for kitchen sink</label>
+            </li>
+            <li class="todo-item">
+              <input type="checkbox" id="personal2" checked>
+              <label for="personal2">Pay electricity bill</label>
+            </li>
+            <li class="todo-item">
+              <input type="checkbox" id="personal3">
+              <label for="personal3">Organize bedroom closet</label>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="todo-category">
+          <h4>🛒 Errands</h4>
+          <ul class="todo-list">
+            <li class="todo-item">
+              <input type="checkbox" id="errand1">
+              <label for="errand1">Buy groceries (milk, bread, eggs)</label>
+            </li>
+            <li class="todo-item">
+              <input type="checkbox" id="errand2">
+              <label for="errand2">Pick up dry cleaning</label>
+            </li>
+            <li class="todo-item">
+              <input type="checkbox" id="errand3">
+              <label for="errand3">Post office - mail packages</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Health & Wellness -->
+    <div class="planner-section" data-section-id="health-wellness">
+      <summary>🍎 Health & Wellness</summary>
+      <div class="content">
+        <div class="health-grid">
+          <div class="health-item">
+            <div class="icon">🥗</div>
+            <div>Meal Plan</div>
+            <div class="value">3/3 meals</div>
+            <div style="font-size: 0.9rem; margin-top: 0.5rem;">B: Oatmeal<br>L: Salad<br>D: Stir-fry</div>
+          </div>
+          
+          <div class="health-item">
+            <div class="icon">💧</div>
+            <div>Water Intake</div>
+            <div class="water-tracker">
+              <div class="water-glass filled"></div>
+              <div class="water-glass filled"></div>
+              <div class="water-glass filled"></div>
+              <div class="water-glass filled"></div>
+              <div class="water-glass filled"></div>
+              <div class="water-glass filled"></div>
+              <div class="water-glass"></div>
+              <div class="water-glass"></div>
+            </div>
+            <div class="value">6/8 glasses</div>
+          </div>
+          
+          <div class="health-item">
+            <div class="icon">🏃‍♂️</div>
+            <div>Exercise</div>
+            <div class="value">45 min</div>
+            <div style="font-size: 0.9rem;">Morning run + Gym</div>
+          </div>
+          
+          <div class="health-item">
+            <div class="icon">👣</div>
+            <div>Steps</div>
+            <div class="value">8,240</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 82%;"></div>
+            </div>
+          </div>
+          
+          <div class="health-item">
+            <div class="icon">💊</div>
+            <div>Vitamins</div>
+            <div class="value">✅ Taken</div>
+          </div>
+          
+          <div class="health-item">
+            <div class="icon">😴</div>
+            <div>Sleep</div>
+            <div class="value">7.5 hrs</div>
+            <div style="font-size: 0.9rem;">10:30 PM - 6:00 AM</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 1rem; padding: 1rem; background: #f8faff; border-radius: 8px;">
+          <h4 style="margin-bottom: 0.5rem;">🧖‍♀️ Self-Care Ideas</h4>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="background: #e8f5e8; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Face mask</span>
+            <span style="background: #fff8e1; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Journaling</span>
+            <span style="background: #f0f9ff; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Meditation</span>
+            <span style="background: #fdf2f8; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Bath time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Finance & Budget -->
+    <div class="planner-section" data-section-id="finance-budget">
+      <div class="planner-section-header">💰 Finance & Budget</div>
+      <div class="content">
+        <div style="margin-bottom: 1rem;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">💳 Daily Expenses</h4>
+          <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>☕ Coffee</span>
+              <span style="font-weight: bold;">$5.50</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>🍽️ Lunch</span>
+              <span style="font-weight: bold;">$12.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>📚 Books</span>
+              <span style="font-weight: bold;">$25.99</span>
+            </div>
+            <hr style="margin: 0.5rem 0;">
+            <div style="display: flex; justify-content: space-between; font-weight: bold;">
+              <span>Total Today:</span>
+              <span>$43.49</span>
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 1rem;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">📅 Bill Reminders</h4>
+          <div style="background: #fff8e1; padding: 1rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+            <div><strong>Next Bill:</strong> Electricity - $85.00</div>
+            <div><strong>Due:</strong> July 1st (3 days)</div>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 1rem;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">💰 Savings Tracker</h4>
+          <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>Monthly Goal:</span>
+              <span style="font-weight: bold;">$500</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 60%;"></div>
+            </div>
+            <div style="text-align: center; margin-top: 0.5rem; font-weight: bold;">$300 / $500</div>
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: #f0f9ff; border-radius: 8px;">
+          <input type="checkbox" id="no-spend" style="width: 18px; height: 18px;">
+          <label for="no-spend" style="font-weight: 500;">🚫 No-spend day challenge</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Habit Tracker -->
+    <div class="planner-section" data-section-id="habit-tracker">
+      <div class="planner-section-header">❤️ Habit Tracker</div>
+      <div class="content">
+        <div class="habit-grid">
+          <div class="habit-item completed">
+            <div class="habit-icon">📚</div>
+            <div>Read</div>
+          </div>
+          <div class="habit-item completed">
+            <div class="habit-icon">🧘</div>
+            <div>Meditate</div>
+          </div>
+          <div class="habit-item">
+            <div class="habit-icon">📖</div>
+            <div>Study</div>
+          </div>
+          <div class="habit-item completed">
+            <div class="habit-icon">🧹</div>
+            <div>Clean</div>
+          </div>
+          <div class="habit-item">
+            <div class="habit-icon">🤸</div>
+            <div>Stretch</div>
+          </div>
+          <div class="habit-item completed">
+            <div class="habit-icon">💧</div>
+            <div>Hydrate</div>
+          </div>
+          <div class="habit-item">
+            <div class="habit-icon">🌱</div>
+            <div>Journal</div>
+          </div>
+          <div class="habit-item completed">
+            <div class="habit-icon">🚶</div>
+            <div>Walk</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 1rem; text-align: center; padding: 1rem; background: #f8faff; border-radius: 8px;">
+          <div style="font-weight: bold; color: #004080;">Today's Progress</div>
+          <div style="font-size: 1.5rem; margin: 0.5rem 0;">5/8 habits completed</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 62.5%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Notes & Journal -->
+    <div class="planner-section" data-section-id="notes-journal">
+      <div class="planner-section-header">🧘 Notes & Journal</div>
+      <div class="content">
+        <div class="journal-section">
+          <div>
+            <h4 style="color: #004080; margin-bottom: 0.75rem;">📝 Free Notes</h4>
+            <textarea class="journal-textarea" placeholder="Write your thoughts, ideas, or anything on your mind...">Had a productive morning! The new React components are coming together nicely. Need to remember to call mom later and discuss weekend plans.</textarea>
+          </div>
+          
+          <div>
+            <h4 style="color: #004080; margin-bottom: 0.75rem;">🙏 Gratitude (3 things)</h4>
+            <div class="gratitude-list">
+              <div class="gratitude-item">
+                <span>✨</span>
+                <span>Beautiful sunny weather for my morning run</span>
+              </div>
+              <div class="gratitude-item">
+                <span>✨</span>
+                <span>Supportive team members who helped with code review</span>
+              </div>
+              <div class="gratitude-item">
+                <span>✨</span>
+                <span>Finding a great new book to read</span>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h4 style="color: #004080; margin-bottom: 0.75rem;">🤔 Daily Reflection</h4>
+            <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
+              <div style="margin-bottom: 1rem;">
+                <strong style="color: #22c55e;">👍 What went well:</strong>
+                <div style="margin-top: 0.5rem;">Completed the morning routine, stayed focused during deep work sessions, and had a great workout.</div>
+              </div>
+              <div>
+                <strong style="color: #f59e0b;">👎 What to improve:</strong>
+                <div style="margin-top: 0.5rem;">Spent too much time on social media during breaks. Need to be more mindful of screen time.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Extra Sections -->
+    <div class="planner-section" data-section-id="extra-sections">
+      <div class="planner-section-header">🎯 Extra Sections</div>
+      <div class="content">
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">🛒 Shopping List</h4>
+          <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="margin-bottom: 0.5rem;">🥛 Milk (2% organic)</li>
+              <li style="margin-bottom: 0.5rem;">🍞 Whole grain bread</li>
+              <li style="margin-bottom: 0.5rem;">🥚 Free-range eggs (dozen)</li>
+              <li style="margin-bottom: 0.5rem;">🍌 Bananas</li>
+              <li style="margin-bottom: 0.5rem;">🥬 Spinach</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">🧠 Brain Dump</h4>
+          <textarea class="journal-textarea" style="min-height: 80px;" placeholder="Random thoughts, ideas, reminders...">Remember to backup project files, research new productivity apps, plan weekend hiking trip, call dentist for checkup appointment</textarea>
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">📞 Important Calls/Emails</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 0.5rem; padding: 0.5rem; background: #fff8e1; border-radius: 6px;">📧 Email client about project timeline</li>
+            <li style="margin-bottom: 0.5rem; padding: 0.5rem; background: #f0f9ff; border-radius: 6px;">📞 Call insurance company about claim</li>
+            <li style="margin-bottom: 0.5rem; padding: 0.5rem; background: #f0fffe; border-radius: 6px;">📧 Send invoice to freelance client</li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">🔔 Reminders for Tomorrow</h4>
+          <div style="background: #fdf2f8; padding: 1rem; border-radius: 8px; border-left: 4px solid #ec4899;">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li>🏥 Doctor appointment at 2 PM</li>
+              <li>📦 Package delivery expected</li>
+              <li>🎂 Friend's birthday - send wishes</li>
+              <li>💻 Team presentation preparation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Daily Rating -->
+    <div class="planner-section" data-section-id="daily-rating">
+      <div class="planner-section-header">⭐ Daily Rating & Energy</div>
+      <div class="content">
+        <div class="rating-section">
+          <h4 style="color: #004080; margin-bottom: 1rem;">How was your day?</h4>
+          <div class="star-rating">
+            <span class="star active">⭐</span>
+            <span class="star active">⭐</span>
+            <span class="star active">⭐</span>
+            <span class="star active">⭐</span>
+            <span class="star">⭐</span>
+          </div>
+          <div style="font-weight: bold; color: #004080;">4/5 - Great Day!</div>
+        </div>
+        
+        <div style="margin-top: 1rem; padding: 1rem; background: #f8faff; border-radius: 8px;">
+          <h4 style="color: #004080; margin-bottom: 0.75rem;">⚡ Energy Level</h4>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span>Low</span>
+            <div style="flex: 1; margin: 0 1rem;">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%;"></div>
+              </div>
+            </div>
+            <span>High</span>
+          </div>
+          <div style="text-align: center; margin-top: 0.5rem; font-weight: bold;">75% - Feeling energized!</div>
+        </div>
+      </div>
+    </details>
+
+  </main>
+
+  <!-- The Modal Structure -->
+  <div id="plannerModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- === Footer === -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="credits.html">Credits</a>
+    </div>
+    <div class="footer-text">
+      Made with 💙 by Students for Students. © 2025 Poornimites
+    </div>
+  </footer>
+
+  <script>
+    // Populate current date, day, and week number dynamically
+    const d = new Date();
+    document.getElementById('current-date').textContent = d.toLocaleDateString('en-US', { 
+      month: 'long', 
+      day: 'numeric', 
+      year: 'numeric' 
+    });
+    document.getElementById('current-day').textContent = d.toLocaleDateString('en-US', { 
+      weekday: 'long' 
+    });
+    
+    // Calculate week number
+    const startOfYear = new Date(d.getFullYear(), 0, 1);
+    const pastDaysOfYear = (d - startOfYear) / 86400000;
+    const weekNumber = Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+    document.getElementById('week-number').textContent = weekNumber;
+    
+    // Mood tracker functionality
+    document.querySelectorAll('.mood-scale span').forEach(mood => {
+      mood.addEventListener('click', function() {
+        document.querySelectorAll('.mood-scale span').forEach(m => m.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    // View toggle functionality
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const view = this.dataset.view;
+        // Here you would implement different layouts for daily/weekly/monthly views
+        console.log('Switched to', view, 'view');
+      });
+    });
+    
+    // Habit tracker functionality
+    document.querySelectorAll('.habit-item').forEach(habit => {
+      habit.addEventListener('click', function() {
+        this.classList.toggle('completed');
+        
+        // Update progress
+        const completed = document.querySelectorAll('.habit-item.completed').length;
+        const total = document.querySelectorAll('.habit-item').length;
+        const percentage = (completed / total) * 100;
+        
+        document.querySelector('.habit-grid + div .progress-fill').style.width = percentage + '%';
+        document.querySelector('.habit-grid + div .progress-fill').parentElement.previousElementSibling.textContent = 
+          `${completed}/${total} habits completed`;
+      });
+    });
+    
+    // Water tracker functionality
+    document.querySelectorAll('.water-glass').forEach((glass, index) => {
+      glass.addEventListener('click', function() {
+        // Toggle this glass and all previous ones
+        document.querySelectorAll('.water-glass').forEach((g, i) => {
+          if (i <= index) {
+            g.classList.add('filled');
+          } else {
+            g.classList.remove('filled');
+          }
+        });
+        
+        // Update counter
+        const filled = document.querySelectorAll('.water-glass.filled').length;
+        const total = document.querySelectorAll('.water-glass').length;
+        glass.closest('.health-item').querySelector('.value').textContent = `${filled}/${total} glasses`;
+      });
+    });
+    
+    // Star rating functionality
+    document.querySelectorAll('.star').forEach((star, index) => {
+      star.addEventListener('click', function() {
+        document.querySelectorAll('.star').forEach((s, i) => {
+          if (i <= index) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+        
+        const rating = index + 1;
+        const ratingText = ['Poor', 'Fair', 'Good', 'Great', 'Excellent'][index];
+        this.closest('.rating-section').querySelector('div:last-child').textContent = 
+          `${rating}/5 - ${ratingText} Day!`;
+      });
+    });
+    
+    // Auto-save functionality for textareas (placeholder)
+    document.querySelectorAll('textarea').forEach(textarea => {
+      textarea.addEventListener('input', function() {
+        // Here you would implement auto-save to localStorage or backend
+        localStorage.setItem('planner_' + this.placeholder.slice(0, 10), this.value);
+      });
+      
+      // Load saved content
+      const saved = localStorage.getItem('planner_' + textarea.placeholder.slice(0, 10));
+      if (saved && !textarea.value) {
+        textarea.value = saved;
+      }
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('plannerModal');
+    const closeButton = document.querySelector('.close-button');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+
+    document.querySelectorAll('.planner-section').forEach(section => {
+      const header = section.querySelector('.planner-section-header');
+      const content = section.querySelector('.content');
+
+      if (header && content) {
+        header.addEventListener('click', () => {
+          modalTitle.textContent = header.textContent.trim();
+          modalBody.innerHTML = content.innerHTML;
+          modal.style.display = 'block';
+        });
+      }
+    });
+
+    closeButton.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
