@@ -44,11 +44,10 @@ body {
   }
   
   .nav-icons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
   
   .bento-grid {
     display: grid;
@@ -176,13 +175,13 @@ body {
   
     .navbar {
       padding: 1rem;
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
   
     .nav-links {
       gap: 1rem;
-      margin-top: 1rem;
     }
   
     .search {
@@ -217,8 +216,8 @@ body {
     }
   
     .nav-icons {
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      align-items: center;
       gap: 10px;
     }
   

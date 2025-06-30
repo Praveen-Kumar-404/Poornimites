@@ -32,22 +32,37 @@
             gap: 10px;
         }
         .schedule-timeline {
-            display: grid;
-            grid-template-columns: 80px 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 15px;
-            align-items: center;
             border-left: 2px solid #e0e0e0;
             padding-left: 15px;
         }
         .time-slot {
-            display: flex;
-            flex-direction: column;
-            padding: 10px 15px;
-            border-radius: 8px;
-            background-color: #f0f9ff;
-            border: 1px solid #cce7ff;
-            position: relative;
-        }
+             display: flex;
+             flex-direction: row; /* Changed to row for time, activity, actions */
+             align-items: center; /* Align items vertically in the row */
+             justify-content: space-between; /* Distribute space */
+             padding: 10px 15px;
+             border-radius: 8px;
+             background-color: #f0f9ff;
+             border: 1px solid #cce7ff;
+             position: relative;
+             width: 100%; /* Ensure consistent width */
+             box-sizing: border-box; /* Include padding and border in the width */
+         }
+         .time-slot .time {
+             flex-shrink: 0; /* Prevent time from shrinking */
+             width: 80px; /* Fixed width for time */
+         }
+         .time-slot .activity {
+             flex-grow: 1; /* Allow activity to take remaining space */
+             margin-right: 10px; /* Space between activity and actions */
+         }
+         .time-slot .actions {
+             flex-shrink: 0; /* Prevent actions from shrinking */
+         }
+
         .time-slot::before {
             content: '';
             position: absolute;
@@ -85,10 +100,24 @@
             background-color: #dc3545;
             box-shadow: 0 0 0 2px #dc3545;
         }
-        .time-slot > div:first-child {
+        .time-slot > .time {
             font-weight: bold;
             color: #0056b3;
             margin-bottom: 5px;
+        }
+        .time-slot .activity {
+            margin-bottom: 5px;
+        }
+        .time-slot .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            color: #007bff;
+        }
+        .time-slot .actions button:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -102,45 +131,127 @@
     <div class="planner-section" data-section-id="schedule-time-blocking">
         <div class="planner-section-header">🕒 Schedule & Time Blocking</div>
         <div class="content">
-            <div class="schedule-timeline">
-                <div class="time-slot">
-                    <div style="font-weight: bold;">06:00</div>
-                    <div>🏃‍♂️ Morning Run & Meditation</div>
-                </div>
-                <div class="time-slot work">
-                    <div style="font-weight: bold;">08:00</div>
-                    <div>👥 Team Standup Meeting</div>
-                </div>
-                <div class="time-slot work">
-                    <div style="font-weight: bold;">09:00</div>
-                    <div>💻 Deep Work: React Components</div>
-                </div>
-                <div class="time-slot work">
-                    <div style="font-weight: bold;">10:30</div>
-                    <div>🔍 Code Review Session</div>
-                </div>
-                <div class="time-slot break">
-                    <div style="font-weight: bold;">12:00</div>
-                    <div>🍽️ Lunch Break</div>
-                </div>
-                <div class="time-slot busy">
-                    <div style="font-weight: bold;">15:00</div>
-                    <div>📞 Client Call - Project Updates</div>
-                </div>
-                <div class="time-slot break">
-                    <div style="font-weight: bold;">17:00</div>
-                    <div>☕ Break & Snack</div>
-                </div>
-                <div class="time-slot">
-                    <div style="font-weight: bold;">18:00</div>
-                    <div>💪 Gym Session</div>
-                </div>
-                <div class="time-slot">
-                    <div style="font-weight: bold;">20:00</div>
-                    <div>📚 Reading Time</div>
-                </div>
+            <div class="add-slot-form" style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <input type="time" id="newStartTime" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                <input type="time" id="newEndTime" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                <input type="text" id="newActivity" placeholder="Activity" style="flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                <select id="newType" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="">None</option>
+                    <option value="work">Work</option>
+                    <option value="break">Break</option>
+                    <option value="busy">Busy</option>
+                </select>
+                <button id="addSlotBtn" style="padding: 8px 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Slot</button>
+            </div>
+            <div class="schedule-timeline" id="scheduleTimeline">
+                <!-- Time slots will be loaded here by JavaScript -->
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scheduleTimeline = document.getElementById('scheduleTimeline');
+            const addSlotBtn = document.getElementById('addSlotBtn');
+            const newStartTimeInput = document.getElementById('newStartTime');
+            const newEndTimeInput = document.getElementById('newEndTime');
+            const newActivityInput = document.getElementById('newActivity');
+            const newTypeSelect = document.getElementById('newType');
+
+            let schedule = JSON.parse(localStorage.getItem('schedule')) || [];
+
+            function renderSchedule() {
+                scheduleTimeline.innerHTML = '';
+                schedule.sort((a, b) => a.startTime.localeCompare(b.startTime));
+                schedule.forEach((slot, index) => {
+                    const timeSlotDiv = document.createElement('div');
+                    timeSlotDiv.classList.add('time-slot');
+                    if (slot.type) {
+                        timeSlotDiv.classList.add(slot.type);
+                    }
+                    timeSlotDiv.dataset.index = index;
+
+                    timeSlotDiv.innerHTML = `
+                        <span class="time">${slot.startTime} - ${slot.endTime}</span>
+                        <span class="activity">${slot.activity}</span>
+                        <div class="actions">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    `;
+                    scheduleTimeline.appendChild(timeSlotDiv);
+                });
+            }
+
+            function saveSchedule() {
+                localStorage.setItem('schedule', JSON.stringify(schedule));
+            }
+
+            function addTimeSlot(startTime, endTime, activity, type = '') {
+                schedule.push({ startTime, endTime, activity, type });
+                saveSchedule();
+                renderSchedule();
+            }
+
+            addSlotBtn.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default form submission behavior
+                const startTime = newStartTimeInput.value;
+                const endTime = newEndTimeInput.value;
+                const activity = newActivityInput.value.trim();
+                const type = newTypeSelect.value;
+
+                // Basic validation for time format (HH:MM)
+                 const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+                alert(`Start Time: ${startTime}\nEnd Time: ${endTime}\nActivity: ${activity}\nStart Time Valid: ${timeRegex.test(startTime)}\nEnd Time Valid: ${timeRegex.test(endTime)}`);
+                 if (startTime && endTime && activity && timeRegex.test(startTime) && timeRegex.test(endTime)) {
+                    addTimeSlot(startTime, endTime, activity, type);
+                    newStartTimeInput.value = '';
+                    newEndTimeInput.value = '';
+                    newActivityInput.value = '';
+                    newTypeSelect.value = '';
+                } else {
+                    let errorMessage = 'Please enter:';
+                    if (!startTime || !timeRegex.test(startTime)) errorMessage += '\n- Valid Start Time (HH:MM)';
+                    if (!endTime || !timeRegex.test(endTime)) errorMessage += '\n- Valid End Time (HH:MM)';
+                    if (!activity) errorMessage += '\n- Activity';
+                    alert(errorMessage);
+                }
+            });
+
+            scheduleTimeline.addEventListener('click', (event) => {
+                if (event.target.classList.contains('delete-btn')) {
+                    const index = event.target.closest('.time-slot').dataset.index;
+                    schedule.splice(index, 1);
+                    saveSchedule();
+                    renderSchedule();
+                } else if (event.target.classList.contains('edit-btn')) {
+                    const timeSlotDiv = event.target.closest('.time-slot');
+                    const index = timeSlotDiv.dataset.index;
+                    const currentSlot = schedule[index];
+
+                    const newStartTime = prompt('Edit start time:', currentSlot.startTime);
+                    const newEndTime = prompt('Edit end time:', currentSlot.endTime);
+                    const newActivity = prompt('Edit activity:', currentSlot.activity);
+                    const newType = prompt('Edit type (work, break, busy, or leave blank):', currentSlot.type);
+
+                    if (newStartTime !== null && newEndTime !== null && newActivity !== null) {
+                        currentSlot.startTime = newStartTime;
+                        currentSlot.endTime = newEndTime;
+                        currentSlot.activity = newActivity.trim();
+                        currentSlot.type = newType.trim().toLowerCase();
+                        saveSchedule();
+                        renderSchedule();
+                    }
+                }
+            });
+
+            renderSchedule();
+
+            // Add two default time slots if schedule is empty
+            if (schedule.length === 0) {
+                addTimeSlot('09:00', '10:00', 'Default Activity 1', '');
+                addTimeSlot('10:00', '11:00', 'Default Activity 2', '');
+            }
+        });
+    </script>
 </body>
 </html>
