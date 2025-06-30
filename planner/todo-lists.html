@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Lists</title>
+    <link rel="stylesheet" href="planner.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .planner-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        .planner-section-header {
+            font-size: 1.8em;
+            color: #0056b3;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .todo-category {
+            margin-bottom: 1.5rem;
+            background: #f8faff;
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid #e0e7ff;
+        }
+        .todo-category h4 {
+            color: #004080;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.3em;
+            border-bottom: 2px solid #d0e0ff;
+            padding-bottom: 0.5rem;
+        }
+        .todo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 1.1em;
+        }
+        .todo-item:last-child {
+            margin-bottom: 0;
+        }
+        .todo-item input[type="checkbox"] {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            accent-color: #007bff;
+            cursor: pointer;
+        }
+        .todo-item label {
+            cursor: pointer;
+            flex-grow: 1;
+            padding: 2px 0;
+        }
+        .todo-item input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: #0056b3; padding: 15px 20px; color: white; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h1 style="margin: 0; font-size: 1.8em;">To-Do Lists</h1>
+        <nav style="margin-top: 10px;">
+            <a href="../planner.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Planner</a>
+        </nav>
+    </header>
+    <div class="planner-section" data-section-id="todo-lists">
+        <div class="planner-section-header">🗒️ To-Do Lists</div>
+        <div class="content">
+            <div class="todo-category">
+                <h4>💼 Work Tasks</h4>
+                <ul class="todo-list">
+                    <li class="todo-item">
+                        <input type="checkbox" id="work1">
+                        <label for="work1">Draft PR summary for new features</label>
+                    </li>
+                    <li class="todo-item">
+                        <input type="checkbox" id="work2" checked>
+                        <label for="work2">Update project documentation</label>
+                    </li>
+                    <li class="todo-item">
+                        <input type="checkbox" id="work3">
+                        <label for="work3">Review team's code submissions</label>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="todo-category">
+                <h4>🏠 Personal Tasks</h4>
+                <ul class="todo-list">
+                    <li class="todo-item">
+                        <input type="checkbox" id="personal1">
+                        <label for="personal1">Call plumber for kitchen sink</label>
+                    </li>
+                    <li class="todo-item">
+                        <input type="checkbox" id="personal2" checked>
+                        <label for="personal2">Pay electricity bill</label>
+                    </li>
+                    <li class="todo-item">
+                        <input type="checkbox" id="personal3">
+                        <label for="personal3">Organize bedroom closet</label>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="todo-category">
+                <h4>🛒 Errands</h4>
+                <ul class="todo-list">
+                    <li class="todo-item">
+                        <input type="checkbox" id="errand1">
+                        <label for="errand1">Buy groceries (milk, bread, eggs)</label>
+                    </li>
+                    <li class="todo-item">
+                        <input type="checkbox" id="errand2">
+                        <label for="errand2">Pick up dry cleaning</label>
+                    </li>
+                    <li class="todo-item">
+                        <input type="checkbox" id="errand3">
+                        <label for="errand3">Post office - mail packages</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

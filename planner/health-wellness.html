@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Wellness</title>
+    <link rel="stylesheet" href="planner.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .planner-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        .planner-section-header {
+            font-size: 1.8em;
+            color: #0056b3;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .health-item {
+            background: #f8faff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e0e7ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .health-item .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .health-item .value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #0056b3;
+            margin-top: 5px;
+        }
+        .water-tracker {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .water-glass {
+            width: 20px;
+            height: 30px;
+            background-color: #e0f2f7;
+            border: 1px solid #a7d9ed;
+            margin: 0 2px;
+            border-radius: 0 0 5px 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .water-glass.filled {
+            background-color: #81d4fa;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            height: 8px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #28a745;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: #0056b3; padding: 15px 20px; color: white; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h1 style="margin: 0; font-size: 1.8em;">Health & Wellness</h1>
+        <nav style="margin-top: 10px;">
+            <a href="../planner.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Planner</a>
+        </nav>
+    </header>
+    <div class="planner-section" data-section-id="health-wellness">
+        <div class="planner-section-header">🍎 Health & Wellness</div>
+        <div class="content">
+            <div class="health-grid">
+                <div class="health-item">
+                    <div class="icon">🥗</div>
+                    <div>Meal Plan</div>
+                    <div class="value">3/3 meals</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem;">B: Oatmeal<br>L: Salad<br>D: Stir-fry</div>
+                </div>
+                
+                <div class="health-item">
+                    <div class="icon">💧</div>
+                    <div>Water Intake</div>
+                    <div class="water-tracker">
+                        <div class="water-glass filled"></div>
+                        <div class="water-glass filled"></div>
+                        <div class="water-glass filled"></div>
+                        <div class="water-glass filled"></div>
+                        <div class="water-glass filled"></div>
+                        <div class="water-glass filled"></div>
+                        <div class="water-glass"></div>
+                        <div class="water-glass"></div>
+                    </div>
+                    <div class="value">6/8 glasses</div>
+                </div>
+                
+                <div class="health-item">
+                    <div class="icon">🏃‍♂️</div>
+                    <div>Exercise</div>
+                    <div class="value">45 min</div>
+                    <div style="font-size: 0.9rem;">Morning run + Gym</div>
+                </div>
+                
+                <div class="health-item">
+                    <div class="icon">👣</div>
+                    <div>Steps</div>
+                    <div class="value">8,240</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 82%;"></div>
+                    </div>
+                </div>
+                
+                <div class="health-item">
+                    <div class="icon">💊</div>
+                    <div>Vitamins</div>
+                    <div class="value">✅ Taken</div>
+                </div>
+                
+                <div class="health-item">
+                    <div class="icon">😴</div>
+                    <div>Sleep</div>
+                    <div class="value">7.5 hrs</div>
+                    <div style="font-size: 0.9rem;">10:30 PM - 6:00 AM</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 1rem; padding: 1rem; background: #f8faff; border-radius: 8px;">
+                <h4 style="margin-bottom: 0.5rem;">🧖‍♀️ Self-Care Ideas</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <span style="background: #e8f5e8; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Face mask</span>
+                    <span style="background: #fff8e1; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Journaling</span>
+                    <span style="background: #f0f9ff; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Meditation</span>
+                    <span style="background: #fdf2f8; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Bath time</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

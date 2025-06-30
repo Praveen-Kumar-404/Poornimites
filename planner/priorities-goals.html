@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priorities & Goals</title>
+    <link rel="stylesheet" href="planner.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .planner-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        .planner-section-header {
+            font-size: 1.8em;
+            color: #0056b3;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .priority-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .priority-item {
+            background-color: #e6f7ff;
+            border-left: 5px solid #007bff;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            font-size: 1.1em;
+            color: #004085;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .priority-item:last-child {
+            margin-bottom: 0;
+        }
+        h4 {
+            color: #004080;
+            margin-bottom: 0.75rem;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: #0056b3; padding: 15px 20px; color: white; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h1 style="margin: 0; font-size: 1.8em;">Priorities & Goals</h1>
+        <nav style="margin-top: 10px;">
+            <a href="../planner.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Planner</a>
+        </nav>
+    </header>
+    <div class="planner-section" data-section-id="priorities-goals">
+        <div class="planner-section-header">📌 Priorities & Goals</div>
+        <div class="content">
+            <div style="margin-bottom: 1rem;">
+                <h4 style="color: #004080; margin-bottom: 0.75rem;">⭐ Top 3 Daily Priorities</h4>
+                <ul class="priority-list">
+                    <li class="priority-item">🎯 Finish React project components</li>
+                    <li class="priority-item">💪 Gym session at 6 PM</li>
+                    <li class="priority-item">📚 Read 20 pages of "Atomic Habits"</li>
+                </ul>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <h4 style="color: #004080; margin-bottom: 0.75rem;">🎯 Goals</h4>
+                <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
+                    <div><strong>Today:</strong> Complete UI/UX designs for dashboard</div>
+                    <div><strong>This Week:</strong> Deploy beta version to staging</div>
+                    <div><strong>This Month:</strong> 50% of Q2 milestones completed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

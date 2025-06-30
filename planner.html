@@ -406,64 +406,7 @@
       }
     }
 
-    /* Modal Styles */
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1000; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
 
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto; /* Center the modal */
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      width: 95%;
-      max-width: 95%;
-      position: relative;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    .close-button {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      cursor: pointer;
-    }
-
-    .close-button:hover,
-    .close-button:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .modal-content h2 {
-      color: #004080;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .modal-content .content {
-      padding: 0;
-    }
   </style>
 </head>
 <body>
@@ -536,440 +479,52 @@
 
     <!-- 1. Priorities / Goals -->
     <div class="planner-section" data-section-id="priorities-goals">
-      <summary>📌 Priorities & Goals</summary>
-      <div class="content">
-        <div style="margin-bottom: 1rem;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">⭐ Top 3 Daily Priorities</h4>
-          <ul class="priority-list">
-            <li class="priority-item">🎯 Finish React project components</li>
-            <li class="priority-item">💪 Gym session at 6 PM</li>
-            <li class="priority-item">📚 Read 20 pages of "Atomic Habits"</li>
-          </ul>
-        </div>
-        
-        <div style="margin-bottom: 1rem;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">🎯 Goals</h4>
-          <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
-            <div><strong>Today:</strong> Complete UI/UX designs for dashboard</div>
-            <div><strong>This Week:</strong> Deploy beta version to staging</div>
-            <div><strong>This Month:</strong> 50% of Q2 milestones completed</div>
-          </div>
-        </div>
-      </div>
+      <a href="planner/priorities-goals.html" class="planner-section-header">📌 Priorities & Goals</a>
     </div>
 
     <!-- 2. Schedule / Time Blocking -->
     <div class="planner-section" data-section-id="schedule-time-blocking">
-      <summary>🕒 Schedule & Time Blocking</summary>
-      <div class="content">
-        <div class="schedule-timeline">
-          <div class="time-slot">
-            <div style="font-weight: bold;">06:00</div>
-            <div>🏃‍♂️ Morning Run & Meditation</div>
-          </div>
-          <div class="time-slot work">
-            <div style="font-weight: bold;">08:00</div>
-            <div>👥 Team Standup Meeting</div>
-          </div>
-          <div class="time-slot work">
-            <div style="font-weight: bold;">09:00</div>
-            <div>💻 Deep Work: React Components</div>
-          </div>
-          <div class="time-slot work">
-            <div style="font-weight: bold;">10:30</div>
-            <div>🔍 Code Review Session</div>
-          </div>
-          <div class="time-slot break">
-            <div style="font-weight: bold;">12:00</div>
-            <div>🍽️ Lunch Break</div>
-          </div>
-          <div class="time-slot busy">
-            <div style="font-weight: bold;">15:00</div>
-            <div>📞 Client Call - Project Updates</div>
-          </div>
-          <div class="time-slot break">
-            <div style="font-weight: bold;">17:00</div>
-            <div>☕ Break & Snack</div>
-          </div>
-          <div class="time-slot">
-            <div style="font-weight: bold;">18:00</div>
-            <div>💪 Gym Session</div>
-          </div>
-          <div class="time-slot">
-            <div style="font-weight: bold;">20:00</div>
-            <div>📚 Reading Time</div>
-          </div>
-        </div>
-      </div>
+      <a href="planner/schedule-time-blocking.html" class="planner-section-header">🕒 Schedule & Time Blocking</a>
     </div>
 
     <!-- 3. To-Do Lists -->
     <div class="planner-section" data-section-id="todo-lists">
-      <summary>🗒️ To-Do Lists</summary>
-      <div class="content">
-        <div class="todo-category">
-          <h4>💼 Work Tasks</h4>
-          <ul class="todo-list">
-            <li class="todo-item">
-              <input type="checkbox" id="work1">
-              <label for="work1">Draft PR summary for new features</label>
-            </li>
-            <li class="todo-item">
-              <input type="checkbox" id="work2" checked>
-              <label for="work2">Update project documentation</label>
-            </li>
-            <li class="todo-item">
-              <input type="checkbox" id="work3">
-              <label for="work3">Review team's code submissions</label>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="todo-category">
-          <h4>🏠 Personal Tasks</h4>
-          <ul class="todo-list">
-            <li class="todo-item">
-              <input type="checkbox" id="personal1">
-              <label for="personal1">Call plumber for kitchen sink</label>
-            </li>
-            <li class="todo-item">
-              <input type="checkbox" id="personal2" checked>
-              <label for="personal2">Pay electricity bill</label>
-            </li>
-            <li class="todo-item">
-              <input type="checkbox" id="personal3">
-              <label for="personal3">Organize bedroom closet</label>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="todo-category">
-          <h4>🛒 Errands</h4>
-          <ul class="todo-list">
-            <li class="todo-item">
-              <input type="checkbox" id="errand1">
-              <label for="errand1">Buy groceries (milk, bread, eggs)</label>
-            </li>
-            <li class="todo-item">
-              <input type="checkbox" id="errand2">
-              <label for="errand2">Pick up dry cleaning</label>
-            </li>
-            <li class="todo-item">
-              <input type="checkbox" id="errand3">
-              <label for="errand3">Post office - mail packages</label>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <a href="planner/todo-lists.html" class="planner-section-header">🗒️ To-Do Lists</a>
     </div>
 
     <!-- 4. Health & Wellness -->
     <div class="planner-section" data-section-id="health-wellness">
-      <summary>🍎 Health & Wellness</summary>
-      <div class="content">
-        <div class="health-grid">
-          <div class="health-item">
-            <div class="icon">🥗</div>
-            <div>Meal Plan</div>
-            <div class="value">3/3 meals</div>
-            <div style="font-size: 0.9rem; margin-top: 0.5rem;">B: Oatmeal<br>L: Salad<br>D: Stir-fry</div>
-          </div>
-          
-          <div class="health-item">
-            <div class="icon">💧</div>
-            <div>Water Intake</div>
-            <div class="water-tracker">
-              <div class="water-glass filled"></div>
-              <div class="water-glass filled"></div>
-              <div class="water-glass filled"></div>
-              <div class="water-glass filled"></div>
-              <div class="water-glass filled"></div>
-              <div class="water-glass filled"></div>
-              <div class="water-glass"></div>
-              <div class="water-glass"></div>
-            </div>
-            <div class="value">6/8 glasses</div>
-          </div>
-          
-          <div class="health-item">
-            <div class="icon">🏃‍♂️</div>
-            <div>Exercise</div>
-            <div class="value">45 min</div>
-            <div style="font-size: 0.9rem;">Morning run + Gym</div>
-          </div>
-          
-          <div class="health-item">
-            <div class="icon">👣</div>
-            <div>Steps</div>
-            <div class="value">8,240</div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 82%;"></div>
-            </div>
-          </div>
-          
-          <div class="health-item">
-            <div class="icon">💊</div>
-            <div>Vitamins</div>
-            <div class="value">✅ Taken</div>
-          </div>
-          
-          <div class="health-item">
-            <div class="icon">😴</div>
-            <div>Sleep</div>
-            <div class="value">7.5 hrs</div>
-            <div style="font-size: 0.9rem;">10:30 PM - 6:00 AM</div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 1rem; padding: 1rem; background: #f8faff; border-radius: 8px;">
-          <h4 style="margin-bottom: 0.5rem;">🧖‍♀️ Self-Care Ideas</h4>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="background: #e8f5e8; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Face mask</span>
-            <span style="background: #fff8e1; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Journaling</span>
-            <span style="background: #f0f9ff; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Meditation</span>
-            <span style="background: #fdf2f8; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">Bath time</span>
-          </div>
-        </div>
-      </div>
+      <a href="planner/health-wellness.html" class="planner-section-header">🍎 Health & Wellness</a>
     </div>
 
     <!-- 5. Finance & Budget -->
     <div class="planner-section" data-section-id="finance-budget">
-      <div class="planner-section-header">💰 Finance & Budget</div>
-      <div class="content">
-        <div style="margin-bottom: 1rem;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">💳 Daily Expenses</h4>
-          <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-              <span>☕ Coffee</span>
-              <span style="font-weight: bold;">$5.50</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-              <span>🍽️ Lunch</span>
-              <span style="font-weight: bold;">$12.00</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-              <span>📚 Books</span>
-              <span style="font-weight: bold;">$25.99</span>
-            </div>
-            <hr style="margin: 0.5rem 0;">
-            <div style="display: flex; justify-content: space-between; font-weight: bold;">
-              <span>Total Today:</span>
-              <span>$43.49</span>
-            </div>
-          </div>
-        </div>
-        
-        <div style="margin-bottom: 1rem;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">📅 Bill Reminders</h4>
-          <div style="background: #fff8e1; padding: 1rem; border-radius: 8px; border-left: 4px solid #ffc107;">
-            <div><strong>Next Bill:</strong> Electricity - $85.00</div>
-            <div><strong>Due:</strong> July 1st (3 days)</div>
-          </div>
-        </div>
-        
-        <div style="margin-bottom: 1rem;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">💰 Savings Tracker</h4>
-          <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-              <span>Monthly Goal:</span>
-              <span style="font-weight: bold;">$500</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 60%;"></div>
-            </div>
-            <div style="text-align: center; margin-top: 0.5rem; font-weight: bold;">$300 / $500</div>
-          </div>
-        </div>
-        
-        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: #f0f9ff; border-radius: 8px;">
-          <input type="checkbox" id="no-spend" style="width: 18px; height: 18px;">
-          <label for="no-spend" style="font-weight: 500;">🚫 No-spend day challenge</label>
-        </div>
-      </div>
+      <a href="planner/finance-budget.html" class="planner-section-header">💰 Finance & Budget</a>
     </div>
 
     <!-- 6. Habit Tracker -->
     <div class="planner-section" data-section-id="habit-tracker">
-      <div class="planner-section-header">❤️ Habit Tracker</div>
-      <div class="content">
-        <div class="habit-grid">
-          <div class="habit-item completed">
-            <div class="habit-icon">📚</div>
-            <div>Read</div>
-          </div>
-          <div class="habit-item completed">
-            <div class="habit-icon">🧘</div>
-            <div>Meditate</div>
-          </div>
-          <div class="habit-item">
-            <div class="habit-icon">📖</div>
-            <div>Study</div>
-          </div>
-          <div class="habit-item completed">
-            <div class="habit-icon">🧹</div>
-            <div>Clean</div>
-          </div>
-          <div class="habit-item">
-            <div class="habit-icon">🤸</div>
-            <div>Stretch</div>
-          </div>
-          <div class="habit-item completed">
-            <div class="habit-icon">💧</div>
-            <div>Hydrate</div>
-          </div>
-          <div class="habit-item">
-            <div class="habit-icon">🌱</div>
-            <div>Journal</div>
-          </div>
-          <div class="habit-item completed">
-            <div class="habit-icon">🚶</div>
-            <div>Walk</div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 1rem; text-align: center; padding: 1rem; background: #f8faff; border-radius: 8px;">
-          <div style="font-weight: bold; color: #004080;">Today's Progress</div>
-          <div style="font-size: 1.5rem; margin: 0.5rem 0;">5/8 habits completed</div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 62.5%;"></div>
-          </div>
-        </div>
-      </div>
+      <a href="planner/habit-tracker.html" class="planner-section-header">❤️ Habit Tracker</a>
     </div>
 
     <!-- 7. Notes & Journal -->
     <div class="planner-section" data-section-id="notes-journal">
-      <div class="planner-section-header">🧘 Notes & Journal</div>
-      <div class="content">
-        <div class="journal-section">
-          <div>
-            <h4 style="color: #004080; margin-bottom: 0.75rem;">📝 Free Notes</h4>
-            <textarea class="journal-textarea" placeholder="Write your thoughts, ideas, or anything on your mind...">Had a productive morning! The new React components are coming together nicely. Need to remember to call mom later and discuss weekend plans.</textarea>
-          </div>
-          
-          <div>
-            <h4 style="color: #004080; margin-bottom: 0.75rem;">🙏 Gratitude (3 things)</h4>
-            <div class="gratitude-list">
-              <div class="gratitude-item">
-                <span>✨</span>
-                <span>Beautiful sunny weather for my morning run</span>
-              </div>
-              <div class="gratitude-item">
-                <span>✨</span>
-                <span>Supportive team members who helped with code review</span>
-              </div>
-              <div class="gratitude-item">
-                <span>✨</span>
-                <span>Finding a great new book to read</span>
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h4 style="color: #004080; margin-bottom: 0.75rem;">🤔 Daily Reflection</h4>
-            <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
-              <div style="margin-bottom: 1rem;">
-                <strong style="color: #22c55e;">👍 What went well:</strong>
-                <div style="margin-top: 0.5rem;">Completed the morning routine, stayed focused during deep work sessions, and had a great workout.</div>
-              </div>
-              <div>
-                <strong style="color: #f59e0b;">👎 What to improve:</strong>
-                <div style="margin-top: 0.5rem;">Spent too much time on social media during breaks. Need to be more mindful of screen time.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <a href="planner/notes-journal.html" class="planner-section-header">🧘 Notes & Journal</a>
     </div>
 
     <!-- 8. Extra Sections -->
     <div class="planner-section" data-section-id="extra-sections">
-      <div class="planner-section-header">🎯 Extra Sections</div>
-      <div class="content">
-        <div style="margin-bottom: 1.5rem;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">🛒 Shopping List</h4>
-          <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li style="margin-bottom: 0.5rem;">🥛 Milk (2% organic)</li>
-              <li style="margin-bottom: 0.5rem;">🍞 Whole grain bread</li>
-              <li style="margin-bottom: 0.5rem;">🥚 Free-range eggs (dozen)</li>
-              <li style="margin-bottom: 0.5rem;">🍌 Bananas</li>
-              <li style="margin-bottom: 0.5rem;">🥬 Spinach</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div style="margin-bottom: 1.5rem;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">🧠 Brain Dump</h4>
-          <textarea class="journal-textarea" style="min-height: 80px;" placeholder="Random thoughts, ideas, reminders...">Remember to backup project files, research new productivity apps, plan weekend hiking trip, call dentist for checkup appointment</textarea>
-        </div>
-        
-        <div style="margin-bottom: 1.5rem;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">📞 Important Calls/Emails</h4>
-          <ul style="list-style: none; padding: 0; margin: 0;">
-            <li style="margin-bottom: 0.5rem; padding: 0.5rem; background: #fff8e1; border-radius: 6px;">📧 Email client about project timeline</li>
-            <li style="margin-bottom: 0.5rem; padding: 0.5rem; background: #f0f9ff; border-radius: 6px;">📞 Call insurance company about claim</li>
-            <li style="margin-bottom: 0.5rem; padding: 0.5rem; background: #f0fffe; border-radius: 6px;">📧 Send invoice to freelance client</li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">🔔 Reminders for Tomorrow</h4>
-          <div style="background: #fdf2f8; padding: 1rem; border-radius: 8px; border-left: 4px solid #ec4899;">
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li>🏥 Doctor appointment at 2 PM</li>
-              <li>📦 Package delivery expected</li>
-              <li>🎂 Friend's birthday - send wishes</li>
-              <li>💻 Team presentation preparation</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <a href="planner/extra-sections.html" class="planner-section-header">🎯 Extra Sections</a>
     </div>
 
-    <!-- 9. Daily Rating -->
+    <!-- 9. Daily Rating & Energy -->
     <div class="planner-section" data-section-id="daily-rating">
-      <div class="planner-section-header">⭐ Daily Rating & Energy</div>
-      <div class="content">
-        <div class="rating-section">
-          <h4 style="color: #004080; margin-bottom: 1rem;">How was your day?</h4>
-          <div class="star-rating">
-            <span class="star active">⭐</span>
-            <span class="star active">⭐</span>
-            <span class="star active">⭐</span>
-            <span class="star active">⭐</span>
-            <span class="star">⭐</span>
-          </div>
-          <div style="font-weight: bold; color: #004080;">4/5 - Great Day!</div>
-        </div>
-        
-        <div style="margin-top: 1rem; padding: 1rem; background: #f8faff; border-radius: 8px;">
-          <h4 style="color: #004080; margin-bottom: 0.75rem;">⚡ Energy Level</h4>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span>Low</span>
-            <div style="flex: 1; margin: 0 1rem;">
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 75%;"></div>
-              </div>
-            </div>
-            <span>High</span>
-          </div>
-          <div style="text-align: center; margin-top: 0.5rem; font-weight: bold;">75% - Feeling energized!</div>
-        </div>
-      </div>
-    </details>
+      <a href="planner/daily-rating.html" class="planner-section-header">⭐ Daily Rating & Energy</a>
+    </div>
 
   </main>
 
-  <!-- The Modal Structure -->
-  <div id="plannerModal" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2 id="modalTitle"></h2>
-      <div id="modalBody"></div>
-    </div>
-  </div>
+
 
   <!-- === Footer === -->
   <footer class="footer">
@@ -1090,34 +645,7 @@
       }
     });
 
-    // Modal functionality
-    const modal = document.getElementById('plannerModal');
-    const closeButton = document.querySelector('.close-button');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
 
-    document.querySelectorAll('.planner-section').forEach(section => {
-      const header = section.querySelector('.planner-section-header');
-      const content = section.querySelector('.content');
-
-      if (header && content) {
-        header.addEventListener('click', () => {
-          modalTitle.textContent = header.textContent.trim();
-          modalBody.innerHTML = content.innerHTML;
-          modal.style.display = 'block';
-        });
-      }
-    });
-
-    closeButton.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-      if (event.target == modal) {
-        modal.style.display = 'none';
-      }
-    });
   </script>
 </body>
 </html>
