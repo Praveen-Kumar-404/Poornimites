@@ -54,6 +54,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
     padding: 2rem;
+    flex-grow: 1;
   }
   
   .card {
@@ -114,9 +115,15 @@ body {
   }
   
   html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
     width: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
   }
   
   .footer {

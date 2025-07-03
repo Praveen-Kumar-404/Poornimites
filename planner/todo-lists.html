@@ -76,6 +76,44 @@
             text-decoration: line-through;
             color: #777;
         }
+        .add-todo-item {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .add-todo-item input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .add-todo-item button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+        .add-todo-item button:hover {
+            background-color: #0056b3;
+        }
+        .remove-todo-btn {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-left: 10px;
+            padding: 0 5px;
+            transition: color 0.2s;
+        }
+        .remove-todo-btn:hover {
+            color: #cc0000;
+        }
     </style>
 </head>
 <body>
@@ -90,58 +128,132 @@
         <div class="content">
             <div class="todo-category">
                 <h4>💼 Work Tasks</h4>
-                <ul class="todo-list">
-                    <li class="todo-item">
-                        <input type="checkbox" id="work1">
-                        <label for="work1">Draft PR summary for new features</label>
-                    </li>
-                    <li class="todo-item">
-                        <input type="checkbox" id="work2" checked>
-                        <label for="work2">Update project documentation</label>
-                    </li>
-                    <li class="todo-item">
-                        <input type="checkbox" id="work3">
-                        <label for="work3">Review team's code submissions</label>
-                    </li>
+                <ul class="todo-list" id="work-tasks-list">
                 </ul>
+                <div class="add-todo-item">
+                    <input type="text" id="new-work-task" placeholder="Add new work task">
+                    <button id="add-work-task-btn">Add</button>
+                </div>
             </div>
             
             <div class="todo-category">
                 <h4>🏠 Personal Tasks</h4>
-                <ul class="todo-list">
-                    <li class="todo-item">
-                        <input type="checkbox" id="personal1">
-                        <label for="personal1">Call plumber for kitchen sink</label>
-                    </li>
-                    <li class="todo-item">
-                        <input type="checkbox" id="personal2" checked>
-                        <label for="personal2">Pay electricity bill</label>
-                    </li>
-                    <li class="todo-item">
-                        <input type="checkbox" id="personal3">
-                        <label for="personal3">Organize bedroom closet</label>
-                    </li>
+                <ul class="todo-list" id="personal-tasks-list">
                 </ul>
+                <div class="add-todo-item">
+                    <input type="text" id="new-personal-task" placeholder="Add new personal task">
+                    <button id="add-personal-task-btn">Add</button>
+                </div>
             </div>
             
             <div class="todo-category">
                 <h4>🛒 Errands</h4>
-                <ul class="todo-list">
-                    <li class="todo-item">
-                        <input type="checkbox" id="errand1">
-                        <label for="errand1">Buy groceries (milk, bread, eggs)</label>
-                    </li>
-                    <li class="todo-item">
-                        <input type="checkbox" id="errand2">
-                        <label for="errand2">Pick up dry cleaning</label>
-                    </li>
-                    <li class="todo-item">
-                        <input type="checkbox" id="errand3">
-                        <label for="errand3">Post office - mail packages</label>
-                    </li>
+                <ul class="todo-list" id="errands-list">
                 </ul>
+                <div class="add-todo-item">
+                    <input type="text" id="new-errand" placeholder="Add new errand">
+                    <button id="add-errand-btn">Add</button>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const todoCategories = {
+                'work': document.getElementById('work-tasks-list'),
+                'personal': document.getElementById('personal-tasks-list'),
+                'errands': document.getElementById('errands-list')
+            };
+
+            const todoInputs = {
+                'work': document.getElementById('new-work-task'),
+                'personal': document.getElementById('new-personal-task'),
+                'errands': document.getElementById('new-errand')
+            };
+
+            const addButtons = {
+                'work': document.getElementById('add-work-task-btn'),
+                'personal': document.getElementById('add-personal-task-btn'),
+                'errands': document.getElementById('add-errand-btn')
+            };
+
+            let todos = JSON.parse(localStorage.getItem('todos')) || {
+                work: [],
+                personal: [],
+                errands: []
+            };
+
+            function saveTodos() {
+                localStorage.setItem('todos', JSON.stringify(todos));
+            }
+
+            function renderTodos() {
+                for (const category in todoCategories) {
+                    todoCategories[category].innerHTML = '';
+                    todos[category].forEach((todo, index) => {
+                        const li = document.createElement('li');
+                        li.className = 'todo-item';
+                        li.innerHTML = `
+                            <input type="checkbox" id="${category}-${index}" ${todo.completed ? 'checked' : ''}>
+                            <label for="${category}-${index}">${todo.text}</label>
+                            <button class="remove-todo-btn" data-category="${category}" data-index="${index}">✖</button>
+                        `;
+                        todoCategories[category].appendChild(li);
+                    });
+                }
+                addEventListeners();
+            }
+
+            function addEventListeners() {
+                // Checkbox toggle
+                document.querySelectorAll('.todo-item input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.removeEventListener('change', handleCheckboxChange); // Prevent duplicate listeners
+                    checkbox.addEventListener('change', handleCheckboxChange);
+                });
+
+                // Remove button
+                document.querySelectorAll('.remove-todo-btn').forEach(button => {
+                    button.removeEventListener('click', handleRemoveButtonClick); // Prevent duplicate listeners
+                    button.addEventListener('click', handleRemoveButtonClick);
+                });
+            }
+
+            function handleCheckboxChange(event) {
+                const checkbox = event.target;
+                const [category, index] = checkbox.id.split('-');
+                todos[category][index].completed = checkbox.checked;
+                saveTodos();
+            }
+
+            function handleRemoveButtonClick(event) {
+                const button = event.target;
+                const category = button.dataset.category;
+                const index = parseInt(button.dataset.index);
+                todos[category].splice(index, 1);
+                saveTodos();
+                renderTodos();
+            }
+
+            for (const category in addButtons) {
+                addButtons[category].addEventListener('click', () => {
+                    const text = todoInputs[category].value.trim();
+                    if (text) {
+                        todos[category].push({ text: text, completed: false });
+                        saveTodos();
+                        todoInputs[category].value = '';
+                        renderTodos();
+                    }
+                });
+
+                todoInputs[category].addEventListener('keypress', (event) => {
+                    if (event.key === 'Enter') {
+                        addButtons[category].click();
+                    }
+                });
+            }
+
+            renderTodos();
+        });
+    </script>
 </body>
 </html>

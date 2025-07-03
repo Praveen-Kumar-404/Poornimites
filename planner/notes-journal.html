@@ -94,42 +94,74 @@
             <div class="journal-section">
                 <div>
                     <h4 style="color: #004080; margin-bottom: 0.75rem;">📝 Free Notes</h4>
-                    <textarea class="journal-textarea" placeholder="Write your thoughts, ideas, or anything on your mind...">Had a productive morning! The new React components are coming together nicely. Need to remember to call mom later and discuss weekend plans.</textarea>
+                    <textarea id="free-notes-textarea" class="journal-textarea" placeholder="Write your thoughts, ideas, or anything on your mind..."></textarea>
+                    <button id="save-note-btn" style="margin-top: 10px; padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Save Note</button>
+                    <div id="saved-notes-display" style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;"></div>
                 </div>
                 
-                <div>
-                    <h4 style="color: #004080; margin-bottom: 0.75rem;">🙏 Gratitude (3 things)</h4>
-                    <div class="gratitude-list">
-                        <div class="gratitude-item">
-                            <span>✨</span>
-                            <span>Beautiful sunny weather for my morning run</span>
-                        </div>
-                        <div class="gratitude-item">
-                            <span>✨</span>
-                            <span>Supportive team members who helped with code review</span>
-                        </div>
-                        <div class="gratitude-item">
-                            <span>✨</span>
-                            <span>Finding a great new book to read</span>
-                        </div>
-                    </div>
-                </div>
+
                 
-                <div>
-                    <h4 style="color: #004080; margin-bottom: 0.75rem;">🤔 Daily Reflection</h4>
-                    <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
-                        <div style="margin-bottom: 1rem;">
-                            <strong style="color: #22c55e;">👍 What went well:</strong>
-                            <div style="margin-top: 0.5rem;">Completed the morning routine, stayed focused during deep work sessions, and had a great workout.</div>
-                        </div>
-                        <div>
-                            <strong style="color: #f59e0b;">👎 What to improve:</strong>
-                            <div style="margin-top: 0.5rem;">Spent too much time on social media during breaks. Need to be more mindful of screen time.</div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const freeNotesTextarea = document.getElementById('free-notes-textarea');
+            const saveNoteBtn = document.getElementById('save-note-btn');
+            const savedNotesDisplay = document.getElementById('saved-notes-display');
+
+            let savedNotes = JSON.parse(localStorage.getItem('freeNotes')) || [];
+
+            function saveNotes() {
+                localStorage.setItem('freeNotes', JSON.stringify(savedNotes));
+            }
+
+            function renderNotes() {
+                savedNotesDisplay.innerHTML = '';
+                savedNotes.forEach((note, index) => {
+                    const noteDiv = document.createElement('div');
+                    noteDiv.style.marginBottom = '15px';
+                    noteDiv.style.padding = '10px';
+                    noteDiv.style.background = '#f0f9ff';
+                    noteDiv.style.borderRadius = '8px';
+                    noteDiv.style.borderLeft = '4px solid #007bff';
+                    noteDiv.innerHTML = `
+                        <p style="font-size: 0.9em; color: #666; margin-bottom: 5px;">${new Date(note.timestamp).toLocaleString()}</p>
+                        <p style="margin-bottom: 10px;">${note.text}</p>
+                        <button class="delete-note-btn" data-index="${index}" style="background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 0.9em;">Delete</button>
+                    `;
+                    savedNotesDisplay.appendChild(noteDiv);
+                });
+                addNoteEventListeners();
+            }
+
+            function addNoteEventListeners() {
+                document.querySelectorAll('.delete-note-btn').forEach(button => {
+                    button.removeEventListener('click', handleDeleteNote);
+                    button.addEventListener('click', handleDeleteNote);
+                });
+            }
+
+            function handleDeleteNote(event) {
+                const index = parseInt(event.target.dataset.index);
+                savedNotes.splice(index, 1);
+                saveNotes();
+                renderNotes();
+            }
+
+            saveNoteBtn.addEventListener('click', () => {
+                const noteText = freeNotesTextarea.value.trim();
+                if (noteText) {
+                    savedNotes.unshift({ text: noteText, timestamp: new Date().toISOString() });
+                    saveNotes();
+                    freeNotesTextarea.value = '';
+                    renderNotes();
+                }
+            });
+
+            renderNotes();
+        });
+    </script>
 </body>
 </html>

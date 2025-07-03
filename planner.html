@@ -149,22 +149,7 @@
       border-top: 1px solid #eee;
     }
     
-    .priority-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .priority-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
-      background: #f8faff;
-      border-radius: 6px;
-      border-left: 4px solid #0066cc;
-    }
+
     
     .schedule-timeline {
       display: grid;
@@ -236,29 +221,7 @@
       accent-color: #0066cc;
     }
     
-    .health-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    
-    .health-item {
-      padding: 1rem;
-      background: #f8faff;
-      border-radius: 8px;
-      text-align: center;
-    }
-    
-    .health-item .icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .health-item .value {
-      font-weight: bold;
-      color: #004080;
-      font-size: 1.1rem;
-    }
+
     
     .habit-grid {
       display: grid;
@@ -437,14 +400,11 @@
     </div>
     
     <div class="mini-calendar">
-      <div style="font-size: 0.9rem; margin-bottom: 0.5rem;">📅 June 2025</div>
+      <div style="font-size: 0.9rem; margin-bottom: 0.5rem;" id="current-month-year"></div>
       <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 0.8rem;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
-        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
-        <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
-        <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div>
-        <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div style="background: rgba(255,255,255,0.3); border-radius: 3px;">29</div>
       </div>
+      <div id="calendar-days" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 0.8rem;"></div>
     </div>
     
     <div class="weather-mood">
@@ -477,9 +437,6 @@
   <!-- === Main Planner Container === -->
   <main class="planner-container">
 
-    <!-- 1. Priorities / Goals -->
-    <div class="planner-section" data-section-id="priorities-goals">
-      <a href="planner/priorities-goals.html" class="planner-section-header">📌 Priorities & Goals</a>
     </div>
 
     <!-- 2. Schedule / Time Blocking -->
@@ -492,9 +449,6 @@
       <a href="planner/todo-lists.html" class="planner-section-header">🗒️ To-Do Lists</a>
     </div>
 
-    <!-- 4. Health & Wellness -->
-    <div class="planner-section" data-section-id="health-wellness">
-      <a href="planner/health-wellness.html" class="planner-section-header">🍎 Health & Wellness</a>
     </div>
 
     <!-- 5. Finance & Budget -->
@@ -512,10 +466,7 @@
       <a href="planner/notes-journal.html" class="planner-section-header">🧘 Notes & Journal</a>
     </div>
 
-    <!-- 8. Extra Sections -->
-    <div class="planner-section" data-section-id="extra-sections">
-      <a href="planner/extra-sections.html" class="planner-section-header">🎯 Extra Sections</a>
-    </div>
+    
 
     <!-- 9. Daily Rating & Energy -->
     <div class="planner-section" data-section-id="daily-rating">
@@ -645,6 +596,39 @@
       }
     });
 
+    // Dynamic Calendar Generation
+    const calendarDays = document.getElementById('calendar-days');
+    const currentMonthYear = document.getElementById('current-month-year');
+
+    function renderCalendar(year, month) {
+      calendarDays.innerHTML = ''; // Clear previous days
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const numDays = lastDay.getDate();
+      const startDay = firstDay.getDay(); // 0 for Sunday, 1 for Monday, etc.
+
+      currentMonthYear.textContent = `📅 ${firstDay.toLocaleString('en-US', { month: 'long', year: 'numeric' })}`;
+
+      // Add empty divs for the days before the first day of the month
+      for (let i = 0; i < startDay; i++) {
+        const emptyDiv = document.createElement('div');
+        calendarDays.appendChild(emptyDiv);
+      }
+
+      // Add days of the month
+      for (let i = 1; i <= numDays; i++) {
+        const dayDiv = document.createElement('div');
+        dayDiv.textContent = i;
+        if (i === d.getDate() && month === d.getMonth() && year === d.getFullYear()) {
+          dayDiv.style.background = 'rgba(255,255,255,0.3)';
+          dayDiv.style.borderRadius = '3px';
+        }
+        calendarDays.appendChild(dayDiv);
+      }
+    }
+
+    // Initial render for the current month
+    renderCalendar(d.getFullYear(), d.getMonth());
 
   </script>
 </body>

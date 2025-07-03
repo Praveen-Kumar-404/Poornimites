@@ -58,46 +58,37 @@
         <div class="content">
             <div style="margin-bottom: 1rem;">
                 <h4 style="color: #004080; margin-bottom: 0.75rem;">💳 Daily Expenses</h4>
-                <div style="background: #f8faff; padding: 1rem; border-radius: 8px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>☕ Coffee</span>
-                        <span style="font-weight: bold;">$5.50</span>
+                <div class="expense-input-section" style="background: #f8faff; padding: 1rem; border-radius: 8px;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="new-expense-description" placeholder="Expense description" style="flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <input type="number" id="new-expense-amount" placeholder="Amount" style="width: 80px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <button id="add-expense-btn" style="padding: 8px 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Add</button>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>🍽️ Lunch</span>
-                        <span style="font-weight: bold;">$12.00</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>📚 Books</span>
-                        <span style="font-weight: bold;">$25.99</span>
-                    </div>
+                    <ul id="daily-expenses-list" style="list-style: none; padding: 0;"></ul>
                     <hr style="margin: 0.5rem 0;">
                     <div style="display: flex; justify-content: space-between; font-weight: bold;">
                         <span>Total Today:</span>
-                        <span>$43.49</span>
+                        <span id="total-expenses">INR 0.00</span>
                     </div>
                 </div>
             </div>
             
-            <div style="margin-bottom: 1rem;">
-                <h4 style="color: #004080; margin-bottom: 0.75rem;">📅 Bill Reminders</h4>
-                <div style="background: #fff8e1; padding: 1rem; border-radius: 8px; border-left: 4px solid #ffc107;">
-                    <div><strong>Next Bill:</strong> Electricity - $85.00</div>
-                    <div><strong>Due:</strong> July 1st (3 days)</div>
-                </div>
-            </div>
+
             
             <div style="margin-bottom: 1rem;">
                 <h4 style="color: #004080; margin-bottom: 0.75rem;">💰 Savings Tracker</h4>
-                <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>Monthly Goal:</span>
-                        <span style="font-weight: bold;">$500</span>
+                <div class="savings-tracker-section" style="background: #e8f5e8; padding: 1rem; border-radius: 8px;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="number" id="savings-goal" placeholder="Monthly Goal" style="flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <input type="number" id="current-savings" placeholder="Current Savings" style="flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <button id="update-savings-btn" style="padding: 8px 12px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">Update</button>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 60%;"></div>
+                        <div id="savings-progress-fill" class="progress-fill" style="width: 0%;"></div>
                     </div>
-                    <div style="text-align: center; margin-top: 0.5rem; font-weight: bold;">$300 / $500</div>
+                    <div style="text-align: center; margin-top: 0.5rem; font-weight: bold;">
+                        <span id="savings-display">$0 / $0</span>
+                    </div>
                 </div>
             </div>
             
@@ -107,5 +98,113 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Daily Expenses
+            const newExpenseDescription = document.getElementById('new-expense-description');
+            const newExpenseAmount = document.getElementById('new-expense-amount');
+            const addExpenseBtn = document.getElementById('add-expense-btn');
+            const dailyExpensesList = document.getElementById('daily-expenses-list');
+            const totalExpensesSpan = document.getElementById('total-expenses');
+
+            let expenses = JSON.parse(localStorage.getItem('dailyExpenses')) || [];
+
+            function saveExpenses() {
+                localStorage.setItem('dailyExpenses', JSON.stringify(expenses));
+            }
+
+            function renderExpenses() {
+                dailyExpensesList.innerHTML = '';
+                let total = 0;
+                expenses.forEach((expense, index) => {
+                    const li = document.createElement('li');
+                    li.style.display = 'flex';
+                    li.style.justifyContent = 'space-between';
+                    li.style.marginBottom = '0.5rem';
+                    li.innerHTML = `
+                        <span>${expense.description}</span>
+                        <span style="font-weight: bold;">INR ${expense.amount.toFixed(2)}</span>
+                        <button class="remove-expense-btn" data-index="${index}" style="background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 1em;">✖</button>
+                    `;
+                    dailyExpensesList.appendChild(li);
+                    total += expense.amount;
+                });
+                totalExpensesSpan.textContent = `INR ${total.toFixed(2)}`;
+                addExpenseEventListeners();
+            }
+
+            function addExpenseEventListeners() {
+                document.querySelectorAll('.remove-expense-btn').forEach(button => {
+                    button.removeEventListener('click', handleRemoveExpense);
+                    button.addEventListener('click', handleRemoveExpense);
+                });
+            }
+
+            function handleRemoveExpense(event) {
+                const index = parseInt(event.target.dataset.index);
+                expenses.splice(index, 1);
+                saveExpenses();
+                renderExpenses();
+            }
+
+            addExpenseBtn.addEventListener('click', () => {
+                const description = newExpenseDescription.value.trim();
+                const amount = parseFloat(newExpenseAmount.value);
+
+                if (description && !isNaN(amount) && amount > 0) {
+                    expenses.push({ description, amount });
+                    saveExpenses();
+                    newExpenseDescription.value = '';
+                    newExpenseAmount.value = '';
+                    renderExpenses();
+                }
+            });
+
+            newExpenseAmount.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    addExpenseBtn.click();
+                }
+            });
+
+            // Savings Tracker
+            const savingsGoalInput = document.getElementById('savings-goal');
+            const currentSavingsInput = document.getElementById('current-savings');
+            const updateSavingsBtn = document.getElementById('update-savings-btn');
+            const savingsProgressFill = document.getElementById('savings-progress-fill');
+            const savingsDisplay = document.getElementById('savings-display');
+
+            let savings = JSON.parse(localStorage.getItem('savingsTracker')) || { goal: 0, current: 0 };
+
+            function saveSavings() {
+                localStorage.setItem('savingsTracker', JSON.stringify(savings));
+            }
+
+            function renderSavings() {
+                savingsGoalInput.value = savings.goal > 0 ? savings.goal : '';
+                currentSavingsInput.value = savings.current > 0 ? savings.current : '';
+
+                const percentage = savings.goal > 0 ? (savings.current / savings.goal) * 100 : 0;
+                savingsProgressFill.style.width = `${Math.min(percentage, 100)}%`;
+                savingsDisplay.textContent = `INR ${savings.current.toFixed(2)} / INR ${savings.goal.toFixed(2)}`;
+            }
+
+            updateSavingsBtn.addEventListener('click', () => {
+                const goal = parseFloat(savingsGoalInput.value);
+                const current = parseFloat(currentSavingsInput.value);
+
+                if (!isNaN(goal) && goal >= 0) {
+                    savings.goal = goal;
+                }
+                if (!isNaN(current) && current >= 0) {
+                    savings.current = current;
+                }
+                saveSavings();
+                renderSavings();
+            });
+
+            renderExpenses();
+            renderSavings();
+        });
+    </script>
 </body>
 </html>
