@@ -229,7 +229,7 @@ body {
     }
   
     .bento-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Allow for two columns on very small screens */
       padding: 1rem;
     }
   

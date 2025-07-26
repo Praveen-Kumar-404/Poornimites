@@ -4,50 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Rating & Energy</title>
-    <link rel="stylesheet" href="planner.css">
+    <link rel="stylesheet" href="main/planner.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        .planner-section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid #e0e0e0;
-        }
-        .planner-section-header {
-            font-size: 1.8em;
-            color: #0056b3;
-            margin-bottom: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .rating-section {
-            text-align: center;
-            padding: 1.5rem;
-            background: #f0f9ff;
-            border-radius: 10px;
-            border: 1px solid #e0e7ff;
-        }
-        .rating-section h4 {
-            color: #004080;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            font-size: 1.3em;
-        }
-        .star-rating {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
         .star {
             cursor: pointer;
             color: #ccc;
@@ -91,41 +49,61 @@
             border-radius: 50%;
             cursor: pointer;
         }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .star-rating {
+                font-size: 2em;
+            }
+            .energy-level-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .star-rating {
+                font-size: 1.8em;
+            }
+            .energy-level-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
     </style>
 </head>
 <body>
-    <header style="background-color: #0056b3; padding: 15px 20px; color: white; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h1 style="margin: 0; font-size: 1.8em;">Daily Rating & Energy</h1>
-        <nav style="margin-top: 10px;">
-            <a href="../planner.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Planner</a>
+    <header>
+        <h1>Daily Rating & Energy</h1>
+        <nav>
+            <a href="main/planner.html">← Back to Planner</a>
         </nav>
     </header>
     <div class="planner-section" data-section-id="daily-rating">
         <div class="planner-section-header">⭐ Daily Rating & Energy</div>
         <div class="content">
             <div class="rating-section">
-                <h4 style="color: #004080; margin-bottom: 1rem;">How was your day?</h4>
-                <div class="star-rating" id="dayRatingStars">
+                <h4>How was your day?</h4>
+                <div class="star-rating" id="dayRatingStars" style="margin: 1rem 0;">
                     <span class="star" data-value="1">⭐</span>
                     <span class="star" data-value="2">⭐</span>
                     <span class="star" data-value="3">⭐</span>
                     <span class="star" data-value="4">⭐</span>
                     <span class="star" data-value="5">⭐</span>
                 </div>
-                <div style="font-weight: bold; color: #004080;" id="dayRatingText"></div>
-
+                <div style="font-weight: bold; color: #004080; margin-top: 0.75rem;" id="dayRatingText"></div>
             </div>
             
-            <div style="margin-top: 1rem; padding: 1rem; background: #f8faff; border-radius: 8px;">
-                <h4 style="color: #004080; margin-bottom: 0.75rem;">⚡ Energy Level</h4>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span>Low</span>
+            <div class="rating-section" style="margin-top: 1rem;">
+                <h4>⚡ Energy Level</h4>
+                <div class="energy-level-container" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                    <span style="color: #004080;">Low</span>
                     <div class="energy-level-bar">
                         <input type="range" min="0" max="100" value="70" class="slider" id="energyRange">
                     </div>
-                    <span>High</span>
+                    <span style="color: #004080;">High</span>
                 </div>
-                <div style="text-align: center; margin-top: 0.5rem; font-weight: bold;" id="energyValue">70%</div>
+                <div style="text-align: center; margin-top: 0.75rem; font-weight: bold; color: #004080;" id="energyValue">70%</div>
             </div>
         </div>
     </div>

@@ -1,0 +1,2780 @@
+/* === Common Planner Styles === */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5faff; /* Matched from style.css */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* === Bento Grid Styles (from style.css) === */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    color: #004080;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.card a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+.card.tall {
+    grid-row: span 2;
+}
+
+.card.wide {
+    grid-column: span 2;
+}
+
+.planner-section-header {
+    font-size: 1.8em;
+    color: #0056b3;
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header {
+    background-color: #0056b3;
+    padding: 15px 20px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.rating-section {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f0f9ff;
+    border-radius: 10px;
+    border: 1px solid #e0e7ff;
+}
+
+.rating-section h4 {
+    color: #004080;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3em;
+}
+
+.star-rating {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 8px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #28a745;
+    border-radius: 5px;
+}
+
+/* Form elements consistency */
+input[type="text"],
+input[type="number"],
+input[type="time"],
+input[type="range"],
+select,
+textarea {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="time"]:focus,
+input[type="range"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.2s;
+}
+
+/* Consistent spacing */
+.content {
+    padding: 20px;
+}
+
+/* === Goals & Projects Section Styles === */
+[data-section-id="goals-projects"] .planner-section-header {
+    color: #2563eb;
+}
+
+.goals-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.goal-card {
+    background: #f0f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e0e7ff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.goal-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* === Health & Wellness Section Styles === */
+[data-section-id="health-wellness"] .planner-section-header {
+    color: #16a34a;
+}
+
+.health-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.health-card {
+    background: #f0f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e0e7ff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.health-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* === Planner Header Styles === */
+.planner-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-radius: 0; /* Make corners square */
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.15);
+}
+
+.date-section {
+    text-align: left;
+}
+
+.main-date {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.day-week {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.weather-mood {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.weather-info {
+    font-size: 1.2em;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.mood-tracker {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.mood-scale {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.mood-scale span {
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mood-scale span:hover,
+.mood-scale span.active {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.2);
+}
+
+.quote-section {
+    text-align: right;
+    font-style: italic;
+}
+
+.quote-section > div:first-child {
+    font-size: 1.1em;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.quote-section > div:last-child {
+    font-size: 0.95em;
+    opacity: 0.9;
+}
+
+/* === View Toggle Styles === */
+.view-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 51, 102, 0.1);
+}
+
+.view-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #e0e7ff;
+    background: white;
+    color: #4f46e5;
+    border-radius: 0; /* Removed square effect */
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+.view-btn:hover {
+    background: #f0f9ff;
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+}
+
+.view-btn.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+    box-shadow: none; /* Removed square effect */
+}
+
+/* === Schedule Timeline Styles === */
+.schedule-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.time-slot {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+    background: #f1f5f9;
+    border-left-color: #4f46e5;
+}
+
+.time-slot.busy {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+}
+
+.time-slot.busy:hover {
+    background: #fee2e2;
+}
+
+.time-label {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9em;
+}
+
+.time-content {
+    color: #334155;
+}
+
+/* === Todo Categories Styles === */
+.todo-category {
+    margin-bottom: 1.5rem;
+}
+
+.todo-category h4 {
+    color: #4f46e5;
+    margin-bottom: 0.8rem;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+    background: #f1f5f9;
+}
+
+.todo-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4f46e5;
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* === Habit Tracker Styles === */
+.habit-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.habit-day {
+    aspect-ratio: 1;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.habit-day:hover {
+    border-color: #4f46e5;
+    background: #f0f9ff;
+}
+
+.habit-day.completed {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+.habit-day.today {
+    border-color: #f59e0b;
+    background: #fffbeb;
+}
+
+/* === Water Tracker Styles === */
+.water-tracker {
+    text-align: center;
+    padding: 1rem;
+}
+
+.water-glasses {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.water-glass {
+    width: 30px;
+    height: 40px;
+    border: 2px solid #3b82f6;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 0%, transparent 0%);
+}
+
+.water-glass.filled {
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 100%, transparent 100%);
+}
+
+.water-glass:hover {
+    transform: scale(1.1);
+}
+
+/* === Responsive Styles === */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .bento-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust for better mobile ratio */
+        gap: 15px;
+        padding: 1rem;
+    }
+
+    .card.tall {
+        grid-row: span 1; /* Prevent excessive height on mobile */
+    }
+
+    .card.wide {
+        grid-column: span 1; /* Prevent excessive width on mobile */
+    }
+    
+    .planner-section {
+        padding: 20px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.5em;
+    }
+    
+    header {
+        padding: 12px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    .star-rating {
+        font-size: 2em;
+    }
+    
+    .rating-section h4 {
+        font-size: 1.1em;
+    }
+    
+    /* Form elements responsive */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.95em;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .goal-card, .health-card {
+        padding: 15px;
+    }
+    
+    .planner-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .date-section,
+    .quote-section {
+        text-align: center;
+    }
+    
+    .main-date {
+        font-size: 2em;
+    }
+    
+    .view-toggle {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .view-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 70px 1fr;
+        gap: 0.8rem;
+        padding: 0.6rem;
+    }
+    
+    .habit-grid {
+        gap: 0.3rem;
+    }
+    
+    .water-glasses {
+        gap: 0.3rem;
+    }
+    
+    .water-glass {
+        width: 25px;
+        height: 35px;
+    }
+}
+
+/* Consistent button styles */
+.btn,
+.form-btn,
+.save-btn,
+.add-btn {
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.btn:hover,
+.form-btn:hover,
+.save-btn:hover,
+.add-btn:hover {
+    background-color: #004494;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .bento-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Allow for two columns on very small screens */
+        gap: 10px;
+        padding: 0.8rem;
+    }
+
+    .card.tall,
+    .card.wide {
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+    
+    .planner-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.3em;
+    }
+    
+    .star-rating {
+        font-size: 1.8em;
+    }
+    
+    /* Form elements for smallest screens */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    .btn,
+    .form-btn,
+    .save-btn,
+    .add-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+    
+    .content {
+        padding: 12px;
+    }
+    
+    .planner-header {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .main-date {
+        font-size: 1.8em;
+    }
+    
+    .weather-info {
+        font-size: 1em;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .mood-scale span {
+        font-size: 1.3em;
+        padding: 0.2rem;
+    }
+    
+    .view-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 60px 1fr;
+        gap: 0.6rem;
+        padding: 0.5rem;
+    }
+    
+    .time-label {
+        font-size: 0.8em;
+    }
+    
+    .todo-item {
+        padding: 0.6rem;
+        gap: 0.6rem;
+    }
+    
+    .habit-day {
+        font-size: 0.8em;
+    }
+    
+    .water-glass {
+        width: 22px;
+        height: 30px;
+    }
+}
+
+.view-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #e0e7ff;
+    background: white;
+    color: #4f46e5;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+.view-btn:hover {
+    background: #f0f9ff;
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+}
+
+.view-btn.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+    box-shadow: none; /* Removed square effect */
+}
+
+/* === Schedule Timeline Styles === */
+.schedule-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.time-slot {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+    background: #f1f5f9;
+    border-left-color: #4f46e5;
+}
+
+.time-slot.busy {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+}
+
+.time-slot.busy:hover {
+    background: #fee2e2;
+}
+
+.time-label {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9em;
+}
+
+.time-content {
+    color: #334155;
+}
+
+/* === Todo Categories Styles === */
+.todo-category {
+    margin-bottom: 1.5rem;
+}
+
+.todo-category h4 {
+    color: #4f46e5;
+    margin-bottom: 0.8rem;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+    background: #f1f5f9;
+}
+
+.todo-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4f46e5;
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* === Habit Tracker Styles === */
+.habit-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.habit-day {
+    aspect-ratio: 1;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.habit-day:hover {
+    border-color: #4f46e5;
+    background: #f0f9ff;
+}
+
+.habit-day.completed {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+.habit-day.today {
+    border-color: #f59e0b;
+    background: #fffbeb;
+}
+
+/* === Water Tracker Styles === */
+.water-tracker {
+    text-align: center;
+    padding: 1rem;
+}
+
+.water-glasses {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.water-glass {
+    width: 30px;
+    height: 40px;
+    border: 2px solid #3b82f6;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 0%, transparent 0%);
+}
+
+.water-glass.filled {
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 100%, transparent 100%);
+}
+
+.water-glass:hover {
+    transform: scale(1.1);
+}
+
+/* === Responsive Styles === */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .planner-section {
+        padding: 20px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.5em;
+    }
+    
+    header {
+        padding: 12px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    .star-rating {
+        font-size: 2em;
+    }
+    
+    .rating-section h4 {
+        font-size: 1.1em;
+    }
+    
+    /* Form elements responsive */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.95em;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .goal-card, .health-card {
+        padding: 15px;
+    }
+    
+    .planner-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .date-section,
+    .quote-section {
+        text-align: center;
+    }
+    
+    .main-date {
+        font-size: 2em;
+    }
+    
+    .view-toggle {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .view-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 70px 1fr;
+        gap: 0.8rem;
+        padding: 0.6rem;
+    }
+    
+    .habit-grid {
+        gap: 0.3rem;
+    }
+    
+    .water-glasses {
+        gap: 0.3rem;
+    }
+    
+    .water-glass {
+        width: 25px;
+        height: 35px;
+    }
+}
+
+/* Consistent button styles */
+.btn,
+.form-btn,
+.save-btn,
+.add-btn {
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.btn:hover,
+.form-btn:hover,
+.save-btn:hover,
+.add-btn:hover {
+    background-color: #004494;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .planner-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.3em;
+    }
+    
+    .star-rating {
+        font-size: 1.8em;
+    }
+    
+    /* Form elements for smallest screens */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    .btn,
+    .form-btn,
+    .save-btn,
+    .add-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+    
+    .content {
+        padding: 12px;
+    }
+    
+    .planner-header {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .main-date {
+        font-size: 1.8em;
+    }
+    
+    .weather-info {
+        font-size: 1em;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .mood-scale span {
+        font-size: 1.3em;
+        padding: 0.2rem;
+    }
+    
+    .view-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 60px 1fr;
+        gap: 0.6rem;
+        padding: 0.5rem;
+    }
+    
+    .time-label {
+        font-size: 0.8em;
+    }
+    
+    .todo-item {
+        padding: 0.6rem;
+        gap: 0.6rem;
+    }
+    
+    .habit-day {
+        font-size: 0.8em;
+    }
+    
+    .water-glass {
+        width: 22px;
+        height: 30px;
+    }
+}
+
+.view-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #e0e7ff;
+    background: white;
+    color: #4f46e5;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+.view-btn:hover {
+    background: #f0f9ff;
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+}
+
+.view-btn.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+    box-shadow: none; /* Removed square effect */
+}
+
+/* === Schedule Timeline Styles === */
+.schedule-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.time-slot {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+    background: #f1f5f9;
+    border-left-color: #4f46e5;
+}
+
+.time-slot.busy {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+}
+
+.time-slot.busy:hover {
+    background: #fee2e2;
+}
+
+.time-label {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9em;
+}
+
+.time-content {
+    color: #334155;
+}
+
+/* === Todo Categories Styles === */
+.todo-category {
+    margin-bottom: 1.5rem;
+}
+
+.todo-category h4 {
+    color: #4f46e5;
+    margin-bottom: 0.8rem;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+    background: #f1f5f9;
+}
+
+.todo-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4f46e5;
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* === Habit Tracker Styles === */
+.habit-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.habit-day {
+    aspect-ratio: 1;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.habit-day:hover {
+    border-color: #4f46e5;
+    background: #f0f9ff;
+}
+
+.habit-day.completed {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+.habit-day.today {
+    border-color: #f59e0b;
+    background: #fffbeb;
+}
+
+/* === Water Tracker Styles === */
+.water-tracker {
+    text-align: center;
+    padding: 1rem;
+}
+
+.water-glasses {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.water-glass {
+    width: 30px;
+    height: 40px;
+    border: 2px solid #3b82f6;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 0%, transparent 0%);
+}
+
+.water-glass.filled {
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 100%, transparent 100%);
+}
+
+.water-glass:hover {
+    transform: scale(1.1);
+}
+
+/* === Responsive Styles === */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .planner-section {
+        padding: 20px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.5em;
+    }
+    
+    header {
+        padding: 12px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    .star-rating {
+        font-size: 2em;
+    }
+    
+    .rating-section h4 {
+        font-size: 1.1em;
+    }
+    
+    /* Form elements responsive */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.95em;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .goal-card, .health-card {
+        padding: 15px;
+    }
+    
+    .planner-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .date-section,
+    .quote-section {
+        text-align: center;
+    }
+    
+    .main-date {
+        font-size: 2em;
+    }
+    
+    .view-toggle {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .view-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 70px 1fr;
+        gap: 0.8rem;
+        padding: 0.6rem;
+    }
+    
+    .habit-grid {
+        gap: 0.3rem;
+    }
+    
+    .water-glasses {
+        gap: 0.3rem;
+    }
+    
+    .water-glass {
+        width: 25px;
+        height: 35px;
+    }
+}
+
+/* Consistent button styles */
+.btn,
+.form-btn,
+.save-btn,
+.add-btn {
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.btn:hover,
+.form-btn:hover,
+.save-btn:hover,
+.add-btn:hover {
+    background-color: #004494;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .planner-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.3em;
+    }
+    
+    .star-rating {
+        font-size: 1.8em;
+    }
+    
+    /* Form elements for smallest screens */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    .btn,
+    .form-btn,
+    .save-btn,
+    .add-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+    
+    .content {
+        padding: 12px;
+    }
+    
+    .planner-header {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .main-date {
+        font-size: 1.8em;
+    }
+    
+    .weather-info {
+        font-size: 1em;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .mood-scale span {
+        font-size: 1.3em;
+        padding: 0.2rem;
+    }
+    
+    .view-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 60px 1fr;
+        gap: 0.6rem;
+        padding: 0.5rem;
+    }
+    
+    .time-label {
+        font-size: 0.8em;
+    }
+    
+    .todo-item {
+        padding: 0.6rem;
+        gap: 0.6rem;
+    }
+    
+    .habit-day {
+        font-size: 0.8em;
+    }
+    
+    .water-glass {
+        width: 22px;
+        height: 30px;
+    }
+}
+
+.view-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #e0e7ff;
+    background: white;
+    color: #4f46e5;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+.view-btn:hover {
+    background: #f0f9ff;
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+}
+
+.view-btn.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+/* === Schedule Timeline Styles === */
+.schedule-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.time-slot {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+    background: #f1f5f9;
+    border-left-color: #4f46e5;
+}
+
+.time-slot.busy {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+}
+
+.time-slot.busy:hover {
+    background: #fee2e2;
+}
+
+.time-label {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9em;
+}
+
+.time-content {
+    color: #334155;
+}
+
+/* === Todo Categories Styles === */
+.todo-category {
+    margin-bottom: 1.5rem;
+}
+
+.todo-category h4 {
+    color: #4f46e5;
+    margin-bottom: 0.8rem;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+    background: #f1f5f9;
+}
+
+.todo-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4f46e5;
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* === Habit Tracker Styles === */
+.habit-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.habit-day {
+    aspect-ratio: 1;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.habit-day:hover {
+    border-color: #4f46e5;
+    background: #f0f9ff;
+}
+
+.habit-day.completed {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+.habit-day.today {
+    border-color: #f59e0b;
+    background: #fffbeb;
+}
+
+/* === Water Tracker Styles === */
+.water-tracker {
+    text-align: center;
+    padding: 1rem;
+}
+
+.water-glasses {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.water-glass {
+    width: 30px;
+    height: 40px;
+    border: 2px solid #3b82f6;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 0%, transparent 0%);
+}
+
+.water-glass.filled {
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 100%, transparent 100%);
+}
+
+.water-glass:hover {
+    transform: scale(1.1);
+}
+
+/* === Responsive Styles === */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .planner-section {
+        padding: 20px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.5em;
+    }
+    
+    header {
+        padding: 12px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    .star-rating {
+        font-size: 2em;
+    }
+    
+    .rating-section h4 {
+        font-size: 1.1em;
+    }
+    
+    /* Form elements responsive */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.95em;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .goal-card, .health-card {
+        padding: 15px;
+    }
+    
+    .planner-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .date-section,
+    .quote-section {
+        text-align: center;
+    }
+    
+    .main-date {
+        font-size: 2em;
+    }
+    
+    .view-toggle {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .view-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 70px 1fr;
+        gap: 0.8rem;
+        padding: 0.6rem;
+    }
+    
+    .habit-grid {
+        gap: 0.3rem;
+    }
+    
+    .water-glasses {
+        gap: 0.3rem;
+    }
+    
+    .water-glass {
+        width: 25px;
+        height: 35px;
+    }
+}
+
+/* Consistent button styles */
+.btn,
+.form-btn,
+.save-btn,
+.add-btn {
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.btn:hover,
+.form-btn:hover,
+.save-btn:hover,
+.add-btn:hover {
+    background-color: #004494;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .planner-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.3em;
+    }
+    
+    .star-rating {
+        font-size: 1.8em;
+    }
+    
+    /* Form elements for smallest screens */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    .btn,
+    .form-btn,
+    .save-btn,
+    .add-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+    
+    .content {
+        padding: 12px;
+    }
+    
+    .planner-header {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .main-date {
+        font-size: 1.8em;
+    }
+    
+    .weather-info {
+        font-size: 1em;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .mood-scale span {
+        font-size: 1.3em;
+        padding: 0.2rem;
+    }
+    
+    .view-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 60px 1fr;
+        gap: 0.6rem;
+        padding: 0.5rem;
+    }
+    
+    .time-label {
+        font-size: 0.8em;
+    }
+    
+    .todo-item {
+        padding: 0.6rem;
+        gap: 0.6rem;
+    }
+    
+    .habit-day {
+        font-size: 0.8em;
+    }
+    
+    .water-glass {
+        width: 22px;
+        height: 30px;
+    }
+}
+
+.view-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #e0e7ff;
+    background: white;
+    color: #4f46e5;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+.view-btn:hover {
+    background: #f0f9ff;
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+}
+
+.view-btn.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+/* === Schedule Timeline Styles === */
+.schedule-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.time-slot {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+    background: #f1f5f9;
+    border-left-color: #4f46e5;
+}
+
+.time-slot.busy {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+}
+
+.time-slot.busy:hover {
+    background: #fee2e2;
+}
+
+.time-label {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9em;
+}
+
+.time-content {
+    color: #334155;
+}
+
+/* === Todo Categories Styles === */
+.todo-category {
+    margin-bottom: 1.5rem;
+}
+
+.todo-category h4 {
+    color: #4f46e5;
+    margin-bottom: 0.8rem;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+    background: #f1f5f9;
+}
+
+.todo-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4f46e5;
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* === Habit Tracker Styles === */
+.habit-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.habit-day {
+    aspect-ratio: 1;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.habit-day:hover {
+    border-color: #4f46e5;
+    background: #f0f9ff;
+}
+
+.habit-day.completed {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+.habit-day.today {
+    border-color: #f59e0b;
+    background: #fffbeb;
+}
+
+/* === Water Tracker Styles === */
+.water-tracker {
+    text-align: center;
+    padding: 1rem;
+}
+
+.water-glasses {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.water-glass {
+    width: 30px;
+    height: 40px;
+    border: 2px solid #3b82f6;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 0%, transparent 0%);
+}
+
+.water-glass.filled {
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 100%, transparent 100%);
+}
+
+.water-glass:hover {
+    transform: scale(1.1);
+}
+
+/* === Responsive Styles === */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .planner-section {
+        padding: 20px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.5em;
+    }
+    
+    header {
+        padding: 12px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    .star-rating {
+        font-size: 2em;
+    }
+    
+    .rating-section h4 {
+        font-size: 1.1em;
+    }
+    
+    /* Form elements responsive */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.95em;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .goal-card, .health-card {
+        padding: 15px;
+    }
+    
+    .planner-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .date-section,
+    .quote-section {
+        text-align: center;
+    }
+    
+    .main-date {
+        font-size: 2em;
+    }
+    
+    .view-toggle {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .view-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 70px 1fr;
+        gap: 0.8rem;
+        padding: 0.6rem;
+    }
+    
+    .habit-grid {
+        gap: 0.3rem;
+    }
+    
+    .water-glasses {
+        gap: 0.3rem;
+    }
+    
+    .water-glass {
+        width: 25px;
+        height: 35px;
+    }
+}
+
+/* Consistent button styles */
+.btn,
+.form-btn,
+.save-btn,
+.add-btn {
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.btn:hover,
+.form-btn:hover,
+.save-btn:hover,
+.add-btn:hover {
+    background-color: #004494;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .planner-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.3em;
+    }
+    
+    .star-rating {
+        font-size: 1.8em;
+    }
+    
+    /* Form elements for smallest screens */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    .btn,
+    .form-btn,
+    .save-btn,
+    .add-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+    
+    .content {
+        padding: 12px;
+    }
+    
+    .planner-header {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .main-date {
+        font-size: 1.8em;
+    }
+    
+    .weather-info {
+        font-size: 1em;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .mood-scale span {
+        font-size: 1.3em;
+        padding: 0.2rem;
+    }
+    
+    .view-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 60px 1fr;
+        gap: 0.6rem;
+        padding: 0.5rem;
+    }
+    
+    .time-label {
+        font-size: 0.8em;
+    }
+    
+    .todo-item {
+        padding: 0.6rem;
+        gap: 0.6rem;
+    }
+    
+    .habit-day {
+        font-size: 0.8em;
+    }
+    
+    .water-glass {
+        width: 22px;
+        height: 30px;
+    }
+}
+
+.view-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #e0e7ff;
+    background: white;
+    color: #4f46e5;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+.view-btn:hover {
+    background: #f0f9ff;
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+}
+
+.view-btn.active {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+/* === Schedule Timeline Styles === */
+.schedule-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.time-slot {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+    background: #f1f5f9;
+    border-left-color: #4f46e5;
+}
+
+.time-slot.busy {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+}
+
+.time-slot.busy:hover {
+    background: #fee2e2;
+}
+
+.time-label {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9em;
+}
+
+.time-content {
+    color: #334155;
+}
+
+/* === Todo Categories Styles === */
+.todo-category {
+    margin-bottom: 1.5rem;
+}
+
+.todo-category h4 {
+    color: #4f46e5;
+    margin-bottom: 0.8rem;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+    background: #f1f5f9;
+}
+
+.todo-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4f46e5;
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* === Habit Tracker Styles === */
+.habit-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.habit-day {
+    aspect-ratio: 1;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.habit-day:hover {
+    border-color: #4f46e5;
+    background: #f0f9ff;
+}
+
+.habit-day.completed {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+}
+
+.habit-day.today {
+    border-color: #f59e0b;
+    background: #fffbeb;
+}
+
+/* === Water Tracker Styles === */
+.water-tracker {
+    text-align: center;
+    padding: 1rem;
+}
+
+.water-glasses {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.water-glass {
+    width: 30px;
+    height: 40px;
+    border: 2px solid #3b82f6;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 0%, transparent 0%);
+}
+
+.water-glass.filled {
+    background: linear-gradient(to top, #3b82f6 0%, #3b82f6 100%, transparent 100%);
+}
+
+.water-glass:hover {
+    transform: scale(1.1);
+}
+
+/* === Responsive Styles === */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .planner-section {
+        padding: 20px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.5em;
+    }
+    
+    header {
+        padding: 12px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    .star-rating {
+        font-size: 2em;
+    }
+    
+    .rating-section h4 {
+        font-size: 1.1em;
+    }
+    
+    /* Form elements responsive */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.95em;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .goal-card, .health-card {
+        padding: 15px;
+    }
+    
+    .planner-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .date-section,
+    .quote-section {
+        text-align: center;
+    }
+    
+    .main-date {
+        font-size: 2em;
+    }
+    
+    .view-toggle {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .view-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9em;
+    }
+    
+    .time-slot {
+        grid-template-columns: 70px 1fr;
+        gap: 0.8rem;
+        padding: 0.6rem;
+    }
+    
+    .habit-grid {
+        gap: 0.3rem;
+    }
+    
+    .water-glasses {
+        gap: 0.3rem;
+    }
+    
+    .water-glass {
+        width: 25px;
+        height: 35px;
+    }
+}
+
+/* Consistent button styles */
+.btn,
+.form-btn,
+.save-btn,
+.add-btn {
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.btn:hover,
+.form-btn:hover,
+.save-btn:hover,
+.add-btn:hover {
+    background-color: #004494;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .planner-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .planner-section-header {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.3em;
+    }
+    
+    .star-rating {
+        font-size: 1.8em;
+    }
+    
+    /* Form elements for smallest screens */
+    input[type="text"],
+    input[type="number"],
+    input[type="time"],
+    input[type="range"],
+    select,
+    textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    .btn,

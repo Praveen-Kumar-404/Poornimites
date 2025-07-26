@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals & Projects</title>
+    <link rel="stylesheet" href="main/planner.css">
+    <style>
+        .goals-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .goal-card {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e7ff;
+        }
+        
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #d0e0ff;
+            padding-bottom: 10px;
+        }
+        
+        .goal-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #004080;
+        }
+        
+        .goal-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .status-in-progress {
+            background-color: #fff8e6;
+            color: #d97706;
+        }
+        
+        .status-completed {
+            background-color: #e6ffe6;
+            color: #16a34a;
+        }
+        
+        .status-planned {
+            background-color: #e6f0ff;
+            color: #2563eb;
+        }
+        
+        .goal-description {
+            margin-bottom: 15px;
+            color: #4b5563;
+        }
+        
+        .goal-metrics {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .metric {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #4b5563;
+        }
+        
+        .add-goal-form {
+            background: #f8faff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e7ff;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #004080;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .goal-metrics {
+                flex-wrap: wrap;
+            }
+            
+            .metric {
+                flex-basis: calc(50% - 10px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .goal-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .goal-metrics {
+                flex-direction: column;
+            }
+            
+            .metric {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Goals & Projects</h1>
+        <nav>
+            <a href="main/planner.html">← Back to Planner</a>
+        </nav>
+    </header>
+    <div class="planner-section" data-section-id="goals-projects">
+        <div class="planner-section-header">🎯 Goals & Projects</div>
+        <div class="content">
+            <div class="add-goal-form">
+                <h3>Add New Goal</h3>
+                <div class="form-group">
+                    <label for="goalTitle">Goal Title:</label>
+                    <input type="text" id="goalTitle" class="form-input" placeholder="Enter goal title">
+                </div>
+                <div class="form-group">
+                    <label for="goalDescription">Description:</label>
+                    <textarea id="goalDescription" class="form-input" rows="3" placeholder="Describe your goal"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="goalDeadline">Deadline (optional):</label>
+                    <input type="date" id="goalDeadline" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="goalStatus">Status:</label>
+                    <select id="goalStatus" class="form-input">
+                        <option value="planned">Planned</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-secondary">Cancel</button>
+                    <button id="addGoalBtn" class="btn btn-success">Add Goal</button>
+                </div>
+            </div>
+            
+            <div class="goals-container">
+                <div class="goal-card">
+                    <div class="goal-header">
+                        <div class="goal-title">Complete Web Development Course</div>
+                        <div class="goal-status status-in-progress">In Progress</div>
+                    </div>
+                    <div class="goal-description">
+                        Finish the full-stack web development course on Udemy, including all projects and assignments.
+                    </div>
+                    <div class="goal-metrics">
+                        <div class="metric">
+                            <span>🗓️</span>
+                            <span>Deadline: June 30, 2025</span>
+                        </div>
+                        <div class="metric">
+                            <span>📊</span>
+                            <span>Progress: 65%</span>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Progress</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="goal-header">
+                        <div class="goal-title">Launch Personal Portfolio Website</div>
+                        <div class="goal-status status-planned">Planned</div>
+                    </div>
+                    <div class="goal-description">
+                        Design and develop a personal portfolio website to showcase projects and skills.
+                    </div>
+                    <div class="goal-metrics">
+                        <div class="metric">
+                            <span>🗓️</span>
+                            <span>Deadline: August 15, 2025</span>
+                        </div>
+                        <div class="metric">
+                            <span>📊</span>
+                            <span>Progress: 10%</span>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Progress</span>
+                            <span>10%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 10%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="goal-header">
+                        <div class="goal-title">Learn Python Basics</div>
+                        <div class="goal-status status-completed">Completed</div>
+                    </div>
+                    <div class="goal-description">
+                        Complete the Python for Beginners course and build a simple application.
+                    </div>
+                    <div class="goal-metrics">
+                        <div class="metric">
+                            <span>🗓️</span>
+                            <span>Completed: May 10, 2025</span>
+                        </div>
+                        <div class="metric">
+                            <span>📊</span>
+                            <span>Progress: 100%</span>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Progress</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add goal functionality would go here
+            const addGoalBtn = document.getElementById('addGoalBtn');
+            
+            addGoalBtn.addEventListener('click', function() {
+                // Get form values
+                const title = document.getElementById('goalTitle').value;
+                const description = document.getElementById('goalDescription').value;
+                const deadline = document.getElementById('goalDeadline').value;
+                const status = document.getElementById('goalStatus').value;
+                
+                if (!title) {
+                    alert('Please enter a goal title');
+                    return;
+                }
+                
+                // Here you would normally add the goal to your data structure
+                // and then update the UI
+                alert('Goal added: ' + title);
+                
+                // Clear form
+                document.getElementById('goalTitle').value = '';
+                document.getElementById('goalDescription').value = '';
+                document.getElementById('goalDeadline').value = '';
+                document.getElementById('goalStatus').value = 'planned';
+            });
+        });
+    </script>
+</body>
+</html>

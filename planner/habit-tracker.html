@@ -4,33 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habit Tracker</title>
-    <link rel="stylesheet" href="../planner.css">
+    <link rel="stylesheet" href="main/planner.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        .planner-section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid #e0e0e0;
-        }
-        .planner-section-header {
-            font-size: 1.8em;
-            color: #0056b3;
-            margin-bottom: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
         .habit-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -48,6 +23,7 @@
             justify-content: center;
             font-size: 1.1em;
             color: #004080;
+            position: relative;
         }
         .habit-item.completed {
             background: #e6ffe6;
@@ -57,26 +33,91 @@
             font-size: 2.5em;
             margin-bottom: 8px;
         }
-        .progress-bar {
-            width: 100%;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            height: 8px;
-            margin-top: 8px;
-            overflow: hidden;
+        .remove-habit-btn {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 5px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
         }
-        .progress-fill {
-            height: 100%;
-            background-color: #28a745;
-            border-radius: 5px;
+        #emojiPicker {
+            display: none;
+            position: fixed;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            max-width: 90%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .emoji-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .emoji-item {
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .habit-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 10px;
+            }
+            .habit-icon {
+                font-size: 2em;
+            }
+            #emojiPicker .emoji-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .habit-grid {
+                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+                gap: 8px;
+            }
+            .habit-item {
+                padding: 10px 5px;
+                font-size: 0.9em;
+            }
+            .habit-icon {
+                font-size: 1.8em;
+                margin-bottom: 5px;
+            }
+            #emojiPicker .emoji-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .add-habit-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .add-habit-form input, 
+            .add-habit-form button {
+                width: 100%;
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <header style="background-color: #0056b3; padding: 15px 20px; color: white; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h1 style="margin: 0; font-size: 1.8em;">Habit Tracker</h1>
-        <nav style="margin-top: 10px;">
-            <a href="../planner.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Planner</a>
+    <header>
+        <h1>Habit Tracker</h1>
+        <nav>
+            <a href="main/planner.html">← Back to Planner</a>
         </nav>
     </header>
     <div class="planner-section" data-section-id="habit-tracker">
@@ -117,9 +158,9 @@
                 </div>
             </div>
             
-            <div style="margin-top: 1rem; text-align: center; padding: 1rem; background: #f8faff; border-radius: 8px;">
-                <div style="font-weight: bold; color: #004080;">Today's Progress</div>
-                <div style="font-size: 1.5rem; margin: 0.5rem 0;">5/8 habits completed</div>
+            <div class="progress-summary" style="margin-top: 1.5rem; text-align: center; padding: 1.5rem; background: #f8faff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <div style="font-weight: bold; color: #004080; margin-bottom: 0.5rem;">Today's Progress</div>
+                <div style="font-size: 1.5rem; margin: 0.75rem 0;">5/8 habits completed</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 62.5%;"></div>
                 </div>
@@ -130,17 +171,19 @@
     <div class="planner-section" data-section-id="add-habit">
         <div class="planner-section-header">➕ Add New Habit</div>
         <div class="content">
-            <input type="text" id="newHabitName" placeholder="Habit Name" style="padding: 10px; margin-right: 10px; border-radius: 5px; border: 1px solid #ddd;">
-            <input type="text" id="newHabitEmoji" placeholder="Emoji (e.g., 📚)" style="padding: 10px; margin-right: 10px; border-radius: 5px; border: 1px solid #ddd; width: 80px;">
-            <button id="openEmojiPickerBtn" style="padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Add Emoji</button>
-            <button id="addHabitBtn" style="padding: 10px 15px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Habit</button>
+            <div class="add-habit-form" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                <input type="text" id="newHabitName" placeholder="Habit Name" class="form-input" style="flex: 1; min-width: 150px;">
+                <input type="text" id="newHabitEmoji" placeholder="Emoji" class="form-input" style="width: 80px;">
+                <button id="openEmojiPickerBtn" class="btn btn-secondary">Add Emoji</button>
+                <button id="addHabitBtn" class="btn btn-success">Add Habit</button>
+            </div>
         </div>
     </div>
-    <div id="emojiPicker" style="display: none; position: absolute; background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000;">
-        <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; max-height: 200px; overflow-y: auto;">
+    <div id="emojiPicker">
+        <div class="emoji-grid">
             <!-- Emojis will be loaded here by JavaScript -->
         </div>
-        <button id="closeEmojiPickerBtn" style="margin-top: 10px; padding: 8px 12px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Close</button>
+        <button id="closeEmojiPickerBtn" class="btn" style="margin-top: 10px; background-color: #f44336; color: white; width: 100%;">Close</button>
     </div>
 
     <script>
@@ -216,7 +259,7 @@
                     habitItem.innerHTML = `
                         <div class="habit-icon">${habit.emoji}</div>
                         <div>${habit.name}</div>
-                        <button class="remove-habit-btn" data-index="${index}" style="background: none; border: none; color: #ff4d4d; font-size: 1.2em; cursor: pointer; margin-top: 5px;">✖</button>
+                        <button class="remove-habit-btn" data-index="${index}">✖</button>
                     `;
                     habitGrid.appendChild(habitItem);
                 });

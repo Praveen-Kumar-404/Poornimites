@@ -4,33 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do Lists</title>
-    <link rel="stylesheet" href="planner.css">
+    <link rel="stylesheet" href="main/planner.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        .planner-section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid #e0e0e0;
-        }
-        .planner-section-header {
-            font-size: 1.8em;
-            color: #0056b3;
-            margin-bottom: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        /* Todo-specific styles */
         .todo-category {
             margin-bottom: 1.5rem;
             background: #f8faff;
@@ -114,13 +90,64 @@
         .remove-todo-btn:hover {
             color: #cc0000;
         }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .todo-category {
+                padding: 1rem;
+            }
+            .todo-category h4 {
+                font-size: 1.2em;
+            }
+            .todo-item {
+                font-size: 1em;
+            }
+            .add-todo-item {
+                flex-direction: column;
+            }
+            .add-todo-item button {
+                align-self: flex-end;
+                padding: 8px 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .todo-category {
+                padding: 0.8rem;
+                margin-bottom: 1rem;
+            }
+            .todo-category h4 {
+                font-size: 1.1em;
+                padding-bottom: 0.3rem;
+            }
+            .todo-item {
+                font-size: 0.9em;
+                margin-bottom: 0.5rem;
+            }
+            .todo-item input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+            }
+            .add-todo-item input[type="text"] {
+                padding: 8px;
+                font-size: 0.9em;
+            }
+            .add-todo-item button {
+                font-size: 0.9em;
+                padding: 8px 10px;
+            }
+            .remove-todo-btn {
+                font-size: 1em;
+                padding: 0 3px;
+            }
+        }
     </style>
 </head>
 <body>
-    <header style="background-color: #0056b3; padding: 15px 20px; color: white; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h1 style="margin: 0; font-size: 1.8em;">To-Do Lists</h1>
-        <nav style="margin-top: 10px;">
-            <a href="../planner.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Planner</a>
+    <header>
+        <h1>To-Do Lists</h1>
+        <nav>
+            <a href="main/planner.html">← Back to Planner</a>
         </nav>
     </header>
     <div class="planner-section" data-section-id="todo-lists">
@@ -131,8 +158,8 @@
                 <ul class="todo-list" id="work-tasks-list">
                 </ul>
                 <div class="add-todo-item">
-                    <input type="text" id="new-work-task" placeholder="Add new work task">
-                    <button id="add-work-task-btn">Add</button>
+                    <input type="text" id="workTaskInput" class="form-input" placeholder="Add a task...">
+                    <button id="addWorkTaskBtn" class="btn btn-success">Add</button>
                 </div>
             </div>
             
@@ -141,8 +168,8 @@
                 <ul class="todo-list" id="personal-tasks-list">
                 </ul>
                 <div class="add-todo-item">
-                    <input type="text" id="new-personal-task" placeholder="Add new personal task">
-                    <button id="add-personal-task-btn">Add</button>
+                    <input type="text" id="personalTaskInput" class="form-input" placeholder="Add a task...">
+                    <button id="addPersonalTaskBtn" class="btn btn-success">Add</button>
                 </div>
             </div>
             
@@ -151,8 +178,8 @@
                 <ul class="todo-list" id="errands-list">
                 </ul>
                 <div class="add-todo-item">
-                    <input type="text" id="new-errand" placeholder="Add new errand">
-                    <button id="add-errand-btn">Add</button>
+                    <input type="text" id="errandInput" class="form-input" placeholder="Add an errand...">
+                    <button id="addErrandBtn" class="btn btn-success">Add</button>
                 </div>
             </div>
         </div>
@@ -166,15 +193,15 @@
             };
 
             const todoInputs = {
-                'work': document.getElementById('new-work-task'),
-                'personal': document.getElementById('new-personal-task'),
-                'errands': document.getElementById('new-errand')
+                'work': document.getElementById('workTaskInput'),
+                'personal': document.getElementById('personalTaskInput'),
+                'errands': document.getElementById('errandInput')
             };
 
             const addButtons = {
-                'work': document.getElementById('add-work-task-btn'),
-                'personal': document.getElementById('add-personal-task-btn'),
-                'errands': document.getElementById('add-errand-btn')
+                'work': document.getElementById('addWorkTaskBtn'),
+                'personal': document.getElementById('addPersonalTaskBtn'),
+                'errands': document.getElementById('addErrandBtn')
             };
 
             let todos = JSON.parse(localStorage.getItem('todos')) || {

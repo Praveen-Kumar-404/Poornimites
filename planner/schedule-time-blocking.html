@@ -4,33 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule & Time Blocking</title>
-    <link rel="stylesheet" href="planner.css">
+    <link rel="stylesheet" href="main/planner.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        .planner-section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid #e0e0e0;
-        }
-        .planner-section-header {
-            font-size: 1.8em;
-            color: #0056b3;
-            margin-bottom: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
         .schedule-timeline {
             display: flex;
             flex-direction: column;
@@ -38,31 +13,37 @@
             border-left: 2px solid #e0e0e0;
             padding-left: 15px;
         }
+        
         .time-slot {
-             display: flex;
-             flex-direction: row; /* Changed to row for time, activity, actions */
-             align-items: center; /* Align items vertically in the row */
-             justify-content: space-between; /* Distribute space */
-             padding: 10px 15px;
-             border-radius: 8px;
-             background-color: #f0f9ff;
-             border: 1px solid #cce7ff;
-             position: relative;
-             width: 100%; /* Ensure consistent width */
-             box-sizing: border-box; /* Include padding and border in the width */
-         }
-         .time-slot .time {
-             flex-shrink: 0; /* Prevent time from shrinking */
-             width: 80px; /* Fixed width for time */
-         }
-         .time-slot .activity {
-             flex-grow: 1; /* Allow activity to take remaining space */
-             margin-right: 10px; /* Space between activity and actions */
-         }
-         .time-slot .actions {
-             flex-shrink: 0; /* Prevent actions from shrinking */
-         }
-
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-radius: 8px;
+            background-color: #f0f9ff;
+            border: 1px solid #cce7ff;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .time-slot .time {
+            flex-shrink: 0;
+            width: 80px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+        
+        .time-slot .activity {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        
+        .time-slot .actions {
+            flex-shrink: 0;
+        }
+        
         .time-slot::before {
             content: '';
             position: absolute;
@@ -76,38 +57,37 @@
             border: 2px solid #ffffff;
             box-shadow: 0 0 0 2px #007bff;
         }
+        
         .time-slot.work {
             background-color: #e6ffe6;
             border-color: #a3e6a3;
         }
+        
         .time-slot.work::before {
             background-color: #28a745;
             box-shadow: 0 0 0 2px #28a745;
         }
+        
         .time-slot.break {
             background-color: #fff8e6;
             border-color: #ffe0b3;
         }
+        
         .time-slot.break::before {
             background-color: #ffc107;
             box-shadow: 0 0 0 2px #ffc107;
         }
+        
         .time-slot.busy {
             background-color: #ffe6e6;
             border-color: #ffb3b3;
         }
+        
         .time-slot.busy::before {
             background-color: #dc3545;
             box-shadow: 0 0 0 2px #dc3545;
         }
-        .time-slot > .time {
-            font-weight: bold;
-            color: #0056b3;
-            margin-bottom: 5px;
-        }
-        .time-slot .activity {
-            margin-bottom: 5px;
-        }
+        
         .time-slot .actions button {
             background: none;
             border: none;
@@ -116,32 +96,125 @@
             margin-left: 10px;
             color: #007bff;
         }
+        
         .time-slot .actions button:hover {
             text-decoration: underline;
+        }
+        
+        .add-slot-form {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .form-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .form-input-activity {
+            flex-grow: 1;
+        }
+        
+        .form-btn {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .time-slot {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px;
+            }
+            
+            .time-slot .time {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .time-slot .activity {
+                width: 100%;
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .time-slot .actions {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+            }
+            
+            .add-slot-form {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .form-input, .form-btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .schedule-timeline {
+                padding-left: 12px;
+            }
+            
+            .time-slot::before {
+                left: -18px;
+                width: 8px;
+                height: 8px;
+            }
+            
+            .time-slot .actions button {
+                font-size: 0.8em;
+                padding: 4px 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <header style="background-color: #0056b3; padding: 15px 20px; color: white; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h1 style="margin: 0; font-size: 1.8em;">Schedule & Time Blocking</h1>
-        <nav style="margin-top: 10px;">
-            <a href="../planner.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Planner</a>
+    <header>
+        <h1>Schedule & Time Blocking</h1>
+        <nav>
+            <a href="main/planner.html">← Back to Planner</a>
         </nav>
     </header>
     <div class="planner-section" data-section-id="schedule-time-blocking">
         <div class="planner-section-header">🕒 Schedule & Time Blocking</div>
         <div class="content">
-            <div class="add-slot-form" style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
-                <input type="time" id="newStartTime" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-                <input type="time" id="newEndTime" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-                <input type="text" id="newActivity" placeholder="Activity" style="flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-                <select id="newType" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-                    <option value="">None</option>
-                    <option value="work">Work</option>
-                    <option value="break">Break</option>
-                    <option value="busy">Busy</option>
-                </select>
-                <button id="addSlotBtn" style="padding: 8px 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Slot</button>
+            <div class="add-slot-form">
+                <h3>Add Slot</h3>
+                <div class="form-group">
+                    <label for="newStartTime">Start Time:</label>
+                    <input type="time" id="newStartTime" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="newEndTime">End Time:</label>
+                    <input type="time" id="newEndTime" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="newActivity">Activity:</label>
+                    <input type="text" id="newActivity" class="form-input form-input-activity">
+                </div>
+                <div class="form-group">
+                    <label for="newType">Type:</label>
+                    <select id="newType" class="form-input">
+                        <option value="">None</option>
+                        <option value="work">Work</option>
+                        <option value="break">Break</option>
+                        <option value="busy">Busy</option>
+                    </select>
+                </div>
+                <button id="addSlotBtn" class="btn btn-success">Add to Schedule</button>
+                <button id="cancelEditBtn" class="btn btn-secondary" style="display: none;">Cancel Edit</button>
             </div>
             <div class="schedule-timeline" id="scheduleTimeline">
                 <!-- Time slots will be loaded here by JavaScript -->
