@@ -503,7 +503,7 @@ button {
 /* === Responsive Styles === */
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 0; /* Removed padding for smaller screens */
     }
     
     .bento-grid {
@@ -649,7 +649,7 @@ button {
 
 @media (max-width: 480px) {
     body {
-        padding: 10px;
+        padding: 0; /* Removed padding for smallest screens */
     }
     
     .bento-grid {
@@ -945,7 +945,7 @@ button {
 /* === Responsive Styles === */
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 0; /* Removed padding for smaller screens */
     }
     
     .planner-section {
@@ -1077,7 +1077,7 @@ button {
 
 @media (max-width: 480px) {
     body {
-        padding: 10px;
+        padding: 0; /* Removed padding for smallest screens */
     }
     
     .planner-section {
@@ -1361,7 +1361,7 @@ button {
 /* === Responsive Styles === */
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 0; /* Removed padding for smaller screens */
     }
     
     .planner-section {
@@ -1493,7 +1493,7 @@ button {
 
 @media (max-width: 480px) {
     body {
-        padding: 10px;
+        padding: 0; /* Removed padding for smallest screens */
     }
     
     .planner-section {
@@ -1777,7 +1777,7 @@ button {
 /* === Responsive Styles === */
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 0; /* Removed padding for smaller screens */
     }
     
     .planner-section {
@@ -1909,7 +1909,7 @@ button {
 
 @media (max-width: 480px) {
     body {
-        padding: 10px;
+        padding: 0; /* Removed padding for smallest screens */
     }
     
     .planner-section {
@@ -2193,7 +2193,7 @@ button {
 /* === Responsive Styles === */
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        /* padding: 15px; */
     }
     
     .planner-section {
@@ -2325,7 +2325,7 @@ button {
 
 @media (max-width: 480px) {
     body {
-        padding: 10px;
+        /* padding: 10px; */
     }
     
     .planner-section {
@@ -2609,7 +2609,7 @@ button {
 /* === Responsive Styles === */
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        /* padding: 15px; */
     }
     
     .planner-section {
@@ -2741,7 +2741,7 @@ button {
 
 @media (max-width: 480px) {
     body {
-        padding: 10px;
+        /* padding: 10px; */
     }
     
     .planner-section {
