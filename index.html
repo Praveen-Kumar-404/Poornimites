@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Poornimites - Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🎓</text></svg>"></link>
-  
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poornimites - Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/bento-grid.css">
+    <title>Poornimites</title>
 </head>
 
 <body>
@@ -18,7 +20,7 @@
     <nav class="nav-links" id="navLinks">
       <a href="tools.html">Tools</a>
       <a href="notes.html">Notes</a>
-      <a href="planner/main/planner.html">Planner</a>
+      <a href="pages/planner/index.html">Planner</a>
       <a href="community.html">Community</a>
       <a href="career.html">Career</a>
     </nav>
@@ -29,17 +31,13 @@
     </div>
   </header>
   
-  
-  
-
-
   <main class="bento-grid">
 
     <!-- Core Pages -->
     <div class="card tall">
       <h2>🧠 Personal Planner</h2>
       <p>Manage your calendar, to-do list, and reminders.</p>
-      <a href="planner/main/planner.html">Go to Planner →</a>
+      <a href="pages/planner/index.html">Go to Planner →</a>
     </div>
 
     <div class="card">
@@ -163,66 +161,7 @@
     </div>
   </footer>
 
-  <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
-  import {
-    getAuth,
-    signInWithPopup,
-    signOut,
-    GoogleAuthProvider,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
-    authDomain: "poornimites-2bbe7.firebaseapp.com",
-    projectId: "poornimites-2bbe7",
-    storageBucket: "poornimites-2bbe7.appspot.com",
-    messagingSenderId: "597165564910",
-    appId: "1:597165564910:web:4d87e756fa1250359324ff",
-    measurementId: "G-2M98Z8JY7Q"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
-  const authBtn = document.getElementById("auth-btn");
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      authBtn.textContent = "🚪";
-      authBtn.href = "#";
-      authBtn.onclick = (e) => {
-        e.preventDefault();
-        signOut(auth)
-          .then(() => alert("Logged out successfully"))
-          .catch((err) => {
-            console.error(err);
-            alert("Logout failed");
-          });
-      };
-    } else {
-      authBtn.textContent = "👤";
-      authBtn.href = "#";
-      authBtn.onclick = (e) => {
-        e.preventDefault();
-        signInWithPopup(auth, provider)
-          .then((result) => {
-            alert(`Welcome ${result.user.displayName}`);
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("Login failed");
-          });
-      };
-    }
-  });
-</script>
-
-
+  <script type="module" src="assets/js/auth.js"></script>
 </body>
 
 </html>

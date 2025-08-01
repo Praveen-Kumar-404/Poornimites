@@ -1,0 +1,81 @@
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    color: #004080;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.card a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+.card.tall {
+    grid-row: span 2;
+}
+
+.card.wide {
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust for better mobile ratio */
+        gap: 15px;
+        padding: 1rem;
+    }
+
+    .card.tall {
+        grid-row: span 1; /* Prevent excessive height on mobile */
+    }
+
+    .card.wide {
+        grid-column: span 1; /* Prevent excessive width on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .bento-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Allow for two columns on very small screens */
+        gap: 10px;
+        padding: 0.8rem;
+    }
+
+    .card.tall,
+    .card.wide {
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+}

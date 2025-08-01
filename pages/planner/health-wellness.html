@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health & Wellness</title>
-    <link rel="stylesheet" href="main/planner.css">
+    <title>Health & Wellness - Poornimites</title>
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/sub-page.css">
     <style>
         .health-container {
             display: flex;
@@ -208,88 +210,31 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Health & Wellness</h1>
-        <nav>
-            <a href="main/planner.html">← Back to Planner</a>
-        </nav>
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">← Back to Planner</a>
+        </div>
     </header>
-    <div class="planner-section" data-section-id="health-wellness">
-        <div class="planner-section-header">💪 Health & Wellness</div>
-        <div class="content">
-            <div class="health-container">
-                <div class="health-card">
-                    <div class="health-header">
-                        <div class="health-title">Today's Health Summary</div>
-                        <div class="date">May 15, 2025</div>
-                    </div>
-                    
-                    <div class="health-metrics">
-                        <div class="metric-card">
-                            <div class="metric-icon">🏃</div>
-                            <div class="metric-value">7,532</div>
-                            <div class="metric-label">Steps</div>
-                        </div>
-                        
-                        <div class="metric-card">
-                            <div class="metric-icon">🔥</div>
-                            <div class="metric-value">1,850</div>
-                            <div class="metric-label">Calories</div>
-                        </div>
-                        
-                        <div class="metric-card">
-                            <div class="metric-icon">⏱️</div>
-                            <div class="metric-value">45 min</div>
-                            <div class="metric-label">Exercise</div>
-                        </div>
-                        
-                        <div class="metric-card">
-                            <div class="metric-icon">😴</div>
-                            <div class="metric-value">7.5 hrs</div>
-                            <div class="metric-label">Sleep</div>
-                        </div>
-                    </div>
-                    
-                    <div class="water-tracker">
-                        <h3>Water Intake</h3>
-                        <p>Goal: 8 glasses</p>
-                        <div class="water-glasses">
-                            <div class="water-glass filled"></div>
-                            <div class="water-glass filled"></div>
-                            <div class="water-glass filled"></div>
-                            <div class="water-glass filled"></div>
-                            <div class="water-glass filled"></div>
-                            <div class="water-glass"></div>
-                            <div class="water-glass"></div>
-                            <div class="water-glass"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="meal-log">
-                        <h3>Meal Log</h3>
-                        <div class="meal-entry">
-                            <div class="meal-time">Breakfast</div>
-                            <div class="meal-description">Oatmeal with berries and honey</div>
-                            <div class="meal-calories">350 cal</div>
-                        </div>
-                        <div class="meal-entry">
-                            <div class="meal-time">Lunch</div>
-                            <div class="meal-description">Grilled chicken salad with avocado</div>
-                            <div class="meal-calories">520 cal</div>
-                        </div>
-                        <div class="meal-entry">
-                            <div class="meal-time">Snack</div>
-                            <div class="meal-description">Greek yogurt with almonds</div>
-                            <div class="meal-calories">180 cal</div>
-                        </div>
-                        <div class="meal-entry">
-                            <div class="meal-time">Dinner</div>
-                            <div class="meal-description">Salmon with roasted vegetables</div>
-                            <div class="meal-calories">650 cal</div>
-                        </div>
-                    </div>
-                    
-                    <div class="add-meal-form">
+
+    <main class="container">
+        <h1>Health & Wellness Tracker</h1>
+
+        <section id="water-intake">
+            <h3>Water Intake</h3>
+            <p>Goal: 8 glasses</p>
+            <div class="water-glasses">
+                <div class="water-glass filled"></div>
+                <div class="water-glass filled"></div>
+                <div class="water-glass filled"></div>
+                <div class="water-glass filled"></div>
+                <div class="water-glass filled"></div>
+                <div class="water-glass"></div>
+                <div class="water-glass"></div>
+                <div class="water-glass"></div>
+            </div>
+        </section>
+
+        <div class="add-meal-form">
                         <h3>Add Meal</h3>
                         <div class="form-row">
                             <div class="form-group">
@@ -332,12 +277,8 @@
                             <button class="btn btn-secondary">Cancel</button>
                             <button id="addMealBtn" class="btn btn-success">Add Meal</button>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    </main>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Water glass tracking

@@ -1,0 +1,186 @@
+/* assets/css/sub-page.css */
+
+:root {
+    --primary-bg: #f5faff; /* Light blue background */
+    --text-color: #003366; /* Dark blue text */
+    --accent-color: #0066cc; /* Link and accent color */
+    --card-bg: #ffffff; /* White card background */
+    --border-color: #d_e2f_3; /* Lighter blue for borders */
+    --shadow-color: rgba(0, 51, 102, 0.08);
+    --header-bg: #004080;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    flex-grow: 1;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.back-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--text-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--header-bg);
+    margin: 0;
+}
+
+.content-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 15px var(--shadow-color);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.form-input,
+textarea.form-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fafcfd;
+    color: var(--text-color);
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .container {
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+    .content-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Daily Rating Styles */
+.rating-section {
+    margin-bottom: 2rem;
+}
+
+.star-rating .star {
+    cursor: pointer;
+    color: #ccc;
+    font-size: 2.5em;
+    transition: color 0.2s;
+}
+
+.star-rating .star.active {
+    color: #c0cb3f;
+}
+
+.energy-level-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.energy-level-bar input[type="range"] {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, #28a745, #ffc107, #dc3545);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.energy-level-bar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.energy-level-bar input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+}
