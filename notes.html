@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poornimites - Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/bento-grid.css">
+    <title>Poornimites</title>
+  
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎓 <a href="index.html">Poornimites</a></div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="tools.html">Tools</a>
+      <a href="notes.html">Notes</a>
+      <a href="planner.html">Planner</a>
+      <a href="community.html">Community</a>
+      <a href="career.html">Career</a>
+    </nav>
+
+    <div class="nav-icons" id="navIcons">
+      <a href="#" id="auth-btn">👤</a>
+      <a href="settings.html">⚙️</a>
+    </div>
+  </header>
+
+  <main class="bento-grid">
+
+    <!-- Subject Pages with PDF Unlock Logic -->
+    <div class="card pdf-card" data-src="assets/paper/ads.html">
+      <h2>Advanced Data Structure</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card pdf-card" data-src="iot.html">
+      <h2>Internet of Things</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card pdf-card" data-src="ems.html">
+      <h2>Enterpreneurial & Managment Skills</h2>
+      <div class="pdf-frame"></div>
+    </div>
+    
+    <div class="card pdf-card" data-src="asp.html">
+      <h2>ASP.Net</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card pdf-card" data-src="web.html">
+      <h2>Web Services</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card pdf-card" data-src="mad.html">
+      <h2>Mobile Application Development</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    
+    <div class="card pdf-card" data-src="ai.html">
+      <h2>Artificial Intelligence</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+  </main>
+
+  <div id="disclaimer-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:#000000aa; justify-content:center; align-items:center; z-index:9999;">
+    <div style="background:white; padding:2rem; border-radius:10px; max-width:90%; text-align:center;">
+      <h2>Disclaimer</h2>
+      <p>This website is for educational purposes only. Access to certain content is restricted until the scheduled time.</p>
+      <button id="accept-btn">Accept</button>
+    </div>
+  </div>
+
+  <div id="creator-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:#000000aa; justify-content:center; align-items:center; z-index:9999;">
+    <div style="background:white; padding:2rem; border-radius:10px; max-width:90%; text-align:center;">
+      <h2>Creator Info</h2>
+      <p>Developed by Praveen Kumar 🚀</p>
+      <button id="close-creator">Close</button>
+    </div>
+  </div>
+
+  <footer class="footer"
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="credits.html">Credits</a>
+    </div>
+
+    <div class="footer-text">
+      Made with 💙 by Students for Students. © 2025 StudentHub
+    </div>
+  </footer>
+
+<script>
+    const pdfCards = document.querySelectorAll('.pdf-card');
+    const modal = document.getElementById('disclaimer-modal');
+    const acceptBtn = document.getElementById('accept-btn');
+    const creatorBtn = document.getElementById('creator-btn');
+    const creatorModal = document.getElementById('creator-modal');
+    const closeCreator = document.getElementById('close-creator');
+
+    const unlockTimes = {
+      "ads.html": new Date("2025-10-30T22:00:00"),
+      "iot.html": new Date("2025-10-31T22:00:00"),
+      "ems.html": new Date("2025-11-02T22:00:00"),
+      "asp.html": new Date("2025-11-03T22:00:00"),
+      "web.html": new Date("2025-11-03T22:00:00"),
+      "mad.html": new Date("2025-11-05T22:00:00"),
+      "ai.html": new Date("2025-11-05T22:00:00")
+    };
+
+    const enableUnlockedPages = () => {
+      const now = new Date();
+
+      pdfCards.forEach(card => {
+        const src = card.getAttribute('data-src');
+        const filename = src.split('/').pop();
+        const unlockTime = unlockTimes[filename];
+        const frame = card.querySelector('.pdf-frame');
+
+        if (unlockTime && now >= unlockTime) {
+          frame.innerHTML = `<a href="${src}">Let's Learn →</a>`;
+        } else if (unlockTime) {
+          const countdown = document.createElement('span');
+          countdown.classList.add('countdown');
+          frame.innerHTML = `⏳ Unlocks on ${unlockTime.toDateString()}<br>`;
+          frame.appendChild(countdown);
+          updateCountdown(countdown, unlockTime);
+          setInterval(() => updateCountdown(countdown, unlockTime), 1000);
+        } else {
+          frame.innerHTML = `<a href="${src}">Let's Learn →</a>`;
+        }
+      });
+    };
+
+    function updateCountdown(element, unlockTime) {
+      const now = new Date();
+      const remaining = unlockTime - now;
+
+      if (remaining <= 0) {
+        element.textContent = "Unlocked!";
+        return;
+      }
+
+      const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+      element.textContent = `⏱ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const disclaimerShown = sessionStorage.getItem('disclaimerAccepted');
+    if (!disclaimerShown) {
+      modal.style.display = 'flex';
+    } else {
+      enableUnlockedPages();
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      sessionStorage.setItem('disclaimerAccepted', 'true');
+      enableUnlockedPages();
+    });
+
+    if (creatorBtn && closeCreator) {
+      creatorBtn.addEventListener('click', () => {
+        creatorModal.style.display = 'flex';
+      });
+
+      closeCreator.addEventListener('click', () => {
+        creatorModal.style.display = 'none';
+      });
+    }
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+    import {
+      getAuth,
+      signInWithPopup,
+      signOut,
+      GoogleAuthProvider,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
+      authDomain: "poornimites-2bbe7.firebaseapp.com",
+      projectId: "poornimites-2bbe7",
+      storageBucket: "poornimites-2bbe7.appspot.com",
+      messagingSenderId: "597165564910",
+      appId: "1:597165564910:web:4d87e756fa1250359324ff",
+      measurementId: "G-2M98Z8JY7Q"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const authBtn = document.getElementById("auth-btn");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        authBtn.textContent = "🚪";
+        authBtn.href = "#";
+        authBtn.onclick = (e) => {
+          e.preventDefault();
+          signOut(auth)
+            .then(() => alert("Logged out successfully"))
+            .catch((err) => {
+              console.error(err);
+              alert("Logout failed");
+            });
+        };
+      } else {
+        authBtn.textContent = "👤";
+        authBtn.href = "#";
+        authBtn.onclick = (e) => {
+          e.preventDefault();
+          signInWithPopup(auth, provider)
+            .then((result) => {
+              alert(`Welcome ${result.user.displayName}`);
+            })
+            .catch((error) => {
+              console.error(error);
+              alert("Login failed");
+            });
+        };
+      }
+    });
+  </script>
+
+
+</body>
+
+</html>
