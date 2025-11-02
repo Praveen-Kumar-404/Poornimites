@@ -196,7 +196,38 @@
       GoogleAuthProvider,
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-
+     
+    // Authentication protection - hide content if not logged in
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainContent = document.querySelector('main.bento-grid');
+      const loginMessage = document.createElement('div');
+      loginMessage.className = 'login-message';
+      loginMessage.innerHTML = `
+        <div style="text-align: center; padding: 50px; margin: 20px auto; max-width: 600px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <h2>Login Required</h2>
+          <p>Please log in to access the notes.</p>
+          <p>Click the 👤 icon in the top right corner to log in.</p>
+        </div>
+      `;
+      
+      // Initially hide the content
+      mainContent.style.display = 'none';
+      document.body.insertBefore(loginMessage, mainContent);
+      
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is logged in, show content
+          mainContent.style.display = 'grid';
+          loginMessage.style.display = 'none';
+        } else {
+          // User is not logged in, keep content hidden
+          mainContent.style.display = 'none';
+          loginMessage.style.display = 'block';
+        }
+      });
+    });
+    
     const firebaseConfig = {
       apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
       authDomain: "poornimites-2bbe7.firebaseapp.com",
