@@ -32,6 +32,11 @@ const provider = new GoogleAuthProvider();
 // Restrict signup domain
 const allowedDomain = "poornima.edu.in";
 
+// Set Google Auth to only allow poornima.edu.in domain
+provider.setCustomParameters({
+  hd: allowedDomain
+});
+
 // Email/password registration
 export async function register(email, password) {
   const domain = email.split("@")[1];
