@@ -9,6 +9,7 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -25,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 // Restrict signup domain
@@ -39,17 +41,69 @@ export async function register(email, password) {
   return await createUserWithEmailAndPassword(auth, email, password);
 }
 
+// Track user login session
+async function trackUserSession(user) {
+  try {
+    // Create a user session document
+    const sessionData = {
+      userId: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      loginTime: serverTimestamp(),
+      lastActive: serverTimestamp(),
+      browser: navigator.userAgent,
+      platform: navigator.platform
+    };
+    
+    // Store in Firestore
+    await setDoc(doc(db, "userSessions", `${user.uid}_${Date.now()}`), sessionData);
+    
+    // Update user's last login in users collection
+    await setDoc(doc(db, "users", user.uid), {
+      email: user.email,
+      displayName: user.displayName,
+      lastLogin: serverTimestamp(),
+      photoURL: user.photoURL || null
+    }, { merge: true });
+    
+    // Set up activity tracking
+    const activityInterval = setInterval(async () => {
+      if (auth.currentUser) {
+        await updateDoc(doc(db, "users", user.uid), {
+          lastActive: serverTimestamp()
+        });
+      } else {
+        clearInterval(activityInterval);
+      }
+    }, 60000); // Update every minute
+    
+  } catch (error) {
+    console.error("Error tracking user session:", error);
+  }
+}
+
 // Google sign-in/out button logic
 const authBtn = document.getElementById("auth-btn");
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    // Track user login
+    trackUserSession(user);
+    
     authBtn.textContent = "🚪";
     authBtn.href = "#";
     authBtn.onclick = (e) => {
       e.preventDefault();
       signOut(auth)
-        .then(() => alert("Logged out successfully"))
+        .then(() => {
+          // Record logout time
+          if (user && user.uid) {
+            updateDoc(doc(db, "users", user.uid), {
+              lastLogout: serverTimestamp()
+            }).catch(err => console.error("Error recording logout time:", err));
+          }
+          alert("Logged out successfully");
+        })
         .catch((err) => {
           console.error(err);
           alert("Logout failed");
