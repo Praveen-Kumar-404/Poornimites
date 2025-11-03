@@ -1,0 +1,5340 @@
+<html>
+
+<head>
+    <style>
+        /* Disable text selection and copying */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Disable printing */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        /* Full-page watermark overlay */
+        #watermark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+            font-size: 3rem;
+            color: red;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-30deg);
+            white-space: nowrap;
+        }
+    </style>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">
+        @import url(https://themes.googleusercontent.com/fonts/css?kit=XGMkxXUZTA64h2imyzu79g);
+
+        .lst-kix_7xhrxo39ybmj-8>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-8
+        }
+
+        ol.lst-kix_lrewic1jctup-8.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-8 0
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-0.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-0 0
+        }
+
+        ul.lst-kix_fbcbfgv451tq-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fbcbfgv451tq-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_ue1edsdzrbs4-8>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-8
+        }
+
+        ul.lst-kix_fbcbfgv451tq-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fbcbfgv451tq-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fbcbfgv451tq-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fbcbfgv451tq-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fbcbfgv451tq-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fbcbfgv451tq-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fbcbfgv451tq-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-2.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-2 0
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-5.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-5 0
+        }
+
+        .lst-kix_exzjh8e88b1m-1>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-1
+        }
+
+        .lst-kix_srzwjbz9vcta-1>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-1
+        }
+
+        ol.lst-kix_lrewic1jctup-3.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-3 0
+        }
+
+        .lst-kix_w5zluesakzuh-2>li {
+            counter-increment: lst-ctn-kix_w5zluesakzuh-2
+        }
+
+        .lst-kix_gbnt6pp13esp-5>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-5
+        }
+
+        .lst-kix_qrf1wwum513d-6>li {
+            counter-increment: lst-ctn-kix_qrf1wwum513d-6
+        }
+
+        ol.lst-kix_exzjh8e88b1m-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_exzjh8e88b1m-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_exzjh8e88b1m-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_exzjh8e88b1m-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-6>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-6
+        }
+
+        ol.lst-kix_exzjh8e88b1m-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_exzjh8e88b1m-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_exzjh8e88b1m-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_f7nqx71wajj1-3.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-3 0
+        }
+
+        ol.lst-kix_exzjh8e88b1m-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_exzjh8e88b1m-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_exzjh8e88b1m-3.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-3 0
+        }
+
+        .lst-kix_2rlkm27ibqmn-8>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-8, lower-roman) ". "
+        }
+
+        .lst-kix_2rlkm27ibqmn-6>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-6, decimal) ". "
+        }
+
+        .lst-kix_2rlkm27ibqmn-2>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-2, lower-roman) ". "
+        }
+
+        .lst-kix_2rlkm27ibqmn-0>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-0, decimal) ". "
+        }
+
+        .lst-kix_2rlkm27ibqmn-4>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-4, lower-latin) ". "
+        }
+
+        ul.lst-kix_roud0e12b9vy-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_roud0e12b9vy-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_roud0e12b9vy-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_roud0e12b9vy-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_ue1edsdzrbs4-1>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-1
+        }
+
+        ul.lst-kix_roud0e12b9vy-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-0>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-0
+        }
+
+        ol.lst-kix_gbnt6pp13esp-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_roud0e12b9vy-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_roud0e12b9vy-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_exzjh8e88b1m-8>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-8
+        }
+
+        ul.lst-kix_roud0e12b9vy-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_fuiaup89gxt4-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_roud0e12b9vy-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_otlix4aj6yde-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-8.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-8 0
+        }
+
+        ul.lst-kix_otlix4aj6yde-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_otlix4aj6yde-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_otlix4aj6yde-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_otlix4aj6yde-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_fuiaup89gxt4-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_otlix4aj6yde-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_lrewic1jctup-2>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-2
+        }
+
+        ul.lst-kix_otlix4aj6yde-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_otlix4aj6yde-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_otlix4aj6yde-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_l7dj0hq5lbsf-7>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-7
+        }
+
+        .lst-kix_t6nndbkml0yf-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_1fp377yopheh-6>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-6
+        }
+
+        .lst-kix_2rlkm27ibqmn-2>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-2
+        }
+
+        .lst-kix_t6nndbkml0yf-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_w5zluesakzuh-4.start {
+            counter-reset: lst-ctn-kix_w5zluesakzuh-4 0
+        }
+
+        ol.lst-kix_qrf1wwum513d-8.start {
+            counter-reset: lst-ctn-kix_qrf1wwum513d-8 0
+        }
+
+        .lst-kix_fuiaup89gxt4-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_fuiaup89gxt4-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hjz2adw8vhy1-7>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-7, lower-latin) ". "
+        }
+
+        .lst-kix_t6nndbkml0yf-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-8.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-8 0
+        }
+
+        .lst-kix_hjz2adw8vhy1-5>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-5, lower-roman) ". "
+        }
+
+        .lst-kix_t6nndbkml0yf-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_2rlkm27ibqmn-3>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-3
+        }
+
+        .lst-kix_fuiaup89gxt4-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_hjz2adw8vhy1-3>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-3, decimal) ". "
+        }
+
+        ol.lst-kix_qrf1wwum513d-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qrf1wwum513d-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qrf1wwum513d-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qrf1wwum513d-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qrf1wwum513d-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_hjz2adw8vhy1-1>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-4.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-4 0
+        }
+
+        .lst-kix_l7dj0hq5lbsf-6>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-6
+        }
+
+        ol.lst-kix_qrf1wwum513d-7.start {
+            counter-reset: lst-ctn-kix_qrf1wwum513d-7 0
+        }
+
+        .lst-kix_678spiuxgdo-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hjz2adw8vhy1-3>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-3
+        }
+
+        .lst-kix_msztv5hhvymj-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ue1edsdzrbs4-0>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-0
+        }
+
+        .lst-kix_678spiuxgdo-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_678spiuxgdo-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-4.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-4 0
+        }
+
+        ol.lst-kix_qrf1wwum513d-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-7.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-7 0
+        }
+
+        ol.lst-kix_qrf1wwum513d-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_lrewic1jctup-3>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-3
+        }
+
+        ol.lst-kix_qrf1wwum513d-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_msztv5hhvymj-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_678spiuxgdo-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_msztv5hhvymj-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_msztv5hhvymj-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-3.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-3 0
+        }
+
+        .lst-kix_msztv5hhvymj-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_7xhrxo39ybmj-7>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-7
+        }
+
+        .lst-kix_qrf1wwum513d-5>li {
+            counter-increment: lst-ctn-kix_qrf1wwum513d-5
+        }
+
+        .lst-kix_gjq8h99lm5kk-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_qrf1wwum513d-7>li {
+            counter-increment: lst-ctn-kix_qrf1wwum513d-7
+        }
+
+        .lst-kix_hjz2adw8vhy1-8>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-8, lower-roman) ". "
+        }
+
+        .lst-kix_gjq8h99lm5kk-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gbnt6pp13esp-6>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-6
+        }
+
+        .lst-kix_gjq8h99lm5kk-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_exzjh8e88b1m-2>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-8.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-8 0
+        }
+
+        .lst-kix_exzjh8e88b1m-1>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-1, lower-latin) ". "
+        }
+
+        .lst-kix_exzjh8e88b1m-5>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-5, lower-roman) ". "
+        }
+
+        .lst-kix_exzjh8e88b1m-6>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-6, decimal) ". "
+        }
+
+        .lst-kix_1fp377yopheh-5>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-5
+        }
+
+        .lst-kix_hjz2adw8vhy1-4>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-4
+        }
+
+        ol.lst-kix_lrewic1jctup-4.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-4 0
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-4.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-4 0
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_ag0estjouhus-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_w5zluesakzuh-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_2rlkm27ibqmn-7>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-0.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-0 0
+        }
+
+        .lst-kix_w5zluesakzuh-5>li:before {
+            content: "" counter(lst-ctn-kix_w5zluesakzuh-5, lower-roman) ". "
+        }
+
+        .lst-kix_2rlkm27ibqmn-3>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-3, decimal) ". "
+        }
+
+        ul.lst-kix_nuafbiccw3fs-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nuafbiccw3fs-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nuafbiccw3fs-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nuafbiccw3fs-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nuafbiccw3fs-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nuafbiccw3fs-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nuafbiccw3fs-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nuafbiccw3fs-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nuafbiccw3fs-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_fuiaup89gxt4-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ag0estjouhus-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ag0estjouhus-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ybdvq5o3srzt-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_t6nndbkml0yf-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_xa5ayooi1ugu-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_t6nndbkml0yf-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_lrewic1jctup-7.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-7 0
+        }
+
+        .lst-kix_t6nndbkml0yf-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_qrf1wwum513d-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_fuiaup89gxt4-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_xa5ayooi1ugu-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ybdvq5o3srzt-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_qrf1wwum513d-5>li:before {
+            content: "" counter(lst-ctn-kix_qrf1wwum513d-5, lower-roman) ". "
+        }
+
+        .lst-kix_gjq8h99lm5kk-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hjz2adw8vhy1-4>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-4, lower-latin) ". "
+        }
+
+        .lst-kix_678spiuxgdo-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_srzwjbz9vcta-8>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-8
+        }
+
+        .lst-kix_w5zluesakzuh-3>li {
+            counter-increment: lst-ctn-kix_w5zluesakzuh-3
+        }
+
+        .lst-kix_hjz2adw8vhy1-0>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-0, decimal) ". "
+        }
+
+        .lst-kix_ybdvq5o3srzt-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_678spiuxgdo-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_xjuqfjab06om-4>li {
+            counter-increment: lst-ctn-kix_xjuqfjab06om-4
+        }
+
+        .lst-kix_7xhrxo39ybmj-2>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-2
+        }
+
+        .lst-kix_678spiuxgdo-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_msztv5hhvymj-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_xjuqfjab06om-5.start {
+            counter-reset: lst-ctn-kix_xjuqfjab06om-5 0
+        }
+
+        .lst-kix_w5zluesakzuh-4>li {
+            counter-increment: lst-ctn-kix_w5zluesakzuh-4
+        }
+
+        ol.lst-kix_exzjh8e88b1m-7.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-7 0
+        }
+
+        .lst-kix_1fp377yopheh-7>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-7, lower-latin) ". "
+        }
+
+        .lst-kix_lrewic1jctup-8>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-8
+        }
+
+        ol.lst-kix_lrewic1jctup-2.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-2 0
+        }
+
+        .lst-kix_xjuqfjab06om-2>li {
+            counter-increment: lst-ctn-kix_xjuqfjab06om-2
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-0.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-0 0
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-8.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-8 0
+        }
+
+        .lst-kix_l7dj0hq5lbsf-1>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-1
+        }
+
+        ol.lst-kix_exzjh8e88b1m-2.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-2 0
+        }
+
+        ol.lst-kix_w5zluesakzuh-3.start {
+            counter-reset: lst-ctn-kix_w5zluesakzuh-3 0
+        }
+
+        .lst-kix_1fp377yopheh-4>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-4, lower-latin) ". "
+        }
+
+        .lst-kix_1fp377yopheh-5>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-5, lower-roman) ". "
+        }
+
+        .lst-kix_1fp377yopheh-2>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-2, lower-roman) ". "
+        }
+
+        .lst-kix_fbcbfgv451tq-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_fbcbfgv451tq-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_fbcbfgv451tq-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-8>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-8
+        }
+
+        .lst-kix_lrewic1jctup-4>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-4
+        }
+
+        .lst-kix_w5zluesakzuh-8>li {
+            counter-increment: lst-ctn-kix_w5zluesakzuh-8
+        }
+
+        .lst-kix_hjz2adw8vhy1-5>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-5
+        }
+
+        ol.lst-kix_f7nqx71wajj1-4.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-4 0
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-3.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-3 0
+        }
+
+        .lst-kix_roud0e12b9vy-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_xjuqfjab06om-0.start {
+            counter-reset: lst-ctn-kix_xjuqfjab06om-0 0
+        }
+
+        .lst-kix_roud0e12b9vy-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_roud0e12b9vy-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hjz2adw8vhy1-1>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-1
+        }
+
+        ol.lst-kix_w5zluesakzuh-8.start {
+            counter-reset: lst-ctn-kix_w5zluesakzuh-8 0
+        }
+
+        .lst-kix_roud0e12b9vy-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_fbcbfgv451tq-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_qrf1wwum513d-0>li {
+            counter-increment: lst-ctn-kix_qrf1wwum513d-0
+        }
+
+        .lst-kix_768rbr4fi6ke-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_w5zluesakzuh-0>li:before {
+            content: "" counter(lst-ctn-kix_w5zluesakzuh-0, decimal) ". "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-5>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-5
+        }
+
+        .lst-kix_768rbr4fi6ke-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_2rlkm27ibqmn-4>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-4
+        }
+
+        .lst-kix_hjz2adw8vhy1-8>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-8
+        }
+
+        .lst-kix_w5zluesakzuh-6>li:before {
+            content: "" counter(lst-ctn-kix_w5zluesakzuh-6, decimal) ". "
+        }
+
+        .lst-kix_w5zluesakzuh-8>li:before {
+            content: "" counter(lst-ctn-kix_w5zluesakzuh-8, lower-roman) ". "
+        }
+
+        .lst-kix_lrewic1jctup-4>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-4, lower-latin) ". "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-4>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-4, lower-latin) ". "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-6>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-6, decimal) ". "
+        }
+
+        .lst-kix_lrewic1jctup-2>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-2, lower-roman) ". "
+        }
+
+        .lst-kix_677h5gjv5as4-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_677h5gjv5as4-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_nuafbiccw3fs-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_f7nqx71wajj1-4>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-4
+        }
+
+        ol.lst-kix_f7nqx71wajj1-2.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-2 0
+        }
+
+        .lst-kix_ag0estjouhus-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_89x4l1ik05gl-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_89x4l1ik05gl-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_nuafbiccw3fs-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ag0estjouhus-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-6.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-6 0
+        }
+
+        .lst-kix_xa5ayooi1ugu-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gbnt6pp13esp-6>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-6, decimal) ". "
+        }
+
+        .lst-kix_xjuqfjab06om-2>li:before {
+            content: "" counter(lst-ctn-kix_xjuqfjab06om-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_lrewic1jctup-0.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-0 0
+        }
+
+        .lst-kix_qrf1wwum513d-0>li:before {
+            content: "" counter(lst-ctn-kix_qrf1wwum513d-0, decimal) ". "
+        }
+
+        .lst-kix_xjuqfjab06om-4>li:before {
+            content: "" counter(lst-ctn-kix_xjuqfjab06om-4, lower-latin) ". "
+        }
+
+        .lst-kix_gbnt6pp13esp-8>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-8, lower-roman) ". "
+        }
+
+        .lst-kix_xa5ayooi1ugu-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_qrf1wwum513d-6>li:before {
+            content: "" counter(lst-ctn-kix_qrf1wwum513d-6, decimal) ". "
+        }
+
+        .lst-kix_ybdvq5o3srzt-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gjq8h99lm5kk-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_exzjh8e88b1m-4.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-4 0
+        }
+
+        .lst-kix_w5zluesakzuh-0>li {
+            counter-increment: lst-ctn-kix_w5zluesakzuh-0
+        }
+
+        .lst-kix_qrf1wwum513d-8>li:before {
+            content: "" counter(lst-ctn-kix_qrf1wwum513d-8, lower-roman) ". "
+        }
+
+        .lst-kix_otlix4aj6yde-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ue1edsdzrbs4-6>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-6
+        }
+
+        .lst-kix_ue1edsdzrbs4-3>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-3, decimal) ". "
+        }
+
+        .lst-kix_ybdvq5o3srzt-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ue1edsdzrbs4-1>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_w5zluesakzuh-5.start {
+            counter-reset: lst-ctn-kix_w5zluesakzuh-5 0
+        }
+
+        .lst-kix_hjz2adw8vhy1-2>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-2
+        }
+
+        .lst-kix_msztv5hhvymj-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_f7nqx71wajj1-6.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-6 0
+        }
+
+        ol.lst-kix_xjuqfjab06om-8.start {
+            counter-reset: lst-ctn-kix_xjuqfjab06om-8 0
+        }
+
+        .lst-kix_ue1edsdzrbs4-6>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-6, decimal) ". "
+        }
+
+        ol.lst-kix_xjuqfjab06om-2.start {
+            counter-reset: lst-ctn-kix_xjuqfjab06om-2 0
+        }
+
+        .lst-kix_2rlkm27ibqmn-0>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-0
+        }
+
+        .lst-kix_gjq8h99lm5kk-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_otlix4aj6yde-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_exzjh8e88b1m-2>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-2
+        }
+
+        .lst-kix_gjq8h99lm5kk-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-5.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-5 0
+        }
+
+        .lst-kix_3feg4a3jo9dx-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_f7nqx71wajj1-7>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-7
+        }
+
+        ol.lst-kix_exzjh8e88b1m-5.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-5 0
+        }
+
+        .lst-kix_gbnt6pp13esp-3>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-3, decimal) ". "
+        }
+
+        .lst-kix_srzwjbz9vcta-5>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-5, lower-roman) ". "
+        }
+
+        .lst-kix_exzjh8e88b1m-4>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-4, lower-latin) ". "
+        }
+
+        .lst-kix_xjuqfjab06om-5>li {
+            counter-increment: lst-ctn-kix_xjuqfjab06om-5
+        }
+
+        .lst-kix_srzwjbz9vcta-2>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-2, lower-roman) ". "
+        }
+
+        .lst-kix_f7nqx71wajj1-0>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-0
+        }
+
+        .lst-kix_srzwjbz9vcta-7>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-7
+        }
+
+        .lst-kix_2rlkm27ibqmn-7>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-7
+        }
+
+        .lst-kix_3feg4a3jo9dx-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gbnt6pp13esp-0>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-0, decimal) ". "
+        }
+
+        .lst-kix_exzjh8e88b1m-7>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-7, lower-latin) ". "
+        }
+
+        .lst-kix_w5zluesakzuh-7>li {
+            counter-increment: lst-ctn-kix_w5zluesakzuh-7
+        }
+
+        .lst-kix_srzwjbz9vcta-0>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-0
+        }
+
+        ol.lst-kix_xjuqfjab06om-7.start {
+            counter-reset: lst-ctn-kix_xjuqfjab06om-7 0
+        }
+
+        .lst-kix_3feg4a3jo9dx-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_w5zluesakzuh-2.start {
+            counter-reset: lst-ctn-kix_w5zluesakzuh-2 0
+        }
+
+        .lst-kix_qrf1wwum513d-3>li {
+            counter-increment: lst-ctn-kix_qrf1wwum513d-3
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-4.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-4 0
+        }
+
+        .lst-kix_l7dj0hq5lbsf-1>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_srzwjbz9vcta-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_srzwjbz9vcta-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_w5zluesakzuh-3>li:before {
+            content: "" counter(lst-ctn-kix_w5zluesakzuh-3, decimal) ". "
+        }
+
+        ol.lst-kix_srzwjbz9vcta-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_srzwjbz9vcta-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_srzwjbz9vcta-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_ag0estjouhus-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_srzwjbz9vcta-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_gbnt6pp13esp-2>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-2
+        }
+
+        ol.lst-kix_srzwjbz9vcta-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_srzwjbz9vcta-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-1.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-1 0
+        }
+
+        ol.lst-kix_srzwjbz9vcta-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_2rlkm27ibqmn-1>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-1, lower-latin) ". "
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-1>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-1
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_lrewic1jctup-1>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-1
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3feg4a3jo9dx-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xjuqfjab06om-4.start {
+            counter-reset: lst-ctn-kix_xjuqfjab06om-4 0
+        }
+
+        .lst-kix_4w2f01sm3htz-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_677h5gjv5as4-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ue1edsdzrbs4-2>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-2
+        }
+
+        ol.lst-kix_f7nqx71wajj1-5.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-5 0
+        }
+
+        .lst-kix_89x4l1ik05gl-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_nuafbiccw3fs-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_exzjh8e88b1m-8.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-8 0
+        }
+
+        .lst-kix_768rbr4fi6ke-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_f7nqx71wajj1-8.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-8 0
+        }
+
+        .lst-kix_ogsrjyku2g31-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_t6nndbkml0yf-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_xjuqfjab06om-3.start {
+            counter-reset: lst-ctn-kix_xjuqfjab06om-3 0
+        }
+
+        ol.lst-kix_w5zluesakzuh-0.start {
+            counter-reset: lst-ctn-kix_w5zluesakzuh-0 0
+        }
+
+        .lst-kix_xa5ayooi1ugu-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_6mqg6zmi7rhf-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_qrf1wwum513d-3>li:before {
+            content: "" counter(lst-ctn-kix_qrf1wwum513d-3, decimal) ". "
+        }
+
+        .lst-kix_ybdvq5o3srzt-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hjz2adw8vhy1-6>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-6, decimal) ". "
+        }
+
+        .lst-kix_fuiaup89gxt4-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_xjuqfjab06om-7>li:before {
+            content: "" counter(lst-ctn-kix_xjuqfjab06om-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_f7nqx71wajj1-7.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-7 0
+        }
+
+        .lst-kix_otlix4aj6yde-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-0.start {
+            counter-reset: lst-ctn-kix_l7dj0hq5lbsf-0 0
+        }
+
+        .lst-kix_lrewic1jctup-7>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-7, lower-latin) ". "
+        }
+
+        li.li-bullet-0:before {
+            margin-left: -18pt;
+            white-space: nowrap;
+            display: inline-block;
+            min-width: 18pt
+        }
+
+        .lst-kix_678spiuxgdo-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_4w2f01sm3htz-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-2.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-2 0
+        }
+
+        ul.lst-kix_msztv5hhvymj-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_msztv5hhvymj-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-6>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-6, decimal) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-2>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-4>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-4, lower-latin) ". "
+        }
+
+        .lst-kix_f7nqx71wajj1-5>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-5, lower-roman) ". "
+        }
+
+        .lst-kix_7xhrxo39ybmj-3>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-3, decimal) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-4>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-4, lower-latin) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_srzwjbz9vcta-1.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-1 0
+        }
+
+        .lst-kix_f7nqx71wajj1-3>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-3, decimal) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_1fp377yopheh-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_1fp377yopheh-2>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-2
+        }
+
+        .lst-kix_7xhrxo39ybmj-6>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-6, decimal) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-0>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-0, decimal) ". "
+        }
+
+        .lst-kix_f7nqx71wajj1-1>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-5>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-5, lower-roman) ". "
+        }
+
+        .lst-kix_7xhrxo39ybmj-7>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-2>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_lrewic1jctup-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_677h5gjv5as4-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_677h5gjv5as4-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_677h5gjv5as4-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_677h5gjv5as4-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lrewic1jctup-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lrewic1jctup-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_exzjh8e88b1m-5>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-5
+        }
+
+        ol.lst-kix_lrewic1jctup-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lrewic1jctup-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lrewic1jctup-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-6.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-6 0
+        }
+
+        ol.lst-kix_srzwjbz9vcta-6.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-6 0
+        }
+
+        ol.lst-kix_lrewic1jctup-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lrewic1jctup-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lrewic1jctup-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_msztv5hhvymj-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_msztv5hhvymj-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-6.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-6 0
+        }
+
+        ul.lst-kix_msztv5hhvymj-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-1>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-1, lower-latin) ". "
+        }
+
+        .lst-kix_xjuqfjab06om-0>li {
+            counter-increment: lst-ctn-kix_xjuqfjab06om-0
+        }
+
+        ul.lst-kix_msztv5hhvymj-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-0>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-0, decimal) ". "
+        }
+
+        ul.lst-kix_msztv5hhvymj-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-7>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-7, lower-latin) ". "
+        }
+
+        ul.lst-kix_msztv5hhvymj-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_msztv5hhvymj-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-8>li:before {
+            content: "" counter(lst-ctn-kix_f7nqx71wajj1-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-1.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-1 0
+        }
+
+        ol.lst-kix_exzjh8e88b1m-1.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-1 0
+        }
+
+        ul.lst-kix_677h5gjv5as4-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_677h5gjv5as4-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_ue1edsdzrbs4-4>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-4
+        }
+
+        ul.lst-kix_677h5gjv5as4-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_677h5gjv5as4-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_677h5gjv5as4-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-4>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-4
+        }
+
+        ol.lst-kix_qrf1wwum513d-5.start {
+            counter-reset: lst-ctn-kix_qrf1wwum513d-5 0
+        }
+
+        ol.lst-kix_f7nqx71wajj1-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_f7nqx71wajj1-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_f7nqx71wajj1-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_f7nqx71wajj1-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_f7nqx71wajj1-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_f7nqx71wajj1-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_f7nqx71wajj1-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_f7nqx71wajj1-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xjuqfjab06om-6.start {
+            counter-reset: lst-ctn-kix_xjuqfjab06om-6 0
+        }
+
+        ol.lst-kix_f7nqx71wajj1-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_xjuqfjab06om-8>li {
+            counter-increment: lst-ctn-kix_xjuqfjab06om-8
+        }
+
+        .lst-kix_srzwjbz9vcta-4>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-4
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_exzjh8e88b1m-6.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-6 0
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_1fp377yopheh-6.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-6 0
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6mqg6zmi7rhf-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_4w2f01sm3htz-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ogsrjyku2g31-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ogsrjyku2g31-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ogsrjyku2g31-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ogsrjyku2g31-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-2.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-2 0
+        }
+
+        ol.lst-kix_f7nqx71wajj1-1.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-1 0
+        }
+
+        .lst-kix_6mqg6zmi7rhf-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_6mqg6zmi7rhf-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-7.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-7 0
+        }
+
+        .lst-kix_6mqg6zmi7rhf-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_6mqg6zmi7rhf-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_4w2f01sm3htz-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_srzwjbz9vcta-5>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-5
+        }
+
+        ol.lst-kix_f7nqx71wajj1-0.start {
+            counter-reset: lst-ctn-kix_f7nqx71wajj1-0 0
+        }
+
+        .lst-kix_4w2f01sm3htz-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_6mqg6zmi7rhf-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_lrewic1jctup-1.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-1 0
+        }
+
+        .lst-kix_4w2f01sm3htz-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_7xhrxo39ybmj-5>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-5
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_xjuqfjab06om-7>li {
+            counter-increment: lst-ctn-kix_xjuqfjab06om-7
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_w5zluesakzuh-6>li {
+            counter-increment: lst-ctn-kix_w5zluesakzuh-6
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gjq8h99lm5kk-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_gbnt6pp13esp-8>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-8
+        }
+
+        .lst-kix_lrewic1jctup-7>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-7
+        }
+
+        .lst-kix_exzjh8e88b1m-4>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-4
+        }
+
+        .lst-kix_1fp377yopheh-3>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-3
+        }
+
+        ol.lst-kix_lrewic1jctup-5.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-5 0
+        }
+
+        .lst-kix_w5zluesakzuh-5>li {
+            counter-increment: lst-ctn-kix_w5zluesakzuh-5
+        }
+
+        .lst-kix_ue1edsdzrbs4-7>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-7, lower-latin) ". "
+        }
+
+        .lst-kix_ue1edsdzrbs4-8>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_w5zluesakzuh-6.start {
+            counter-reset: lst-ctn-kix_w5zluesakzuh-6 0
+        }
+
+        .lst-kix_otlix4aj6yde-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ue1edsdzrbs4-5>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-5
+        }
+
+        .lst-kix_otlix4aj6yde-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_1fp377yopheh-1>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-1
+        }
+
+        ol.lst-kix_1fp377yopheh-2.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-2 0
+        }
+
+        .lst-kix_srzwjbz9vcta-4>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-4, lower-latin) ". "
+        }
+
+        ol.lst-kix_w5zluesakzuh-7.start {
+            counter-reset: lst-ctn-kix_w5zluesakzuh-7 0
+        }
+
+        .lst-kix_gbnt6pp13esp-1>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-1, lower-latin) ". "
+        }
+
+        .lst-kix_3feg4a3jo9dx-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gbnt6pp13esp-2>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-2, lower-roman) ". "
+        }
+
+        .lst-kix_srzwjbz9vcta-0>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-0, decimal) ". "
+        }
+
+        .lst-kix_srzwjbz9vcta-8>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-8, lower-roman) ". "
+        }
+
+        .lst-kix_srzwjbz9vcta-7>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-7, lower-latin) ". "
+        }
+
+        .lst-kix_3feg4a3jo9dx-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_lrewic1jctup-5>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-5
+        }
+
+        ol.lst-kix_1fp377yopheh-1.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-1 0
+        }
+
+        .lst-kix_3feg4a3jo9dx-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_3feg4a3jo9dx-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-2>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-2
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xa5ayooi1ugu-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-3>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-3
+        }
+
+        ol.lst-kix_l7dj0hq5lbsf-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_srzwjbz9vcta-3>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-3, decimal) ". "
+        }
+
+        ol.lst-kix_exzjh8e88b1m-0.start {
+            counter-reset: lst-ctn-kix_exzjh8e88b1m-0 0
+        }
+
+        .lst-kix_768rbr4fi6ke-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-3>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-3, decimal) ". "
+        }
+
+        .lst-kix_768rbr4fi6ke-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_srzwjbz9vcta-3>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-3
+        }
+
+        .lst-kix_lrewic1jctup-5>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-5, lower-roman) ". "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-7>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-7, lower-latin) ". "
+        }
+
+        .lst-kix_nuafbiccw3fs-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_lrewic1jctup-1>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-1, lower-latin) ". "
+        }
+
+        .lst-kix_1fp377yopheh-8>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-8
+        }
+
+        .lst-kix_gbnt6pp13esp-1>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-1
+        }
+
+        .lst-kix_f7nqx71wajj1-1>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-1
+        }
+
+        .lst-kix_ogsrjyku2g31-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ogsrjyku2g31-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_nuafbiccw3fs-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_nuafbiccw3fs-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_677h5gjv5as4-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_677h5gjv5as4-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_89x4l1ik05gl-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_768rbr4fi6ke-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_xjuqfjab06om-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-4>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-4
+        }
+
+        .lst-kix_ogsrjyku2g31-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_89x4l1ik05gl-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_677h5gjv5as4-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_lrewic1jctup-6.start {
+            counter-reset: lst-ctn-kix_lrewic1jctup-6 0
+        }
+
+        ul.lst-kix_4w2f01sm3htz-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_gbnt6pp13esp-5>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-5, lower-roman) ". "
+        }
+
+        ul.lst-kix_4w2f01sm3htz-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_4w2f01sm3htz-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_xjuqfjab06om-5>li:before {
+            content: "" counter(lst-ctn-kix_xjuqfjab06om-5, lower-roman) ". "
+        }
+
+        ul.lst-kix_4w2f01sm3htz-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-2.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-2 0
+        }
+
+        .lst-kix_exzjh8e88b1m-6>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-6
+        }
+
+        .lst-kix_6mqg6zmi7rhf-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_4w2f01sm3htz-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_89x4l1ik05gl-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_4w2f01sm3htz-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_6mqg6zmi7rhf-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_4w2f01sm3htz-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_4w2f01sm3htz-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_qrf1wwum513d-2>li {
+            counter-increment: lst-ctn-kix_qrf1wwum513d-2
+        }
+
+        .lst-kix_4w2f01sm3htz-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_4w2f01sm3htz-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-1.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-1 0
+        }
+
+        .lst-kix_lrewic1jctup-0>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-0
+        }
+
+        .lst-kix_7xhrxo39ybmj-8>li:before {
+            content: "" counter(lst-ctn-kix_7xhrxo39ybmj-8, lower-roman) ". "
+        }
+
+        .lst-kix_otlix4aj6yde-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_2rlkm27ibqmn-6>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-6
+        }
+
+        .lst-kix_4w2f01sm3htz-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ue1edsdzrbs4-3>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-3
+        }
+
+        .lst-kix_ue1edsdzrbs4-4>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-4, lower-latin) ". "
+        }
+
+        .lst-kix_hjz2adw8vhy1-6>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-6
+        }
+
+        .lst-kix_ue1edsdzrbs4-0>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-0, decimal) ". "
+        }
+
+        .lst-kix_exzjh8e88b1m-3>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-3
+        }
+
+        .lst-kix_f7nqx71wajj1-8>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-8
+        }
+
+        .lst-kix_1fp377yopheh-8>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-0.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-0 0
+        }
+
+        .lst-kix_7xhrxo39ybmj-6>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-6
+        }
+
+        .lst-kix_qrf1wwum513d-4>li {
+            counter-increment: lst-ctn-kix_qrf1wwum513d-4
+        }
+
+        ol.lst-kix_xjuqfjab06om-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xjuqfjab06om-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xjuqfjab06om-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xjuqfjab06om-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xjuqfjab06om-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_1fp377yopheh-4>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-4
+        }
+
+        ol.lst-kix_xjuqfjab06om-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_1fp377yopheh-6>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-6, decimal) ". "
+        }
+
+        ol.lst-kix_xjuqfjab06om-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xjuqfjab06om-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_1fp377yopheh-3>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-3, decimal) ". "
+        }
+
+        .lst-kix_1fp377yopheh-0>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-0, decimal) ". "
+        }
+
+        .lst-kix_1fp377yopheh-1>li:before {
+            content: "" counter(lst-ctn-kix_1fp377yopheh-1, lower-latin) ". "
+        }
+
+        .lst-kix_2rlkm27ibqmn-8>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-8
+        }
+
+        .lst-kix_fbcbfgv451tq-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_fbcbfgv451tq-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_fbcbfgv451tq-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_exzjh8e88b1m-7>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-7
+        }
+
+        ul.lst-kix_ogsrjyku2g31-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_srzwjbz9vcta-6>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-6
+        }
+
+        ul.lst-kix_ogsrjyku2g31-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_xjuqfjab06om-6>li {
+            counter-increment: lst-ctn-kix_xjuqfjab06om-6
+        }
+
+        ul.lst-kix_ogsrjyku2g31-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ogsrjyku2g31-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_srzwjbz9vcta-7.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-7 0
+        }
+
+        .lst-kix_roud0e12b9vy-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ogsrjyku2g31-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-5.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-5 0
+        }
+
+        ul.lst-kix_ogsrjyku2g31-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_fbcbfgv451tq-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_roud0e12b9vy-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ogsrjyku2g31-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ogsrjyku2g31-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ogsrjyku2g31-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_w5zluesakzuh-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_w5zluesakzuh-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_srzwjbz9vcta-2.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-2 0
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-7.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-7 0
+        }
+
+        .lst-kix_roud0e12b9vy-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_2rlkm27ibqmn-1>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-1
+        }
+
+        ol.lst-kix_qrf1wwum513d-4.start {
+            counter-reset: lst-ctn-kix_qrf1wwum513d-4 0
+        }
+
+        .lst-kix_roud0e12b9vy-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_w5zluesakzuh-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_w5zluesakzuh-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_fbcbfgv451tq-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_roud0e12b9vy-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_w5zluesakzuh-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_w5zluesakzuh-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_w5zluesakzuh-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_w5zluesakzuh-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-7.start {
+            counter-reset: lst-ctn-kix_2rlkm27ibqmn-7 0
+        }
+
+        .lst-kix_l7dj0hq5lbsf-0>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-0, decimal) ". "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-2>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_qrf1wwum513d-6.start {
+            counter-reset: lst-ctn-kix_qrf1wwum513d-6 0
+        }
+
+        .lst-kix_768rbr4fi6ke-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_w5zluesakzuh-2>li:before {
+            content: "" counter(lst-ctn-kix_w5zluesakzuh-2, lower-roman) ". "
+        }
+
+        .lst-kix_w5zluesakzuh-4>li:before {
+            content: "" counter(lst-ctn-kix_w5zluesakzuh-4, lower-latin) ". "
+        }
+
+        .lst-kix_lrewic1jctup-0>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-0, decimal) ". "
+        }
+
+        .lst-kix_ag0estjouhus-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-8>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-8, lower-roman) ". "
+        }
+
+        .lst-kix_lrewic1jctup-6>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-6, decimal) ". "
+        }
+
+        .lst-kix_nuafbiccw3fs-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_1fp377yopheh-3.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-3 0
+        }
+
+        .lst-kix_677h5gjv5as4-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_nuafbiccw3fs-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-2.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-2 0
+        }
+
+        .lst-kix_gbnt6pp13esp-3>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-3
+        }
+
+        .lst-kix_89x4l1ik05gl-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-6.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-6 0
+        }
+
+        ol.lst-kix_srzwjbz9vcta-0.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-0 0
+        }
+
+        .lst-kix_1fp377yopheh-7>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-7
+        }
+
+        .lst-kix_ag0estjouhus-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_677h5gjv5as4-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_768rbr4fi6ke-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_xjuqfjab06om-0>li:before {
+            content: "" counter(lst-ctn-kix_xjuqfjab06om-0, decimal) ". "
+        }
+
+        .lst-kix_gbnt6pp13esp-4>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-4, lower-latin) ". "
+        }
+
+        .lst-kix_xa5ayooi1ugu-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_xjuqfjab06om-6>li:before {
+            content: "" counter(lst-ctn-kix_xjuqfjab06om-6, decimal) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-5.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-5 0
+        }
+
+        .lst-kix_xa5ayooi1ugu-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ybdvq5o3srzt-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_qrf1wwum513d-2>li:before {
+            content: "" counter(lst-ctn-kix_qrf1wwum513d-2, lower-roman) ". "
+        }
+
+        .lst-kix_xa5ayooi1ugu-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-5.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-5 0
+        }
+
+        .lst-kix_89x4l1ik05gl-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_f7nqx71wajj1-5>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-5
+        }
+
+        .lst-kix_ybdvq5o3srzt-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_gjq8h99lm5kk-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_gbnt6pp13esp-4>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-4
+        }
+
+        .lst-kix_qrf1wwum513d-4>li:before {
+            content: "" counter(lst-ctn-kix_qrf1wwum513d-4, lower-latin) ". "
+        }
+
+        .lst-kix_xjuqfjab06om-8>li:before {
+            content: "" counter(lst-ctn-kix_xjuqfjab06om-8, lower-roman) ". "
+        }
+
+        .lst-kix_otlix4aj6yde-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-1.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-1 0
+        }
+
+        .lst-kix_otlix4aj6yde-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-8.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-8 0
+        }
+
+        .lst-kix_lrewic1jctup-8>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-8, lower-roman) ". "
+        }
+
+        .lst-kix_ue1edsdzrbs4-5>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-5, lower-roman) ". "
+        }
+
+        .lst-kix_l7dj0hq5lbsf-0>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-0
+        }
+
+        .lst-kix_1fp377yopheh-0>li {
+            counter-increment: lst-ctn-kix_1fp377yopheh-0
+        }
+
+        ul.lst-kix_fuiaup89gxt4-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fuiaup89gxt4-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-3.start {
+            counter-reset: lst-ctn-kix_ue1edsdzrbs4-3 0
+        }
+
+        ul.lst-kix_w5zluesakzuh-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fuiaup89gxt4-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_ue1edsdzrbs4-7>li {
+            counter-increment: lst-ctn-kix_ue1edsdzrbs4-7
+        }
+
+        ul.lst-kix_fuiaup89gxt4-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fuiaup89gxt4-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_msztv5hhvymj-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_fuiaup89gxt4-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xjuqfjab06om-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fuiaup89gxt4-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fuiaup89gxt4-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_fuiaup89gxt4-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-3.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-3 0
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-5.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-5 0
+        }
+
+        ol.lst-kix_srzwjbz9vcta-4.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-4 0
+        }
+
+        ul.lst-kix_768rbr4fi6ke-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-6.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-6 0
+        }
+
+        ul.lst-kix_768rbr4fi6ke-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_768rbr4fi6ke-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_768rbr4fi6ke-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_gjq8h99lm5kk-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_768rbr4fi6ke-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_768rbr4fi6ke-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_768rbr4fi6ke-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qrf1wwum513d-2.start {
+            counter-reset: lst-ctn-kix_qrf1wwum513d-2 0
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-8.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-8 0
+        }
+
+        ul.lst-kix_768rbr4fi6ke-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_768rbr4fi6ke-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_3feg4a3jo9dx-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_otlix4aj6yde-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_xjuqfjab06om-3>li {
+            counter-increment: lst-ctn-kix_xjuqfjab06om-3
+        }
+
+        ul.lst-kix_678spiuxgdo-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_678spiuxgdo-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_678spiuxgdo-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_678spiuxgdo-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_678spiuxgdo-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_678spiuxgdo-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_678spiuxgdo-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_678spiuxgdo-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_678spiuxgdo-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_t6nndbkml0yf-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-0.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-0 0
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-4.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-4 0
+        }
+
+        .lst-kix_srzwjbz9vcta-6>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-6, decimal) ". "
+        }
+
+        ol.lst-kix_srzwjbz9vcta-3.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-3 0
+        }
+
+        .lst-kix_srzwjbz9vcta-1>li:before {
+            content: "" counter(lst-ctn-kix_srzwjbz9vcta-1, lower-latin) ". "
+        }
+
+        .lst-kix_exzjh8e88b1m-0>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-0, decimal) ". "
+        }
+
+        .lst-kix_exzjh8e88b1m-8>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_1fp377yopheh-8.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-8 0
+        }
+
+        .lst-kix_3feg4a3jo9dx-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ag0estjouhus-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ag0estjouhus-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ag0estjouhus-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ag0estjouhus-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ag0estjouhus-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-1.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-1 0
+        }
+
+        ul.lst-kix_ag0estjouhus-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ag0estjouhus-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ag0estjouhus-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ag0estjouhus-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-4.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-4 0
+        }
+
+        ol.lst-kix_srzwjbz9vcta-8.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-8 0
+        }
+
+        ol.lst-kix_1fp377yopheh-7.start {
+            counter-reset: lst-ctn-kix_1fp377yopheh-7 0
+        }
+
+        ol.lst-kix_gbnt6pp13esp-7.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-7 0
+        }
+
+        .lst-kix_exzjh8e88b1m-3>li:before {
+            content: "" counter(lst-ctn-kix_exzjh8e88b1m-3, decimal) ". "
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-7.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-7 0
+        }
+
+        .lst-kix_768rbr4fi6ke-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_gbnt6pp13esp-5.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-5 0
+        }
+
+        .lst-kix_2rlkm27ibqmn-5>li:before {
+            content: "" counter(lst-ctn-kix_2rlkm27ibqmn-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_w5zluesakzuh-7>li:before {
+            content: "" counter(lst-ctn-kix_w5zluesakzuh-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_qrf1wwum513d-3.start {
+            counter-reset: lst-ctn-kix_qrf1wwum513d-3 0
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_f7nqx71wajj1-2>li {
+            counter-increment: lst-ctn-kix_f7nqx71wajj1-2
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_l7dj0hq5lbsf-5>li:before {
+            content: "" counter(lst-ctn-kix_l7dj0hq5lbsf-5, lower-roman) ". "
+        }
+
+        .lst-kix_hjz2adw8vhy1-7>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-7
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_lrewic1jctup-3>li:before {
+            content: "" counter(lst-ctn-kix_lrewic1jctup-3, decimal) ". "
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ue1edsdzrbs4-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_677h5gjv5as4-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_qrf1wwum513d-0.start {
+            counter-reset: lst-ctn-kix_qrf1wwum513d-0 0
+        }
+
+        .lst-kix_fuiaup89gxt4-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_89x4l1ik05gl-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_89x4l1ik05gl-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_89x4l1ik05gl-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_89x4l1ik05gl-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_89x4l1ik05gl-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_89x4l1ik05gl-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-3.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-3 0
+        }
+
+        .lst-kix_7xhrxo39ybmj-3>li {
+            counter-increment: lst-ctn-kix_7xhrxo39ybmj-3
+        }
+
+        .lst-kix_ogsrjyku2g31-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ag0estjouhus-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_gbnt6pp13esp-0>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-0
+        }
+
+        ul.lst-kix_89x4l1ik05gl-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_89x4l1ik05gl-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_89x4l1ik05gl-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_2rlkm27ibqmn-5>li {
+            counter-increment: lst-ctn-kix_2rlkm27ibqmn-5
+        }
+
+        .lst-kix_89x4l1ik05gl-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_gbnt6pp13esp-2.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-2 0
+        }
+
+        .lst-kix_nuafbiccw3fs-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ybdvq5o3srzt-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_gbnt6pp13esp-7>li:before {
+            content: "" counter(lst-ctn-kix_gbnt6pp13esp-7, lower-latin) ". "
+        }
+
+        .lst-kix_hjz2adw8vhy1-0>li {
+            counter-increment: lst-ctn-kix_hjz2adw8vhy1-0
+        }
+
+        .lst-kix_xjuqfjab06om-3>li:before {
+            content: "" counter(lst-ctn-kix_xjuqfjab06om-3, decimal) ". "
+        }
+
+        ol.lst-kix_gbnt6pp13esp-3.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-3 0
+        }
+
+        .lst-kix_exzjh8e88b1m-0>li {
+            counter-increment: lst-ctn-kix_exzjh8e88b1m-0
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-0.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-0 0
+        }
+
+        .lst-kix_t6nndbkml0yf-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_qrf1wwum513d-8>li {
+            counter-increment: lst-ctn-kix_qrf1wwum513d-8
+        }
+
+        ul.lst-kix_qrf1wwum513d-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_7xhrxo39ybmj-6.start {
+            counter-reset: lst-ctn-kix_7xhrxo39ybmj-6 0
+        }
+
+        .lst-kix_xa5ayooi1ugu-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_hjz2adw8vhy1-2>li:before {
+            content: "" counter(lst-ctn-kix_hjz2adw8vhy1-2, lower-roman) ". "
+        }
+
+        .lst-kix_4w2f01sm3htz-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gbnt6pp13esp-7>li {
+            counter-increment: lst-ctn-kix_gbnt6pp13esp-7
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_6mqg6zmi7rhf-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_qrf1wwum513d-7>li:before {
+            content: "" counter(lst-ctn-kix_qrf1wwum513d-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_678spiuxgdo-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gbnt6pp13esp-4.start {
+            counter-reset: lst-ctn-kix_gbnt6pp13esp-4 0
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_srzwjbz9vcta-2>li {
+            counter-increment: lst-ctn-kix_srzwjbz9vcta-2
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_2rlkm27ibqmn-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_l7dj0hq5lbsf-3>li {
+            counter-increment: lst-ctn-kix_l7dj0hq5lbsf-3
+        }
+
+        .lst-kix_ybdvq5o3srzt-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_msztv5hhvymj-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_srzwjbz9vcta-5.start {
+            counter-reset: lst-ctn-kix_srzwjbz9vcta-5 0
+        }
+
+        .lst-kix_ue1edsdzrbs4-2>li:before {
+            content: "" counter(lst-ctn-kix_ue1edsdzrbs4-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_hjz2adw8vhy1-1.start {
+            counter-reset: lst-ctn-kix_hjz2adw8vhy1-1 0
+        }
+
+        .lst-kix_lrewic1jctup-6>li {
+            counter-increment: lst-ctn-kix_lrewic1jctup-6
+        }
+
+        ol {
+            margin: 0;
+            padding: 0
+        }
+
+        table td,
+        table th {
+            padding: 0
+        }
+
+        .c29 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 109.3pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c25 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 164.8pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c34 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 138.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c27 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 269.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c22 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 83.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c31 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 123.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c38 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 171.2pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c36 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 75pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c13 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 80pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c23 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 89.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c24 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 196.9pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c18 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 95.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c39 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 107.1pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c41 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 212.8pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c35 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 166.1pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c42 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 57.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c2 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 161.3pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c37 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 113.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c45 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 50.8pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c7 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 118.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c9 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 227.7pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c28 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 163.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c30 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 85pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c32 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 140.6pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c17 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 64.4pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c33 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 61.8pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c43 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 93.1pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c3 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c46 {
+            padding-top: 14pt;
+            padding-bottom: 4pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c16 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c0 {
+            padding-top: 12pt;
+            padding-bottom: 12pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c5 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c20 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 13pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c15 {
+            padding-top: 14pt;
+            padding-bottom: 4pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c4 {
+            padding-top: 12pt;
+            padding-bottom: 2pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c48 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 23pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c12 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c40 {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-right: auto
+        }
+
+        .c44 {
+            background-color: #ffffff;
+            max-width: 451.3pt;
+            padding: 72pt 72pt 72pt 72pt
+        }
+
+        .c26 {
+            color: #188038;
+            font-weight: 400;
+            font-family: "Roboto Mono"
+        }
+
+        .c6 {
+            padding: 0;
+            margin: 0
+        }
+
+        .c19 {
+            margin-left: 72pt;
+            padding-left: 0pt
+        }
+
+        .c11 {
+            margin-left: 36pt;
+            padding-left: 0pt
+        }
+
+        .c10 {
+            height: 23.5pt
+        }
+
+        .c47 {
+            height: 14pt
+        }
+
+        .c1 {
+            font-weight: 700
+        }
+
+        .c14 {
+            height: 11pt
+        }
+
+        .c8 {
+            height: 35.5pt
+        }
+
+        .c21 {
+            font-style: italic
+        }
+
+        .title {
+            padding-top: 0pt;
+            color: #000000;
+            font-size: 26pt;
+            padding-bottom: 3pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .subtitle {
+            padding-top: 0pt;
+            color: #666666;
+            font-size: 15pt;
+            padding-bottom: 16pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        li {
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        h1 {
+            padding-top: 20pt;
+            color: #000000;
+            font-size: 20pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h2 {
+            padding-top: 18pt;
+            color: #000000;
+            font-size: 16pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h3 {
+            padding-top: 16pt;
+            color: #434343;
+            font-size: 14pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h4 {
+            padding-top: 14pt;
+            color: #666666;
+            font-size: 12pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h5 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h6 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            font-style: italic;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+    </style>
+</head>
+
+<body class="c44 doc-content">
+    <h3 class="c46" id="h.8oj9qy27zk42"><span class="c1 c48">Web Services</span></h3>
+    <h3 class="c15 c47" id="h.qx0prs79sije"><span class="c20 c1"></span></h3>
+    <h3 class="c15" id="h.u6hz4kscekpl"><span class="c20 c1">UNIT 3: Web Applications and Security</span></h3>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.yrq5bveaiwjb"><span class="c20 c1">Q1. AWS Elastic Beanstalk &mdash; Definition, Advantages,
+            Deployment Models, and Steps</span></h3>
+    <p class="c0"><span class="c1">Definition:<br></span><span>&nbsp;Elastic Beanstalk is an </span><span class="c1">AWS
+            Platform as a Service (PaaS)</span><span class="c3">&nbsp;that automates deployment, scaling, and management
+            of web applications and services. Developers upload code, and Elastic Beanstalk handles the infrastructure
+            (EC2, Load Balancer, Auto Scaling, and Monitoring).</span></p>
+    <p class="c0"><span class="c5 c1">Advantages:</span></p>
+    <ol class="c6 lst-kix_2rlkm27ibqmn-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Simplified deployment:</span><span class="c3">&nbsp;No manual
+                setup of servers or load balancers.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Automatic scaling:</span><span class="c3">&nbsp;Adjusts capacity
+                based on demand.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Managed environment:</span><span class="c3">&nbsp;Handles
+                updates, patches, and monitoring automatically.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Multi-language support:</span><span class="c3">&nbsp;Supports
+                Java, Node.js, Python, PHP, .NET, Go, Ruby, and Docker.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Integration:</span><span class="c3">&nbsp;Works seamlessly with
+                other AWS services (RDS, S3, CloudWatch).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Cost-efficient:</span><span class="c3">&nbsp;Pay only for the
+                resources used.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c5 c1">Deployment Models:</span></p>
+    <ol class="c6 lst-kix_w5zluesakzuh-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c5 c1">Single-instance environment:<br></span></li>
+    </ol>
+    <ul class="c6 lst-kix_w5zluesakzuh-1 start">
+        <li class="c0 c19 li-bullet-0"><span class="c3">Used for development or testing.<br></span></li>
+        <li class="c0 c19 li-bullet-0"><span class="c3">One EC2 instance without load balancing.<br></span></li>
+    </ul>
+    <ol class="c6 lst-kix_w5zluesakzuh-0" start="2">
+        <li class="c0 c11 li-bullet-0"><span class="c5 c1">Load-balanced, auto-scaling environment:<br></span></li>
+    </ol>
+    <ul class="c6 lst-kix_w5zluesakzuh-1 start">
+        <li class="c0 c19 li-bullet-0"><span class="c3">Used for production.<br></span></li>
+        <li class="c0 c19 li-bullet-0"><span class="c3">Distributes traffic across instances and scales
+                automatically.<br></span></li>
+    </ul>
+    <ol class="c6 lst-kix_w5zluesakzuh-0" start="3">
+        <li class="c0 c11 li-bullet-0"><span class="c5 c1">Custom VPC environment:<br></span></li>
+    </ol>
+    <ul class="c6 lst-kix_w5zluesakzuh-1 start">
+        <li class="c0 c19 li-bullet-0"><span class="c3">Runs within a Virtual Private Cloud for enhanced security and
+                custom networking.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c5 c1">Steps to Deploy a Scalable Application using Elastic Beanstalk:</span></p>
+    <ol class="c6 lst-kix_srzwjbz9vcta-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Package the application:</span><span class="c3">&nbsp;Prepare
+                code as a ZIP or WAR file.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Create a new application:</span><span class="c3">&nbsp;In AWS
+                Management Console, select Elastic Beanstalk &rarr; Create New Application.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Choose platform:</span><span class="c3">&nbsp;Select runtime
+                (e.g., Node.js, Java, Python).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Configure environment:</span><span class="c3">&nbsp;Select
+                load-balanced, auto-scaling configuration for scalability.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Upload and deploy:</span><span class="c3">&nbsp;Upload the code
+                bundle and deploy it.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Monitor and manage:</span><span class="c3">&nbsp;Use CloudWatch
+                for metrics, Elastic Beanstalk dashboard for health checks, and RDS if needed for the
+                database.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c1">Conclusion:<br></span><span class="c3">&nbsp;Elastic Beanstalk offers a managed,
+            scalable, and cost-effective deployment method for web applications, minimizing infrastructure management
+            effort.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.kb6e4weww50c"><span class="c20 c1">Q2. CloudFormation and CloudWatch</span></h3>
+    <h4 class="c4" id="h.81bzv8jy9e8o"><span class="c5 c1">AWS CloudFormation &mdash; Infrastructure as Code</span></h4>
+    <p class="c0"><span class="c1">Definition:<br></span><span>&nbsp;AWS CloudFormation automates creation and
+            management of AWS resources using templates written in JSON or YAML. It provides </span><span
+            class="c1">Infrastructure as Code (IaC)</span><span class="c3">&nbsp;to deploy consistent
+            environments.</span></p>
+    <p class="c0"><span class="c5 c1">Purpose:</span></p>
+    <ul class="c6 lst-kix_nuafbiccw3fs-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Define and provision entire infrastructure (EC2, RDS, S3, IAM,
+                etc.) through templates.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Avoid manual configuration errors and improve
+                consistency.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Simplify rollback and updates through versioned
+                templates.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c5 c1">Advantages:</span></p>
+    <ol class="c6 lst-kix_f7nqx71wajj1-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Automates infrastructure setup.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports repeatable deployments.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Provides dependency management between resources.<br></span>
+        </li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Enables easy rollback on failure.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Integrates with CI/CD pipelines.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c1">Example:<br></span><span class="c3">&nbsp;A CloudFormation template can launch a VPC,
+            EC2 instance, and RDS database together automatically.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.hd5chh7tgvc2"><span class="c5 c1">Amazon CloudWatch &mdash; Monitoring and Metrics</span></h4>
+    <p class="c0"><span class="c1">Definition:<br></span><span class="c3">&nbsp;Amazon CloudWatch is a monitoring and
+            observability service for AWS resources and applications. It collects operational data like CPU usage,
+            memory, latency, and network traffic.</span></p>
+    <p class="c0"><span class="c5 c1">Key Features:</span></p>
+    <ol class="c6 lst-kix_gbnt6pp13esp-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Metrics:</span><span class="c3">&nbsp;Tracks performance data
+                (e.g., EC2 CPU utilization, S3 requests).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Alarms:</span><span class="c3">&nbsp;Triggers alerts or
+                automated actions (e.g., auto-scaling).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Logs:</span><span class="c3">&nbsp;Stores and analyzes
+                application and system logs.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Dashboards:</span><span class="c3">&nbsp;Displays real-time
+                monitoring data.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Integration:</span><span class="c3">&nbsp;Works with Auto
+                Scaling, SNS, and Lambda for automation.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c5 c1">Benefits:</span></p>
+    <ul class="c6 lst-kix_msztv5hhvymj-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Real-time visibility into performance and
+                availability.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Enables proactive resource management.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports automated scaling and troubleshooting.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c1">Example:<br></span><span class="c3">&nbsp;If an EC2 instance crosses 80% CPU usage,
+            CloudWatch can trigger an alarm to auto-scale more instances.</span></p>
+    <p class="c0"><span class="c1">Conclusion:<br></span><span>&nbsp;CloudFormation simplifies </span><span
+            class="c1">infrastructure creation</span><span>, while CloudWatch ensures </span><span
+            class="c1">performance monitoring</span><span class="c3">&nbsp;and operational efficiency.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.te98e9plidiu"><span class="c20 c1">Q3. AWS Messaging Services &mdash; SNS, SQS, SES</span>
+    </h3>
+    <p class="c0"><span class="c1">Overview:<br></span><span class="c3">&nbsp;AWS Messaging Services allow communication
+            and integration between distributed applications, ensuring reliability and scalability in cloud
+            systems.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.555y3em4jyqa"><span class="c5 c1">1. Amazon SNS (Simple Notification Service):</span></h4>
+    <p class="c0"><span class="c1">Purpose:<br></span><span>&nbsp;A </span><span class="c1">publish-subscribe
+            (Pub/Sub)</span><span class="c3">&nbsp;service for sending notifications to multiple subscribers.</span></p>
+    <p class="c0"><span class="c5 c1">Features:</span></p>
+    <ul class="c6 lst-kix_89x4l1ik05gl-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Publishers send messages to &ldquo;topics.&rdquo;<br></span>
+        </li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Subscribers receive messages via Email, SMS, HTTP, or
+                Lambda.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports event-driven architectures.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Integrated with CloudWatch and Lambda.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c5 c1">Use Cases:</span></p>
+    <ul class="c6 lst-kix_ybdvq5o3srzt-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Application alerts and notifications.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Real-time system updates.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Event broadcasting to multiple endpoints.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.xezbr92eeg4"><span class="c5 c1">2. Amazon SQS (Simple Queue Service):</span></h4>
+    <p class="c0"><span class="c1">Purpose:<br></span><span>&nbsp;A </span><span class="c1">message queuing</span><span
+            class="c3">&nbsp;service that decouples application components.</span></p>
+    <p class="c0"><span class="c1 c5">Features:</span></p>
+    <ul class="c6 lst-kix_ogsrjyku2g31-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Messages are sent to queues and processed
+                asynchronously.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Ensures reliable delivery even during system
+                failures.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports standard and FIFO queues.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Integrates with SNS and Lambda.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c5 c1">Use Cases:</span></p>
+    <ul class="c6 lst-kix_fbcbfgv451tq-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Asynchronous job processing.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Task scheduling.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Buffering between microservices.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.xpnwt7t1aua3"><span class="c5 c1">3. Amazon SES (Simple Email Service):</span></h4>
+    <p class="c0"><span class="c1">Purpose:<br></span><span>&nbsp;A </span><span class="c1">cloud-based email sending
+            service</span><span class="c3">&nbsp;for transactional, notification, and marketing emails.</span></p>
+    <p class="c0"><span class="c5 c1">Features:</span></p>
+    <ul class="c6 lst-kix_gjq8h99lm5kk-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">High deliverability using AWS infrastructure.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports bulk and personalized emails.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Provides feedback loops (delivery, bounce, complaint
+                notifications).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Integrates with Lambda and CloudWatch for automation.<br></span>
+        </li>
+    </ul>
+    <p class="c0"><span class="c5 c1">Use Cases:</span></p>
+    <ul class="c6 lst-kix_ag0estjouhus-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Sending order confirmations or password resets.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Newsletter or promotional campaigns.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.ndr2yop5wre"><span class="c5 c1">Comparison Table</span></h4>
+    <table class="c40">
+        <tr class="c10">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Feature</span></p>
+            </td>
+            <td class="c39" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">SNS</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">SQS</span></p>
+            </td>
+            <td class="c7" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">SES</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Type</span></p>
+            </td>
+            <td class="c39" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Pub/Sub Messaging</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Message Queue</span></p>
+            </td>
+            <td class="c7" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Email Service</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Communication</span></p>
+            </td>
+            <td class="c39" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">One-to-many</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">One-to-one (decoupled)</span></p>
+            </td>
+            <td class="c7" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Email-based</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Delivery</span></p>
+            </td>
+            <td class="c39" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Push</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Pull</span></p>
+            </td>
+            <td class="c7" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">SMTP/HTTP</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Use</span></p>
+            </td>
+            <td class="c39" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Notifications</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Asynchronous processing</span></p>
+            </td>
+            <td class="c7" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Email communication</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <p class="c0"><span class="c1">Conclusion:<br></span><span class="c3">&nbsp;AWS messaging services (SNS, SQS, SES)
+            enable reliable, scalable, and decoupled communication among distributed systems, forming the backbone of
+            event-driven and cloud-native architectures.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.itg7pdov5cs1"><span class="c1 c20">Q4. AWS Security Management &ndash; IAM, KMS, and Data
+            Security (At Rest &amp; In Motion)</span></h3>
+    <h4 class="c4" id="h.xqmb83b299k0"><span class="c5 c1">1. AWS Identity and Access Management (IAM)</span></h4>
+    <p class="c0"><span class="c1">Definition:<br></span><span>&nbsp;IAM is a centralized service for managing
+        </span><span class="c1">user access</span><span>&nbsp;and </span><span class="c1">permissions</span><span
+            class="c3">&nbsp;to AWS resources. It ensures that only authorized users or systems can perform specific
+            operations.</span></p>
+    <p class="c0"><span class="c5 c1">Core Components:</span></p>
+    <ul class="c6 lst-kix_4w2f01sm3htz-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Users:</span><span class="c3">&nbsp;Individual identities with
+                login credentials.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Groups:</span><span class="c3">&nbsp;Collections of users with
+                shared permissions.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Roles:</span><span class="c3">&nbsp;Temporary credentials for
+                AWS services or applications.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Policies:</span><span class="c3">&nbsp;JSON documents defining
+                access permissions.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c5 c1">Key Features:</span></p>
+    <ol class="c6 lst-kix_1fp377yopheh-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Fine-grained access control (resource-level and
+                action-level).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Multi-Factor Authentication (MFA) for enhanced
+                security.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Role-based access for temporary or automated access.<br></span>
+        </li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Centralized management via the AWS Console, CLI, or
+                API.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c5 c1">Benefits:</span></p>
+    <ul class="c6 lst-kix_768rbr4fi6ke-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Enforces least privilege principle.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Helps meet compliance requirements.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Protects against unauthorized data access.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.mqm692knltho"><span class="c5 c1">2. AWS Key Management Service (KMS)</span></h4>
+    <p class="c0"><span class="c1">Definition:<br></span><span class="c3">&nbsp;KMS is a managed encryption key service
+            that allows users to create, control, and use cryptographic keys to protect AWS data.</span></p>
+    <p class="c0"><span class="c5 c1">How It Works:</span></p>
+    <ul class="c6 lst-kix_677h5gjv5as4-0 start">
+        <li class="c0 c11 li-bullet-0"><span>KMS uses </span><span class="c1">Customer Master Keys
+                (CMKs)</span><span>&nbsp;stored in </span><span class="c1">Hardware Security Modules (HSMs)</span><span
+                class="c3">.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">AWS services (S3, EBS, RDS) integrate with KMS for automatic
+                encryption/decryption.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Keys can be managed manually or automatically
+                rotated.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c5 c1">Features:</span></p>
+    <ol class="c6 lst-kix_exzjh8e88b1m-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Centralized key management with audit trails.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Fine-grained key usage permissions through IAM.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Automatic encryption of stored data.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports envelope encryption (data keys encrypted by master
+                keys).<br></span></li>
+    </ol>
+    <p class="c0"><span class="c1">Example:<br></span><span class="c3">&nbsp;An S3 bucket can automatically encrypt
+            uploaded files using a KMS key (SSE-KMS).</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.ws2khz1muzf"><span class="c5 c1">3. Securing Data at Rest and In Motion</span></h4>
+    <table class="c40">
+        <tr class="c10">
+            <td class="c42" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Type</span></p>
+            </td>
+            <td class="c35" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Definition</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Protection Method</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c42" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">At Rest</span></p>
+            </td>
+            <td class="c35" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Data stored on disk or in databases</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Server-Side Encryption (SSE), KMS, EBS encryption, RDS TDE</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c42" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">In Motion</span></p>
+            </td>
+            <td class="c35" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Data transferred between client and AWS</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">SSL/TLS encryption, HTTPS endpoints, VPN/IPSec tunnels</span></p>
+            </td>
+        </tr>
+    </table>
+    <p class="c0"><span class="c5 c1">Key Tools:</span></p>
+    <ul class="c6 lst-kix_roud0e12b9vy-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c5 c1">S3 Server-Side Encryption (SSE-S3, SSE-KMS, SSE-C)<br></span>
+        </li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">AWS Certificate Manager (ACM)</span><span class="c3">&nbsp;for
+                SSL/TLS certificates<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">AWS VPN</span><span class="c3">&nbsp;for secure data
+                channels</span></li>
+    </ul>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.7rk3ip6fbmp4"><span class="c20 c1">UNIT 4: AWS Storage</span></h3>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.moy2b2rjp8n0"><span class="c20 c1">Q5. Amazon S3 &ndash; Buckets, Objects, Storage Classes,
+            and Static Website Hosting</span></h3>
+    <h4 class="c4" id="h.1ym327w3qjdk"><span class="c5 c1">1. Amazon S3 Basics</span></h4>
+    <p class="c0"><span class="c1">Definition:<br></span><span>&nbsp;S3 (Simple Storage Service) provides </span><span
+            class="c1">object-based storage</span><span class="c3">&nbsp;for any type of data such as files, images,
+            videos, and backups.</span></p>
+    <p class="c0"><span class="c5 c1">Core Concepts:</span></p>
+    <ul class="c6 lst-kix_6mqg6zmi7rhf-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Bucket:</span><span class="c3">&nbsp;Logical container for data
+                (unique name per region).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Object:</span><span class="c3">&nbsp;The stored file and its
+                metadata.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Key:</span><span class="c3">&nbsp;The unique name for each
+                object in a bucket.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c5 c1">Features:</span></p>
+    <ol class="c6 lst-kix_l7dj0hq5lbsf-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Unlimited storage capacity.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">99.999999999% durability and high availability.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Access control via IAM and bucket policies.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Lifecycle management for automatic data transfer to lower-cost
+                tiers.<br></span></li>
+    </ol>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.9pr2nu9wotta"><span class="c5 c1">2. S3 Storage Classes</span></h4>
+    <table class="c40">
+        <tr class="c10">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Storage Class</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Use Case</span></p>
+            </td>
+            <td class="c17" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Retrieval</span></p>
+            </td>
+            <td class="c45" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Cost</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">Standard</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Frequently accessed data</span></p>
+            </td>
+            <td class="c17" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Immediate</span></p>
+            </td>
+            <td class="c45" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Highest</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">Standard-IA (Infrequent Access)</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Rarely accessed but needed quickly</span></p>
+            </td>
+            <td class="c17" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Immediate</span></p>
+            </td>
+            <td class="c45" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Lower</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">Glacier / Glacier Deep Archive</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Archival and long-term backup</span></p>
+            </td>
+            <td class="c17" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Hours</span></p>
+            </td>
+            <td class="c45" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Lowest</span></p>
+            </td>
+        </tr>
+    </table>
+    <p class="c0"><span class="c1">Lifecycle Example:<br></span><span class="c3">&nbsp;An object starts in Standard
+            &rarr; moves to IA &rarr; then to Glacier after 90 days to save cost.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.hm5offt6v0pj"><span class="c5 c1">3. Hosting Static Website on S3</span></h4>
+    <p class="c0"><span class="c5 c1">Steps:</span></p>
+    <ol class="c6 lst-kix_qrf1wwum513d-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Create an S3 Bucket:</span><span>&nbsp;Name it as your domain
+                (e.g., </span><span class="c26">example.com</span><span class="c3">).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Upload Files:</span><span class="c3">&nbsp;Add HTML, CSS, JS
+                files.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c5 c1">Enable Static Website Hosting:<br></span></li>
+    </ol>
+    <ul class="c6 lst-kix_qrf1wwum513d-1 start">
+        <li class="c0 c19 li-bullet-0"><span class="c3">In bucket properties &rarr; select &ldquo;Static website
+                hosting.&rdquo;<br></span></li>
+        <li class="c0 c19 li-bullet-0"><span>Set index document (e.g., </span><span class="c26">index.html</span><span
+                class="c3">) and error document.<br></span></li>
+    </ul>
+    <ol class="c6 lst-kix_qrf1wwum513d-0" start="4">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Make Objects Public:</span><span class="c3">&nbsp;Modify bucket
+                policy to allow public read access.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Access Website:</span><span class="c3">&nbsp;Use the provided S3
+                endpoint URL or custom domain via Route 53.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c1">Example URL:<br></span><span>&nbsp;</span><span
+            class="c26">http://example-bucket.s3-website-us-east-1.amazonaws.com</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.fl17jskw92tt"><span class="c20 c1">Q6. Amazon EBS &ndash; Role, Snapshots vs Backups</span>
+    </h3>
+    <h4 class="c4" id="h.fxmwow6u5ffv"><span class="c5 c1">1. Amazon Elastic Block Store (EBS)</span></h4>
+    <p class="c0"><span class="c1">Definition:<br></span><span>&nbsp;EBS provides </span><span class="c1">block-level
+            storage volumes</span><span class="c3">&nbsp;for use with EC2 instances. It acts like a hard disk attached
+            to a virtual machine.</span></p>
+    <p class="c0"><span class="c5 c1">Features:</span></p>
+    <ol class="c6 lst-kix_lrewic1jctup-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Persistent storage that remains even after EC2
+                shutdown.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports SSD and HDD options (gp3, io2, st1, sc1).<br></span>
+        </li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">High performance for transactional workloads (databases,
+                OS).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Automatic replication within an Availability Zone for
+                durability.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports encryption via KMS.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c5 c1">Use Cases:</span></p>
+    <ul class="c6 lst-kix_fuiaup89gxt4-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Databases and file systems.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Boot volumes for EC2.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Big data and analytics workloads.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.veiuvvm6scpl"><span class="c5 c1">2. EBS Snapshots vs Backups</span></h4>
+    <table class="c40">
+        <tr class="c10">
+            <td class="c43" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Feature</span></p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Snapshot</span></p>
+            </td>
+            <td class="c24" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Backup</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c43" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Definition</span></p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Point-in-time copy of EBS volume</span></p>
+            </td>
+            <td class="c24" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Full or incremental copy stored externally</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c43" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Storage Location</span></p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Saved in Amazon S3</span></p>
+            </td>
+            <td class="c24" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">May use AWS Backup or third-party tools</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c43" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Purpose</span></p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Fast recovery or cloning</span></p>
+            </td>
+            <td class="c24" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Long-term data retention</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c43" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Speed</span></p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Incremental (only changed blocks)</span></p>
+            </td>
+            <td class="c24" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Can be full copy</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c43" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Management</span></p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Integrated with EC2 console</span></p>
+            </td>
+            <td class="c24" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Managed separately in AWS Backup</span></p>
+            </td>
+        </tr>
+    </table>
+    <p class="c0"><span class="c1">Example:<br></span><span class="c3">&nbsp;A database running on EC2 uses EBS volume.
+            A snapshot can be created daily to restore the system instantly in case of failure.</span></p>
+    <p class="c0"><span class="c5 c1">Benefits:</span></p>
+    <ul class="c6 lst-kix_t6nndbkml0yf-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Quick recovery from data loss.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Simplifies migration between regions or accounts.<br></span>
+        </li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Supports automation via scripts and AWS Backup
+                service.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c1">Conclusion:<br></span><span class="c3">&nbsp;EBS provides fast, reliable, and
+            persistent storage for EC2 instances, while snapshots and backups ensure data protection and disaster
+            recovery.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.o230dglxzacq"><span class="c20 c1">Q7. Amazon Glacier &ndash; Features, Retrieval Process, and
+            Comparison with Other Storage Services</span></h3>
+    <h4 class="c4" id="h.v7szeuoa7rit"><span class="c5 c1">1. Definition</span></h4>
+    <p class="c0"><span>Amazon </span><span class="c1">Glacier</span><span>&nbsp;(now part of </span><span
+            class="c21">Amazon S3 Glacier</span><span>) is a </span><span class="c1">low-cost cloud storage
+            service</span><span>&nbsp;designed for </span><span class="c1">long-term archival</span><span>&nbsp;and
+        </span><span class="c1">data backup</span><span class="c3">. It is ideal for data that is rarely accessed but
+            must be retained for compliance or audit purposes.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.5hy0hpkzw3x6"><span class="c5 c1">2. Key Features</span></h4>
+    <ol class="c6 lst-kix_xjuqfjab06om-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Extremely low cost:</span><span class="c3">&nbsp;Designed for
+                archival data with minimal retrieval needs.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">High durability:</span><span class="c3">&nbsp;99.999999999% (11
+                nines) durability across multiple Availability Zones.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Secure encryption:</span><span class="c3">&nbsp;Data
+                automatically encrypted using AWS KMS keys.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Scalable storage:</span><span class="c3">&nbsp;No capacity
+                planning needed; scales automatically.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Lifecycle integration:</span><span class="c3">&nbsp;Can be
+                configured in S3 lifecycle rules to automatically transition old data to Glacier.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c5 c1">Retrieval options:<br></span></li>
+    </ol>
+    <ul class="c6 lst-kix_xjuqfjab06om-1 start">
+        <li class="c0 c19 li-bullet-0"><span class="c21">Expedited</span><span class="c3">&nbsp;(1&ndash;5
+                minutes)<br></span></li>
+        <li class="c0 c19 li-bullet-0"><span class="c21">Standard</span><span class="c3">&nbsp;(3&ndash;5
+                hours)<br></span></li>
+        <li class="c0 c19 li-bullet-0"><span class="c21">Bulk</span><span class="c3">&nbsp;(5&ndash;12 hours)<br></span>
+        </li>
+    </ul>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.unpdnwf7bxej"><span class="c5 c1">3. Retrieval Process</span></h4>
+    <ul class="c6 lst-kix_xa5ayooi1ugu-0 start">
+        <li class="c0 c11 li-bullet-0"><span>When an object stored in Glacier is requested, a </span><span
+                class="c1">retrieval job</span><span class="c3">&nbsp;is initiated.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Once retrieval is complete, data is temporarily stored in S3 for
+                download.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Access is via the AWS Console, CLI, or SDKs.<br></span></li>
+    </ul>
+    <p class="c0"><span class="c1">Example:<br></span><span class="c3">&nbsp;A company stores monthly backups in S3
+            Glacier. When an old backup is required, it issues a retrieval request, waits for completion, and then
+            downloads the file.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.2sswx4jsrvr4"><span class="c5 c1">4. Comparison with Other AWS Storage Services</span></h4>
+    <table class="c40">
+        <tr class="c10">
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Feature</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">S3 Standard</span></p>
+            </td>
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">EBS</span></p>
+            </td>
+            <td class="c37" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Glacier</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Type</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Object storage</span></p>
+            </td>
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Block storage</span></p>
+            </td>
+            <td class="c37" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Archival storage</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Access Speed</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Milliseconds</span></p>
+            </td>
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Milliseconds</span></p>
+            </td>
+            <td class="c37" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Hours</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Cost</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">High</span></p>
+            </td>
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Medium</span></p>
+            </td>
+            <td class="c37" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Very low</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Use Case</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Active data</span></p>
+            </td>
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Databases, OS</span></p>
+            </td>
+            <td class="c37" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Backups, archives</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Durability</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">11 nines</span></p>
+            </td>
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">99.9%</span></p>
+            </td>
+            <td class="c37" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">11 nines</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.ezu1k2nszlad"><span class="c5 c1">Conclusion</span></h4>
+    <p class="c0"><span>Amazon Glacier is optimized for </span><span class="c1">archival</span><span>, </span><span
+            class="c1">backup</span><span>, and </span><span class="c1">regulatory data storage</span><span class="c3">,
+            offering very low costs with secure, durable, and scalable infrastructure.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.qy5ocxfuu6dz"><span class="c20 c1">Q8. AWS Database Services &ndash; Amazon DynamoDB and RDS
+            (MySQL)</span></h3>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.i6i2snpykepz"><span class="c5 c1">1. Amazon DynamoDB</span></h4>
+    <p class="c0"><span class="c1">Definition:<br></span><span>&nbsp;DynamoDB is a </span><span class="c1">fully managed
+            NoSQL database service</span><span class="c3">&nbsp;that provides high performance and scalability for
+            applications that require low-latency access.</span></p>
+    <p class="c0"><span class="c5 c1">Key Features:</span></p>
+    <ol class="c6 lst-kix_ue1edsdzrbs4-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Serverless:</span><span class="c3">&nbsp;No need to manage
+                infrastructure or servers.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Scalable:</span><span class="c3">&nbsp;Automatically scales
+                throughput and storage.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Fast performance:</span><span class="c3">&nbsp;Millisecond
+                response time for reads/writes.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Flexible schema:</span><span class="c3">&nbsp;Stores data as
+                key-value or document (JSON-like) structures.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Secure:</span><span class="c3">&nbsp;Supports encryption at rest
+                (KMS) and in transit (TLS).<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Global tables:</span><span class="c3">&nbsp;Multi-region
+                replication for high availability.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Backup &amp; Restore:</span><span class="c3">&nbsp;Point-in-time
+                recovery and on-demand backups.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c1">Use Cases:<br></span><span class="c3">&nbsp;E-commerce carts, gaming leaderboards,
+            IoT telemetry data, and session management.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.g26dst5l6td6"><span class="c5 c1">2. Amazon RDS (Relational Database Service)</span></h4>
+    <p class="c0"><span class="c1">Definition:<br></span><span>&nbsp;RDS is a </span><span class="c1">managed relational
+            database service</span><span class="c3">&nbsp;that automates administrative tasks such as backups, patching,
+            and scaling.</span></p>
+    <p class="c0"><span class="c1">Supported Engines:<br></span><span class="c3">&nbsp;MySQL, PostgreSQL, MariaDB,
+            Oracle, SQL Server, and Aurora.</span></p>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.1otuwznqtwzk"><span class="c5 c1">Launching and Managing RDS Instance (MySQL):</span></h4>
+    <p class="c0"><span class="c5 c1">Steps:</span></p>
+    <ol class="c6 lst-kix_hjz2adw8vhy1-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Open RDS Console:</span><span class="c3">&nbsp;Choose
+                &ldquo;Create Database.&rdquo;<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Select Engine:</span><span>&nbsp;Choose </span><span
+                class="c21">MySQL</span><span class="c3">.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Choose Deployment Model:</span><span class="c3">&nbsp;Standard
+                or Multi-AZ.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Configure Settings:</span><span class="c3">&nbsp;DB name,
+                username, password, instance type, and allocated storage.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Connectivity:</span><span class="c3">&nbsp;Select VPC, subnet,
+                and public access options.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Storage and Backup:</span><span class="c3">&nbsp;Enable
+                automatic backups and encryption.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Launch Instance:</span><span class="c3">&nbsp;AWS provisions and
+                starts the DB automatically.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Access Database:</span><span class="c3">&nbsp;Connect via
+                endpoint using MySQL Workbench or CLI.<br></span></li>
+    </ol>
+    <p class="c0"><span class="c5 c1">Advantages:</span></p>
+    <ul class="c6 lst-kix_3feg4a3jo9dx-0 start">
+        <li class="c0 c11 li-bullet-0"><span class="c3">Automated backups and failover.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Scalable compute and storage.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c3">Integrated monitoring via CloudWatch.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.3o2b04fd3b6"><span class="c5 c1">3. Comparison: DynamoDB vs RDS</span></h4>
+    <table class="c40">
+        <tr class="c10">
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Feature</span></p>
+            </td>
+            <td class="c28" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">DynamoDB</span></p>
+            </td>
+            <td class="c41" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">RDS (MySQL)</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Model</span></p>
+            </td>
+            <td class="c28" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">NoSQL (Key-Value, Document)</span></p>
+            </td>
+            <td class="c41" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Relational (Tables, SQL)</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Scaling</span></p>
+            </td>
+            <td class="c28" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Automatic</span></p>
+            </td>
+            <td class="c41" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Manual or Auto-Scaling groups</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Performance</span></p>
+            </td>
+            <td class="c28" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Sub-millisecond</span></p>
+            </td>
+            <td class="c41" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Millisecond to seconds</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Use Case</span></p>
+            </td>
+            <td class="c28" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Unstructured or high-speed apps</span></p>
+            </td>
+            <td class="c41" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Structured transactional systems</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Maintenance</span></p>
+            </td>
+            <td class="c28" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Fully managed</span></p>
+            </td>
+            <td class="c41" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Partially managed (user-configured schema)</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h3 class="c15" id="h.gdn3rzqqkxtw"><span class="c20 c1">Q9. Comparison of RDS, DynamoDB, and Glacier + Key AWS
+            Storage Summary</span></h3>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.gpoymydd9erx"><span class="c5 c1">1. Comparison Table</span></h4>
+    <table class="c40">
+        <tr class="c10">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Feature</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">RDS</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">DynamoDB</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Glacier</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Type</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Relational DB</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">NoSQL DB</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Archival storage</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Data Model</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Tables with schema</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Key-value &amp; document</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Object</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Query Language</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">SQL</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">API (NoSQL)</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">None (retrieval only)</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Access Speed</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Milliseconds</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Sub-milliseconds</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Hours</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Durability</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">99.99%</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">99.999%</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">99.999999999%</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Use Case</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Financial, ERP systems</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Gaming, IoT, real-time analytics</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Backups, long-term storage</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Pricing</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Pay per instance hour</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Pay per request</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Pay per GB stored</span></p>
+            </td>
+        </tr>
+        <tr class="c8">
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Backup</span></p>
+            </td>
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Automated snapshots</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">On-demand backups</span></p>
+            </td>
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Built-in redundancy</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.rkdqhtw9mqw"><span class="c5 c1">2. Key AWS Storage Solutions Overview</span></h4>
+    <table class="c40">
+        <tr class="c10">
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Service</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Type</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c16"><span class="c1">Ideal Use</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">S3</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Object storage</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">General-purpose storage and static websites</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">EBS</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Block storage</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">EC2 volumes, databases</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">EFS</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">File storage</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Shared file systems for Linux workloads</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">Glacier</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Archival</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Long-term backup and compliance data</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">RDS</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Relational DB</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Structured data and transactional systems</span></p>
+            </td>
+        </tr>
+        <tr class="c10">
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c12"><span class="c1">DynamoDB</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">NoSQL DB</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c12"><span class="c3">Unstructured, fast, scalable apps</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c12 c14"><span class="c3"></span></p>
+    <h4 class="c4" id="h.ngho8f8pfyxp"><span class="c5 c1">3. Advantages of AWS Storage Ecosystem</span></h4>
+    <ol class="c6 lst-kix_7xhrxo39ybmj-0 start" start="1">
+        <li class="c0 c11 li-bullet-0"><span class="c1">Durability:</span><span class="c3">&nbsp;All services replicate
+                data across Availability Zones.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Scalability:</span><span class="c3">&nbsp;Elastic scaling as per
+                demand.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Security:</span><span class="c3">&nbsp;KMS encryption, IAM-based
+                access.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Cost optimization:</span><span class="c3">&nbsp;Different tiers
+                for different use cases.<br></span></li>
+        <li class="c0 c11 li-bullet-0"><span class="c1">Integration:</span><span class="c3">&nbsp;Unified ecosystem
+                supporting analytics, compute, and AI workloads.</span></li>
+    </ol>
+    <div id="watermark">https://poornimites.vercel.app/notes.html <br>
+        CONFIDENCIAL || DO NOT SHARE</div>
+
+    <h1>Secure Test</h1>
+    <p>This is secure test content. Copying, printing, or screenshots are restricted.</p>
+
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Disable keyboard shortcuts for copy, print, save, view source, and screenshot
+        document.addEventListener('keydown', e => {
+            const blocked = ['c', 'p', 's', 'u', 'PrintScreen'];
+            if (e.ctrlKey && blocked.includes(e.key.toLowerCase())) {
+                e.preventDefault();
+                alert('Action disabled');
+            }
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                alert('Screenshots disabled');
+            }
+        });
+
+        // Disable copy event
+        document.addEventListener('copy', e => {
+            e.preventDefault();
+            alert('Copy disabled');
+        });
+
+        // Prevent printing
+        window.onbeforeprint = () => {
+            document.body.style.display = 'none';
+            alert('Printing disabled');
+            setTimeout(() => location.reload(), 1000);
+        };
+
+        // Disable caching
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(() => { });
+        }
+    </script>
+</body>
+
+</html>

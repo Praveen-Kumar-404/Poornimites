@@ -1,0 +1,3003 @@
+<html>
+
+<head>
+    <style>
+        /* Disable text selection and copying */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Disable printing */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        /* Full-page watermark overlay */
+        #watermark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+            font-size: 3rem;
+            color: red;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-30deg);
+            white-space: nowrap;
+        }
+    </style>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">
+        @import url(https://themes.googleusercontent.com/fonts/css?kit=XGMkxXUZTA64h2imyzu79g);
+
+        .lst-kix_wt5s5n3kbaav-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_wt5s5n3kbaav-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_wt5s5n3kbaav-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_e679bgpw3psy-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_wt5s5n3kbaav-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_wt5s5n3kbaav-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_e679bgpw3psy-8.start {
+            counter-reset: lst-ctn-kix_e679bgpw3psy-8 0
+        }
+
+        .lst-kix_wt5s5n3kbaav-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_wt5s5n3kbaav-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_48n80rfy6g3e-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_ad45blsqicdp-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ad45blsqicdp-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_48n80rfy6g3e-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_48n80rfy6g3e-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_g37fxxt6nxnx-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_g37fxxt6nxnx-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_48n80rfy6g3e-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ad45blsqicdp-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_g37fxxt6nxnx-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_g37fxxt6nxnx-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_48n80rfy6g3e-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_ad45blsqicdp-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ad45blsqicdp-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_48n80rfy6g3e-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ad45blsqicdp-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ad45blsqicdp-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ad45blsqicdp-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ad45blsqicdp-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_g37fxxt6nxnx-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_g37fxxt6nxnx-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_g37fxxt6nxnx-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_g37fxxt6nxnx-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_g37fxxt6nxnx-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_48n80rfy6g3e-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_48n80rfy6g3e-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_e679bgpw3psy-8>li {
+            counter-increment: lst-ctn-kix_e679bgpw3psy-8
+        }
+
+        .lst-kix_3r6qfnnjb22h-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_3r6qfnnjb22h-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_3r6qfnnjb22h-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_3r6qfnnjb22h-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_wt5s5n3kbaav-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_3r6qfnnjb22h-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_3r6qfnnjb22h-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_3r6qfnnjb22h-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_3r6qfnnjb22h-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_3r6qfnnjb22h-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_cks8rwsti7zi-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_wt5s5n3kbaav-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_cks8rwsti7zi-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_wt5s5n3kbaav-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_cks8rwsti7zi-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_cks8rwsti7zi-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2mfkq7qgarz7-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hjcd0qpy1xwq-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_cks8rwsti7zi-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_cks8rwsti7zi-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_cks8rwsti7zi-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_48n80rfy6g3e-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_48n80rfy6g3e-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_e679bgpw3psy-5>li {
+            counter-increment: lst-ctn-kix_e679bgpw3psy-5
+        }
+
+        ul.lst-kix_48n80rfy6g3e-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_kztb5tju5p58-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_s9gr5xh5mz4-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_cks8rwsti7zi-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_48n80rfy6g3e-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_kztb5tju5p58-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_48n80rfy6g3e-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_48n80rfy6g3e-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_48n80rfy6g3e-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_48n80rfy6g3e-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_48n80rfy6g3e-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_s9gr5xh5mz4-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_kztb5tju5p58-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_kztb5tju5p58-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_kztb5tju5p58-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_s9gr5xh5mz4-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_s9gr5xh5mz4-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_gst27jod90gw-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gst27jod90gw-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gst27jod90gw-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gst27jod90gw-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gst27jod90gw-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gst27jod90gw-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gst27jod90gw-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gst27jod90gw-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s8rxidaxh93w-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_2mfkq7qgarz7-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_2mfkq7qgarz7-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_2mfkq7qgarz7-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_2mfkq7qgarz7-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_hjcd0qpy1xwq-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_gst27jod90gw-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_hjcd0qpy1xwq-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_hjcd0qpy1xwq-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_xcs8n34k3viw-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xcs8n34k3viw-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_2mfkq7qgarz7-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_xcs8n34k3viw-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xcs8n34k3viw-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xcs8n34k3viw-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_hjcd0qpy1xwq-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_e679bgpw3psy-3.start {
+            counter-reset: lst-ctn-kix_e679bgpw3psy-3 0
+        }
+
+        .lst-kix_hjcd0qpy1xwq-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_edkkaj31alh9-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_w8ayo9rjff5f-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_w8ayo9rjff5f-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_taccqwx37kso-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_edkkaj31alh9-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_edkkaj31alh9-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_w8ayo9rjff5f-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_w8ayo9rjff5f-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_f6hgihpa8s4r-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_f6hgihpa8s4r-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_ad45blsqicdp-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_f6hgihpa8s4r-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_g37fxxt6nxnx-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_taccqwx37kso-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ad45blsqicdp-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ad45blsqicdp-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_edkkaj31alh9-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_edkkaj31alh9-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_taccqwx37kso-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_f6hgihpa8s4r-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ad45blsqicdp-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_f6hgihpa8s4r-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_taccqwx37kso-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_taccqwx37kso-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_e679bgpw3psy-5>li:before {
+            content: "" counter(lst-ctn-kix_e679bgpw3psy-5, lower-roman) ". "
+        }
+
+        ul.lst-kix_taccqwx37kso-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_taccqwx37kso-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_qqwajdw9kg9o-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_taccqwx37kso-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_qqwajdw9kg9o-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_e679bgpw3psy-4>li:before {
+            content: "" counter(lst-ctn-kix_e679bgpw3psy-4, lower-latin) ". "
+        }
+
+        .lst-kix_e679bgpw3psy-8>li:before {
+            content: "" counter(lst-ctn-kix_e679bgpw3psy-8, lower-roman) ". "
+        }
+
+        ul.lst-kix_taccqwx37kso-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_taccqwx37kso-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_qqwajdw9kg9o-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_e679bgpw3psy-0>li:before {
+            content: "" counter(lst-ctn-kix_e679bgpw3psy-0, decimal) ". "
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_s9gr5xh5mz4-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_e679bgpw3psy-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_qqwajdw9kg9o-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_nz4wnnjbwkfi-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_qqwajdw9kg9o-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_e679bgpw3psy-0.start {
+            counter-reset: lst-ctn-kix_e679bgpw3psy-0 0
+        }
+
+        ul.lst-kix_taccqwx37kso-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_taccqwx37kso-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_taccqwx37kso-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_nz4wnnjbwkfi-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_taccqwx37kso-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_w8ayo9rjff5f-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_nz4wnnjbwkfi-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_nz4wnnjbwkfi-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_kztb5tju5p58-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_s8rxidaxh93w-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_9z3gv51678r4-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_xcs8n34k3viw-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_3r6qfnnjb22h-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_kztb5tju5p58-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_s9gr5xh5mz4-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_s9gr5xh5mz4-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_9z3gv51678r4-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_xcs8n34k3viw-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_nz4wnnjbwkfi-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_s8rxidaxh93w-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_lr1j0q7y3lm3-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_2mfkq7qgarz7-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_lr1j0q7y3lm3-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_2mfkq7qgarz7-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ohuwvnf5inri-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ohuwvnf5inri-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_hjcd0qpy1xwq-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_gst27jod90gw-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_e679bgpw3psy-3>li {
+            counter-increment: lst-ctn-kix_e679bgpw3psy-3
+        }
+
+        .lst-kix_gst27jod90gw-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_48n80rfy6g3e-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ohuwvnf5inri-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_c9rzoqc4solc-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_c9rzoqc4solc-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hjcd0qpy1xwq-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gst27jod90gw-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_94k674afilr2-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_94k674afilr2-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_94k674afilr2-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_94k674afilr2-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_94k674afilr2-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_lr1j0q7y3lm3-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_c9rzoqc4solc-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_c9rzoqc4solc-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_94k674afilr2-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_c9rzoqc4solc-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_c9rzoqc4solc-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_c9rzoqc4solc-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_c9rzoqc4solc-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_94k674afilr2-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_94k674afilr2-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_c9rzoqc4solc-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_c9rzoqc4solc-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_94k674afilr2-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_c9rzoqc4solc-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_edkkaj31alh9-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_xcs8n34k3viw-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_9z3gv51678r4-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_xcs8n34k3viw-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_9z3gv51678r4-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_9z3gv51678r4-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_xcs8n34k3viw-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_9z3gv51678r4-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_s8rxidaxh93w-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_n60qs9w9yuuy-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_e679bgpw3psy-6>li {
+            counter-increment: lst-ctn-kix_e679bgpw3psy-6
+        }
+
+        ol.lst-kix_e679bgpw3psy-4.start {
+            counter-reset: lst-ctn-kix_e679bgpw3psy-4 0
+        }
+
+        .lst-kix_s8rxidaxh93w-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_lr1j0q7y3lm3-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_xcs8n34k3viw-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_lr1j0q7y3lm3-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_lr1j0q7y3lm3-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_s8rxidaxh93w-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_s8rxidaxh93w-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_s8rxidaxh93w-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_94k674afilr2-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_94k674afilr2-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_ohuwvnf5inri-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ohuwvnf5inri-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_94k674afilr2-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_94k674afilr2-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_lr1j0q7y3lm3-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_94k674afilr2-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_94k674afilr2-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_lr1j0q7y3lm3-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ohuwvnf5inri-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gst27jod90gw-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ohuwvnf5inri-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gst27jod90gw-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_94k674afilr2-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_94k674afilr2-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_94k674afilr2-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_c9rzoqc4solc-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_c9rzoqc4solc-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_c9rzoqc4solc-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gst27jod90gw-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_c9rzoqc4solc-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_kztb5tju5p58-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_e679bgpw3psy-2.start {
+            counter-reset: lst-ctn-kix_e679bgpw3psy-2 0
+        }
+
+        ul.lst-kix_kztb5tju5p58-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_9z3gv51678r4-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_kztb5tju5p58-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kztb5tju5p58-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kztb5tju5p58-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_gst27jod90gw-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_kztb5tju5p58-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kztb5tju5p58-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kztb5tju5p58-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_c9rzoqc4solc-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_kztb5tju5p58-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_f6hgihpa8s4r-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ohuwvnf5inri-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_edkkaj31alh9-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ohuwvnf5inri-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_f6hgihpa8s4r-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_ohuwvnf5inri-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_taccqwx37kso-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ad45blsqicdp-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_w8ayo9rjff5f-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_w8ayo9rjff5f-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_e679bgpw3psy-5.start {
+            counter-reset: lst-ctn-kix_e679bgpw3psy-5 0
+        }
+
+        .lst-kix_w8ayo9rjff5f-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_edkkaj31alh9-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_w8ayo9rjff5f-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_e679bgpw3psy-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_e679bgpw3psy-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_ad45blsqicdp-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ad45blsqicdp-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_e679bgpw3psy-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_taccqwx37kso-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_e679bgpw3psy-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_edkkaj31alh9-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_f6hgihpa8s4r-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_taccqwx37kso-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_f6hgihpa8s4r-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_taccqwx37kso-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_edkkaj31alh9-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_e679bgpw3psy-0>li {
+            counter-increment: lst-ctn-kix_e679bgpw3psy-0
+        }
+
+        .lst-kix_qqwajdw9kg9o-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_e679bgpw3psy-6>li:before {
+            content: "" counter(lst-ctn-kix_e679bgpw3psy-6, decimal) ". "
+        }
+
+        .lst-kix_qqwajdw9kg9o-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_e679bgpw3psy-3>li:before {
+            content: "" counter(lst-ctn-kix_e679bgpw3psy-3, decimal) ". "
+        }
+
+        .lst-kix_e679bgpw3psy-7>li:before {
+            content: "" counter(lst-ctn-kix_e679bgpw3psy-7, lower-latin) ". "
+        }
+
+        ul.lst-kix_cks8rwsti7zi-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xcs8n34k3viw-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_qqwajdw9kg9o-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_xcs8n34k3viw-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_xcs8n34k3viw-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_qqwajdw9kg9o-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_xcs8n34k3viw-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_cks8rwsti7zi-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_e679bgpw3psy-2>li:before {
+            content: "" counter(lst-ctn-kix_e679bgpw3psy-2, lower-roman) ". "
+        }
+
+        ul.lst-kix_cks8rwsti7zi-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_cks8rwsti7zi-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_cks8rwsti7zi-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_cks8rwsti7zi-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_cks8rwsti7zi-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_cks8rwsti7zi-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_cks8rwsti7zi-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_nz4wnnjbwkfi-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_qqwajdw9kg9o-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_nz4wnnjbwkfi-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_nz4wnnjbwkfi-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ad45blsqicdp-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ad45blsqicdp-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_e679bgpw3psy-7>li {
+            counter-increment: lst-ctn-kix_e679bgpw3psy-7
+        }
+
+        ol.lst-kix_e679bgpw3psy-6.start {
+            counter-reset: lst-ctn-kix_e679bgpw3psy-6 0
+        }
+
+        ol.lst-kix_e679bgpw3psy-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_e679bgpw3psy-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_e679bgpw3psy-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_e679bgpw3psy-4>li {
+            counter-increment: lst-ctn-kix_e679bgpw3psy-4
+        }
+
+        ol.lst-kix_e679bgpw3psy-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_nz4wnnjbwkfi-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_nz4wnnjbwkfi-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_9z3gv51678r4-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_xcs8n34k3viw-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_xcs8n34k3viw-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_9z3gv51678r4-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_s9gr5xh5mz4-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_cks8rwsti7zi-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_9z3gv51678r4-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9z3gv51678r4-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9z3gv51678r4-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9z3gv51678r4-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_s9gr5xh5mz4-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_9z3gv51678r4-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_kztb5tju5p58-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_kztb5tju5p58-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_s9gr5xh5mz4-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_9z3gv51678r4-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9z3gv51678r4-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_f6hgihpa8s4r-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9z3gv51678r4-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9z3gv51678r4-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_lr1j0q7y3lm3-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_e679bgpw3psy-7.start {
+            counter-reset: lst-ctn-kix_e679bgpw3psy-7 0
+        }
+
+        .lst-kix_s8rxidaxh93w-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_xcs8n34k3viw-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_s8rxidaxh93w-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ohuwvnf5inri-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_2mfkq7qgarz7-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_e679bgpw3psy-2>li {
+            counter-increment: lst-ctn-kix_e679bgpw3psy-2
+        }
+
+        .lst-kix_lr1j0q7y3lm3-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_2mfkq7qgarz7-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hjcd0qpy1xwq-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gst27jod90gw-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ohuwvnf5inri-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_hjcd0qpy1xwq-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_n60qs9w9yuuy-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_c9rzoqc4solc-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gst27jod90gw-6>li:before {
+            content: "\0025cf   "
+        }
+
+        li.li-bullet-0:before {
+            margin-left: -18pt;
+            white-space: nowrap;
+            display: inline-block;
+            min-width: 18pt
+        }
+
+        ul.lst-kix_ohuwvnf5inri-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ohuwvnf5inri-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_c9rzoqc4solc-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_ohuwvnf5inri-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ohuwvnf5inri-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ohuwvnf5inri-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ohuwvnf5inri-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_w8ayo9rjff5f-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol {
+            margin: 0;
+            padding: 0
+        }
+
+        table td,
+        table th {
+            padding: 0
+        }
+
+        .c18 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 183.1pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c10 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 178.7pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c2 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 86.6pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c1 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 190.3pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c23 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 89.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c22 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 174.4pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c4 {
+            margin-left: 36pt;
+            padding-top: 12pt;
+            padding-left: 0pt;
+            padding-bottom: 12pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c3 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c8 {
+            color: #000000;
+            font-weight: 700;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 10pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c11 {
+            padding-top: 12pt;
+            padding-bottom: 12pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c17 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c0 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c15 {
+            padding-top: 11pt;
+            padding-bottom: 2pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c13 {
+            padding-top: 14pt;
+            padding-bottom: 4pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c27 {
+            padding-top: 12pt;
+            padding-bottom: 2pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c28 {
+            padding-top: 14pt;
+            padding-bottom: 4pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c31 {
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 23pt;
+            font-style: normal
+        }
+
+        .c14 {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-right: auto
+        }
+
+        .c7 {
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-style: normal
+        }
+
+        .c26 {
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 13pt;
+            font-style: normal
+        }
+
+        .c5 {
+            color: #188038;
+            font-weight: 400;
+            font-family: "Roboto Mono"
+        }
+
+        .c21 {
+            background-color: #ffffff;
+            max-width: 451.3pt;
+            padding: 72pt 72pt 72pt 72pt
+        }
+
+        .c12 {
+            color: #000000;
+            font-family: "Arial"
+        }
+
+        .c16 {
+            padding: 0;
+            margin: 0
+        }
+
+        .c25 {
+            margin-left: 72pt;
+            padding-left: 0pt
+        }
+
+        .c20 {
+            height: 35.5pt
+        }
+
+        .c24 {
+            height: 14pt
+        }
+
+        .c9 {
+            font-weight: 700
+        }
+
+        .c32 {
+            height: 54.2pt
+        }
+
+        .c29 {
+            height: 36.2pt
+        }
+
+        .c30 {
+            height: 47.5pt
+        }
+
+        .c19 {
+            height: 23.5pt
+        }
+
+        .c6 {
+            height: 11pt
+        }
+
+        .title {
+            padding-top: 0pt;
+            color: #000000;
+            font-size: 26pt;
+            padding-bottom: 3pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .subtitle {
+            padding-top: 0pt;
+            color: #666666;
+            font-size: 15pt;
+            padding-bottom: 16pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        li {
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        h1 {
+            padding-top: 20pt;
+            color: #000000;
+            font-size: 20pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h2 {
+            padding-top: 18pt;
+            color: #000000;
+            font-size: 16pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h3 {
+            padding-top: 16pt;
+            color: #434343;
+            font-size: 14pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h4 {
+            padding-top: 14pt;
+            color: #666666;
+            font-size: 12pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h5 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h6 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            font-style: italic;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+    </style>
+</head>
+
+<body class="c21 doc-content">
+    <h3 class="c28" id="h.q1c19sq0kdb0"><span class="c12 c9 c31">ASP.Net</span></h3>
+    <h3 class="c13 c24" id="h.94sxxx7cpufn"><span class="c12 c9 c26"></span></h3>
+    <h3 class="c13" id="h.zgtf1sb2kfm0"><span class="c26 c12 c9">Question 1</span></h3>
+    <h4 class="c27" id="h.mepdvmhqoxkz"><span class="c7 c12 c9">(i) ConnectionsZone Control</span></h4>
+    <ul class="c16 lst-kix_hjcd0qpy1xwq-0 start">
+        <li class="c4 li-bullet-0"><span>The </span><span class="c9">ConnectionsZone</span><span>&nbsp;control in
+                ASP.NET Web Parts is a </span><span class="c9">specialized zone</span><span class="c3">&nbsp;that
+                enables users to create, modify, or delete connections between Web Parts at runtime.<br></span></li>
+        <li class="c4 li-bullet-0"><span>It is used when a page has multiple Web Parts that need to </span><span
+                class="c9">communicate</span><span>&nbsp;with each other&mdash;one acting as a </span><span
+                class="c9">provider</span><span>&nbsp;and another as a </span><span class="c9">consumer</span><span
+                class="c3">.<br></span></li>
+    </ul>
+    <h5 class="c15" id="h.kpzlndkwqt4l"><span class="c8">Purpose</span></h5>
+    <ul class="c16 lst-kix_kztb5tju5p58-0 start">
+        <li class="c4 li-bullet-0"><span>Allows </span><span class="c9">runtime connection management</span><span
+                class="c3">&nbsp;between Web Parts.<br></span></li>
+        <li class="c4 li-bullet-0"><span>Enables </span><span class="c9">data sharing</span><span
+                class="c3">&nbsp;between Web Parts (e.g., one Web Part providing a list of products, another displaying
+                product details).<br></span></li>
+    </ul>
+    <h5 class="c15" id="h.hntcosslittz"><span class="c8">Working</span></h5>
+    <ol class="c16 lst-kix_e679bgpw3psy-0 start" start="1">
+        <li class="c4 li-bullet-0"><span>The </span><span class="c9">WebPartManager</span><span class="c3">&nbsp;control
+                manages Web Parts and zones on the page.<br></span></li>
+        <li class="c4 li-bullet-0"><span>When the page enters </span><span class="c9">connect mode</span><span>, the
+            </span><span class="c9">ConnectionsZone</span><span class="c3">&nbsp;becomes visible.<br></span></li>
+        <li class="c4 li-bullet-0"><span>It displays possible </span><span class="c9">connection options</span><span
+                class="c3">&nbsp;that users can configure.<br></span></li>
+        <li class="c4 li-bullet-0"><span>Once a connection is made, Web Parts can share data via </span><span
+                class="c9">connection interfaces</span><span class="c3">&nbsp;like:<br></span></li>
+    </ol>
+    <ul class="c16 lst-kix_e679bgpw3psy-1 start">
+        <li class="c11 c25 li-bullet-0"><span class="c5">IWebPartField</span><span class="c3">&nbsp;&ndash; shares a
+                single field value.<br></span></li>
+        <li class="c11 c25 li-bullet-0"><span class="c5">IWebPartTable</span><span class="c3">&nbsp;&ndash; shares
+                tabular data.<br></span></li>
+        <li class="c11 c25 li-bullet-0"><span class="c5">IWebPartRow</span><span class="c3">&nbsp;&ndash; shares a
+                single row.<br></span></li>
+    </ul>
+    <h5 class="c15" id="h.ojbsf2vunbld"><span class="c8">Example</span></h5>
+    <p class="c0"><span class="c7 c5">&lt;asp:WebPartManager ID=&quot;WebPartManager1&quot; runat=&quot;server&quot;
+            /&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:ConnectionsZone ID=&quot;ConnectionsZone1&quot; runat=&quot;server&quot;
+            HeaderText=&quot;Connect Web Parts&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:ConnectionsZone&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <p class="c11"><span class="c3">This setup allows users to connect Web Parts dynamically in connect mode.</span></p>
+    <h5 class="c15" id="h.ht93k62fr9vn"><span class="c8">Advantages</span></h5>
+    <ul class="c16 lst-kix_xcs8n34k3viw-0 start">
+        <li class="c4 li-bullet-0"><span class="c3">Promotes modular and reusable component design.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">Enables interactive dashboards without code changes.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">Allows end users to customize how parts of a page
+                communicate.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h4 class="c27" id="h.xhtjd1zezoep"><span class="c7 c12 c9">(ii) Difference Between TreeView and Menu Control</span>
+    </h4>
+    <table class="c14">
+        <tr class="c19">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c17"><span class="c9">Feature</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c17"><span class="c9">TreeView Control</span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c17"><span class="c9">Menu Control</span></p>
+            </td>
+        </tr>
+        <tr class="c32">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Purpose</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Displays hierarchical data in a tree-like format (parent&ndash;child
+                        nodes).</span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Displays site navigation menus (horizontal or vertical).</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Typical Use</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">File system navigation, XML data display.</span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Website navigation bar or dropdown menu.</span></p>
+            </td>
+        </tr>
+        <tr class="c30">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Structure</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Each node can have multiple child nodes.</span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Menu items can have submenus, often one level deep.</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Orientation</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Always vertical.</span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Can be horizontal or vertical.</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Expansion</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Supports expand/collapse functionality.</span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Usually hover or click dropdowns.</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Bound Data Source</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c0"><span>Often bound to </span><span class="c9">SiteMapDataSource</span><span
+                        class="c3">&nbsp;or XML file.</span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c0"><span>Commonly bound to </span><span class="c9">SiteMapDataSource</span><span
+                        class="c3">.</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Appearance</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Looks like a file explorer.</span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Looks like navigation tabs or dropdowns.</span></p>
+            </td>
+        </tr>
+        <tr class="c19">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Example</span></p>
+            </td>
+            <td class="c1" colspan="1" rowspan="1">
+                <p class="c0 c6"><span class="c3"></span></p>
+            </td>
+            <td class="c22" colspan="1" rowspan="1">
+                <p class="c0 c6"><span class="c3"></span></p>
+            </td>
+        </tr>
+    </table>
+    <p class="c0"><span class="c7 c5">&lt;asp:TreeView ID=&quot;TreeView1&quot; runat=&quot;server&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &lt;Nodes&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;asp:TreeNode Text=&quot;Home&quot;
+            NavigateUrl=&quot;~/Default.aspx&quot;&gt;&lt;/asp:TreeNode&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;asp:TreeNode Text=&quot;About&quot;
+            NavigateUrl=&quot;~/About.aspx&quot;&gt;&lt;/asp:TreeNode&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &lt;/Nodes&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:TreeView&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:Menu ID=&quot;Menu1&quot; runat=&quot;server&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &lt;Items&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;asp:MenuItem Text=&quot;Home&quot;
+            NavigateUrl=&quot;~/Default.aspx&quot; /&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;asp:MenuItem Text=&quot;About&quot;
+            NavigateUrl=&quot;~/About.aspx&quot; /&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &lt;/Items&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:Menu&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.aacc7r478lmi"><span class="c8">Key Difference Summary</span></h5>
+    <ul class="c16 lst-kix_ohuwvnf5inri-0 start">
+        <li class="c4 li-bullet-0"><span class="c9">TreeView</span><span class="c3">: hierarchical display, suitable for
+                directories or multi-level data.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c9">Menu</span><span class="c3">: navigational display, suitable for
+                website menus.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c9">TreeView</span><span>&nbsp;supports expand/collapse; </span><span
+                class="c9">Menu</span><span class="c3">&nbsp;supports dropdown.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c9">TreeView</span><span>&nbsp;is for data display; </span><span
+                class="c9">Menu</span><span class="c3">&nbsp;is for site navigation.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h3 class="c13" id="h.u5ifa3dq4ywj"><span class="c26 c12 c9">Question 2</span></h3>
+    <h4 class="c27" id="h.rqbrvzaeemnu"><span class="c7 c12 c9">(i) Write Code for Adding a Node in TreeView
+            Control</span></h4>
+    <h5 class="c15" id="h.j4mwevbfoqbo"><span class="c8">ASP.NET Markup</span></h5>
+    <p class="c0"><span class="c7 c5">&lt;asp:TreeView ID=&quot;TreeView1&quot;
+            runat=&quot;server&quot;&gt;&lt;/asp:TreeView&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.cv6yvonkt08h"><span class="c8">C# Code-Behind</span></h5>
+    <p class="c0"><span class="c7 c5">protected void Page_Load(object sender, EventArgs e)</span></p>
+    <p class="c0"><span class="c7 c5">{</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; if (!IsPostBack)</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; {</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; // Create parent node</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; TreeNode rootNode = new TreeNode(&quot;Root
+            Node&quot;);</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; </span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; // Create child node</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; TreeNode childNode = new TreeNode(&quot;Child
+            Node&quot;);</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; </span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; // Add child node to root</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; rootNode.ChildNodes.Add(childNode);</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; </span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; // Add root node to TreeView</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; TreeView1.Nodes.Add(rootNode);</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; }</span></p>
+    <p class="c0"><span class="c7 c5">}</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.g11b85a0u3id"><span class="c8">Explanation</span></h5>
+    <ul class="c16 lst-kix_s9gr5xh5mz4-0 start">
+        <li class="c4 li-bullet-0"><span class="c5">TreeNode</span><span class="c3">&nbsp;represents a single
+                node.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c5">ChildNodes.Add()</span><span class="c3">&nbsp;adds a node under
+                another node.<br></span></li>
+        <li class="c4 li-bullet-0"><span>The </span><span class="c5">TreeView1.Nodes.Add()</span><span
+                class="c3">&nbsp;adds the root node to the TreeView control.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">This displays a simple parent-child hierarchy.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h4 class="c27" id="h.bsd1l9gnsrrl"><span class="c7 c12 c9">(ii) What is a SiteMap?</span></h4>
+    <ul class="c16 lst-kix_taccqwx37kso-0 start">
+        <li class="c4 li-bullet-0"><span>A </span><span class="c9">SiteMap</span><span>&nbsp;is an </span><span
+                class="c9">XML file</span><span>&nbsp;that defines the </span><span class="c9">hierarchical
+                structure</span><span class="c3">&nbsp;of a website for navigation purposes.<br></span></li>
+        <li class="c4 li-bullet-0"><span>It allows controls like </span><span class="c5">Menu</span><span>, </span><span
+                class="c5">TreeView</span><span>, and </span><span class="c5">SiteMapPath</span><span
+                class="c3">&nbsp;to automatically generate navigation links.<br></span></li>
+    </ul>
+    <h5 class="c15" id="h.o6ezv9f8fm0t"><span class="c8">Purpose</span></h5>
+    <ul class="c16 lst-kix_s8rxidaxh93w-0 start">
+        <li class="c4 li-bullet-0"><span class="c3">Provides a centralized location for all navigation links.<br></span>
+        </li>
+        <li class="c4 li-bullet-0"><span class="c3">Helps maintain consistency across the site.<br></span></li>
+        <li class="c4 li-bullet-0"><span>Works with </span><span class="c9">SiteMapDataSource</span><span
+                class="c3">&nbsp;for automatic binding.<br></span></li>
+    </ul>
+    <h5 class="c15" id="h.h31nay6jbesn"><span class="c8">Structure Example</span></h5>
+    <p class="c0"><span class="c7 c5">&lt;siteMap&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &lt;siteMapNode title=&quot;Home&quot;
+            url=&quot;Default.aspx&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;siteMapNode title=&quot;About Us&quot;
+            url=&quot;About.aspx&quot; /&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;siteMapNode title=&quot;Contact&quot;
+            url=&quot;Contact.aspx&quot; /&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &lt;/siteMapNode&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/siteMap&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.6gnkrtmppdmr"><span class="c8">How It Works</span></h5>
+    <ul class="c16 lst-kix_gst27jod90gw-0 start">
+        <li class="c4 li-bullet-0"><span>The root </span><span class="c5">&lt;siteMapNode&gt;</span><span
+                class="c3">&nbsp;represents the home page.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">Nested nodes represent child pages.<br></span></li>
+        <li class="c4 li-bullet-0"><span>The </span><span class="c9">SiteMapDataSource</span><span
+                class="c3">&nbsp;reads this file, and navigation controls use it automatically.<br></span></li>
+    </ul>
+    <h5 class="c15" id="h.6d9npfulj790"><span class="c8">Example with TreeView</span></h5>
+    <p class="c0"><span class="c7 c5">&lt;asp:SiteMapDataSource ID=&quot;SiteMapDataSource1&quot;
+            runat=&quot;server&quot; /&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:TreeView ID=&quot;TreeView1&quot; runat=&quot;server&quot;
+            DataSourceID=&quot;SiteMapDataSource1&quot;&gt;&lt;/asp:TreeView&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.4185fjfkpwrd"><span class="c8">Advantages</span></h5>
+    <ul class="c16 lst-kix_48n80rfy6g3e-0 start">
+        <li class="c4 li-bullet-0"><span class="c3">Simplifies website navigation management.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">Auto-updates menus when sitemap changes.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">No need for hardcoding navigation links.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h3 class="c13" id="h.jk0f323g323u"><span class="c26 c12 c9">Question 3</span></h3>
+    <h4 class="c27" id="h.q7a4iyjhb0t"><span class="c7 c12 c9">(i) List any three Validation Controls. Explain all with
+            an example.</span></h4>
+    <p class="c11"><span>ASP.NET provides </span><span class="c9">Validation Controls</span><span class="c3">&nbsp;to
+            ensure that user input in web forms is valid before processing. They reduce errors and improve data
+            integrity.</span></p>
+    <h5 class="c15" id="h.rhuco893n9g6"><span class="c8">1. RequiredFieldValidator</span></h5>
+    <ul class="c16 lst-kix_f6hgihpa8s4r-0 start">
+        <li class="c4 li-bullet-0"><span class="c3">Ensures that the user does not leave a field blank.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">Used for mandatory fields like username or email.<br></span></li>
+    </ul>
+    <p class="c11"><span class="c7 c12 c9">Example:</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:TextBox ID=&quot;txtName&quot;
+            runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:RequiredFieldValidator ID=&quot;rfvName&quot;
+            runat=&quot;server&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ControlToValidate=&quot;txtName&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ErrorMessage=&quot;Name is required.&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ForeColor=&quot;Red&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:RequiredFieldValidator&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <p class="c11"><span class="c9">Explanation:</span><span>&nbsp;Displays an error if </span><span
+            class="c5">txtName</span><span class="c3">&nbsp;is empty.</span></p>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.kliwoef6svzw"><span class="c8">2. RangeValidator</span></h5>
+    <ul class="c16 lst-kix_3r6qfnnjb22h-0 start">
+        <li class="c4 li-bullet-0"><span class="c3">Ensures that the input falls within a specified range (numbers,
+                dates, strings).<br></span></li>
+    </ul>
+    <p class="c11"><span class="c7 c12 c9">Example:</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:TextBox ID=&quot;txtAge&quot;
+            runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:RangeValidator ID=&quot;rvAge&quot; runat=&quot;server&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ControlToValidate=&quot;txtAge&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; MinimumValue=&quot;18&quot; MaximumValue=&quot;60&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; Type=&quot;Integer&quot; ErrorMessage=&quot;Age must be between 18
+            and 60.&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ForeColor=&quot;Red&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:RangeValidator&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <p class="c11"><span class="c9">Explanation:</span><span class="c3">&nbsp;Valid only if age entered is between 18
+            and 60.</span></p>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.9bcjnq8sjwqx"><span class="c8">3. CompareValidator</span></h5>
+    <ul class="c16 lst-kix_94k674afilr2-0 start">
+        <li class="c4 li-bullet-0"><span class="c3">Compares the value of one input control with another or a fixed
+                value.<br></span></li>
+    </ul>
+    <p class="c11"><span class="c7 c12 c9">Example:</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:TextBox ID=&quot;txtPassword&quot;
+            runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:TextBox ID=&quot;txtConfirm&quot;
+            runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:CompareValidator ID=&quot;cvPassword&quot; runat=&quot;server&quot;</span>
+    </p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ControlToValidate=&quot;txtConfirm&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ControlToCompare=&quot;txtPassword&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ErrorMessage=&quot;Passwords do not match.&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ForeColor=&quot;Red&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:CompareValidator&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <p class="c11"><span class="c9">Explanation:</span><span class="c3">&nbsp;Displays an error if passwords don&rsquo;t
+            match.</span></p>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.z8fzh6avdnx3"><span class="c8">Other Common Validators (for reference)</span></h5>
+    <ul class="c16 lst-kix_qqwajdw9kg9o-0 start">
+        <li class="c4 li-bullet-0"><span class="c5">RegularExpressionValidator</span><span class="c3">: Ensures input
+                matches a specific pattern (e.g., email format).<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c5">CustomValidator</span><span class="c3">: Defines custom validation
+                logic via code-behind.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c5">ValidationSummary</span><span class="c3">: Displays all validation
+                messages together.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h4 class="c27" id="h.n4mosfcchvoy"><span class="c7 c12 c9">(ii) Differentiate between GridView and DataList
+            Controls</span></h4>
+    <table class="c14">
+        <tr class="c19">
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c17"><span class="c9">Feature</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c17"><span class="c9">GridView Control</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c17"><span class="c9">DataList Control</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Layout</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Fixed table layout (rows and columns).</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Fully template-based layout (custom HTML).</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Editing</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Built-in editing, deleting, paging, and sorting.</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">No built-in editing; requires manual code.</span></p>
+            </td>
+        </tr>
+        <tr class="c29">
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Binding</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c0"><span>Uses </span><span class="c5">DataSource</span><span class="c3">&nbsp;(like
+                        SqlDataSource).</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Uses templates for data binding.</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Performance</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Heavier because of more features.</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Lightweight and faster for large data.</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Design Use</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Tabular data (e.g., student records, products).</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Flexible designs (e.g., photo gallery, card view).</span></p>
+            </td>
+        </tr>
+        <tr class="c20">
+            <td class="c23" colspan="1" rowspan="1">
+                <p class="c0"><span class="c9">Customization</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Limited to styles and templates.</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c0"><span class="c3">Highly customizable layout via templates.</span></p>
+            </td>
+        </tr>
+    </table>
+    <p class="c11"><span class="c7 c12 c9">Example (GridView):</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:GridView ID=&quot;GridView1&quot; runat=&quot;server&quot;
+            AutoGenerateColumns=&quot;true&quot;&gt;&lt;/asp:GridView&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <p class="c11"><span class="c7 c12 c9">Example (DataList):</span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:DataList ID=&quot;DataList1&quot; runat=&quot;server&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;ItemTemplate&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; &lt;%# Eval(&quot;Name&quot;) %&gt; - &lt;%#
+            Eval(&quot;Price&quot;) %&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;/ItemTemplate&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:DataList&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <p class="c11"><span class="c7 c9 c12">Summary:</span></p>
+    <ul class="c16 lst-kix_ad45blsqicdp-0 start">
+        <li class="c4 li-bullet-0"><span class="c9">GridView</span><span class="c3">&nbsp;is ideal for structured data
+                and admin panels.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c9">DataList</span><span class="c3">&nbsp;is better for flexible,
+                design-oriented layouts.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h3 class="c13" id="h.55z7245qcckr"><span class="c26 c12 c9">Question 4</span></h3>
+    <h4 class="c27" id="h.brbtmzhrt6gz"><span class="c7 c12 c9">(i) A long list of articles needs navigation with
+            next/previous buttons. Which control will you apply and why?</span></h4>
+    <p class="c11"><span class="c9">Control Used:</span><span>&nbsp;</span><span
+            class="c5">DataPager</span><span>&nbsp;(used with </span><span class="c5">ListView</span><span
+            class="c3">&nbsp;control).</span></p>
+    <h5 class="c15" id="h.18brkfsecm2j"><span class="c8">Explanation:</span></h5>
+    <p class="c11"><span>When displaying a large list of records (e.g., articles, posts), loading all items at once
+            causes slow performance.<br> The </span><span class="c9">DataPager</span><span>&nbsp;divides the data into
+            smaller pages and provides navigation using </span><span class="c9">Next</span><span>, </span><span
+            class="c9">Previous</span><span>, or </span><span class="c9">Page numbers</span><span class="c3">.</span>
+    </p>
+    <h5 class="c15" id="h.99d6adot73uk"><span class="c8">Example:</span></h5>
+    <p class="c0"><span class="c7 c5">&lt;asp:ListView ID=&quot;ListView1&quot; runat=&quot;server&quot;
+            DataSourceID=&quot;SqlDataSource1&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;ItemTemplate&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; &lt;h3&gt;&lt;%# Eval(&quot;Title&quot;)
+            %&gt;&lt;/h3&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; &lt;p&gt;&lt;%# Eval(&quot;Content&quot;)
+            %&gt;&lt;/p&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;/ItemTemplate&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:ListView&gt;</span></p>
+    <p class="c0 c6"><span class="c7 c5"></span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:DataPager ID=&quot;DataPager1&quot; runat=&quot;server&quot;
+            PageSize=&quot;5&quot; PagedControlID=&quot;ListView1&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;Fields&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &nbsp; &nbsp; &lt;asp:NextPreviousPagerField
+            ShowNextPageButton=&quot;true&quot; ShowPreviousPageButton=&quot;true&quot; /&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;/Fields&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:DataPager&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.8yvcird0j166"><span class="c8">Why DataPager</span></h5>
+    <ul class="c16 lst-kix_lr1j0q7y3lm3-0 start">
+        <li class="c4 li-bullet-0"><span>Allows </span><span class="c9">efficient navigation</span><span
+                class="c3">&nbsp;for long datasets.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">Reduces page load time.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">Supports both numeric and button-based paging.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h4 class="c27" id="h.2jf5oz80n2gf"><span class="c7 c12 c9">(ii) Explain how to filter data using
+            QueryExtender</span></h4>
+    <p class="c11"><span class="c9">QueryExtender</span><span>&nbsp;is used with </span><span
+            class="c9">LinqDataSource</span><span class="c3">&nbsp;to apply filtering, searching, or sorting operations
+            without writing custom LINQ code in C#.</span></p>
+    <h5 class="c15" id="h.agad4j3kyxrc"><span class="c8">Purpose</span></h5>
+    <ul class="c16 lst-kix_cks8rwsti7zi-0 start">
+        <li class="c4 li-bullet-0"><span>Provides a </span><span class="c9">declarative way</span><span
+                class="c3">&nbsp;to filter or search data.<br></span></li>
+        <li class="c4 li-bullet-0"><span>Works at the </span><span class="c9">data source level</span><span class="c3">,
+                improving efficiency.<br></span></li>
+    </ul>
+    <h5 class="c15" id="h.xok1f2qii43j"><span class="c8">Example:</span></h5>
+    <p class="c0"><span class="c5 c7">&lt;asp:LinqDataSource ID=&quot;LinqDataSource1&quot;
+            runat=&quot;server&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; ContextTypeName=&quot;SampleDataContext&quot;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; TableName=&quot;Products&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:LinqDataSource&gt;</span></p>
+    <p class="c0 c6"><span class="c7 c5"></span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:QueryExtender TargetControlID=&quot;LinqDataSource1&quot;
+            runat=&quot;server&quot;&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&nbsp; &nbsp; &lt;asp:SearchExpression DataFields=&quot;ProductName&quot;
+            SearchType=&quot;Contains&quot; SearchTerm=&quot;Phone&quot; /&gt;</span></p>
+    <p class="c0"><span class="c7 c5">&lt;/asp:QueryExtender&gt;</span></p>
+    <p class="c0 c6"><span class="c7 c5"></span></p>
+    <p class="c0"><span class="c7 c5">&lt;asp:GridView ID=&quot;GridView1&quot; runat=&quot;server&quot;
+            DataSourceID=&quot;LinqDataSource1&quot;&gt;&lt;/asp:GridView&gt;</span></p>
+    <p class="c0 c6"><span class="c3"></span></p>
+    <h5 class="c15" id="h.qbr9szd6h6xk"><span class="c8">Explanation:</span></h5>
+    <ul class="c16 lst-kix_g37fxxt6nxnx-0 start">
+        <li class="c4 li-bullet-0"><span class="c5">LinqDataSource</span><span>&nbsp;fetches data from the </span><span
+                class="c5">Products</span><span class="c3">&nbsp;table.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c5">QueryExtender</span><span>&nbsp;filters rows where </span><span
+                class="c5">ProductName</span><span>&nbsp;contains the term </span><span
+                class="c9">&ldquo;Phone&rdquo;</span><span class="c3">.<br></span></li>
+        <li class="c4 li-bullet-0"><span>The </span><span class="c5">GridView</span><span class="c3">&nbsp;displays only
+                filtered data.<br></span></li>
+    </ul>
+    <h5 class="c15" id="h.oecijfk12tk2"><span class="c8">Advantages</span></h5>
+    <ul class="c16 lst-kix_c9rzoqc4solc-0 start">
+        <li class="c4 li-bullet-0"><span class="c3">No need to write code-behind queries.<br></span></li>
+        <li class="c4 li-bullet-0"><span class="c3">Improves performance through efficient LINQ filtering.<br></span>
+        </li>
+        <li class="c4 li-bullet-0"><span class="c3">Useful for search bars, filters, and category-based views.</span>
+        </li>
+    </ul>
+    <div id="watermark">https://poornimites.vercel.app/notes.html <br>
+        CONFIDENCIAL || DO NOT SHARE</div>
+
+    <h1>Secure Test</h1>
+    <p>This is secure test content. Copying, printing, or screenshots are restricted.</p>
+
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Disable keyboard shortcuts for copy, print, save, view source, and screenshot
+        document.addEventListener('keydown', e => {
+            const blocked = ['c', 'p', 's', 'u', 'PrintScreen'];
+            if (e.ctrlKey && blocked.includes(e.key.toLowerCase())) {
+                e.preventDefault();
+                alert('Action disabled');
+            }
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                alert('Screenshots disabled');
+            }
+        });
+
+        // Disable copy event
+        document.addEventListener('copy', e => {
+            e.preventDefault();
+            alert('Copy disabled');
+        });
+
+        // Prevent printing
+        window.onbeforeprint = () => {
+            document.body.style.display = 'none';
+            alert('Printing disabled');
+            setTimeout(() => location.reload(), 1000);
+        };
+
+        // Disable caching
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(() => { });
+        }
+    </script>
+</body>
+
+</html>
