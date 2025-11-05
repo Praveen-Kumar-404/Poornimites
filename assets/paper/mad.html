@@ -1,0 +1,4399 @@
+<html>
+
+<head>
+    <style>
+        /* Disable text selection and copying */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Disable printing */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        /* Full-page watermark overlay */
+        #watermark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+            font-size: 3rem;
+            color: red;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-30deg);
+            white-space: nowrap;
+        }
+    </style>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">
+        @import url(https://themes.googleusercontent.com/fonts/css?kit=MXVwpSGzOOhqOc5hUWJbBLizfYjsfH9XaeDpmRKYJN5bV0WvE1cEyAoIq5yYZlSc);
+
+        ol.lst-kix_djjcwrucs7rj-7.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-7 0
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-2.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-2 0
+        }
+
+        .lst-kix_uqeqtv5g6iu1-3>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-3
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-7.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-7 0
+        }
+
+        .lst-kix_gihgf953v8u1-7>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-7, lower-latin) ". "
+        }
+
+        .lst-kix_hh3i9gj984ee-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gihgf953v8u1-6>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-6, decimal) ". "
+        }
+
+        .lst-kix_gihgf953v8u1-8>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-8, lower-roman) ". "
+        }
+
+        .lst-kix_9773h2qtgsxr-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_9773h2qtgsxr-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_8llwexk5po66-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_8llwexk5po66-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_9773h2qtgsxr-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_8llwexk5po66-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_9773h2qtgsxr-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_9773h2qtgsxr-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_9773h2qtgsxr-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_8llwexk5po66-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_8llwexk5po66-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ggn8z2sfa3vq-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ggn8z2sfa3vq-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_8llwexk5po66-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_8llwexk5po66-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ggn8z2sfa3vq-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ggn8z2sfa3vq-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ggn8z2sfa3vq-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ggn8z2sfa3vq-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_8llwexk5po66-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_8llwexk5po66-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_8llwexk5po66-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_8llwexk5po66-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-2.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-2 0
+        }
+
+        .lst-kix_qxs3eacuq8h8-8>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-8
+        }
+
+        .lst-kix_ggn8z2sfa3vq-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ggn8z2sfa3vq-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ggn8z2sfa3vq-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_djjcwrucs7rj-4>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-4
+        }
+
+        .lst-kix_hh3i9gj984ee-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_8llwexk5po66-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hh3i9gj984ee-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_hh3i9gj984ee-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_hh3i9gj984ee-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hh3i9gj984ee-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_hh3i9gj984ee-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_hh3i9gj984ee-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_hh3i9gj984ee-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_djjcwrucs7rj-0>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-0
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_rj0h1m2vha5i-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_q65e4vcwmin2-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-3>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-3, decimal) ". "
+        }
+
+        ol.lst-kix_gihgf953v8u1-5.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-5 0
+        }
+
+        .lst-kix_q65e4vcwmin2-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-1>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-4.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-4 0
+        }
+
+        .lst-kix_djjcwrucs7rj-3>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-3, decimal) ". "
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-7.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-7 0
+        }
+
+        .lst-kix_djjcwrucs7rj-1>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-1, lower-latin) ". "
+        }
+
+        .lst-kix_djjcwrucs7rj-5>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-5, lower-roman) ". "
+        }
+
+        ul.lst-kix_8llwexk5po66-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_8llwexk5po66-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_uqeqtv5g6iu1-7>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-7
+        }
+
+        ul.lst-kix_8llwexk5po66-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_8llwexk5po66-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_8llwexk5po66-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_8llwexk5po66-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_gihgf953v8u1-0>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-0, decimal) ". "
+        }
+
+        .lst-kix_uqeqtv5g6iu1-6>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-6
+        }
+
+        .lst-kix_gihgf953v8u1-3>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-3
+        }
+
+        .lst-kix_uqeqtv5g6iu1-0>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-0
+        }
+
+        .lst-kix_9773h2qtgsxr-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_gihgf953v8u1-2>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-5.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-5 0
+        }
+
+        .lst-kix_9773h2qtgsxr-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_n0zhja5yxad7-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gihgf953v8u1-4>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-4, lower-latin) ". "
+        }
+
+        .lst-kix_n0zhja5yxad7-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_gihgf953v8u1-7.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-7 0
+        }
+
+        .lst-kix_ihxvjfg08ugm-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_n0zhja5yxad7-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ihxvjfg08ugm-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_n0zhja5yxad7-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-4>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-4
+        }
+
+        .lst-kix_djjcwrucs7rj-5>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-5
+        }
+
+        .lst-kix_ihxvjfg08ugm-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ihxvjfg08ugm-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ihxvjfg08ugm-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_2583fptf5isg-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_i5gdmhxc1fdn-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_2583fptf5isg-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_z7zutuv1pmbg-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_2583fptf5isg-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_i5gdmhxc1fdn-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_2583fptf5isg-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2583fptf5isg-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2583fptf5isg-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2583fptf5isg-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_z7zutuv1pmbg-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_z7zutuv1pmbg-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_9773h2qtgsxr-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_2583fptf5isg-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_i5gdmhxc1fdn-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_2583fptf5isg-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9773h2qtgsxr-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9773h2qtgsxr-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9773h2qtgsxr-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9773h2qtgsxr-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9773h2qtgsxr-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9773h2qtgsxr-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9773h2qtgsxr-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9773h2qtgsxr-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_6d3hj3abq55l-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_j1iz9fgx9rd7-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gihgf953v8u1-0>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-0
+        }
+
+        .lst-kix_j1iz9fgx9rd7-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_mkxdfa4ar8rt-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_unw8r1yuv3mf-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_6d3hj3abq55l-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_unw8r1yuv3mf-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_z7zutuv1pmbg-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_mkxdfa4ar8rt-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_mkxdfa4ar8rt-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_z7zutuv1pmbg-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_6d3hj3abq55l-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_z7zutuv1pmbg-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_6d3hj3abq55l-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_6d3hj3abq55l-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_i5gdmhxc1fdn-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_djjcwrucs7rj-7>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-7, lower-latin) ". "
+        }
+
+        .lst-kix_djjcwrucs7rj-8>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_mkxdfa4ar8rt-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_a1em3fg6mfif-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_a1em3fg6mfif-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_djjcwrucs7rj-3>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-3
+        }
+
+        .lst-kix_qxs3eacuq8h8-3>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-3
+        }
+
+        .lst-kix_q133ct439ria-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_q133ct439ria-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_a1em3fg6mfif-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_q133ct439ria-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_4khochvwqy0k-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_4khochvwqy0k-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ihxvjfg08ugm-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_a1em3fg6mfif-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-4.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-4 0
+        }
+
+        .lst-kix_q133ct439ria-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_4khochvwqy0k-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_4khochvwqy0k-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_unw8r1yuv3mf-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_j1iz9fgx9rd7-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_ur0weq3vrs5y-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_uqeqtv5g6iu1-8>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-8
+        }
+
+        .lst-kix_unw8r1yuv3mf-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j1iz9fgx9rd7-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_qxs3eacuq8h8-4>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-4, lower-latin) ". "
+        }
+
+        .lst-kix_4khochvwqy0k-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-5.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-5 0
+        }
+
+        .lst-kix_j1iz9fgx9rd7-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ur0weq3vrs5y-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_ur0weq3vrs5y-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-8>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-8, lower-roman) ". "
+        }
+
+        .lst-kix_q65e4vcwmin2-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_q65e4vcwmin2-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-7>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-7, lower-latin) ". "
+        }
+
+        .lst-kix_gihgf953v8u1-2>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-2
+        }
+
+        .lst-kix_ur0weq3vrs5y-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ur0weq3vrs5y-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gihgf953v8u1-7>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-7
+        }
+
+        ul.lst-kix_6d3hj3abq55l-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6d3hj3abq55l-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_acn3twlckue2-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_j427bhw35li8-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6d3hj3abq55l-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j427bhw35li8-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6d3hj3abq55l-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j427bhw35li8-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6d3hj3abq55l-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j427bhw35li8-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_q65e4vcwmin2-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_6d3hj3abq55l-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j427bhw35li8-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6d3hj3abq55l-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j427bhw35li8-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_6d3hj3abq55l-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j427bhw35li8-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9v86jc4edjcu-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_j427bhw35li8-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_djjcwrucs7rj-1>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-1
+        }
+
+        ul.lst-kix_j427bhw35li8-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_jxkry9nuhazq-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_6d3hj3abq55l-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9v86jc4edjcu-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_9v86jc4edjcu-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_9v86jc4edjcu-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9v86jc4edjcu-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9v86jc4edjcu-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gihgf953v8u1-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9v86jc4edjcu-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gihgf953v8u1-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9v86jc4edjcu-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9v86jc4edjcu-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gihgf953v8u1-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_9v86jc4edjcu-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_qxs3eacuq8h8-0>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-0, decimal) ". "
+        }
+
+        ol.lst-kix_gihgf953v8u1-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gihgf953v8u1-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gihgf953v8u1-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gihgf953v8u1-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-0.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-0 0
+        }
+
+        .lst-kix_9v86jc4edjcu-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_rj0h1m2vha5i-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_bs0036ysia1k-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_bs0036ysia1k-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_gihgf953v8u1-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gihgf953v8u1-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_gyd45tz7h8yt-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_du3igtw8zvok-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_rj0h1m2vha5i-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-3.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-3 0
+        }
+
+        .lst-kix_djjcwrucs7rj-4>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-4, lower-latin) ". "
+        }
+
+        .lst-kix_gyd45tz7h8yt-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_vg6djt6ian7k-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-1.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-1 0
+        }
+
+        .lst-kix_djjcwrucs7rj-8>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-8
+        }
+
+        .lst-kix_gihgf953v8u1-3>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-3, decimal) ". "
+        }
+
+        .lst-kix_djjcwrucs7rj-0>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-0, decimal) ". "
+        }
+
+        .lst-kix_n0zhja5yxad7-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_vg6djt6ian7k-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_n0zhja5yxad7-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-2.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-2 0
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_acn3twlckue2-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_qxs3eacuq8h8-1>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-1
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_jxkry9nuhazq-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_ihxvjfg08ugm-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ihxvjfg08ugm-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_i5gdmhxc1fdn-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_n0zhja5yxad7-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gihgf953v8u1-1>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-1
+        }
+
+        ul.lst-kix_vg6djt6ian7k-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_vg6djt6ian7k-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_vg6djt6ian7k-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_qxs3eacuq8h8-6>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-6
+        }
+
+        ul.lst-kix_vg6djt6ian7k-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_vg6djt6ian7k-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_uqeqtv5g6iu1-8>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-1.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-1 0
+        }
+
+        ul.lst-kix_n0zhja5yxad7-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_j427bhw35li8-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_n0zhja5yxad7-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n0zhja5yxad7-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_j427bhw35li8-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_kf3awnbd7j0l-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_n0zhja5yxad7-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n0zhja5yxad7-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n0zhja5yxad7-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_n0zhja5yxad7-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_j427bhw35li8-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_n0zhja5yxad7-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_j427bhw35li8-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_kf3awnbd7j0l-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_knf5ialst517-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_n0zhja5yxad7-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_knf5ialst517-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_kf3awnbd7j0l-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_kf3awnbd7j0l-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_kf3awnbd7j0l-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_kf3awnbd7j0l-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_kf3awnbd7j0l-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_djjcwrucs7rj-6>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-6
+        }
+
+        .lst-kix_uqeqtv5g6iu1-1>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-1
+        }
+
+        .lst-kix_kf3awnbd7j0l-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_du3igtw8zvok-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_2583fptf5isg-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_du3igtw8zvok-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_du3igtw8zvok-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_du3igtw8zvok-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_knf5ialst517-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_du3igtw8zvok-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_2583fptf5isg-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_knf5ialst517-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_du3igtw8zvok-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gyd45tz7h8yt-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_2583fptf5isg-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_du3igtw8zvok-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_du3igtw8zvok-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_2583fptf5isg-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gyd45tz7h8yt-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_2583fptf5isg-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_j427bhw35li8-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_4khochvwqy0k-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_du3igtw8zvok-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_du3igtw8zvok-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_4khochvwqy0k-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_qxs3eacuq8h8-2>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-2
+        }
+
+        .lst-kix_knf5ialst517-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_4khochvwqy0k-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_4khochvwqy0k-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_4khochvwqy0k-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_2583fptf5isg-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_j427bhw35li8-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_j427bhw35li8-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_4khochvwqy0k-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_knf5ialst517-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_uqeqtv5g6iu1-5>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-5, lower-roman) ". "
+        }
+
+        ul.lst-kix_4khochvwqy0k-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_2583fptf5isg-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_4khochvwqy0k-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_knf5ialst517-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_knf5ialst517-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_uqeqtv5g6iu1-6>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-6, decimal) ". "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-8.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-8 0
+        }
+
+        ul.lst-kix_4khochvwqy0k-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_du3igtw8zvok-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_2583fptf5isg-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_j427bhw35li8-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_du3igtw8zvok-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_du3igtw8zvok-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_unw8r1yuv3mf-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_du3igtw8zvok-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_2583fptf5isg-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_j427bhw35li8-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_du3igtw8zvok-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_knf5ialst517-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-3.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-3 0
+        }
+
+        .lst-kix_uqeqtv5g6iu1-7>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-7, lower-latin) ". "
+        }
+
+        ul.lst-kix_ggn8z2sfa3vq-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-8.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-8 0
+        }
+
+        .lst-kix_uqeqtv5g6iu1-4>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-4, lower-latin) ". "
+        }
+
+        .lst-kix_uqeqtv5g6iu1-5>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-5
+        }
+
+        .lst-kix_uqeqtv5g6iu1-3>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-3, decimal) ". "
+        }
+
+        .lst-kix_uqeqtv5g6iu1-0>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-0, decimal) ". "
+        }
+
+        .lst-kix_uqeqtv5g6iu1-2>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-2, lower-roman) ". "
+        }
+
+        ul.lst-kix_vg6djt6ian7k-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_vg6djt6ian7k-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_vg6djt6ian7k-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_uqeqtv5g6iu1-1>li:before {
+            content: "" counter(lst-ctn-kix_uqeqtv5g6iu1-1, lower-latin) ". "
+        }
+
+        ul.lst-kix_vg6djt6ian7k-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_gihgf953v8u1-5>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-5
+        }
+
+        .lst-kix_gihgf953v8u1-8>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-8
+        }
+
+        ol.lst-kix_gihgf953v8u1-8.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-8 0
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-6.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-6 0
+        }
+
+        .lst-kix_acn3twlckue2-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_jxkry9nuhazq-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_9v86jc4edjcu-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-3.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-3 0
+        }
+
+        .lst-kix_jxkry9nuhazq-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_acn3twlckue2-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_acn3twlckue2-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_9v86jc4edjcu-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_rj0h1m2vha5i-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_rj0h1m2vha5i-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_hh3i9gj984ee-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hh3i9gj984ee-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_rj0h1m2vha5i-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_rj0h1m2vha5i-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_rj0h1m2vha5i-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_bs0036ysia1k-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_9v86jc4edjcu-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_hh3i9gj984ee-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hh3i9gj984ee-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_bs0036ysia1k-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_hh3i9gj984ee-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hh3i9gj984ee-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hh3i9gj984ee-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_hh3i9gj984ee-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_9v86jc4edjcu-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_hh3i9gj984ee-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_du3igtw8zvok-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_bs0036ysia1k-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gyd45tz7h8yt-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_du3igtw8zvok-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_bs0036ysia1k-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_9v86jc4edjcu-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gyd45tz7h8yt-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_gyd45tz7h8yt-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qxs3eacuq8h8-8.start {
+            counter-reset: lst-ctn-kix_qxs3eacuq8h8-8 0
+        }
+
+        ol.lst-kix_gihgf953v8u1-6.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-6 0
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_gihgf953v8u1-4>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-4
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_vg6djt6ian7k-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_ur0weq3vrs5y-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_vg6djt6ian7k-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_vg6djt6ian7k-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_kf3awnbd7j0l-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_jxkry9nuhazq-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_jxkry9nuhazq-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_djjcwrucs7rj-6.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-6 0
+        }
+
+        ul.lst-kix_jxkry9nuhazq-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_jxkry9nuhazq-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q65e4vcwmin2-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q133ct439ria-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_jxkry9nuhazq-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q65e4vcwmin2-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q65e4vcwmin2-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q133ct439ria-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-6.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-6 0
+        }
+
+        ul.lst-kix_q133ct439ria-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q133ct439ria-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q133ct439ria-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q133ct439ria-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q133ct439ria-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_acn3twlckue2-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_q133ct439ria-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q133ct439ria-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_jxkry9nuhazq-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_acn3twlckue2-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_vg6djt6ian7k-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_acn3twlckue2-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_acn3twlckue2-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_acn3twlckue2-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_jxkry9nuhazq-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_acn3twlckue2-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_acn3twlckue2-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_acn3twlckue2-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_acn3twlckue2-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q65e4vcwmin2-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_acn3twlckue2-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_acn3twlckue2-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_q65e4vcwmin2-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q65e4vcwmin2-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q65e4vcwmin2-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_jxkry9nuhazq-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_vg6djt6ian7k-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_q65e4vcwmin2-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_jxkry9nuhazq-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_q65e4vcwmin2-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_jxkry9nuhazq-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_jxkry9nuhazq-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_i5gdmhxc1fdn-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_z7zutuv1pmbg-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_uqeqtv5g6iu1-4>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-4
+        }
+
+        .lst-kix_z7zutuv1pmbg-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_i5gdmhxc1fdn-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_i5gdmhxc1fdn-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-5.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-5 0
+        }
+
+        .lst-kix_qxs3eacuq8h8-5>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-5
+        }
+
+        .lst-kix_j1iz9fgx9rd7-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_j1iz9fgx9rd7-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_unw8r1yuv3mf-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_mkxdfa4ar8rt-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_mkxdfa4ar8rt-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_mkxdfa4ar8rt-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_unw8r1yuv3mf-8>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_mkxdfa4ar8rt-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_6d3hj3abq55l-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_z7zutuv1pmbg-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_6d3hj3abq55l-5>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_z7zutuv1pmbg-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_gyd45tz7h8yt-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_6d3hj3abq55l-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_i5gdmhxc1fdn-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_6d3hj3abq55l-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_i5gdmhxc1fdn-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-4.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-4 0
+        }
+
+        .lst-kix_a1em3fg6mfif-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_q133ct439ria-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_a1em3fg6mfif-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_a1em3fg6mfif-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_gihgf953v8u1-3.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-3 0
+        }
+
+        .lst-kix_bs0036ysia1k-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_q133ct439ria-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_knf5ialst517-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_a1em3fg6mfif-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_4khochvwqy0k-6>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_knf5ialst517-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_knf5ialst517-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_a1em3fg6mfif-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_knf5ialst517-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_knf5ialst517-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_knf5ialst517-4 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_knf5ialst517-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_4khochvwqy0k-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_knf5ialst517-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_mkxdfa4ar8rt-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_q133ct439ria-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_bs0036ysia1k-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_4khochvwqy0k-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_knf5ialst517-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_bs0036ysia1k-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_bs0036ysia1k-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_bs0036ysia1k-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_bs0036ysia1k-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_bs0036ysia1k-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_q133ct439ria-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_bs0036ysia1k-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_bs0036ysia1k-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_unw8r1yuv3mf-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_j1iz9fgx9rd7-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_bs0036ysia1k-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_4khochvwqy0k-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_j1iz9fgx9rd7-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_ur0weq3vrs5y-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_djjcwrucs7rj-7>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-7
+        }
+
+        .lst-kix_uqeqtv5g6iu1-2>li {
+            counter-increment: lst-ctn-kix_uqeqtv5g6iu1-2
+        }
+
+        .lst-kix_unw8r1yuv3mf-0>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_unw8r1yuv3mf-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_j1iz9fgx9rd7-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_q65e4vcwmin2-4>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-5>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-5, lower-roman) ". "
+        }
+
+        .lst-kix_q65e4vcwmin2-3>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_gihgf953v8u1-4.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-4 0
+        }
+
+        .lst-kix_ur0weq3vrs5y-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-6>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-6, decimal) ". "
+        }
+
+        .lst-kix_ur0weq3vrs5y-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_q133ct439ria-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_ur0weq3vrs5y-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_q65e4vcwmin2-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ul.lst-kix_a1em3fg6mfif-3 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_a1em3fg6mfif-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_djjcwrucs7rj-0.start {
+            counter-reset: lst-ctn-kix_djjcwrucs7rj-0 0
+        }
+
+        ul.lst-kix_a1em3fg6mfif-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_a1em3fg6mfif-2 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_a1em3fg6mfif-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_a1em3fg6mfif-8 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_a1em3fg6mfif-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_a1em3fg6mfif-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_gihgf953v8u1-6>li {
+            counter-increment: lst-ctn-kix_gihgf953v8u1-6
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_9v86jc4edjcu-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_jxkry9nuhazq-4>li:before {
+            content: "\0025cb   "
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-5 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-6 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-0 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-1 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_q65e4vcwmin2-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_jxkry9nuhazq-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_acn3twlckue2-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-2>li:before {
+            content: "" counter(lst-ctn-kix_qxs3eacuq8h8-2, lower-roman) ". "
+        }
+
+        ul.lst-kix_a1em3fg6mfif-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_bs0036ysia1k-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_gihgf953v8u1-0.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-0 0
+        }
+
+        .lst-kix_rj0h1m2vha5i-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_rj0h1m2vha5i-5>li:before {
+            content: "\0025a0   "
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-7 {
+            list-style-type: none
+        }
+
+        ul.lst-kix_mkxdfa4ar8rt-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-1.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-1 0
+        }
+
+        .lst-kix_bs0036ysia1k-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_gyd45tz7h8yt-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_9v86jc4edjcu-1>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-0>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-0
+        }
+
+        .lst-kix_gyd45tz7h8yt-2>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_djjcwrucs7rj-2>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-2, lower-roman) ". "
+        }
+
+        .lst-kix_djjcwrucs7rj-6>li:before {
+            content: "" counter(lst-ctn-kix_djjcwrucs7rj-6, decimal) ". "
+        }
+
+        ol.lst-kix_uqeqtv5g6iu1-0.start {
+            counter-reset: lst-ctn-kix_uqeqtv5g6iu1-0 0
+        }
+
+        .lst-kix_vg6djt6ian7k-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_kf3awnbd7j0l-8>li:before {
+            content: "\0025a0   "
+        }
+
+        .lst-kix_gihgf953v8u1-1>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_djjcwrucs7rj-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_9773h2qtgsxr-1>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gihgf953v8u1-2.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-2 0
+        }
+
+        .lst-kix_gihgf953v8u1-5>li:before {
+            content: "" counter(lst-ctn-kix_gihgf953v8u1-5, lower-roman) ". "
+        }
+
+        .lst-kix_n0zhja5yxad7-6>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_qxs3eacuq8h8-7>li {
+            counter-increment: lst-ctn-kix_qxs3eacuq8h8-7
+        }
+
+        ol.lst-kix_djjcwrucs7rj-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_ihxvjfg08ugm-7>li:before {
+            content: "\0025cb   "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_n0zhja5yxad7-2>li:before {
+            content: "\0025a0   "
+        }
+
+        ol.lst-kix_djjcwrucs7rj-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_djjcwrucs7rj-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_acn3twlckue2-5>li:before {
+            content: "\0025a0   "
+        }
+
+        li.li-bullet-0:before {
+            margin-left: -18pt;
+            white-space: nowrap;
+            display: inline-block;
+            min-width: 18pt
+        }
+
+        ol.lst-kix_djjcwrucs7rj-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_djjcwrucs7rj-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_ihxvjfg08ugm-3>li:before {
+            content: "\0025cf   "
+        }
+
+        .lst-kix_vg6djt6ian7k-7>li:before {
+            content: "\0025cb   "
+        }
+
+        .lst-kix_djjcwrucs7rj-2>li {
+            counter-increment: lst-ctn-kix_djjcwrucs7rj-2
+        }
+
+        .lst-kix_jxkry9nuhazq-0>li:before {
+            content: "\0025cf   "
+        }
+
+        ol.lst-kix_gihgf953v8u1-1.start {
+            counter-reset: lst-ctn-kix_gihgf953v8u1-1 0
+        }
+
+        ol {
+            margin: 0;
+            padding: 0
+        }
+
+        table td,
+        table th {
+            padding: 0
+        }
+
+        .c29 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 154.8pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c13 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 237.2pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c10 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 203.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c33 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 74.6pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c30 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 101.9pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c9 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 245.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c19 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 111.2pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c34 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 78.1pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c15 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 219pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c31 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 185.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c27 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 89.3pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c32 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 160.8pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c18 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 206.6pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c36 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 232.3pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c38 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 289pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c25 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 83.8pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c21 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 92.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c11 {
+            border-right-style: solid;
+            padding: 5pt 5pt 5pt 5pt;
+            border-bottom-color: #000000;
+            border-top-width: 0pt;
+            border-right-width: 0pt;
+            border-left-color: #000000;
+            vertical-align: top;
+            border-right-color: #000000;
+            border-left-width: 0pt;
+            border-top-style: solid;
+            border-left-style: solid;
+            border-bottom-width: 0pt;
+            width: 107.5pt;
+            border-top-color: #000000;
+            border-bottom-style: solid
+        }
+
+        .c1 {
+            margin-left: 36pt;
+            padding-top: 12pt;
+            padding-left: 0pt;
+            padding-bottom: 12pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c5 {
+            color: #188038;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Roboto Mono";
+            font-style: normal
+        }
+
+        .c3 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c37 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 23pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c23 {
+            padding-top: 12pt;
+            padding-bottom: 12pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c35 {
+            padding-top: 14pt;
+            padding-bottom: 4pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c43 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 9pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c0 {
+            padding-top: 12pt;
+            padding-bottom: 2pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c14 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c7 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c2 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c12 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 13pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c24 {
+            padding-top: 14pt;
+            padding-bottom: 4pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c39 {
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-style: normal
+        }
+
+        .c22 {
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-right: auto
+        }
+
+        .c17 {
+            color: #188038;
+            font-weight: 400;
+            font-family: "Roboto Mono"
+        }
+
+        .c45 {
+            background-color: #ffffff;
+            max-width: 451.3pt;
+            padding: 72pt 72pt 72pt 72pt
+        }
+
+        .c20 {
+            padding: 0;
+            margin: 0
+        }
+
+        .c26 {
+            color: #188038;
+            font-family: "Roboto Mono"
+        }
+
+        .c28 {
+            margin-left: 72pt;
+            padding-left: 0pt
+        }
+
+        .c44 {
+            color: #000000;
+            font-size: 11pt
+        }
+
+        .c8 {
+            height: 11pt
+        }
+
+        .c4 {
+            font-weight: 700
+        }
+
+        .c42 {
+            height: 30.2pt
+        }
+
+        .c41 {
+            height: 42.2pt
+        }
+
+        .c46 {
+            height: 36.2pt
+        }
+
+        .c47 {
+            font-size: 11pt
+        }
+
+        .c40 {
+            height: 24.2pt
+        }
+
+        .c16 {
+            height: 35.5pt
+        }
+
+        .c6 {
+            height: 23.5pt
+        }
+
+        .title {
+            padding-top: 0pt;
+            color: #000000;
+            font-size: 26pt;
+            padding-bottom: 3pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .subtitle {
+            padding-top: 0pt;
+            color: #666666;
+            font-size: 15pt;
+            padding-bottom: 16pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        li {
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        h1 {
+            padding-top: 20pt;
+            color: #000000;
+            font-size: 20pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h2 {
+            padding-top: 18pt;
+            color: #000000;
+            font-size: 16pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h3 {
+            padding-top: 16pt;
+            color: #434343;
+            font-size: 14pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h4 {
+            padding-top: 14pt;
+            color: #666666;
+            font-size: 12pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h5 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h6 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            font-style: italic;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+    </style>
+</head>
+
+<body class="c45 doc-content">
+    <h3 class="c35" id="h.gbiqafn61lx7"><span class="c4 c37">Mobile Application Development</span></h3>
+    <h3 class="c24" id="h.m7jb0d1462xj"><span class="c12 c4"><br>1. Java Threading and States</span></h3>
+    <h4 class="c0" id="h.sgye312kxb9m"><span class="c14 c4">Ways to Create a Thread</span></h4>
+    <p class="c23"><span class="c4">a) Extending Thread class<br></span><span>&nbsp;A subclass of </span><span
+            class="c17">Thread</span><span>&nbsp;overrides the </span><span class="c17">run()</span><span>&nbsp;method
+            and starts with </span><span class="c17">start()</span><span class="c3">.</span></p>
+    <p class="c7"><span class="c5">class MyThread extends Thread {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; public void run() {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(&quot;Thread running&quot;);</span>
+    </p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; }</span></p>
+    <p class="c7"><span class="c5">}</span></p>
+    <p class="c7"><span class="c5">new MyThread().start();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c4">b) Implementing Runnable interface<br></span><span>&nbsp;Implements </span><span
+            class="c17">Runnable</span><span>&nbsp;and passes the object to a </span><span
+            class="c17">Thread</span><span class="c3">&nbsp;instance.</span></p>
+    <p class="c7"><span class="c5">class MyRunnable implements Runnable {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; public void run() {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(&quot;Runnable running&quot;);</span>
+    </p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; }</span></p>
+    <p class="c7"><span class="c5">}</span></p>
+    <p class="c7"><span class="c5">new Thread(new MyRunnable()).start();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c4">Preferred Approach:</span><span class="c3">&nbsp;Runnable interface</span></p>
+    <ul class="c20 lst-kix_8llwexk5po66-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Allows class inheritance from another parent.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Promotes clean separation between task logic and thread
+                control.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Encouraged in large, modular Android apps.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.7cm6jhixufc"><span class="c44 c4">Purpose of </span><span class="c26 c4 c47">run()</span><span
+            class="c14 c4">&nbsp;Method</span></h4>
+    <p class="c23"><span>Defines the code that executes when a thread starts.<br> Executed automatically when
+        </span><span class="c17">start()</span><span>&nbsp;is called, </span><span class="c4">not</span><span>&nbsp;when
+        </span><span class="c17">run()</span><span class="c3">&nbsp;is called directly.</span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.388s743o06a4"><span class="c4 c44">Function of </span><span class="c26 c4 c39">sleep(long
+            millis)</span></h4>
+    <p class="c23"><span class="c3">Temporarily suspends a thread for a defined time.</span></p>
+    <ul class="c20 lst-kix_j427bhw35li8-0 start">
+        <li class="c1 li-bullet-0"><span>Thread remains </span><span class="c4">alive</span><span class="c3">, not
+                terminated.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Used to control execution timing or wait for external
+                resources.<br></span></li>
+    </ul>
+    <p class="c7"><span class="c5">Thread.sleep(1000); // sleeps for 1 second</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.n8dkkijjcdy"><span class="c14 c4">Thread States</span></h4>
+    <table class="c22">
+        <tr class="c6">
+            <td class="c21" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">State</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Description</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c21" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">New</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Thread created but not started</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c21" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Runnable</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Ready or running in CPU</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c21" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Blocked</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Waiting to acquire a lock</span></p>
+            </td>
+        </tr>
+        <tr class="c42">
+            <td class="c21" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Waiting</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Waiting for another thread&rsquo;s signal</span></p>
+            </td>
+        </tr>
+        <tr class="c40">
+            <td class="c21" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Timed Waiting</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c7"><span>Waiting for specified time (</span><span class="c17">sleep()</span><span>,
+                    </span><span class="c17">wait(time)</span><span class="c3">)</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c21" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Terminated</span></p>
+            </td>
+            <td class="c38" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Completed execution</span></p>
+            </td>
+        </tr>
+    </table>
+    <ul class="c20 lst-kix_unw8r1yuv3mf-0 start">
+        <li class="c1 li-bullet-0"><span><br>After </span><span class="c17">sleep()</span><span>&nbsp;&rarr;
+            </span><span class="c14 c4">Timed Waiting<br></span></li>
+        <li class="c1 li-bullet-0"><span>After </span><span class="c17">run()</span><span>&nbsp;completes &rarr;
+            </span><span class="c14 c4">Terminated<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.j4z9asm50kci"><span class="c14 c4">Difference Between Blocked and Waiting</span></h4>
+    <table class="c22">
+        <tr class="c6">
+            <td class="c15" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Blocked</span></p>
+            </td>
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Waiting</span></p>
+            </td>
+        </tr>
+        <tr class="c41">
+            <td class="c15" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Waiting for a lock or monitor</span></p>
+            </td>
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Waiting for another thread&rsquo;s notification</span></p>
+            </td>
+        </tr>
+        <tr class="c46">
+            <td class="c15" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Automatically resumes when lock available</span></p>
+            </td>
+            <td class="c36" colspan="1" rowspan="1">
+                <p class="c7"><span>Resumes when </span><span class="c17">notify()</span><span>&nbsp;or </span><span
+                        class="c17">notifyAll()</span><span class="c3">&nbsp;is called</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h3 class="c24" id="h.4i859aub9i9o"><span class="c12 c4">2. AsyncTask in Android</span></h3>
+    <h4 class="c0" id="h.vu0ycuwdfx7"><span class="c14 c4">Concept</span></h4>
+    <p class="c23"><span class="c17">AsyncTask</span><span>&nbsp;is used to perform </span><span class="c4">background
+            operations</span><span>&nbsp;and publish results to the </span><span class="c4">UI thread</span><span
+            class="c3">&nbsp;without manually handling threads.<br> It helps maintain smooth UI performance by
+            offloading heavy tasks (networking, file I/O, etc.).</span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.f3bsws2t7q7w"><span class="c14 c4">Lifecycle Methods</span></h4>
+    <ol class="c20 lst-kix_uqeqtv5g6iu1-0 start" start="1">
+        <li class="c1 li-bullet-0"><span class="c26 c4">onPreExecute()</span><span class="c3">&nbsp;&ndash; Runs on the
+                main thread before background execution (setup, show progress).<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c26 c4">doInBackground(Params...)</span><span class="c3">&nbsp;&ndash;
+                Executes in the background thread. Used for long-running logic.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c26 c4">onProgressUpdate(Progress...)</span><span
+                class="c3">&nbsp;&ndash; Updates UI about progress.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c26 c4">onPostExecute(Result)</span><span class="c3">&nbsp;&ndash;
+                Executes on main thread after completion; displays result.<br></span></li>
+    </ol>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.vedrlk1yamqu"><span class="c14 c4">Execution Example</span></h4>
+    <p class="c7"><span class="c5">class MyTask extends AsyncTask&lt;Void, Void, String&gt; {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; protected void onPreExecute() {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; // setup</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; }</span></p>
+    <p class="c7 c8"><span class="c5"></span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; protected String doInBackground(Void... params) {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; return &quot;Task Completed&quot;;</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; }</span></p>
+    <p class="c7 c8"><span class="c5"></span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; protected void onPostExecute(String result) {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; // update UI</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(result);</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; }</span></p>
+    <p class="c7"><span class="c5">}</span></p>
+    <p class="c7"><span class="c5">new MyTask().execute();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.qxw03qbhqe69"><span class="c14 c4">Advantages</span></h4>
+    <ul class="c20 lst-kix_6d3hj3abq55l-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Simplifies background threading.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Easy UI synchronization.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Prevents &ldquo;Application Not Responding&rdquo; (ANR)
+                errors.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.1faudodowhgm"><span class="c14 c4">Limitation</span></h4>
+    <ul class="c20 lst-kix_ur0weq3vrs5y-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Deprecated in newer Android versions.<br></span></li>
+        <li class="c1 li-bullet-0"><span>Replaced by </span><span class="c4">WorkManager</span><span>, </span><span
+                class="c4">ExecutorService</span><span>, or </span><span class="c4">Kotlin Coroutines</span><span
+                class="c3">&nbsp;for better control and lifecycle handling.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h3 class="c24" id="h.y9x4n2x21av3"><span class="c12 c4">3. Services and Background Operations</span></h3>
+    <h4 class="c0" id="h.8owl8v4g2vx2"><span class="c14 c4">Concept of Services</span></h4>
+    <p class="c23"><span>A </span><span class="c4">Service</span><span>&nbsp;in Android is an application component that
+            performs </span><span class="c4">background operations</span><span class="c3">&nbsp;without a user
+            interface.<br> Used for continuous or long-running tasks like music playback, data sync, or file
+            download.<br> Services continue to run even if the user switches to another app.</span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.ln8t9mhufc2j"><span class="c14 c4">Types of Services</span></h4>
+    <p class="c23"><span class="c14 c4">1. Unbound Service</span></p>
+    <ul class="c20 lst-kix_du3igtw8zvok-0 start">
+        <li class="c1 li-bullet-0"><span>Started using </span><span class="c17">startService()</span><span>&nbsp;or
+            </span><span class="c17">ContextCompat.startForegroundService()</span><span class="c3">.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Works independently of the activity.<br></span></li>
+        <li class="c1 li-bullet-0"><span>Continues until it stops itself using </span><span
+                class="c17">stopSelf()</span><span class="c3">&nbsp;or the system stops it.<br></span></li>
+    </ul>
+    <p class="c7"><span>Example:<br><br> </span><span class="c5">Intent intent = new Intent(this,
+            MusicService.class);</span></p>
+    <p class="c7"><span class="c5">startService(intent);</span></p>
+    <p class="c7"><span>&nbsp;</span><span class="c5">public class MusicService extends Service {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; public int onStartCommand(Intent intent, int flags, int startId)
+            {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; // play music</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; return START_STICKY;</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; }</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; public IBinder onBind(Intent intent) { return null; }</span></p>
+    <p class="c7"><span class="c5">}</span></p>
+    <ul class="c20 lst-kix_du3igtw8zvok-0">
+        <li class="c1 c8 li-bullet-0"><span class="c3"></span></li>
+    </ul>
+    <p class="c23"><span class="c14 c4">2. Bound Service</span></p>
+    <ul class="c20 lst-kix_n0zhja5yxad7-0 start">
+        <li class="c1 li-bullet-0"><span>Created using </span><span class="c17">bindService()</span><span
+                class="c3">.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Provides an interface for client components (like Activities) to
+                interact with it.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Runs only as long as another component is bound.<br></span></li>
+    </ul>
+    <p class="c7"><span>Example:<br><br> </span><span class="c5">Intent intent = new Intent(this,
+            DownloadService.class);</span></p>
+    <p class="c7"><span class="c5">bindService(intent, connection, Context.BIND_AUTO_CREATE);</span></p>
+    <p class="c7"><span>&nbsp;</span><span class="c5">public class DownloadService extends Service {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; private final IBinder binder = new LocalBinder();</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; public class LocalBinder extends Binder {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; DownloadService getService() { return
+            DownloadService.this; }</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; }</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; public IBinder onBind(Intent intent) { return binder; }</span></p>
+    <p class="c7"><span class="c5">}</span></p>
+    <ul class="c20 lst-kix_n0zhja5yxad7-0">
+        <li class="c1 c8 li-bullet-0"><span class="c3"></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.sbys025rhrbd"><span class="c14 c4">Key Differences</span></h4>
+    <table class="c22">
+        <tr class="c6">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Feature</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Bound Service</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Unbound Service</span></p>
+            </td>
+        </tr>
+        <tr class="c16">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Lifecycle</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Runs as long as another component is bound</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Runs independently</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Start Method</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c7"><span class="c17">bindService()</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c7"><span class="c17">startService()</span></p>
+            </td>
+        </tr>
+        <tr class="c16">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Stop Condition</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">When last client unbinds</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c7"><span>Explicit </span><span class="c17">stopService()</span><span>&nbsp;or </span><span
+                        class="c17">stopSelf()</span></p>
+            </td>
+        </tr>
+        <tr class="c16">
+            <td class="c25" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Example Use</span></p>
+            </td>
+            <td class="c18" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Play music, fetch data, provide data connection</span></p>
+            </td>
+            <td class="c32" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Upload files, background sync</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.cfop3o6ldvhk"><span class="c14 c4">Notifications in Background Services</span></h4>
+    <p class="c23"><span>When a service runs for a long time or in the foreground, Android requires a </span><span
+            class="c4">notification</span><span>&nbsp;to inform users.<br> Implemented using </span><span
+            class="c17">NotificationManager</span><span class="c3">&nbsp;with an ongoing notification.</span></p>
+    <p class="c23"><span class="c3">Example:</span></p>
+    <p class="c7"><span class="c5">Notification notification = new NotificationCompat.Builder(this,
+            &quot;channel_id&quot;)</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .setContentTitle(&quot;File Upload&quot;)</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .setContentText(&quot;Uploading in background...&quot;)</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .setSmallIcon(R.drawable.ic_upload)</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .build();</span></p>
+    <p class="c7"><span class="c5">startForeground(1, notification);</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.hnwmn545irp0"><span class="c14 c4">Purpose</span></h4>
+    <ul class="c20 lst-kix_bs0036ysia1k-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Keeps tasks active without blocking UI.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Ensures user awareness of long-running operations.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Central to background task scheduling, media apps, and data
+                sync.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h3 class="c24" id="h.upmgzuc7pb0o"><span class="c12 c4">4. Content Providers and Resolvers</span></h3>
+    <h4 class="c0" id="h.og0ty5kgt9j4"><span class="c14 c4">Concept of Content Providers</span></h4>
+    <p class="c23"><span>A </span><span class="c4">Content Provider</span><span>&nbsp;manages shared app data.<br> It
+            allows multiple applications to access, read, or modify structured data (like contacts, media, or custom
+            databases) using a </span><span class="c4">uniform URI system</span><span class="c3">.</span></p>
+    <ul class="c20 lst-kix_q133ct439ria-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Acts as a layer between app data storage and external
+                apps.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Data can come from SQLite, files, or other sources.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Example built-in providers: ContactsProvider, MediaStore,
+                CallLog.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.u1cpdzv0mlmh"><span class="c14 c4">Structure of Content URI</span></h4>
+    <p class="c23"><span class="c3">Format:</span></p>
+    <p class="c7"><span class="c5">content://authority/path/id</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">Components:</span></p>
+    <ul class="c20 lst-kix_jxkry9nuhazq-0 start">
+        <li class="c1 li-bullet-0"><span class="c4">Scheme:</span><span>&nbsp;Always </span><span
+                class="c5">content://<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Authority:</span><span>&nbsp;Unique name identifying the provider
+                (e.g., </span><span class="c17">contacts</span><span class="c3">&nbsp;or your app&rsquo;s
+                package).<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Path:</span><span class="c3">&nbsp;Specifies which table or dataset
+                to access.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">ID:</span><span class="c3">&nbsp;Optional, specifies a single
+                record.<br></span></li>
+    </ul>
+    <p class="c23"><span class="c4">Example:<br></span><span>&nbsp;</span><span
+            class="c5">content://com.android.contacts/contacts/5</span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.rd6190vj153o"><span class="c14 c4">Purpose of Path Component</span></h4>
+    <ul class="c20 lst-kix_rj0h1m2vha5i-0 start">
+        <li class="c1 li-bullet-0"><span>Defines the </span><span class="c4">table or type of data</span><span
+                class="c3">&nbsp;to query.<br></span></li>
+        <li class="c1 li-bullet-0"><span>Example: </span><span class="c17">contacts</span><span class="c3">&nbsp;path in
+                URI gives access to the entire contacts table.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.szh6hzgu2kux"><span class="c14 c4">Core Components for Access</span></h4>
+    <ol class="c20 lst-kix_djjcwrucs7rj-0 start" start="1">
+        <li class="c1 li-bullet-0"><span class="c4">ContentProvider:</span><span>&nbsp;Defines data access logic
+                (</span><span class="c17">query()</span><span>, </span><span class="c17">insert()</span><span>,
+            </span><span class="c17">update()</span><span>, </span><span class="c17">delete()</span><span
+                class="c3">).<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">ContentResolver:</span><span class="c3">&nbsp;Handles communication
+                between app and provider.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Content URI:</span><span class="c3">&nbsp;Identifies data to be
+                accessed.<br></span></li>
+    </ol>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.j4wbnpofll4b"><span class="c4 c14">ContentResolver Object</span></h4>
+    <p class="c23"><span>Acts as a </span><span class="c4">bridge</span><span class="c3">&nbsp;between the app and the
+            ContentProvider.<br> It sends requests and receives data responses.</span></p>
+    <p class="c23"><span class="c14 c4">Example:</span></p>
+    <p class="c7"><span class="c5">Cursor cursor = getContentResolver().query(</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; ContactsContract.Contacts.CONTENT_URI,</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; null, null, null, null</span></p>
+    <p class="c7"><span class="c5">);</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c3">Performs CRUD operations through standardized methods:</span></p>
+    <ul class="c20 lst-kix_a1em3fg6mfif-0 start">
+        <li class="c1 li-bullet-0"><span class="c5">query()<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c5">insert()<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c5">update()<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c5">delete()<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.87itmnmfdwa0"><span class="c14 c4">Advantages</span></h4>
+    <ul class="c20 lst-kix_mkxdfa4ar8rt-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Secure, permission-controlled data sharing.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Decouples data access logic from app logic.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Enables other apps to access structured data through
+                URIs.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h3 class="c24" id="h.ngpsh6vuckpz"><span class="c12 c4">5. Google Location Services</span></h3>
+    <h4 class="c0" id="h.1oprl4w0o8oy"><span class="c14 c4">Overview</span></h4>
+    <p class="c23"><span>Google&rsquo;s </span><span class="c4">Fused Location Provider API
+            (FLP)</span><span>&nbsp;delivers the most accurate location updates using a combination of </span><span
+            class="c4">GPS</span><span>, </span><span class="c4">Wi-Fi</span><span>, </span><span class="c4">cellular
+            networks</span><span>, and </span><span class="c4">sensors</span><span>.<br> It replaces older </span><span
+            class="c17">LocationManager</span><span class="c3">&nbsp;methods for better efficiency, lower battery use,
+            and unified access.</span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.rshqiydokbib"><span class="c44 c4">Core Class: </span><span
+            class="c39 c26 c4">FusedLocationProviderClient</span></h4>
+    <p class="c23"><span>This class, provided by </span><span class="c4">Google Play Services</span><span class="c3">,
+            manages all location-related requests asynchronously.<br> Declared as:</span></p>
+    <p class="c7"><span class="c5">FusedLocationProviderClient fusedClient =
+            LocationServices.getFusedLocationProviderClient(this);</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.m5d2fxwjnd3b"><span class="c14 c4">Method to Get Last Known Location</span></h4>
+    <p class="c23"><span>The </span><span class="c4">method</span><span class="c3">&nbsp;used is:</span></p>
+    <p class="c7"><span class="c5">getLastLocation()</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <ul class="c20 lst-kix_gyd45tz7h8yt-0 start">
+        <li class="c1 li-bullet-0"><span>Returns a </span><span class="c4 c26">Task&lt;Location&gt;</span><span
+                class="c3">&nbsp;object.<br></span></li>
+        <li class="c1 li-bullet-0"><span>Retrieves the device&rsquo;s </span><span class="c4">most recent known
+                location</span><span class="c3">&nbsp;from cached sources.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Does not actively request a new GPS fix.<br></span></li>
+    </ul>
+    <p class="c23"><span class="c14 c4">Example Code:</span></p>
+    <p class="c7"><span class="c5">fusedClient.getLastLocation()</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .addOnSuccessListener(this, location -&gt; {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; if (location != null) {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; double lat = location.getLatitude();</span>
+    </p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; double lon =
+            location.getLongitude();</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; });</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.mk9qscxrfsbj"><span class="c14 c4">Key Notes</span></h4>
+    <ul class="c20 lst-kix_z7zutuv1pmbg-0 start">
+        <li class="c1 li-bullet-0"><span>Requires runtime permissions for </span><span
+                class="c17">ACCESS_FINE_LOCATION</span><span>&nbsp;or </span><span
+                class="c17">ACCESS_COARSE_LOCATION</span><span class="c3">.<br></span></li>
+        <li class="c1 li-bullet-0"><span>Returns </span><span class="c17">null</span><span class="c3">&nbsp;if no
+                previous location is available.<br></span></li>
+        <li class="c1 li-bullet-0"><span>For continuous updates, use </span><span
+                class="c17">requestLocationUpdates()</span><span class="c3">&nbsp;instead.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.xpcej3tg2trx"><span class="c14 c4">Recommended API Version</span></h4>
+    <ul class="c20 lst-kix_j1iz9fgx9rd7-0 start">
+        <li class="c1 li-bullet-0"><span class="c4">Minimum:</span><span>&nbsp;Google Play Services version </span><span
+                class="c14 c4">11.0.0<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Recommended:</span><span>&nbsp;Always use the </span><span
+                class="c4">latest stable version</span><span class="c3">&nbsp;of Play Services for:<br></span></li>
+    </ul>
+    <ul class="c20 lst-kix_j1iz9fgx9rd7-1 start">
+        <li class="c23 c28 li-bullet-0"><span class="c3">Enhanced accuracy<br></span></li>
+        <li class="c23 c28 li-bullet-0"><span class="c3">Power efficiency<br></span></li>
+        <li class="c23 c28 li-bullet-0"><span class="c3">Support for Android 13+ background location policies<br></span>
+        </li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.bokpihoa3dax"><span class="c14 c4">Advantages of FusedLocationProviderClient</span></h4>
+    <ul class="c20 lst-kix_ggn8z2sfa3vq-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Combines multiple location sources automatically.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Reduces battery drain compared to GPS-only tracking.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Provides high-level, consistent API across devices.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h3 class="c24" id="h.8nr66r7p02ui"><span class="c12 c4">6. Notifications in Android</span></h3>
+    <h4 class="c0" id="h.c0a86vqmokhv"><span class="c14 c4">Concept</span></h4>
+    <p class="c23"><span>A </span><span class="c4">Notification</span><span>&nbsp;informs the user about events in the
+            background (e.g., new message, file download, ongoing task).<br> It appears in the </span><span
+            class="c4">status bar</span><span>&nbsp;and </span><span class="c4">notification shade</span><span
+            class="c3">, optionally linked to an activity or service.</span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.m5ejmmckku3o"><span class="c14 c4">Core Elements of a Notification</span></h4>
+    <ol class="c20 lst-kix_gihgf953v8u1-0 start" start="1">
+        <li class="c1 li-bullet-0"><span class="c4">Small Icon</span><span class="c3">&nbsp;&mdash; Mandatory visual
+                indicator.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Title</span><span class="c3">&nbsp;&mdash; Brief summary (e.g.,
+                &ldquo;Download complete&rdquo;).<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Text Content</span><span class="c3">&nbsp;&mdash; Additional message
+                detail.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">PendingIntent</span><span class="c3">&nbsp;&mdash; Defines the
+                action when the user taps the notification.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Sound/Vibration/Lights</span><span class="c3">&nbsp;&mdash; Optional
+                alerts.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Priority/Channel</span><span class="c3">&nbsp;&mdash; Controls
+                visibility and behavior.<br></span></li>
+    </ol>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.b6tnfdxvjxjx"><span class="c14 c4">Basic Example</span></h4>
+    <p class="c7"><span class="c5">NotificationCompat.Builder builder = new NotificationCompat.Builder(this,
+            &quot;channel_id&quot;)</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .setSmallIcon(R.drawable.ic_notify)</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .setContentTitle(&quot;Download Complete&quot;)</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .setContentText(&quot;Your file has been saved.&quot;)</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; .setPriority(NotificationCompat.PRIORITY_HIGH);</span></p>
+    <p class="c7 c8"><span class="c5"></span></p>
+    <p class="c7"><span class="c5">NotificationManagerCompat notificationManager =
+            NotificationManagerCompat.from(this);</span></p>
+    <p class="c7"><span class="c5">notificationManager.notify(1, builder.build());</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.q7fcd5cx3m7r"><span class="c14 c4">Notification Channels (Android 8.0+)</span></h4>
+    <p class="c23"><span>Every notification must belong to a </span><span class="c4">channel</span><span class="c3">,
+            allowing users to control settings like sound or importance per channel.</span></p>
+    <p class="c7"><span class="c5">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; NotificationChannel channel = new NotificationChannel(</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; &quot;channel_id&quot;,</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; &quot;Downloads&quot;,</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; &nbsp; &nbsp; NotificationManager.IMPORTANCE_DEFAULT</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; );</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; NotificationManager manager =
+            getSystemService(NotificationManager.class);</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; manager.createNotificationChannel(channel);</span></p>
+    <p class="c7"><span class="c5">}</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.9t07c2rf3ak"><span class="c14 c4">Types of Notifications</span></h4>
+    <table class="c22">
+        <tr class="c6">
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Type</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Description</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Simple Notification</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Basic message (title, text, icon)</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Expandable Notification</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Displays more text or images</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Heads-Up Notification</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Pops up over active screen (urgent)</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Progress Notification</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Shows ongoing progress (e.g., download)</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c29" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Foreground Notification</span></p>
+            </td>
+            <td class="c9" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Tied to active background service</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.qh88p0qufzgm"><span class="c14 c4">Key Concepts</span></h4>
+    <ul class="c20 lst-kix_vg6djt6ian7k-0 start">
+        <li class="c1 li-bullet-0"><span>Managed by the </span><span class="c4">NotificationManager</span><span
+                class="c3">&nbsp;system service.<br></span></li>
+        <li class="c1 li-bullet-0"><span>Can be triggered by a </span><span class="c4">Service</span><span>,
+            </span><span class="c4">Alarm</span><span>, or </span><span class="c4">BroadcastReceiver</span><span
+                class="c3">.<br></span></li>
+        <li class="c1 li-bullet-0"><span>Dismissed manually by the user or programmatically using </span><span
+                class="c17">cancel()</span><span>&nbsp;or </span><span class="c17">cancelAll()</span><span
+                class="c3">.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c4 c43"></span></p>
+    <h3 class="c24" id="h.pxy19944mj1"><span class="c12 c4">7. Data Storage and Management</span></h3>
+    <h4 class="c0" id="h.wcj3zvuewcnx"><span class="c14 c4">Overview</span></h4>
+    <p class="c23"><span>Android provides multiple mechanisms to </span><span class="c4">store and manage app
+            data</span><span class="c3">, depending on data size, sensitivity, and persistence needs.<br> Main
+            options:</span></p>
+    <ul class="c20 lst-kix_2583fptf5isg-0 start">
+        <li class="c1 li-bullet-0"><span class="c4">Shared Preferences</span><span class="c3">&nbsp;(small key-value
+                data)<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Files</span><span class="c3">&nbsp;(structured/unstructured
+                data)<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Firebase</span><span class="c3">&nbsp;(cloud-based real-time
+                data)<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.u33453cgtzly"><span class="c14 c4">A. Shared Preferences</span></h4>
+    <p class="c23"><span class="c3">Used for storing small, lightweight pieces of data such as user settings, login
+            states, or flags.</span></p>
+    <p class="c23"><span class="c14 c4">Characteristics:</span></p>
+    <ul class="c20 lst-kix_q65e4vcwmin2-0 start">
+        <li class="c1 li-bullet-0"><span>Stores data as </span><span class="c4">key-value pairs</span><span
+                class="c3">.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Private to the app (by default).<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Automatically saved as an XML file in internal storage.<br></span>
+        </li>
+    </ul>
+    <p class="c23"><span class="c14 c4">Code Example:</span></p>
+    <p class="c7"><span class="c5">SharedPreferences sp = getSharedPreferences(&quot;MyPrefs&quot;,
+            MODE_PRIVATE);</span></p>
+    <p class="c7"><span class="c5">SharedPreferences.Editor editor = sp.edit();</span></p>
+    <p class="c7"><span class="c5">editor.putString(&quot;username&quot;, &quot;Praveen&quot;);</span></p>
+    <p class="c7"><span class="c5">editor.putBoolean(&quot;isLoggedIn&quot;, true);</span></p>
+    <p class="c7"><span class="c5">editor.apply();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">To Retrieve:</span></p>
+    <p class="c7"><span class="c5">String user = sp.getString(&quot;username&quot;, &quot;default&quot;);</span></p>
+    <p class="c7"><span class="c5">boolean logged = sp.getBoolean(&quot;isLoggedIn&quot;, false);</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">Use Cases:</span></p>
+    <ul class="c20 lst-kix_hh3i9gj984ee-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Save login tokens.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Theme settings (dark/light mode).<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">User preferences.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.9ukbgdqqh070"><span class="c14 c4">B. Android File System</span></h4>
+    <p class="c23"><span>The Android file hierarchy separates </span><span class="c4">app data</span><span>&nbsp;from
+        </span><span class="c4">system data</span><span>&nbsp;and provides both </span><span
+            class="c4">internal</span><span>&nbsp;and </span><span class="c4">external</span><span
+            class="c3">&nbsp;storage access.</span></p>
+    <table class="c22">
+        <tr class="c6">
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Directory</span></p>
+            </td>
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Purpose</span></p>
+            </td>
+        </tr>
+        <tr class="c42">
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c7"><span class="c17">/data/data/&lt;package_name&gt;/</span></p>
+            </td>
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">App&rsquo;s private files (internal storage)</span></p>
+            </td>
+        </tr>
+        <tr class="c40">
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c7"><span class="c17">/sdcard/</span><span>&nbsp;or </span><span
+                        class="c17">/storage/emulated/0/</span></p>
+            </td>
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">External shared files</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c7"><span class="c17">/cache/</span></p>
+            </td>
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Temporary files</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c31" colspan="1" rowspan="1">
+                <p class="c7"><span class="c17">/system/</span></p>
+            </td>
+            <td class="c13" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">OS files</span></p>
+            </td>
+        </tr>
+    </table>
+    <p class="c23"><span class="c14 c4">File Writing Example:</span></p>
+    <p class="c7"><span class="c5">String data = &quot;Hello World&quot;;</span></p>
+    <p class="c7"><span class="c5">FileOutputStream fos = openFileOutput(&quot;file.txt&quot;, MODE_PRIVATE);</span></p>
+    <p class="c7"><span class="c5">fos.write(data.getBytes());</span></p>
+    <p class="c7"><span class="c5">fos.close();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">File Reading Example:</span></p>
+    <p class="c7"><span class="c5">FileInputStream fis = openFileInput(&quot;file.txt&quot;);</span></p>
+    <p class="c7"><span class="c5">int c;</span></p>
+    <p class="c7"><span class="c5">while ((c = fis.read()) != -1) {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; System.out.print((char) c);</span></p>
+    <p class="c7"><span class="c5">}</span></p>
+    <p class="c7"><span class="c5">fis.close();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">Key Notes:</span></p>
+    <ul class="c20 lst-kix_9v86jc4edjcu-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Internal storage: private, deleted when app uninstalls.<br></span>
+        </li>
+        <li class="c1 li-bullet-0"><span class="c3">External storage: requires permission, shared across
+                apps.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.xwei77gxlogi"><span class="c14 c4">C. Firebase (Cloud Storage &amp; Database)</span></h4>
+    <p class="c23"><span>Firebase provides cloud-hosted services for data storage, synchronization, and
+            authentication.<br> It is part of </span><span class="c4">Google&rsquo;s mobile development
+            platform</span><span class="c3">.</span></p>
+    <p class="c23"><span class="c14 c4">Key Features:</span></p>
+    <ol class="c20 lst-kix_qxs3eacuq8h8-0 start" start="1">
+        <li class="c1 li-bullet-0"><span class="c4">Realtime Database</span><span class="c3">&nbsp;&mdash; JSON-based
+                database synced in real time.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Firestore</span><span class="c3">&nbsp;&mdash; Scalable NoSQL cloud
+                database.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Firebase Authentication</span><span class="c3">&nbsp;&mdash; User
+                login via email, Google, etc.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Cloud Storage</span><span class="c3">&nbsp;&mdash; Upload and serve
+                user-generated content.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Firebase Cloud Messaging (FCM)</span><span class="c3">&nbsp;&mdash;
+                Send notifications.<br></span></li>
+    </ol>
+    <p class="c23"><span class="c14 c4">Example (Realtime Database Write):</span></p>
+    <p class="c7"><span class="c5">DatabaseReference ref =
+            FirebaseDatabase.getInstance().getReference(&quot;users&quot;);</span></p>
+    <p class="c7"><span class="c5">ref.child(&quot;user1&quot;).setValue(&quot;Praveen&quot;);</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">Example (Read):</span></p>
+    <p class="c7"><span class="c5">ref.child(&quot;user1&quot;).get().addOnSuccessListener(snapshot -&gt; {</span></p>
+    <p class="c7"><span class="c5">&nbsp; &nbsp; String name = snapshot.getValue(String.class);</span></p>
+    <p class="c7"><span class="c5">});</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">Advantages:</span></p>
+    <ul class="c20 lst-kix_knf5ialst517-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Cross-device data sync.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Offline persistence.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Scalable backend (no local server needed).<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.vyw0l8wqu9jw"><span class="c14 c4">Summary:</span></h4>
+    <table class="c22">
+        <tr class="c6">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Storage Type</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Data Size</span></p>
+            </td>
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Persistence</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Accessibility</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Example Use</span></p>
+            </td>
+        </tr>
+        <tr class="c16">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Shared Preferences</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Small</span></p>
+            </td>
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Local</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Private</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Settings</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Files</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Medium/Large</span></p>
+            </td>
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Local</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Private/Public</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Images, Documents</span></p>
+            </td>
+        </tr>
+        <tr class="c16">
+            <td class="c30" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Firebase</span></p>
+            </td>
+            <td class="c34" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Large</span></p>
+            </td>
+            <td class="c33" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Cloud</span></p>
+            </td>
+            <td class="c27" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Shared</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Real-time sync, auth</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h3 class="c24" id="h.j6dc88ezgs4b"><span class="c4 c12">8. Toast Message</span></h3>
+    <h4 class="c0" id="h.jl9v43vh7b6a"><span class="c14 c4">Concept</span></h4>
+    <p class="c23"><span>A </span><span class="c4">Toast</span><span>&nbsp;in Android is a small popup message that
+            briefly appears on the screen to provide </span><span class="c4">non-interactive feedback</span><span
+            class="c3">&nbsp;to the user.<br> It does not block user interaction and disappears automatically after a
+            short duration.</span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.fhnl48mteirf"><span class="c14 c4">Syntax</span></h4>
+    <p class="c7"><span class="c5">Toast.makeText(context, text, duration).show();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">Parameters:</span></p>
+    <ul class="c20 lst-kix_4khochvwqy0k-0 start">
+        <li class="c1 li-bullet-0"><span class="c17">context</span><span class="c3">&nbsp;&rarr; Activity or Application
+                context.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c17">text</span><span class="c3">&nbsp;&rarr; Message to
+                display.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c17">duration</span><span>&nbsp;&rarr; Either </span><span
+                class="c17">Toast.LENGTH_SHORT</span><span>&nbsp;or </span><span
+                class="c17">Toast.LENGTH_LONG</span><span class="c3">.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.uhktc4rinvwm"><span class="c14 c4">Example</span></h4>
+    <p class="c7"><span class="c5">Toast.makeText(getApplicationContext(), &quot;Data Saved Successfully&quot;,
+            Toast.LENGTH_SHORT).show();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">Custom Duration Example:</span></p>
+    <p class="c7"><span class="c5">Toast toast = Toast.makeText(this, &quot;Uploading...&quot;,
+            Toast.LENGTH_LONG);</span></p>
+    <p class="c7"><span class="c5">toast.show();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.qfna4rwiu2md"><span class="c14 c4">Custom Layout (Optional)</span></h4>
+    <p class="c23"><span>You can design a </span><span class="c4">custom Toast</span><span class="c3">&nbsp;with your
+            own XML layout.</span></p>
+    <p class="c7"><span class="c5">LayoutInflater inflater = getLayoutInflater();</span></p>
+    <p class="c7"><span class="c5">View layout = inflater.inflate(R.layout.custom_toast, null);</span></p>
+    <p class="c7"><span class="c5">Toast toast = new Toast(getApplicationContext());</span></p>
+    <p class="c7"><span class="c5">toast.setView(layout);</span></p>
+    <p class="c7"><span class="c5">toast.setDuration(Toast.LENGTH_SHORT);</span></p>
+    <p class="c7"><span class="c5">toast.show();</span></p>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.fz35anub1vyy"><span class="c14 c4">Use Cases</span></h4>
+    <ul class="c20 lst-kix_acn3twlckue2-0 start">
+        <li class="c1 li-bullet-0"><span class="c3">Display short success/error messages.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Notify user of completed background operations.<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c3">Give lightweight, transient feedback.<br></span></li>
+    </ul>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <h4 class="c0" id="h.erxlutakgncu"><span class="c14 c4">Difference Between Toast and Notification</span></h4>
+    <table class="c22">
+        <tr class="c6">
+            <td class="c19" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Feature</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Toast</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c2"><span class="c4">Notification</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c19" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">User Interaction</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">None</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Can be tapped for action</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c19" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Duration</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Few seconds</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Persistent until dismissed</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c19" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">UI Layer</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Overlay</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Status bar/notification drawer</span></p>
+            </td>
+        </tr>
+        <tr class="c6">
+            <td class="c19" colspan="1" rowspan="1">
+                <p class="c7"><span class="c4">Use Case</span></p>
+            </td>
+            <td class="c11" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Instant feedback</span></p>
+            </td>
+            <td class="c10" colspan="1" rowspan="1">
+                <p class="c7"><span class="c3">Alerts, ongoing background tasks</span></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <p class="c23"><span class="c14 c4">Summary:</span></p>
+    <ul class="c20 lst-kix_i5gdmhxc1fdn-0 start">
+        <li class="c1 li-bullet-0"><span class="c4">Question 7:</span><span>&nbsp;Covers </span><span class="c4">local
+                and cloud data storage</span><span class="c3">&nbsp;&mdash; SharedPreferences (simple data), Files
+                (structured data), Firebase (real-time and scalable data).<br></span></li>
+        <li class="c1 li-bullet-0"><span class="c4">Question 8:</span><span>&nbsp;Covers </span><span
+                class="c4">Toast</span><span class="c3">&nbsp;&mdash; transient message for user feedback, lightweight
+                and automatic in dismissal.</span></li>
+    </ul>
+    <p class="c7 c8"><span class="c3"></span></p>
+    <div id="watermark">https://poornimites.vercel.app/notes.html <br>
+        CONFIDENCIAL || DO NOT SHARE</div>
+
+    <h1>Secure Test</h1>
+    <p>This is secure test content. Copying, printing, or screenshots are restricted.</p>
+
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Disable keyboard shortcuts for copy, print, save, view source, and screenshot
+        document.addEventListener('keydown', e => {
+            const blocked = ['c', 'p', 's', 'u', 'PrintScreen'];
+            if (e.ctrlKey && blocked.includes(e.key.toLowerCase())) {
+                e.preventDefault();
+                alert('Action disabled');
+            }
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                alert('Screenshots disabled');
+            }
+        });
+
+        // Disable copy event
+        document.addEventListener('copy', e => {
+            e.preventDefault();
+            alert('Copy disabled');
+        });
+
+        // Prevent printing
+        window.onbeforeprint = () => {
+            document.body.style.display = 'none';
+            alert('Printing disabled');
+            setTimeout(() => location.reload(), 1000);
+        };
+
+        // Disable caching
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(() => { });
+        }
+    </script>
+</body>
+
+</html>
