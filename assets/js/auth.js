@@ -1,32 +1,14 @@
-// auth.js
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+// auth.js - Updated to use centralized Firebase initialization
+import { app } from "./shared/firebase-init.js";
+import { auth, db } from "./shared/auth-manager.js";
 import {
-  getAuth,
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
-  authDomain: "poornimites-2bbe7.firebaseapp.com",
-  projectId: "poornimites-2bbe7",
-  storageBucket: "poornimites-2bbe7.appspot.com",
-  messagingSenderId: "597165564910",
-  appId: "1:597165564910:web:4d87e756fa1250359324ff",
-  measurementId: "G-2M98Z8JY7Q"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 // Restrict signup domain
@@ -59,10 +41,10 @@ async function trackUserSession(user) {
       browser: navigator.userAgent,
       platform: navigator.platform
     };
-    
+
     // Store in Firestore
     await setDoc(doc(db, "userSessions", `${user.uid}_${Date.now()}`), sessionData);
-    
+
     // Update user's last login in users collection
     await setDoc(doc(db, "users", user.uid), {
       email: user.email,
@@ -70,7 +52,7 @@ async function trackUserSession(user) {
       lastLogin: serverTimestamp(),
       photoURL: user.photoURL || null
     }, { merge: true });
-    
+
     // Set up activity tracking
     const activityInterval = setInterval(async () => {
       if (auth.currentUser) {
@@ -81,7 +63,7 @@ async function trackUserSession(user) {
         clearInterval(activityInterval);
       }
     }, 60000); // Update every minute
-    
+
   } catch (error) {
     console.error("Error tracking user session:", error);
   }
@@ -94,7 +76,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     // Track user login
     trackUserSession(user);
-    
+
     authBtn.textContent = "🚪";
     authBtn.href = "#";
     authBtn.onclick = (e) => {
@@ -119,14 +101,10 @@ onAuthStateChanged(auth, (user) => {
     authBtn.href = "#";
     authBtn.onclick = (e) => {
       e.preventDefault();
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          alert(`Welcome ${result.user.displayName}`);
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Login failed");
-        });
+      // Get current page path
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      // Redirect to auth page with current page as redirect parameter
+      window.location.href = `auth.html?redirect=${encodeURIComponent(currentPage)}`;
     };
   }
 });

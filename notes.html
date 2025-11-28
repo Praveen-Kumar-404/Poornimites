@@ -5,15 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Poornimites - Dashboard</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/bento-grid.css">
-    <title>Poornimites</title>
-  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/bento-grid.css">
+  <link rel="stylesheet" href="assets/css/neumorphism.css">
+  <title>Poornimites</title>
+
 </head>
 
-<body>
+<body class="neuro-body">
 
   <header class="navbar">
     <div class="logo">🎓 <a href="index.html">Poornimites</a></div>
@@ -32,60 +33,61 @@
     </div>
   </header>
 
-  <main class="bento-grid">
+  <main class="bento-grid neuro-grid">
 
     <!-- Subject Pages with PDF Unlock Logic -->
-    <div class="card pdf-card" data-src="assets/paper/ads.html">
+    <div class="card neuro-card pdf-card" data-src="assets/paper/ads.html">
       <h2>Advanced Data Structure</h2>
       <div class="pdf-frame"></div>
     </div>
 
-    <div class="card pdf-card" data-src="assets/paper/iot.html">
+    <div class="card neuro-card pdf-card" data-src="assets/paper/iot.html">
       <h2>Internet of Things</h2>
       <div class="pdf-frame"></div>
     </div>
 
-    <div class="card pdf-card" data-src="assets/paper/ems.html">
-      <h2>Enterpreneurial & Managment Skills</h2>
+    <div class="card neuro-card pdf-card" data-src="assets/paper/ems.html">
+      <h2>Entrepreneurial & Managment Skills</h2>
       <div class="pdf-frame"></div>
     </div>
-    
-    <div class="card pdf-card" data-src="assets/paper/asp.html">
+
+    <div class="card neuro-card pdf-card" data-src="assets/paper/asp.html">
       <h2>ASP.Net</h2>
       <div class="pdf-frame"></div>
     </div>
 
-    <div class="card pdf-card" data-src="assets/paper/web.html">
+    <div class="card neuro-card pdf-card" data-src="assets/paper/web.html">
       <h2>Web Services</h2>
       <div class="pdf-frame"></div>
     </div>
 
-    <div class="card pdf-card" data-src="assets/paper/mad.html">
+    <div class="card neuro-card pdf-card" data-src="assets/paper/mad.html">
       <h2>Mobile Application Development</h2>
       <div class="pdf-frame"></div>
     </div>
 
-    
-    <div class="card pdf-card" data-src="assets/paper/ai.html">
+
+    <div class="card neuro-card pdf-card" data-src="assets/paper/ai.html">
       <h2>Artificial Intelligence</h2>
       <div class="pdf-frame"></div>
     </div>
 
   </main>
 
-  <div id="disclaimer-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:#000000aa; justify-content:center; align-items:center; z-index:9999;">
-    <div style="background:white; padding:2rem; border-radius:10px; max-width:90%; text-align:center;">
+  <div id="disclaimer-modal" class="neuro-modal" style="display:none;">
+    <div class="neuro-modal-content">
       <h2>Disclaimer</h2>
-      <p>This website is for educational purposes only. Access to certain content is restricted until the scheduled time.</p>
-      <button id="accept-btn">Accept</button>
+      <p>This website is for educational purposes only. Access to certain content is restricted until the scheduled
+        time.</p>
+      <button id="accept-btn" class="neuro-btn neuro-btn-primary"><span>Accept</span></button>
     </div>
   </div>
 
-  <div id="creator-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:#000000aa; justify-content:center; align-items:center; z-index:9999;">
-    <div style="background:white; padding:2rem; border-radius:10px; max-width:90%; text-align:center;">
+  <div id="creator-modal" class="neuro-modal" style="display:none;">
+    <div class="neuro-modal-content">
       <h2>Creator Info</h2>
       <p>Developed by Praveen Kumar 🚀</p>
-      <button id="close-creator">Close</button>
+      <button id="close-creator" class="neuro-btn neuro-btn-primary"><span>Close</span></button>
     </div>
   </div>
 
@@ -103,7 +105,7 @@
     </div>
   </footer>
 
-<script>
+  <script>
     const pdfCards = document.querySelectorAll('.pdf-card');
     const modal = document.getElementById('disclaimer-modal');
     const acceptBtn = document.getElementById('accept-btn');
@@ -131,16 +133,16 @@
         const frame = card.querySelector('.pdf-frame');
 
         if (unlockTime && now >= unlockTime) {
-          frame.innerHTML = `<a href="${src}">Let's Learn →</a>`;
+          frame.innerHTML = `<a href="${src}" class="neuro-link">Let's Learn →</a>`;
         } else if (unlockTime) {
           const countdown = document.createElement('span');
-          countdown.classList.add('countdown');
+          countdown.classList.add('countdown', 'neuro-countdown');
           frame.innerHTML = `⏳ Unlocks on ${unlockTime.toDateString()}<br>`;
           frame.appendChild(countdown);
           updateCountdown(countdown, unlockTime);
           setInterval(() => updateCountdown(countdown, unlockTime), 1000);
         } else {
-          frame.innerHTML = `<a href="${src}">Let's Learn →</a>`;
+          frame.innerHTML = `<a href="${src}" class="neuro-link">Let's Learn →</a>`;
         }
       });
     };
@@ -196,24 +198,24 @@
       GoogleAuthProvider,
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-     
+
     // Authentication protection - hide content if not logged in
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const mainContent = document.querySelector('main.bento-grid');
       const loginMessage = document.createElement('div');
       loginMessage.className = 'login-message';
       loginMessage.innerHTML = `
-        <div style="text-align: center; padding: 50px; margin: 20px auto; max-width: 600px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="neuro-login-message">
           <h2>Login Required</h2>
           <p>Please log in to access the notes.</p>
           <p>Click the 👤 icon in the top right corner to log in.</p>
         </div>
       `;
-      
+
       // Initially hide the content
       mainContent.style.display = 'none';
       document.body.insertBefore(loginMessage, mainContent);
-      
+
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -227,7 +229,7 @@
         }
       });
     });
-    
+
     const firebaseConfig = {
       apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
       authDomain: "poornimites-2bbe7.firebaseapp.com",

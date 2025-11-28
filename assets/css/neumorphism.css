@@ -1,0 +1,396 @@
+/* Neumorphism Design System */
+
+:root {
+    /* Neumorphic color palette */
+    --neuro-bg: #e0e5ec;
+    --neuro-shadow-light: #ffffff;
+    --neuro-shadow-dark: #a3b1c6;
+    --neuro-text-primary: #2c3e50;
+    --neuro-text-secondary: #5a6c7d;
+    --neuro-accent: #4a90e2;
+    --neuro-accent-hover: #357abd;
+
+    /* Shadow configurations */
+    --neuro-shadow-sm: 4px 4px 8px var(--neuro-shadow-dark),
+        -4px -4px 8px var(--neuro-shadow-light);
+    --neuro-shadow-md: 8px 8px 16px var(--neuro-shadow-dark),
+        -8px -8px 16px var(--neuro-shadow-light);
+    --neuro-shadow-lg: 12px 12px 24px var(--neuro-shadow-dark),
+        -12px -12px 24px var(--neuro-shadow-light);
+    --neuro-shadow-inset: inset 4px 4px 8px var(--neuro-shadow-dark),
+        inset -4px -4px 8px var(--neuro-shadow-light);
+    --neuro-shadow-inset-md: inset 6px 6px 12px var(--neuro-shadow-dark),
+        inset -6px -6px 12px var(--neuro-shadow-light);
+
+    /* Border radius */
+    --neuro-radius-sm: 10px;
+    --neuro-radius-md: 15px;
+    --neuro-radius-lg: 20px;
+    --neuro-radius-xl: 25px;
+}
+
+/* Body background for neumorphism */
+body.neuro-body {
+    background: var(--neuro-bg);
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(163, 177, 198, 0.1) 0%, transparent 50%);
+}
+
+/* Neumorphic container */
+.neuro-container {
+    background: var(--neuro-bg);
+    border-radius: var(--neuro-radius-lg);
+    box-shadow: var(--neuro-shadow-md);
+    transition: all 0.3s ease;
+}
+
+/* Neumorphic cards */
+.neuro-card {
+    background: var(--neuro-bg);
+    border-radius: var(--neuro-radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--neuro-shadow-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.neuro-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neuro-accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.neuro-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        10px 10px 20px var(--neuro-shadow-dark),
+        -10px -10px 20px var(--neuro-shadow-light);
+}
+
+.neuro-card:hover::before {
+    opacity: 1;
+}
+
+.neuro-card h2 {
+    color: var(--neuro-text-primary);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.neuro-card p,
+.neuro-card .pdf-frame {
+    color: var(--neuro-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Neumorphic buttons */
+.neuro-btn {
+    background: var(--neuro-bg);
+    border: none;
+    border-radius: var(--neuro-radius-sm);
+    padding: 0.75rem 1.5rem;
+    color: var(--neuro-text-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: var(--neuro-shadow-sm);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.neuro-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(74, 144, 226, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.neuro-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.neuro-btn:hover {
+    color: var(--neuro-accent);
+    box-shadow:
+        6px 6px 12px var(--neuro-shadow-dark),
+        -6px -6px 12px var(--neuro-shadow-light);
+}
+
+.neuro-btn:active {
+    box-shadow: var(--neuro-shadow-inset);
+    transform: scale(0.98);
+}
+
+.neuro-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Neumorphic button primary variant */
+.neuro-btn-primary {
+    background: linear-gradient(145deg, #4a90e2, #357abd);
+    color: white;
+    box-shadow:
+        6px 6px 12px rgba(53, 122, 189, 0.4),
+        -6px -6px 12px rgba(74, 144, 226, 0.4);
+}
+
+.neuro-btn-primary:hover {
+    background: linear-gradient(145deg, #357abd, #2868a8);
+    box-shadow:
+        8px 8px 16px rgba(53, 122, 189, 0.5),
+        -8px -8px 16px rgba(74, 144, 226, 0.5);
+}
+
+.neuro-btn-primary:active {
+    box-shadow:
+        inset 4px 4px 8px rgba(53, 122, 189, 0.6),
+        inset -4px -4px 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Neumorphic links */
+.neuro-link {
+    color: var(--neuro-accent);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.neuro-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--neuro-accent);
+    transition: width 0.3s ease;
+}
+
+.neuro-link:hover {
+    color: var(--neuro-accent-hover);
+}
+
+.neuro-link:hover::after {
+    width: 100%;
+}
+
+/* Neumorphic modal */
+.neuro-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 62, 80, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.neuro-modal-content {
+    background: var(--neuro-bg);
+    padding: 2.5rem;
+    border-radius: var(--neuro-radius-xl);
+    max-width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow:
+        20px 20px 40px var(--neuro-shadow-dark),
+        -20px -20px 40px var(--neuro-shadow-light);
+    text-align: center;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.neuro-modal-content h2 {
+    color: var(--neuro-text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.neuro-modal-content p {
+    color: var(--neuro-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Neumorphic input fields */
+.neuro-input {
+    background: var(--neuro-bg);
+    border: none;
+    border-radius: var(--neuro-radius-sm);
+    padding: 0.75rem 1rem;
+    color: var(--neuro-text-primary);
+    font-size: 1rem;
+    box-shadow: var(--neuro-shadow-inset);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.neuro-input:focus {
+    outline: none;
+    box-shadow:
+        inset 6px 6px 12px var(--neuro-shadow-dark),
+        inset -6px -6px 12px var(--neuro-shadow-light),
+        0 0 0 2px var(--neuro-accent);
+}
+
+.neuro-input::placeholder {
+    color: var(--neuro-text-secondary);
+    opacity: 0.6;
+}
+
+/* Countdown timer styling */
+.neuro-countdown {
+    display: inline-block;
+    background: var(--neuro-bg);
+    padding: 0.5rem 1rem;
+    border-radius: var(--neuro-radius-sm);
+    box-shadow: var(--neuro-shadow-inset-md);
+    color: var(--neuro-accent);
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    margin-top: 0.5rem;
+}
+
+/* Login message neumorphic styling */
+.neuro-login-message {
+    background: var(--neuro-bg);
+    padding: 3rem 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    border-radius: var(--neuro-radius-xl);
+    box-shadow: var(--neuro-shadow-lg);
+    text-align: center;
+}
+
+.neuro-login-message h2 {
+    color: var(--neuro-text-primary);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.neuro-login-message p {
+    color: var(--neuro-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* Pressed state for interactive elements */
+.neuro-pressed {
+    box-shadow: var(--neuro-shadow-inset) !important;
+    transform: scale(0.98);
+}
+
+/* Bento grid neumorphic override */
+.bento-grid.neuro-grid {
+    background: transparent;
+    padding: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .neuro-card {
+        padding: 1.25rem;
+    }
+
+    .neuro-modal-content {
+        padding: 2rem;
+        max-width: 95%;
+    }
+
+    .neuro-btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .neuro-card {
+        padding: 1rem;
+    }
+
+    .neuro-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .neuro-modal-content {
+        padding: 1.5rem;
+    }
+
+    .neuro-login-message {
+        padding: 2rem 1.5rem;
+    }
+
+    .neuro-login-message h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Smooth scrollbar for neumorphic design */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--neuro-bg);
+    border-radius: var(--neuro-radius-sm);
+    box-shadow: var(--neuro-shadow-inset);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neuro-bg);
+    border-radius: var(--neuro-radius-sm);
+    box-shadow: var(--neuro-shadow-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    box-shadow: var(--neuro-shadow-md);
+}

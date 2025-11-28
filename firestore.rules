@@ -1,0 +1,58 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function hasRole(serverId, role) {
+      // TODO: Implement role checking logic based on server members
+      return true; // Placeholder
+    }
+
+    // Users
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow write: if isOwner(userId);
+    }
+    
+    // Usernames (for uniqueness check)
+    match /usernames/{username} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn(); // Add validation logic
+    }
+
+    // Servers
+    match /servers/{serverId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if hasRole(serverId, 'admin');
+      
+      // Channels
+      match /channels/{channelId} {
+        allow read: if isSignedIn(); // Add private channel logic
+        allow write: if hasRole(serverId, 'admin'); // Or manage_channels permission
+        
+        // Messages
+        match /messages/{messageId} {
+          allow read: if isSignedIn(); // Add channel permission logic
+          allow create: if isSignedIn();
+          allow update: if isOwner(resource.data.authorId); // Edit own message
+          allow delete: if isOwner(resource.data.authorId) || hasRole(serverId, 'admin');
+        }
+      }
+      
+      // Members
+      match /members/{memberId} {
+        allow read: if isSignedIn();
+        allow write: if false; // Only via Cloud Functions or Admin
+      }
+    }
+  }
+}
