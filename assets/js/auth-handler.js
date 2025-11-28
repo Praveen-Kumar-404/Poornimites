@@ -1,3 +1,40 @@
+// Firebase imports
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
+    authDomain: "poornimites-2bbe7.firebaseapp.com",
+    projectId: "poornimites-2bbe7",
+    storageBucket: "poornimites-2bbe7.appspot.com",
+    messagingSenderId: "597165564910",
+    appId: "1:597165564910:web:4d87e756fa1250359324ff",
+    measurementId: "G-2M98Z8JY7Q"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Initialize Google Auth Provider
+const googleProvider = new GoogleAuthProvider();
+const allowedDomain = "poornima.edu.in";
+
 // Set Google Auth to only allow poornima.edu.in domain
 googleProvider.setCustomParameters({
     hd: allowedDomain
@@ -146,25 +183,33 @@ export async function handleSignup(email, password, username, button) {
 
 // Google Sign In
 export async function handleGoogleSignIn(button) {
+    console.log('Google sign-in button clicked');
     setLoading(button, true);
 
     try {
+        console.log('Attempting to open Google sign-in popup...');
         const result = await signInWithPopup(auth, googleProvider);
+        console.log('Google sign-in successful:', result.user.email);
 
         // Verify domain
         const email = result.user.email;
         const domain = email.split("@")[1];
 
         if (domain !== allowedDomain) {
+            console.log('Domain verification failed:', domain);
             await auth.signOut();
             showError(`Only ${allowedDomain} emails are allowed.`);
             setLoading(button, false);
             return;
         }
 
+        console.log('Domain verified, proceeding with auth success...');
         await handleAuthSuccess(result.user);
     } catch (error) {
         console.error("Google sign-in error:", error);
+        console.error("Error code:", error.code);
+        console.error("Error message:", error.message);
+
         let errorMessage = "Google sign-in failed. Please try again.";
 
         switch (error.code) {
@@ -172,10 +217,13 @@ export async function handleGoogleSignIn(button) {
                 errorMessage = "Sign-in popup was closed.";
                 break;
             case 'auth/popup-blocked':
-                errorMessage = "Sign-in popup was blocked by your browser.";
+                errorMessage = "Sign-in popup was blocked by your browser. Please allow popups for this site.";
                 break;
             case 'auth/cancelled-popup-request':
                 errorMessage = "Sign-in was cancelled.";
+                break;
+            case 'auth/unauthorized-domain':
+                errorMessage = "This domain is not authorized for Google sign-in. Please contact support.";
                 break;
         }
 
@@ -183,14 +231,6 @@ export async function handleGoogleSignIn(button) {
         setLoading(button, false);
     }
 }
-
-// Check if user is already logged in
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        // User is already logged in, redirect immediately
-        window.location.href = getRedirectUrl();
-    }
-});
 
 // Export auth instance for other modules
 export { auth, db };
