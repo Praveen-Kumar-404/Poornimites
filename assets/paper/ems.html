@@ -6530,6 +6530,19 @@
             navigator.serviceWorker.register('/sw.js').catch(() => { });
         }
     </script>
+
+
+
+    <audio id="bg-audio" src="audio.mp3" autoplay loop style="display:none;"></audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById("bg-audio");
+  audio.play().catch(() => {});
+});
+</script>
+
 </body>
+
 
 </html>
