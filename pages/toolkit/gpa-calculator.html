@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPA Calculator - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>📊 GPA Calculator</h1>
+            <p>Calculate your GPA/CGPA with semester tracking</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="tool-section">
+                    <div class="d-flex justify-between align-center mb-3">
+                        <h2>Current Semester</h2>
+                        <select id="gradingScale" class="form-control" style="width: 150px;">
+                            <option value="4.0">4.0 Scale</option>
+                            <option value="10.0" selected>10.0 Scale</option>
+                        </select>
+                    </div>
+
+                    <div id="coursesContainer"></div>
+
+                    <button class="btn btn-primary" onclick="gpaCalc.addCourse()">+ Add Course</button>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Results</h2>
+                    <div class="tool-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="semesterGPA">0.00</div>
+                            <div class="stat-label">Semester GPA</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="cumulativeGPA">0.00</div>
+                            <div class="stat-label">Cumulative GPA</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 d-flex gap-2">
+                        <button class="btn btn-success" onclick="gpaCalc.saveSemester()">💾 Save Semester</button>
+                        <button class="btn btn-secondary" onclick="gpaCalc.clearCourses()">🗑️ Clear All</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <h2>Saved Semesters</h2>
+                    <div id="semestersContainer">
+                        <p class="text-muted text-center">No semesters saved yet</p>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Grade Scale</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Grade</th>
+                                <th>Points (10.0)</th>
+                                <th>Points (4.0)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>O / A+</td>
+                                <td>10</td>
+                                <td>4.0</td>
+                            </tr>
+                            <tr>
+                                <td>A+</td>
+                                <td>9</td>
+                                <td>3.7</td>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>8</td>
+                                <td>3.3</td>
+                            </tr>
+                            <tr>
+                                <td>B+</td>
+                                <td>7</td>
+                                <td>3.0</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>6</td>
+                                <td>2.7</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>5</td>
+                                <td>2.0</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>4</td>
+                                <td>1.0</td>
+                            </tr>
+                            <tr>
+                                <td>F</td>
+                                <td>0</td>
+                                <td>0.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const gpaCalc = {
+            courses: [],
+            semesters: [],
+            gradingScale: 10.0,
+
+            gradePoints: {
+                '10.0': {
+                    'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'D': 4, 'F': 0
+                },
+                '4.0': {
+                    'A+': 4.0, 'A': 3.7, 'A-': 3.3, 'B+': 3.0, 'B': 2.7, 'B-': 2.3,
+                    'C+': 2.0, 'C': 1.7, 'C-': 1.3, 'D': 1.0, 'F': 0.0
+                }
+            },
+
+            init() {
+                this.loadData();
+                this.addCourse();
+                this.addCourse();
+                this.addCourse();
+                this.renderSemesters();
+                this.calculate();
+
+                document.getElementById('gradingScale').addEventListener('change', (e) => {
+                    this.gradingScale = parseFloat(e.target.value);
+                    this.renderCourses();
+                    this.calculate();
+                });
+            },
+
+            addCourse() {
+                const course = {
+                    id: ToolkitUtils.generateId('course'),
+                    name: '',
+                    credits: 3,
+                    grade: ''
+                };
+
+                this.courses.push(course);
+                this.renderCourses();
+            },
+
+            removeCourse(id) {
+                this.courses = this.courses.filter(c => c.id !== id);
+                this.renderCourses();
+                this.calculate();
+            },
+
+            renderCourses() {
+                const container = document.getElementById('coursesContainer');
+                const scale = this.gradingScale.toString();
+                const grades = Object.keys(this.gradePoints[scale]);
+
+                container.innerHTML = this.courses.map(course => `
+                <div class="card mb-2 p-2">
+                    <div class="tool-grid-3" style="align-items: center;">
+                        <input type="text" 
+                               class="form-control" 
+                               placeholder="Course Name"
+                               value="${course.name}"
+                               onchange="gpaCalc.updateCourse('${course.id}', 'name', this.value)">
+                        
+                        <input type="number" 
+                               class="form-control" 
+                               placeholder="Credits"
+                               value="${course.credits}"
+                               min="1"
+                               max="10"
+                               onchange="gpaCalc.updateCourse('${course.id}', 'credits', this.value)">
+                        
+                        <div class="d-flex gap-1">
+                            <select class="form-control" 
+                                    onchange="gpaCalc.updateCourse('${course.id}', 'grade', this.value)">
+                                <option value="">Grade</option>
+                                ${grades.map(g => `
+                                    <option value="${g}" ${course.grade === g ? 'selected' : ''}>${g}</option>
+                                `).join('')}
+                            </select>
+                            <button class="btn btn-danger btn-sm" 
+                                    onclick="gpaCalc.removeCourse('${course.id}')"
+                                    style="min-width: 40px;">×</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            },
+
+            updateCourse(id, field, value) {
+                const course = this.courses.find(c => c.id === id);
+                if (course) {
+                    if (field === 'credits') {
+                        course[field] = parseInt(value) || 0;
+                    } else {
+                        course[field] = value;
+                    }
+                    this.calculate();
+                }
+            },
+
+            calculate() {
+                let totalPoints = 0;
+                let totalCredits = 0;
+                const scale = this.gradingScale.toString();
+
+                this.courses.forEach(course => {
+                    if (course.grade && course.credits > 0) {
+                        const points = this.gradePoints[scale][course.grade] || 0;
+                        totalPoints += points * course.credits;
+                        totalCredits += course.credits;
+                    }
+                });
+
+                const semesterGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : '0.00';
+                document.getElementById('semesterGPA').textContent = semesterGPA;
+
+                // Calculate cumulative GPA
+                let cumulativePoints = totalPoints;
+                let cumulativeCredits = totalCredits;
+
+                this.semesters.forEach(sem => {
+                    cumulativePoints += sem.totalPoints;
+                    cumulativeCredits += sem.totalCredits;
+                });
+
+                const cumulativeGPA = cumulativeCredits > 0 ?
+                    (cumulativePoints / cumulativeCredits).toFixed(2) : '0.00';
+                document.getElementById('cumulativeGPA').textContent = cumulativeGPA;
+            },
+
+            saveSemester() {
+                const scale = this.gradingScale.toString();
+                let totalPoints = 0;
+                let totalCredits = 0;
+
+                const validCourses = this.courses.filter(c => c.grade && c.credits > 0);
+
+                if (validCourses.length === 0) {
+                    ToolkitUtils.showToast('Add courses with grades first', 'warning');
+                    return;
+                }
+
+                validCourses.forEach(course => {
+                    const points = this.gradePoints[scale][course.grade] || 0;
+                    totalPoints += points * course.credits;
+                    totalCredits += course.credits;
+                });
+
+                const gpa = (totalPoints / totalCredits).toFixed(2);
+
+                const semester = {
+                    id: ToolkitUtils.generateId('sem'),
+                    name: `Semester ${this.semesters.length + 1}`,
+                    courses: validCourses,
+                    gpa: gpa,
+                    totalPoints: totalPoints,
+                    totalCredits: totalCredits,
+                    scale: this.gradingScale,
+                    date: new Date()
+                };
+
+                this.semesters.push(semester);
+                this.saveData();
+                this.renderSemesters();
+                this.clearCourses();
+
+                ToolkitUtils.showToast('Semester saved successfully!', 'success');
+            },
+
+            clearCourses() {
+                if (confirm('Clear all courses?')) {
+                    this.courses = [];
+                    this.addCourse();
+                    this.addCourse();
+                    this.addCourse();
+                    this.calculate();
+                }
+            },
+
+            renderSemesters() {
+                const container = document.getElementById('semestersContainer');
+
+                if (this.semesters.length === 0) {
+                    container.innerHTML = '<p class="text-muted text-center">No semesters saved yet</p>';
+                    return;
+                }
+
+                container.innerHTML = this.semesters.map(sem => `
+                <div class="card mb-2 p-3">
+                    <div class="d-flex justify-between align-center mb-2">
+                        <strong>${sem.name}</strong>
+                        <div>
+                            <span class="badge badge-primary">GPA: ${sem.gpa}</span>
+                            <button class="btn btn-danger btn-sm" 
+                                    onclick="gpaCalc.deleteSemester('${sem.id}')"
+                                    style="margin-left: 0.5rem;">×</button>
+                        </div>
+                    </div>
+                    <div class="text-muted" style="font-size: 0.9rem;">
+                        ${sem.courses.length} courses • ${sem.totalCredits} credits
+                    </div>
+                    <details style="margin-top: 0.5rem;">
+                        <summary style="cursor: pointer;">View Courses</summary>
+                        <div style="margin-top: 0.5rem;">
+                            ${sem.courses.map(c => `
+                                <div style="padding: 0.25rem 0; border-bottom: 1px solid var(--toolkit-border);">
+                                    ${c.name} - ${c.credits} credits - Grade: ${c.grade}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </details>
+                </div>
+            `).join('');
+            },
+
+            deleteSemester(id) {
+                if (confirm('Delete this semester?')) {
+                    this.semesters = this.semesters.filter(s => s.id !== id);
+                    this.saveData();
+                    this.renderSemesters();
+                    this.calculate();
+                    ToolkitUtils.showToast('Semester deleted', 'info');
+                }
+            },
+
+            saveData() {
+                ToolkitUtils.storage.save('gpa_semesters', this.semesters);
+            },
+
+            loadData() {
+                this.semesters = ToolkitUtils.storage.load('gpa_semesters', []);
+            }
+        };
+
+        // Initialize on page load
+        gpaCalc.init();
+    </script>
+</body>
+
+</html>

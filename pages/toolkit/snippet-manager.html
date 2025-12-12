@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Snippet Manager - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+    <style>
+        .snippet-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .snippet-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px var(--toolkit-shadow);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .snippet-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--toolkit-shadow-lg);
+        }
+
+        .snippet-card.active {
+            border-left: 4px solid var(--toolkit-primary);
+        }
+
+        .snippet-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .snippet-lang {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: var(--toolkit-light);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+        }
+
+        .code-editor {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            min-height: 300px;
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>📋 Code Snippet Manager</h1>
+            <p>Save and organize your code snippets</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="tool-section">
+                    <div class="d-flex justify-between align-center mb-3">
+                        <h2>My Snippets</h2>
+                        <button class="btn btn-primary btn-sm" onclick="snippets.newSnippet()">+ New</button>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="searchSnippets" class="form-control" placeholder="Search snippets..."
+                            oninput="snippets.search()">
+                    </div>
+
+                    <div class="snippet-list" id="snippetList"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section" id="editorSection" style="display: none;">
+                    <h2>Snippet Editor</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <input type="text" id="snippetTitle" class="form-control" placeholder="Snippet title...">
+                    </div>
+
+                    <div class="tool-grid">
+                        <div class="form-group">
+                            <label class="form-label">Language</label>
+                            <select id="snippetLang" class="form-control">
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="java">Java</option>
+                                <option value="cpp">C++</option>
+                                <option value="html">HTML</option>
+                                <option value="css">CSS</option>
+                                <option value="sql">SQL</option>
+                                <option value="bash">Bash</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tags (comma-separated)</label>
+                            <input type="text" id="snippetTags" class="form-control"
+                                placeholder="react, hooks, useState">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <input type="text" id="snippetDesc" class="form-control"
+                            placeholder="What does this snippet do?">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Code</label>
+                        <textarea id="snippetCode" class="form-control code-editor"
+                            placeholder="Paste your code here..."></textarea>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-between">
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-success" onclick="snippets.save()">💾 Save</button>
+                            <button class="btn btn-secondary" onclick="snippets.copy()">📋 Copy Code</button>
+                        </div>
+                        <button class="btn btn-danger" onclick="snippets.delete()">🗑️ Delete</button>
+                    </div>
+                </div>
+
+                <div id="emptyState" class="empty-state" style="padding: 4rem 2rem;">
+                    <h2>📋 No Snippet Selected</h2>
+                    <p>Create a new snippet or select one from the list</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const snippets = {
+            all: [],
+            current: null,
+
+            init() {
+                this.load();
+                this.render();
+            },
+
+            newSnippet() {
+                this.current = {
+                    id: ToolkitUtils.generateId('snippet'),
+                    title: 'Untitled Snippet',
+                    lang: 'javascript',
+                    tags: [],
+                    description: '',
+                    code: '',
+                    createdAt: new Date(),
+                    updatedAt: new Date()
+                };
+
+                this.all.unshift(this.current);
+                this.showEditor();
+                this.render();
+            },
+
+            select(id) {
+                this.current = this.all.find(s => s.id === id);
+                this.showEditor();
+                this.render();
+            },
+
+            showEditor() {
+                if (!this.current) return;
+
+                document.getElementById('emptyState').style.display = 'none';
+                document.getElementById('editorSection').style.display = 'block';
+
+                document.getElementById('snippetTitle').value = this.current.title;
+                document.getElementById('snippetLang').value = this.current.lang;
+                document.getElementById('snippetTags').value = this.current.tags.join(', ');
+                document.getElementById('snippetDesc').value = this.current.description;
+                document.getElementById('snippetCode').value = this.current.code;
+            },
+
+            save() {
+                if (!this.current) return;
+
+                this.current.title = document.getElementById('snippetTitle').value || 'Untitled Snippet';
+                this.current.lang = document.getElementById('snippetLang').value;
+                this.current.tags = document.getElementById('snippetTags').value
+                    .split(',')
+                    .map(t => t.trim())
+                    .filter(t => t);
+                this.current.description = document.getElementById('snippetDesc').value;
+                this.current.code = document.getElementById('snippetCode').value;
+                this.current.updatedAt = new Date();
+
+                this.saveToStorage();
+                this.render();
+                ToolkitUtils.showToast('Snippet saved!', 'success');
+            },
+
+            delete() {
+                if (!this.current) return;
+
+                if (confirm('Delete this snippet?')) {
+                    this.all = this.all.filter(s => s.id !== this.current.id);
+                    this.current = null;
+
+                    document.getElementById('emptyState').style.display = 'block';
+                    document.getElementById('editorSection').style.display = 'none';
+
+                    this.saveToStorage();
+                    this.render();
+                    ToolkitUtils.showToast('Snippet deleted', 'info');
+                }
+            },
+
+            copy() {
+                if (!this.current) return;
+                const code = document.getElementById('snippetCode').value;
+                ToolkitUtils.copyToClipboard(code);
+            },
+
+            search() {
+                const query = document.getElementById('searchSnippets').value.toLowerCase();
+                const filtered = this.all.filter(s =>
+                    s.title.toLowerCase().includes(query) ||
+                    s.description.toLowerCase().includes(query) ||
+                    s.tags.some(t => t.toLowerCase().includes(query)) ||
+                    s.lang.toLowerCase().includes(query)
+                );
+                this.render(filtered);
+            },
+
+            render(snippetsToRender = null) {
+                const container = document.getElementById('snippetList');
+                const snippets = snippetsToRender || this.all;
+
+                if (snippets.length === 0) {
+                    container.innerHTML = '<p class="text-muted text-center">No snippets yet</p>';
+                    return;
+                }
+
+                container.innerHTML = snippets.map(snippet => `
+                <div class="snippet-card ${this.current && this.current.id === snippet.id ? 'active' : ''}"
+                     onclick="snippets.select('${snippet.id}')">
+                    <div class="snippet-title">${snippet.title}</div>
+                    <div class="mb-2">
+                        <span class="snippet-lang">${snippet.lang}</span>
+                        ${snippet.tags.map(tag => `<span class="badge badge-secondary">${tag}</span>`).join(' ')}
+                    </div>
+                    ${snippet.description ? `<div class="text-muted" style="font-size: 0.9rem;">${snippet.description}</div>` : ''}
+                    <div class="text-muted" style="font-size: 0.85rem; margin-top: 0.5rem;">
+                        ${new Date(snippet.updatedAt).toLocaleDateString()}
+                    </div>
+                </div>
+            `).join('');
+            },
+
+            saveToStorage() {
+                ToolkitUtils.storage.save('code_snippets', this.all);
+            },
+
+            load() {
+                this.all = ToolkitUtils.storage.load('code_snippets', []);
+            }
+        };
+
+        snippets.init();
+    </script>
+</body>
+
+</html>

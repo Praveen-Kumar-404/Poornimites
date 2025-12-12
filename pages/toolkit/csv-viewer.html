@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSV Viewer - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+    <style>
+        .csv-table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px var(--toolkit-shadow);
+        }
+
+        .csv-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .csv-table th,
+        .csv-table td {
+            border: 1px solid var(--toolkit-border);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .csv-table th {
+            background: var(--toolkit-primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .csv-table tbody tr:hover {
+            background: var(--toolkit-light);
+        }
+
+        .editable-cell {
+            cursor: pointer;
+        }
+
+        .editable-cell:hover {
+            background: #fff3cd;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>📊 CSV Viewer</h1>
+            <p>View, edit, and convert CSV files</p>
+        </div>
+
+        <div class="tool-section">
+            <h2>Load CSV Data</h2>
+
+            <div class="tool-grid">
+                <div class="file-upload" onclick="document.getElementById('csvFile').click()">
+                    <div class="file-upload-icon">📁</div>
+                    <div>Click to upload CSV file</div>
+                    <input type="file" id="csvFile" accept=".csv" onchange="csvViewer.loadFile(event)">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Or paste CSV data</label>
+                    <textarea id="csvInput" class="form-control" rows="5"
+                        placeholder="Name,Age,City&#10;John,30,New York&#10;Jane,25,London"></textarea>
+                    <button class="btn btn-primary mt-2" onclick="csvViewer.parseCSV()">Load Data</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-section" id="tableSection" style="display: none;">
+            <div class="d-flex justify-between align-center mb-3">
+                <h2>Data Table (<span id="rowCount">0</span> rows)</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-secondary btn-sm" onclick="csvViewer.addRow()">+ Add Row</button>
+                    <button class="btn btn-secondary btn-sm" onclick="csvViewer.exportCSV()">📥 Export CSV</button>
+                    <button class="btn btn-secondary btn-sm" onclick="csvViewer.exportJSON()">📥 Export JSON</button>
+                </div>
+            </div>
+
+            <div class="csv-table-container">
+                <table class="csv-table" id="csvTable"></table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const csvViewer = {
+            data: [],
+            headers: [],
+
+            loadFile(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('csvInput').value = e.target.result;
+                    this.parseCSV();
+                };
+                reader.readAsText(file);
+            },
+
+            parseCSV() {
+                const input = document.getElementById('csvInput').value.trim();
+                if (!input) {
+                    ToolkitUtils.showToast('Please provide CSV data', 'warning');
+                    return;
+                }
+
+                const lines = input.split('\n').map(line => line.trim()).filter(line => line);
+
+                if (lines.length === 0) {
+                    ToolkitUtils.showToast('No data found', 'warning');
+                    return;
+                }
+
+                // Parse headers
+                this.headers = this.parseCSVLine(lines[0]);
+
+                // Parse data
+                this.data = lines.slice(1).map(line => {
+                    const values = this.parseCSVLine(line);
+                    const row = {};
+                    this.headers.forEach((header, index) => {
+                        row[header] = values[index] || '';
+                    });
+                    return row;
+                });
+
+                this.renderTable();
+                document.getElementById('tableSection').style.display = 'block';
+                ToolkitUtils.showToast(`Loaded ${this.data.length} rows`, 'success');
+            },
+
+            parseCSVLine(line) {
+                const result = [];
+                let current = '';
+                let inQuotes = false;
+
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        result.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+
+                result.push(current.trim());
+                return result;
+            },
+
+            renderTable() {
+                const table = document.getElementById('csvTable');
+
+                // Render headers
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                this.headers.forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header;
+                    headerRow.appendChild(th);
+                });
+                const actionTh = document.createElement('th');
+                actionTh.textContent = 'Actions';
+                actionTh.style.width = '100px';
+                headerRow.appendChild(actionTh);
+                thead.appendChild(headerRow);
+
+                // Render data
+                const tbody = document.createElement('tbody');
+                this.data.forEach((row, rowIndex) => {
+                    const tr = document.createElement('tr');
+
+                    this.headers.forEach(header => {
+                        const td = document.createElement('td');
+                        td.textContent = row[header];
+                        td.className = 'editable-cell';
+                        td.onclick = () => this.editCell(rowIndex, header, td);
+                        tr.appendChild(td);
+                    });
+
+                    const actionTd = document.createElement('td');
+                    actionTd.innerHTML = `<button class="btn btn-danger btn-sm" onclick="csvViewer.deleteRow(${rowIndex})">×</button>`;
+                    tr.appendChild(actionTd);
+
+                    tbody.appendChild(tr);
+                });
+
+                table.innerHTML = '';
+                table.appendChild(thead);
+                table.appendChild(tbody);
+
+                document.getElementById('rowCount').textContent = this.data.length;
+            },
+
+            editCell(rowIndex, header, cell) {
+                const currentValue = this.data[rowIndex][header];
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = currentValue;
+                input.className = 'form-control';
+                input.style.width = '100%';
+
+                input.onblur = () => {
+                    this.data[rowIndex][header] = input.value;
+                    cell.textContent = input.value;
+                };
+
+                input.onkeypress = (e) => {
+                    if (e.key === 'Enter') {
+                        input.blur();
+                    }
+                };
+
+                cell.innerHTML = '';
+                cell.appendChild(input);
+                input.focus();
+            },
+
+            addRow() {
+                const newRow = {};
+                this.headers.forEach(header => {
+                    newRow[header] = '';
+                });
+                this.data.push(newRow);
+                this.renderTable();
+            },
+
+            deleteRow(index) {
+                if (confirm('Delete this row?')) {
+                    this.data.splice(index, 1);
+                    this.renderTable();
+                }
+            },
+
+            exportCSV() {
+                let csv = this.headers.join(',') + '\n';
+
+                this.data.forEach(row => {
+                    const values = this.headers.map(header => {
+                        const value = row[header] || '';
+                        return value.includes(',') ? `"${value}"` : value;
+                    });
+                    csv += values.join(',') + '\n';
+                });
+
+                ToolkitUtils.file.download(csv, 'export.csv', 'text/csv');
+            },
+
+            exportJSON() {
+                const json = JSON.stringify(this.data, null, 2);
+                ToolkitUtils.file.download(json, 'export.json', 'application/json');
+            }
+        };
+    </script>
+</body>
+
+</html>

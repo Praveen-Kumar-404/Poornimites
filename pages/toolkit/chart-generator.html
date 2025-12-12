@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chart Generator - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>📈 Chart Generator</h1>
+            <p>Create beautiful charts and graphs from your data</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="tool-section">
+                    <h2>Chart Configuration</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Chart Type</label>
+                        <select id="chartType" class="form-control" onchange="chartGen.updateChart()">
+                            <option value="bar">Bar Chart</option>
+                            <option value="line">Line Chart</option>
+                            <option value="pie">Pie Chart</option>
+                            <option value="doughnut">Doughnut Chart</option>
+                            <option value="radar">Radar Chart</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Chart Title</label>
+                        <input type="text" id="chartTitle" class="form-control" value="My Chart"
+                            onchange="chartGen.updateChart()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Labels (comma-separated)</label>
+                        <input type="text" id="chartLabels" class="form-control" value="Jan, Feb, Mar, Apr, May"
+                            onchange="chartGen.updateChart()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Data (comma-separated)</label>
+                        <input type="text" id="chartData" class="form-control" value="12, 19, 3, 5, 2"
+                            onchange="chartGen.updateChart()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Color Scheme</label>
+                        <select id="colorScheme" class="form-control" onchange="chartGen.updateChart()">
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                            <option value="red">Red</option>
+                            <option value="purple">Purple</option>
+                            <option value="rainbow">Rainbow</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" onclick="chartGen.updateChart()">🔄 Update Chart</button>
+                    <button class="btn btn-secondary btn-block mt-2" onclick="chartGen.downloadChart()">📥 Download
+                        PNG</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <h2>Chart Preview</h2>
+                    <div
+                        style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px var(--toolkit-shadow);">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Quick Templates</h2>
+                    <div class="tool-grid-3">
+                        <button class="btn btn-secondary btn-sm" onclick="chartGen.loadTemplate('sales')">Sales
+                            Data</button>
+                        <button class="btn btn-secondary btn-sm" onclick="chartGen.loadTemplate('grades')">Grade
+                            Distribution</button>
+                        <button class="btn btn-secondary btn-sm"
+                            onclick="chartGen.loadTemplate('attendance')">Attendance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const chartGen = {
+            chart: null,
+
+            colorSchemes: {
+                blue: ['#004080', '#0066cc', '#00a8e8', '#4facfe', '#00f2fe'],
+                green: ['#155724', '#28a745', '#43e97b', '#38f9d7', '#c6ffdd'],
+                red: ['#721c24', '#dc3545', '#f093fb', '#f5576c', '#fa709a'],
+                purple: ['#330867', '#667eea', '#764ba2', '#f093fb', '#c471f5'],
+                rainbow: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+            },
+
+            templates: {
+                sales: {
+                    title: 'Monthly Sales',
+                    labels: 'Jan, Feb, Mar, Apr, May, Jun',
+                    data: '4500, 5200, 4800, 6100, 5900, 7200',
+                    type: 'bar'
+                },
+                grades: {
+                    title: 'Grade Distribution',
+                    labels: 'A, B, C, D, F',
+                    data: '25, 35, 20, 15, 5',
+                    type: 'pie'
+                },
+                attendance: {
+                    title: 'Weekly Attendance',
+                    labels: 'Mon, Tue, Wed, Thu, Fri',
+                    data: '95, 92, 88, 90, 85',
+                    type: 'line'
+                }
+            },
+
+            init() {
+                this.updateChart();
+            },
+
+            updateChart() {
+                const type = document.getElementById('chartType').value;
+                const title = document.getElementById('chartTitle').value;
+                const labels = document.getElementById('chartLabels').value.split(',').map(l => l.trim());
+                const data = document.getElementById('chartData').value.split(',').map(d => parseFloat(d.trim()));
+                const colorScheme = document.getElementById('colorScheme').value;
+
+                if (this.chart) {
+                    this.chart.destroy();
+                }
+
+                const ctx = document.getElementById('myChart').getContext('2d');
+
+                const colors = this.colorSchemes[colorScheme];
+                const backgroundColor = type === 'pie' || type === 'doughnut' || type === 'radar'
+                    ? colors
+                    : colors[0];
+                const borderColor = type === 'line' ? colors[0] : colors;
+
+                this.chart = new Chart(ctx, {
+                    type: type,
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: title,
+                            data: data,
+                            backgroundColor: backgroundColor,
+                            borderColor: borderColor,
+                            borderWidth: 2,
+                            fill: type === 'line' ? false : true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: title,
+                                font: {
+                                    size: 18,
+                                    weight: 'bold'
+                                }
+                            },
+                            legend: {
+                                display: type === 'pie' || type === 'doughnut',
+                                position: 'bottom'
+                            }
+                        },
+                        scales: type === 'pie' || type === 'doughnut' ? {} : {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            },
+
+            loadTemplate(templateName) {
+                const template = this.templates[templateName];
+                if (template) {
+                    document.getElementById('chartTitle').value = template.title;
+                    document.getElementById('chartLabels').value = template.labels;
+                    document.getElementById('chartData').value = template.data;
+                    document.getElementById('chartType').value = template.type;
+                    this.updateChart();
+                    ToolkitUtils.showToast('Template loaded!', 'success');
+                }
+            },
+
+            downloadChart() {
+                const canvas = document.getElementById('myChart');
+                const url = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'chart.png';
+                link.href = url;
+                link.click();
+                ToolkitUtils.showToast('Chart downloaded!', 'success');
+            }
+        };
+
+        chartGen.init();
+    </script>
+</body>
+
+</html>

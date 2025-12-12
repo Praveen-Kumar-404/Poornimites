@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Editor - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/sql/sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>⌨️ Code Editor</h1>
+            <p>Lightweight code editor with syntax highlighting</p>
+        </div>
+
+        <div class="tool-section">
+            <div class="d-flex justify-between align-center mb-3">
+                <div class="d-flex gap-2 align-center">
+                    <label class="form-label" style="margin: 0;">Language:</label>
+                    <select id="languageSelect" class="form-control" style="width: 150px;"
+                        onchange="editor.changeLanguage()">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="htmlmixed">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="sql">SQL</option>
+                        <option value="text/x-java">Java</option>
+                        <option value="text/x-c++src">C++</option>
+                    </select>
+
+                    <label class="form-label" style="margin: 0 0 0 1rem;">Theme:</label>
+                    <select id="themeSelect" class="form-control" style="width: 150px;" onchange="editor.changeTheme()">
+                        <option value="default">Default</option>
+                        <option value="monokai" selected>Monokai</option>
+                    </select>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-secondary btn-sm" onclick="editor.runCode()">▶ Run</button>
+                    <button class="btn btn-secondary btn-sm" onclick="editor.downloadCode()">📥 Download</button>
+                    <button class="btn btn-secondary btn-sm" onclick="editor.copyCode()">📋 Copy</button>
+                </div>
+            </div>
+
+            <div id="editorContainer"
+                style="border: 2px solid var(--toolkit-border); border-radius: 12px; overflow: hidden;"></div>
+
+            <div id="outputSection" class="mt-3" style="display: none;">
+                <h3>Output:</h3>
+                <pre id="output"
+                    style="background: #f8f9fa; padding: 1rem; border-radius: 8px; max-height: 200px; overflow-y: auto;"></pre>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const editor = {
+            cm: null,
+
+            init() {
+                this.cm = CodeMirror(document.getElementById('editorContainer'), {
+                    value: '// Start coding here...\n',
+                    mode: 'javascript',
+                    theme: 'monokai',
+                    lineNumbers: true,
+                    autoCloseBrackets: true,
+                    matchBrackets: true,
+                    indentUnit: 2,
+                    tabSize: 2,
+                    lineWrapping: true
+                });
+
+                this.cm.setSize('100%', '500px');
+            },
+
+            changeLanguage() {
+                const lang = document.getElementById('languageSelect').value;
+                this.cm.setOption('mode', lang);
+            },
+
+            changeTheme() {
+                const theme = document.getElementById('themeSelect').value;
+                this.cm.setOption('theme', theme);
+            },
+
+            runCode() {
+                const code = this.cm.getValue();
+                const lang = document.getElementById('languageSelect').value;
+
+                if (lang === 'javascript') {
+                    try {
+                        // Capture console.log
+                        const logs = [];
+                        const originalLog = console.log;
+                        console.log = (...args) => {
+                            logs.push(args.join(' '));
+                        };
+
+                        eval(code);
+
+                        console.log = originalLog;
+
+                        document.getElementById('outputSection').style.display = 'block';
+                        document.getElementById('output').textContent = logs.length > 0
+                            ? logs.join('\n')
+                            : 'Code executed successfully (no output)';
+                    } catch (error) {
+                        document.getElementById('outputSection').style.display = 'block';
+                        document.getElementById('output').textContent = `Error: ${error.message}`;
+                    }
+                } else {
+                    ToolkitUtils.showToast('Code execution only supported for JavaScript', 'info');
+                }
+            },
+
+            downloadCode() {
+                const code = this.cm.getValue();
+                const lang = document.getElementById('languageSelect').value;
+
+                const extensions = {
+                    'javascript': 'js',
+                    'python': 'py',
+                    'htmlmixed': 'html',
+                    'css': 'css',
+                    'sql': 'sql',
+                    'text/x-java': 'java',
+                    'text/x-c++src': 'cpp'
+                };
+
+                const ext = extensions[lang] || 'txt';
+                ToolkitUtils.file.download(code, `code.${ext}`, 'text/plain');
+            },
+
+            copyCode() {
+                const code = this.cm.getValue();
+                ToolkitUtils.copyToClipboard(code);
+            }
+        };
+
+        editor.init();
+    </script>
+</body>
+
+</html>

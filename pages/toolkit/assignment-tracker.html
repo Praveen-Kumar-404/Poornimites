@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment Tracker - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+    <style>
+        .assignment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px var(--toolkit-shadow);
+            border-left: 4px solid;
+            transition: all 0.2s ease;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--toolkit-shadow-lg);
+        }
+
+        .assignment-card.status-not-started {
+            border-left-color: #6c757d;
+        }
+
+        .assignment-card.status-in-progress {
+            border-left-color: var(--toolkit-warning);
+        }
+
+        .assignment-card.status-completed {
+            border-left-color: var(--toolkit-success);
+            opacity: 0.7;
+        }
+
+        .assignment-card.overdue {
+            border-left-color: var(--toolkit-danger);
+            background: #fff5f5;
+        }
+
+        .assignment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .assignment-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--toolkit-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .assignment-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .calendar-view {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px var(--toolkit-shadow);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            border: 1px solid var(--toolkit-border);
+            border-radius: 8px;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .calendar-day.has-assignment {
+            background: #e3f2fd;
+            border-color: var(--toolkit-primary);
+        }
+
+        .calendar-day.today {
+            background: var(--toolkit-primary);
+            color: white;
+        }
+
+        .assignment-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--toolkit-danger);
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>📅 Assignment Tracker</h1>
+            <p>Track assignments with deadlines and status</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="tool-section">
+                    <h2>Add New Assignment</h2>
+                    <div class="form-group">
+                        <label class="form-label">Assignment Title</label>
+                        <input type="text" id="assignmentTitle" class="form-control"
+                            placeholder="e.g., Math Homework Chapter 5">
+                    </div>
+
+                    <div class="tool-grid">
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" id="assignmentSubject" class="form-control"
+                                placeholder="e.g., Mathematics">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Due Date</label>
+                            <input type="date" id="assignmentDueDate" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="tool-grid">
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select id="assignmentStatus" class="form-control">
+                                <option value="not-started">Not Started</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Priority</label>
+                            <select id="assignmentPriority" class="form-control">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea id="assignmentNotes" class="form-control" rows="3"
+                            placeholder="Additional notes..."></textarea>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" onclick="tracker.addAssignment()">+ Add
+                        Assignment</button>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Statistics</h2>
+                    <div class="tool-grid-3">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalAssignments">0</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value text-success" id="completedAssignments">0</div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value text-danger" id="overdueAssignments">0</div>
+                            <div class="stat-label">Overdue</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <div class="d-flex justify-between align-center mb-3">
+                        <h2>Assignments</h2>
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-secondary btn-sm" onclick="tracker.setFilter('all')">All</button>
+                            <button class="btn btn-secondary btn-sm"
+                                onclick="tracker.setFilter('active')">Active</button>
+                            <button class="btn btn-secondary btn-sm"
+                                onclick="tracker.setFilter('overdue')">Overdue</button>
+                        </div>
+                    </div>
+
+                    <div id="assignmentsList"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const tracker = {
+            assignments: [],
+            filter: 'all',
+
+            init() {
+                this.loadAssignments();
+                this.renderAssignments();
+                this.updateStats();
+
+                // Set default due date to tomorrow
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                document.getElementById('assignmentDueDate').value = tomorrow.toISOString().split('T')[0];
+            },
+
+            addAssignment() {
+                const title = document.getElementById('assignmentTitle').value.trim();
+                const subject = document.getElementById('assignmentSubject').value.trim();
+                const dueDate = document.getElementById('assignmentDueDate').value;
+
+                if (!title || !subject || !dueDate) {
+                    ToolkitUtils.showToast('Please fill in all required fields', 'warning');
+                    return;
+                }
+
+                const assignment = {
+                    id: ToolkitUtils.generateId('assignment'),
+                    title,
+                    subject,
+                    dueDate,
+                    status: document.getElementById('assignmentStatus').value,
+                    priority: document.getElementById('assignmentPriority').value,
+                    notes: document.getElementById('assignmentNotes').value.trim(),
+                    createdAt: new Date()
+                };
+
+                this.assignments.unshift(assignment);
+                this.saveAssignments();
+                this.renderAssignments();
+                this.updateStats();
+
+                // Clear form
+                document.getElementById('assignmentTitle').value = '';
+                document.getElementById('assignmentSubject').value = '';
+                document.getElementById('assignmentNotes').value = '';
+
+                ToolkitUtils.showToast('Assignment added!', 'success');
+            },
+
+            updateAssignment(id, field, value) {
+                const assignment = this.assignments.find(a => a.id === id);
+                if (assignment) {
+                    assignment[field] = value;
+                    this.saveAssignments();
+                    this.renderAssignments();
+                    this.updateStats();
+                }
+            },
+
+            deleteAssignment(id) {
+                if (confirm('Delete this assignment?')) {
+                    this.assignments = this.assignments.filter(a => a.id !== id);
+                    this.saveAssignments();
+                    this.renderAssignments();
+                    this.updateStats();
+                    ToolkitUtils.showToast('Assignment deleted', 'info');
+                }
+            },
+
+            setFilter(filter) {
+                this.filter = filter;
+                this.renderAssignments();
+            },
+
+            getFilteredAssignments() {
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
+
+                switch (this.filter) {
+                    case 'active':
+                        return this.assignments.filter(a => a.status !== 'completed');
+                    case 'overdue':
+                        return this.assignments.filter(a => {
+                            const dueDate = new Date(a.dueDate);
+                            return dueDate < now && a.status !== 'completed';
+                        });
+                    default:
+                        return this.assignments;
+                }
+            },
+
+            isOverdue(assignment) {
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
+                const dueDate = new Date(assignment.dueDate);
+                return dueDate < now && assignment.status !== 'completed';
+            },
+
+            renderAssignments() {
+                const container = document.getElementById('assignmentsList');
+                const filtered = this.getFilteredAssignments();
+
+                if (filtered.length === 0) {
+                    container.innerHTML = '<p class="text-muted text-center">No assignments to show</p>';
+                    return;
+                }
+
+                container.innerHTML = filtered.map(assignment => {
+                    const overdue = this.isOverdue(assignment);
+                    const dueDate = new Date(assignment.dueDate);
+                    const daysUntilDue = Math.ceil((dueDate - new Date()) / (1000 * 60 * 60 * 24));
+
+                    return `
+                    <div class="assignment-card status-${assignment.status} ${overdue ? 'overdue' : ''}">
+                        <div class="assignment-header">
+                            <div style="flex: 1;">
+                                <div class="assignment-title">${assignment.title}</div>
+                                <div class="assignment-meta">
+                                    <span>📚 ${assignment.subject}</span>
+                                    <span>📅 Due: ${dueDate.toLocaleDateString()}</span>
+                                    ${overdue ? '<span class="text-danger">⚠️ OVERDUE</span>' : ''}
+                                    ${!overdue && daysUntilDue >= 0 ? `<span>${daysUntilDue === 0 ? 'Due Today!' : `${daysUntilDue} days left`}</span>` : ''}
+                                    <span class="badge badge-${assignment.priority === 'high' ? 'danger' : assignment.priority === 'medium' ? 'warning' : 'secondary'}">
+                                        ${assignment.priority.toUpperCase()}
+                                    </span>
+                                </div>
+                                ${assignment.notes ? `<p class="mt-2" style="color: #666;">${assignment.notes}</p>` : ''}
+                            </div>
+                            <button class="btn btn-danger btn-sm" onclick="tracker.deleteAssignment('${assignment.id}')">×</button>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <select class="form-control" style="width: auto;" onchange="tracker.updateAssignment('${assignment.id}', 'status', this.value)">
+                                <option value="not-started" ${assignment.status === 'not-started' ? 'selected' : ''}>Not Started</option>
+                                <option value="in-progress" ${assignment.status === 'in-progress' ? 'selected' : ''}>In Progress</option>
+                                <option value="completed" ${assignment.status === 'completed' ? 'selected' : ''}>Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+                }).join('');
+            },
+
+            updateStats() {
+                const total = this.assignments.length;
+                const completed = this.assignments.filter(a => a.status === 'completed').length;
+                const overdue = this.assignments.filter(a => this.isOverdue(a)).length;
+
+                document.getElementById('totalAssignments').textContent = total;
+                document.getElementById('completedAssignments').textContent = completed;
+                document.getElementById('overdueAssignments').textContent = overdue;
+            },
+
+            saveAssignments() {
+                ToolkitUtils.storage.save('assignments_data', this.assignments);
+            },
+
+            loadAssignments() {
+                this.assignments = ToolkitUtils.storage.load('assignments_data', []);
+            }
+        };
+
+        // Initialize
+        tracker.init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Citation Generator - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>📝 Citation Generator</h1>
+            <p>Generate citations in APA, MLA, Chicago, and Harvard formats</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="tool-section">
+                    <h2>Source Information</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Source Type</label>
+                        <select id="sourceType" class="form-control" onchange="citation.updateFields()">
+                            <option value="book">Book</option>
+                            <option value="journal">Journal Article</option>
+                            <option value="website">Website</option>
+                            <option value="newspaper">Newspaper Article</option>
+                        </select>
+                    </div>
+
+                    <div id="citationFields"></div>
+
+                    <button class="btn btn-primary btn-block" onclick="citation.generate()">Generate Citations</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <h2>Generated Citations</h2>
+
+                    <div class="tabs">
+                        <button class="tab active" data-tab="apa">APA 7th</button>
+                        <button class="tab" data-tab="mla">MLA 9th</button>
+                        <button class="tab" data-tab="chicago">Chicago</button>
+                        <button class="tab" data-tab="harvard">Harvard</button>
+                    </div>
+
+                    <div class="tab-content active" id="apa">
+                        <div class="alert alert-info">
+                            <div id="apaOutput" style="font-family: 'Times New Roman', serif; line-height: 2;">
+                                Fill in the source information to generate citation
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="citation.copy('apa')">📋 Copy APA</button>
+                    </div>
+
+                    <div class="tab-content" id="mla">
+                        <div class="alert alert-info">
+                            <div id="mlaOutput" style="font-family: 'Times New Roman', serif; line-height: 2;">
+                                Fill in the source information to generate citation
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="citation.copy('mla')">📋 Copy MLA</button>
+                    </div>
+
+                    <div class="tab-content" id="chicago">
+                        <div class="alert alert-info">
+                            <div id="chicagoOutput" style="font-family: 'Times New Roman', serif; line-height: 2;">
+                                Fill in the source information to generate citation
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="citation.copy('chicago')">📋 Copy Chicago</button>
+                    </div>
+
+                    <div class="tab-content" id="harvard">
+                        <div class="alert alert-info">
+                            <div id="harvardOutput" style="font-family: 'Times New Roman', serif; line-height: 2;">
+                                Fill in the source information to generate citation
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="citation.copy('harvard')">📋 Copy Harvard</button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Citation History</h2>
+                    <div id="citationHistory"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const citation = {
+            history: [],
+            currentCitations: {},
+
+            fields: {
+                book: [
+                    { id: 'author', label: 'Author(s)', placeholder: 'Last, F. M.' },
+                    { id: 'year', label: 'Year', placeholder: '2024' },
+                    { id: 'title', label: 'Book Title', placeholder: 'The Book Title' },
+                    { id: 'publisher', label: 'Publisher', placeholder: 'Publisher Name' },
+                    { id: 'city', label: 'City', placeholder: 'New York' }
+                ],
+                journal: [
+                    { id: 'author', label: 'Author(s)', placeholder: 'Last, F. M.' },
+                    { id: 'year', label: 'Year', placeholder: '2024' },
+                    { id: 'title', label: 'Article Title', placeholder: 'Article Title' },
+                    { id: 'journal', label: 'Journal Name', placeholder: 'Journal Name' },
+                    { id: 'volume', label: 'Volume', placeholder: '10' },
+                    { id: 'issue', label: 'Issue', placeholder: '2' },
+                    { id: 'pages', label: 'Pages', placeholder: '123-145' }
+                ],
+                website: [
+                    { id: 'author', label: 'Author/Organization', placeholder: 'Author Name or Organization' },
+                    { id: 'year', label: 'Year', placeholder: '2024' },
+                    { id: 'title', label: 'Page Title', placeholder: 'Page Title' },
+                    { id: 'website', label: 'Website Name', placeholder: 'Website Name' },
+                    { id: 'url', label: 'URL', placeholder: 'https://example.com' },
+                    { id: 'accessed', label: 'Access Date', placeholder: 'January 1, 2024' }
+                ],
+                newspaper: [
+                    { id: 'author', label: 'Author', placeholder: 'Last, F. M.' },
+                    { id: 'year', label: 'Year', placeholder: '2024' },
+                    { id: 'month', label: 'Month', placeholder: 'January' },
+                    { id: 'day', label: 'Day', placeholder: '15' },
+                    { id: 'title', label: 'Article Title', placeholder: 'Article Title' },
+                    { id: 'newspaper', label: 'Newspaper Name', placeholder: 'The New York Times' },
+                    { id: 'pages', label: 'Pages', placeholder: 'A1, A4' }
+                ]
+            },
+
+            init() {
+                this.updateFields();
+                ToolkitUtils.initTabs();
+                this.loadHistory();
+                this.renderHistory();
+            },
+
+            updateFields() {
+                const type = document.getElementById('sourceType').value;
+                const container = document.getElementById('citationFields');
+
+                container.innerHTML = this.fields[type].map(field => `
+                <div class="form-group">
+                    <label class="form-label">${field.label}</label>
+                    <input type="text" id="${field.id}" class="form-control" placeholder="${field.placeholder}">
+                </div>
+            `).join('');
+            },
+
+            generate() {
+                const type = document.getElementById('sourceType').value;
+                const data = {};
+
+                this.fields[type].forEach(field => {
+                    data[field.id] = document.getElementById(field.id).value.trim();
+                });
+
+                // Validate required fields
+                if (!data.author || !data.year || !data.title) {
+                    ToolkitUtils.showToast('Please fill in at least author, year, and title', 'warning');
+                    return;
+                }
+
+                this.currentCitations = {
+                    apa: this.generateAPA(type, data),
+                    mla: this.generateMLA(type, data),
+                    chicago: this.generateChicago(type, data),
+                    harvard: this.generateHarvard(type, data)
+                };
+
+                document.getElementById('apaOutput').innerHTML = this.currentCitations.apa;
+                document.getElementById('mlaOutput').innerHTML = this.currentCitations.mla;
+                document.getElementById('chicagoOutput').innerHTML = this.currentCitations.chicago;
+                document.getElementById('harvardOutput').innerHTML = this.currentCitations.harvard;
+
+                this.addToHistory(type, data);
+                ToolkitUtils.showToast('Citations generated!', 'success');
+            },
+
+            generateAPA(type, data) {
+                switch (type) {
+                    case 'book':
+                        return `${data.author} (${data.year}). <em>${data.title}</em>. ${data.publisher}.`;
+                    case 'journal':
+                        return `${data.author} (${data.year}). ${data.title}. <em>${data.journal}, ${data.volume}</em>(${data.issue}), ${data.pages}.`;
+                    case 'website':
+                        return `${data.author}. (${data.year}). ${data.title}. ${data.website}. ${data.url}`;
+                    case 'newspaper':
+                        return `${data.author}. (${data.year}, ${data.month} ${data.day}). ${data.title}. <em>${data.newspaper}</em>, ${data.pages}.`;
+                }
+            },
+
+            generateMLA(type, data) {
+                switch (type) {
+                    case 'book':
+                        return `${data.author}. <em>${data.title}</em>. ${data.publisher}, ${data.year}.`;
+                    case 'journal':
+                        return `${data.author}. "${data.title}." <em>${data.journal}</em>, vol. ${data.volume}, no. ${data.issue}, ${data.year}, pp. ${data.pages}.`;
+                    case 'website':
+                        return `${data.author}. "${data.title}." <em>${data.website}</em>, ${data.year}, ${data.url}. Accessed ${data.accessed}.`;
+                    case 'newspaper':
+                        return `${data.author}. "${data.title}." <em>${data.newspaper}</em>, ${data.day} ${data.month} ${data.year}, p. ${data.pages}.`;
+                }
+            },
+
+            generateChicago(type, data) {
+                switch (type) {
+                    case 'book':
+                        return `${data.author}. <em>${data.title}</em>. ${data.city}: ${data.publisher}, ${data.year}.`;
+                    case 'journal':
+                        return `${data.author}. "${data.title}." <em>${data.journal}</em> ${data.volume}, no. ${data.issue} (${data.year}): ${data.pages}.`;
+                    case 'website':
+                        return `${data.author}. "${data.title}." ${data.website}. ${data.year}. ${data.url}.`;
+                    case 'newspaper':
+                        return `${data.author}. "${data.title}." <em>${data.newspaper}</em>, ${data.month} ${data.day}, ${data.year}.`;
+                }
+            },
+
+            generateHarvard(type, data) {
+                switch (type) {
+                    case 'book':
+                        return `${data.author} (${data.year}) <em>${data.title}</em>. ${data.city}: ${data.publisher}.`;
+                    case 'journal':
+                        return `${data.author} (${data.year}) '${data.title}', <em>${data.journal}</em>, ${data.volume}(${data.issue}), pp. ${data.pages}.`;
+                    case 'website':
+                        return `${data.author} (${data.year}) <em>${data.title}</em>, ${data.website}. Available at: ${data.url} (Accessed: ${data.accessed}).`;
+                    case 'newspaper':
+                        return `${data.author} (${data.year}) '${data.title}', <em>${data.newspaper}</em>, ${data.day} ${data.month}, p. ${data.pages}.`;
+                }
+            },
+
+            copy(format) {
+                if (this.currentCitations[format]) {
+                    const text = document.getElementById(`${format}Output`).innerText;
+                    ToolkitUtils.copyToClipboard(text);
+                }
+            },
+
+            addToHistory(type, data) {
+                this.history.unshift({
+                    type,
+                    data,
+                    timestamp: new Date()
+                });
+
+                if (this.history.length > 20) {
+                    this.history = this.history.slice(0, 20);
+                }
+
+                this.saveHistory();
+                this.renderHistory();
+            },
+
+            renderHistory() {
+                const container = document.getElementById('citationHistory');
+
+                if (this.history.length === 0) {
+                    container.innerHTML = '<p class="text-muted text-center">No citation history</p>';
+                    return;
+                }
+
+                container.innerHTML = this.history.slice(0, 5).map((item, index) => `
+                <div class="card mb-2 p-2" style="cursor: pointer;" onclick="citation.loadFromHistory(${index})">
+                    <strong>${item.data.title || 'Untitled'}</strong>
+                    <div class="text-muted" style="font-size: 0.85rem;">
+                        ${item.type} - ${new Date(item.timestamp).toLocaleDateString()}
+                    </div>
+                </div>
+            `).join('');
+            },
+
+            loadFromHistory(index) {
+                const item = this.history[index];
+                document.getElementById('sourceType').value = item.type;
+                this.updateFields();
+
+                Object.keys(item.data).forEach(key => {
+                    const field = document.getElementById(key);
+                    if (field) field.value = item.data[key];
+                });
+
+                this.generate();
+            },
+
+            saveHistory() {
+                ToolkitUtils.storage.save('citation_history', this.history);
+            },
+
+            loadHistory() {
+                this.history = ToolkitUtils.storage.load('citation_history', []);
+            }
+        };
+
+        citation.init();
+    </script>
+</body>
+
+</html>

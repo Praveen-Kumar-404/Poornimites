@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+    <style>
+        .timer-display {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .timer-time {
+            font-size: 6rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .timer-label {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .timer-btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .timer-btn-start {
+            background: #28a745;
+            color: white;
+        }
+
+        .timer-btn-pause {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .timer-btn-reset {
+            background: #dc3545;
+            color: white;
+        }
+
+        .timer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--toolkit-shadow);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--toolkit-primary);
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .progress-ring {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>⏱️ Pomodoro Timer</h1>
+            <p>Stay focused with the Pomodoro Technique</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="timer-display">
+                    <div class="timer-label" id="timerLabel">Work Session</div>
+                    <div class="timer-time" id="timerDisplay">25:00</div>
+                    <div class="timer-controls">
+                        <button class="timer-btn timer-btn-start" id="startBtn" onclick="pomodoro.start()">▶
+                            Start</button>
+                        <button class="timer-btn timer-btn-pause" id="pauseBtn" onclick="pomodoro.pause()"
+                            style="display:none;">⏸ Pause</button>
+                        <button class="timer-btn timer-btn-reset" onclick="pomodoro.reset()">↻ Reset</button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>⚙️ Settings</h2>
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label class="form-label">Work Duration (min)</label>
+                            <input type="number" id="workDuration" class="form-control" value="25" min="1" max="60">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Short Break (min)</label>
+                            <input type="number" id="shortBreak" class="form-control" value="5" min="1" max="30">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Long Break (min)</label>
+                            <input type="number" id="longBreak" class="form-control" value="15" min="1" max="60">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Sessions until Long Break</label>
+                            <input type="number" id="sessionsUntilLongBreak" class="form-control" value="4" min="1"
+                                max="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="autoStart" checked> Auto-start next session
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="soundEnabled" checked> Enable sound notifications
+                        </label>
+                    </div>
+                    <button class="btn btn-primary" onclick="pomodoro.saveSettings()">💾 Save Settings</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <h2>📊 Today's Statistics</h2>
+                    <div class="settings-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="completedSessions">0</div>
+                            <div class="stat-label">Completed Sessions</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalFocusTime">0</div>
+                            <div class="stat-label">Total Focus Time (min)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="currentStreak">0</div>
+                            <div class="stat-label">Current Streak</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>📜 Session History</h2>
+                    <div id="sessionHistory" style="max-height: 300px; overflow-y: auto;">
+                        <p class="text-muted text-center">No sessions completed yet</p>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h2>ℹ️ About Pomodoro Technique</h2>
+                    <p>The Pomodoro Technique is a time management method:</p>
+                    <ol>
+                        <li>Work for 25 minutes (one "Pomodoro")</li>
+                        <li>Take a 5-minute break</li>
+                        <li>After 4 Pomodoros, take a longer 15-minute break</li>
+                    </ol>
+                    <p>This helps maintain focus and prevents burnout!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const pomodoro = {
+            workDuration: 25,
+            shortBreak: 5,
+            longBreak: 15,
+            sessionsUntilLongBreak: 4,
+
+            currentSession: 'work',
+            timeRemaining: 25 * 60,
+            isRunning: false,
+            interval: null,
+
+            completedSessions: 0,
+            sessionCount: 0,
+            totalFocusTime: 0,
+            currentStreak: 0,
+
+            history: [],
+
+            init() {
+                this.loadSettings();
+                this.loadStats();
+                this.updateDisplay();
+                this.renderHistory();
+                this.setupSettingsListeners();
+            },
+
+            start() {
+                if (this.isRunning) return;
+
+                this.isRunning = true;
+                document.getElementById('startBtn').style.display = 'none';
+                document.getElementById('pauseBtn').style.display = 'inline-block';
+
+                this.interval = setInterval(() => {
+                    this.timeRemaining--;
+                    this.updateDisplay();
+
+                    if (this.timeRemaining <= 0) {
+                        this.sessionComplete();
+                    }
+                }, 1000);
+            },
+
+            pause() {
+                this.isRunning = false;
+                clearInterval(this.interval);
+                document.getElementById('startBtn').style.display = 'inline-block';
+                document.getElementById('pauseBtn').style.display = 'none';
+            },
+
+            reset() {
+                this.pause();
+                this.currentSession = 'work';
+                this.timeRemaining = this.workDuration * 60;
+                this.updateDisplay();
+            },
+
+            sessionComplete() {
+                this.pause();
+
+                // Play notification sound if enabled
+                if (document.getElementById('soundEnabled').checked) {
+                    this.playNotification();
+                }
+
+                // Show browser notification
+                this.showNotification();
+
+                // Update stats
+                if (this.currentSession === 'work') {
+                    this.completedSessions++;
+                    this.sessionCount++;
+                    this.totalFocusTime += this.workDuration;
+                    this.currentStreak++;
+
+                    this.addToHistory('Work Session', this.workDuration);
+                } else {
+                    this.addToHistory(this.currentSession === 'shortBreak' ? 'Short Break' : 'Long Break',
+                        this.currentSession === 'shortBreak' ? this.shortBreak : this.longBreak);
+                }
+
+                this.saveStats();
+                this.updateStats();
+
+                // Determine next session
+                if (this.currentSession === 'work') {
+                    if (this.sessionCount % this.sessionsUntilLongBreak === 0) {
+                        this.currentSession = 'longBreak';
+                        this.timeRemaining = this.longBreak * 60;
+                    } else {
+                        this.currentSession = 'shortBreak';
+                        this.timeRemaining = this.shortBreak * 60;
+                    }
+                } else {
+                    this.currentSession = 'work';
+                    this.timeRemaining = this.workDuration * 60;
+                }
+
+                this.updateDisplay();
+
+                // Auto-start if enabled
+                if (document.getElementById('autoStart').checked) {
+                    setTimeout(() => this.start(), 3000);
+                }
+            },
+
+            updateDisplay() {
+                const minutes = Math.floor(this.timeRemaining / 60);
+                const seconds = this.timeRemaining % 60;
+
+                document.getElementById('timerDisplay').textContent =
+                    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+                const labels = {
+                    work: 'Work Session',
+                    shortBreak: 'Short Break',
+                    longBreak: 'Long Break'
+                };
+
+                document.getElementById('timerLabel').textContent = labels[this.currentSession];
+
+                // Update page title
+                document.title = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} - ${labels[this.currentSession]}`;
+            },
+
+            updateStats() {
+                document.getElementById('completedSessions').textContent = this.completedSessions;
+                document.getElementById('totalFocusTime').textContent = this.totalFocusTime;
+                document.getElementById('currentStreak').textContent = this.currentStreak;
+            },
+
+            addToHistory(type, duration) {
+                this.history.unshift({
+                    type,
+                    duration,
+                    timestamp: new Date()
+                });
+
+                if (this.history.length > 20) {
+                    this.history = this.history.slice(0, 20);
+                }
+
+                this.saveHistory();
+                this.renderHistory();
+            },
+
+            renderHistory() {
+                const container = document.getElementById('sessionHistory');
+
+                if (this.history.length === 0) {
+                    container.innerHTML = '<p class="text-muted text-center">No sessions completed yet</p>';
+                    return;
+                }
+
+                container.innerHTML = this.history.map(item => {
+                    const time = new Date(item.timestamp).toLocaleTimeString();
+                    return `
+                    <div style="padding: 0.75rem; border-bottom: 1px solid var(--toolkit-border);">
+                        <strong>${item.type}</strong> - ${item.duration} min
+                        <div class="text-muted" style="font-size: 0.85rem;">${time}</div>
+                    </div>
+                `;
+                }).join('');
+            },
+
+            playNotification() {
+                // Create a simple beep sound
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            },
+
+            showNotification() {
+                if ('Notification' in window && Notification.permission === 'granted') {
+                    const labels = {
+                        work: 'Work session complete! Time for a break.',
+                        shortBreak: 'Break over! Ready to focus?',
+                        longBreak: 'Long break over! Ready to focus?'
+                    };
+
+                    new Notification('Pomodoro Timer', {
+                        body: labels[this.currentSession],
+                        icon: '⏱️'
+                    });
+                } else if ('Notification' in window && Notification.permission !== 'denied') {
+                    Notification.requestPermission();
+                }
+            },
+
+            saveSettings() {
+                this.workDuration = parseInt(document.getElementById('workDuration').value);
+                this.shortBreak = parseInt(document.getElementById('shortBreak').value);
+                this.longBreak = parseInt(document.getElementById('longBreak').value);
+                this.sessionsUntilLongBreak = parseInt(document.getElementById('sessionsUntilLongBreak').value);
+
+                ToolkitUtils.storage.save('pomodoro_settings', {
+                    workDuration: this.workDuration,
+                    shortBreak: this.shortBreak,
+                    longBreak: this.longBreak,
+                    sessionsUntilLongBreak: this.sessionsUntilLongBreak
+                });
+
+                this.reset();
+                ToolkitUtils.showToast('Settings saved!', 'success');
+            },
+
+            loadSettings() {
+                const settings = ToolkitUtils.storage.load('pomodoro_settings');
+                if (settings) {
+                    this.workDuration = settings.workDuration;
+                    this.shortBreak = settings.shortBreak;
+                    this.longBreak = settings.longBreak;
+                    this.sessionsUntilLongBreak = settings.sessionsUntilLongBreak;
+
+                    document.getElementById('workDuration').value = this.workDuration;
+                    document.getElementById('shortBreak').value = this.shortBreak;
+                    document.getElementById('longBreak').value = this.longBreak;
+                    document.getElementById('sessionsUntilLongBreak').value = this.sessionsUntilLongBreak;
+                }
+
+                this.timeRemaining = this.workDuration * 60;
+            },
+
+            saveStats() {
+                ToolkitUtils.storage.save('pomodoro_stats', {
+                    completedSessions: this.completedSessions,
+                    totalFocusTime: this.totalFocusTime,
+                    currentStreak: this.currentStreak,
+                    date: new Date().toDateString()
+                });
+            },
+
+            loadStats() {
+                const stats = ToolkitUtils.storage.load('pomodoro_stats');
+                const today = new Date().toDateString();
+
+                if (stats && stats.date === today) {
+                    this.completedSessions = stats.completedSessions;
+                    this.totalFocusTime = stats.totalFocusTime;
+                    this.currentStreak = stats.currentStreak;
+                } else {
+                    // Reset stats for new day
+                    this.completedSessions = 0;
+                    this.totalFocusTime = 0;
+                    this.currentStreak = 0;
+                }
+
+                this.updateStats();
+            },
+
+            saveHistory() {
+                ToolkitUtils.storage.save('pomodoro_history', this.history);
+            },
+
+            loadHistory() {
+                this.history = ToolkitUtils.storage.load('pomodoro_history', []);
+            },
+
+            setupSettingsListeners() {
+                // Request notification permission on first interaction
+                document.getElementById('startBtn').addEventListener('click', () => {
+                    if ('Notification' in window && Notification.permission === 'default') {
+                        Notification.requestPermission();
+                    }
+                }, { once: true });
+            }
+        };
+
+        // Initialize on page load
+        pomodoro.init();
+        pomodoro.loadHistory();
+
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            if (pomodoro.isRunning) {
+                pomodoro.pause();
+            }
+        });
+    </script>
+</body>
+
+</html>

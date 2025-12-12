@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+    <style>
+        .task-item {
+            background: white;
+            border: 2px solid var(--toolkit-border);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            box-shadow: 0 4px 12px var(--toolkit-shadow);
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+            background: #f8f9fa;
+        }
+
+        .task-item.completed .task-title {
+            text-decoration: line-through;
+        }
+
+        .task-item.priority-high {
+            border-left: 4px solid var(--toolkit-danger);
+        }
+
+        .task-item.priority-medium {
+            border-left: 4px solid var(--toolkit-warning);
+        }
+
+        .task-item.priority-low {
+            border-left: 4px solid var(--toolkit-success);
+        }
+
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .task-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--toolkit-border);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--toolkit-primary);
+            color: white;
+            border-color: var(--toolkit-primary);
+        }
+
+        .progress-bar-container {
+            background: var(--toolkit-light);
+            border-radius: 10px;
+            height: 30px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--toolkit-primary), var(--toolkit-secondary));
+            height: 100%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>✅ To-Do List</h1>
+            <p>Manage your tasks with priorities and due dates</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="tool-section">
+                    <h2>Add New Task</h2>
+                    <div class="form-group">
+                        <input type="text" id="taskTitle" class="form-control" placeholder="Task title..."
+                            onkeypress="if(event.key==='Enter') todoList.addTask()">
+                    </div>
+                    <div class="tool-grid">
+                        <div class="form-group">
+                            <label class="form-label">Priority</label>
+                            <select id="taskPriority" class="form-control">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Due Date</label>
+                            <input type="date" id="taskDueDate" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <input type="text" id="taskCategory" class="form-control"
+                            placeholder="e.g., Work, Personal, Study">
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="todoList.addTask()">+ Add Task</button>
+                </div>
+
+                <div class="tool-section">
+                    <h2>Progress</h2>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" id="progressBar" style="width: 0%">0%</div>
+                    </div>
+                    <div class="tool-grid-3">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalTasks">0</div>
+                            <div class="stat-label">Total Tasks</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value text-success" id="completedTasks">0</div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value text-danger" id="pendingTasks">0</div>
+                            <div class="stat-label">Pending</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <div class="d-flex justify-between align-center mb-3">
+                        <h2>Tasks</h2>
+                        <button class="btn btn-secondary btn-sm" onclick="todoList.clearCompleted()">Clear
+                            Completed</button>
+                    </div>
+
+                    <div class="filter-tabs">
+                        <button class="filter-btn active" onclick="todoList.setFilter('all')">All</button>
+                        <button class="filter-btn" onclick="todoList.setFilter('active')">Active</button>
+                        <button class="filter-btn" onclick="todoList.setFilter('completed')">Completed</button>
+                        <button class="filter-btn" onclick="todoList.setFilter('high')">High Priority</button>
+                    </div>
+
+                    <div id="tasksContainer">
+                        <p class="text-muted text-center">No tasks yet. Add one to get started!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const todoList = {
+            tasks: [],
+            filter: 'all',
+
+            init() {
+                this.loadTasks();
+                this.renderTasks();
+                this.updateStats();
+
+                // Set default due date to tomorrow
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                document.getElementById('taskDueDate').value = tomorrow.toISOString().split('T')[0];
+            },
+
+            addTask() {
+                const title = document.getElementById('taskTitle').value.trim();
+
+                if (!title) {
+                    ToolkitUtils.showToast('Please enter a task title', 'warning');
+                    return;
+                }
+
+                const task = {
+                    id: ToolkitUtils.generateId('task'),
+                    title: title,
+                    priority: document.getElementById('taskPriority').value,
+                    dueDate: document.getElementById('taskDueDate').value,
+                    category: document.getElementById('taskCategory').value.trim(),
+                    completed: false,
+                    createdAt: new Date()
+                };
+
+                this.tasks.unshift(task);
+                this.saveTasks();
+                this.renderTasks();
+                this.updateStats();
+
+                // Clear form
+                document.getElementById('taskTitle').value = '';
+                document.getElementById('taskCategory').value = '';
+
+                ToolkitUtils.showToast('Task added!', 'success');
+            },
+
+            toggleTask(id) {
+                const task = this.tasks.find(t => t.id === id);
+                if (task) {
+                    task.completed = !task.completed;
+                    this.saveTasks();
+                    this.renderTasks();
+                    this.updateStats();
+                }
+            },
+
+            deleteTask(id) {
+                if (confirm('Delete this task?')) {
+                    this.tasks = this.tasks.filter(t => t.id !== id);
+                    this.saveTasks();
+                    this.renderTasks();
+                    this.updateStats();
+                    ToolkitUtils.showToast('Task deleted', 'info');
+                }
+            },
+
+            setFilter(filter) {
+                this.filter = filter;
+
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+
+                this.renderTasks();
+            },
+
+            getFilteredTasks() {
+                switch (this.filter) {
+                    case 'active':
+                        return this.tasks.filter(t => !t.completed);
+                    case 'completed':
+                        return this.tasks.filter(t => t.completed);
+                    case 'high':
+                        return this.tasks.filter(t => t.priority === 'high' && !t.completed);
+                    default:
+                        return this.tasks;
+                }
+            },
+
+            renderTasks() {
+                const container = document.getElementById('tasksContainer');
+                const filteredTasks = this.getFilteredTasks();
+
+                if (filteredTasks.length === 0) {
+                    container.innerHTML = '<p class="text-muted text-center">No tasks to show</p>';
+                    return;
+                }
+
+                container.innerHTML = filteredTasks.map(task => {
+                    const dueDate = task.dueDate ? new Date(task.dueDate) : null;
+                    const isOverdue = dueDate && dueDate < new Date() && !task.completed;
+
+                    return `
+                    <div class="task-item ${task.completed ? 'completed' : ''} priority-${task.priority}">
+                        <div class="d-flex gap-2">
+                            <input type="checkbox" 
+                                   class="task-checkbox"
+                                   ${task.completed ? 'checked' : ''}
+                                   onchange="todoList.toggleTask('${task.id}')">
+                            
+                            <div style="flex: 1;">
+                                <div class="task-title">${task.title}</div>
+                                <div class="task-meta">
+                                    <span class="badge badge-${task.priority === 'high' ? 'danger' : task.priority === 'medium' ? 'warning' : 'success'}">
+                                        ${task.priority.toUpperCase()}
+                                    </span>
+                                    ${task.category ? `<span>📁 ${task.category}</span>` : ''}
+                                    ${task.dueDate ? `
+                                        <span class="${isOverdue ? 'text-danger' : ''}">
+                                            📅 ${new Date(task.dueDate).toLocaleDateString()}
+                                            ${isOverdue ? '(Overdue!)' : ''}
+                                        </span>
+                                    ` : ''}
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-danger btn-sm" 
+                                    onclick="todoList.deleteTask('${task.id}')"
+                                    style="height: fit-content;">×</button>
+                        </div>
+                    </div>
+                `;
+                }).join('');
+            },
+
+            updateStats() {
+                const total = this.tasks.length;
+                const completed = this.tasks.filter(t => t.completed).length;
+                const pending = total - completed;
+                const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+                document.getElementById('totalTasks').textContent = total;
+                document.getElementById('completedTasks').textContent = completed;
+                document.getElementById('pendingTasks').textContent = pending;
+
+                const progressBar = document.getElementById('progressBar');
+                progressBar.style.width = percentage + '%';
+                progressBar.textContent = percentage + '%';
+            },
+
+            clearCompleted() {
+                const completedCount = this.tasks.filter(t => t.completed).length;
+
+                if (completedCount === 0) {
+                    ToolkitUtils.showToast('No completed tasks to clear', 'info');
+                    return;
+                }
+
+                if (confirm(`Clear ${completedCount} completed task(s)?`)) {
+                    this.tasks = this.tasks.filter(t => !t.completed);
+                    this.saveTasks();
+                    this.renderTasks();
+                    this.updateStats();
+                    ToolkitUtils.showToast('Completed tasks cleared', 'success');
+                }
+            },
+
+            saveTasks() {
+                ToolkitUtils.storage.save('todo_tasks', this.tasks);
+            },
+
+            loadTasks() {
+                this.tasks = ToolkitUtils.storage.load('todo_tasks', []);
+            }
+        };
+
+        // Initialize on page load
+        todoList.init();
+    </script>
+</body>
+
+</html>

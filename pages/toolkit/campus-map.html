@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Map - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/toolkit.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>🗺️ Campus Map</h1>
+            <p>Navigate the campus and find locations</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="tool-section">
+                    <h2>Quick Locations</h2>
+                    <div id="locationsList"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <h2>Campus Map</h2>
+                    <div
+                        style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px var(--toolkit-shadow); text-align: center;">
+                        <p class="text-muted">Interactive campus map would be displayed here</p>
+                        <p class="text-muted">Click on locations in the sidebar to highlight them on the map</p>
+                        <div
+                            style="background: #f8f9fa; height: 400px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <div>
+                                <div style="font-size: 4rem; margin-bottom: 1rem;">🏫</div>
+                                <div style="font-size: 1.2rem; color: #666;">Campus Map Placeholder</div>
+                                <div style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">
+                                    Integrate with Google Maps or custom map image
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../../about.html">About</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/toolkit-common.js"></script>
+    <script>
+        const campusMap = {
+            locations: [
+                { name: 'Main Building', category: 'Academic', description: 'Administrative offices and classrooms' },
+                { name: 'Library', category: 'Academic', description: 'Central library with study areas' },
+                { name: 'Computer Lab', category: 'Academic', description: 'Computer science labs' },
+                { name: 'Cafeteria', category: 'Facilities', description: 'Main dining hall' },
+                { name: 'Sports Complex', category: 'Facilities', description: 'Gymnasium and sports facilities' },
+                { name: 'Auditorium', category: 'Facilities', description: 'Main auditorium for events' },
+                { name: 'Hostel Block A', category: 'Residential', description: 'Student accommodation' },
+                { name: 'Hostel Block B', category: 'Residential', description: 'Student accommodation' },
+                { name: 'Medical Center', category: 'Services', description: 'Campus health services' },
+                { name: 'Bus Stop', category: 'Transport', description: 'Campus bus pickup point' }
+            ],
+
+            init() {
+                this.render();
+            },
+
+            render() {
+                const container = document.getElementById('locationsList');
+
+                const byCategory = {};
+                this.locations.forEach(loc => {
+                    if (!byCategory[loc.category]) {
+                        byCategory[loc.category] = [];
+                    }
+                    byCategory[loc.category].push(loc);
+                });
+
+                let html = '';
+                Object.keys(byCategory).sort().forEach(category => {
+                    html += `<h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">${category}</h3>`;
+                    byCategory[category].forEach(loc => {
+                        html += `
+                        <div class="card mb-2 p-2" style="cursor: pointer;" onclick="campusMap.selectLocation('${loc.name}')">
+                            <div style="font-weight: 600;">📍 ${loc.name}</div>
+                            <div class="text-muted" style="font-size: 0.9rem;">${loc.description}</div>
+                        </div>
+                    `;
+                    });
+                });
+
+                container.innerHTML = html;
+            },
+
+            selectLocation(name) {
+                ToolkitUtils.showToast(`Selected: ${name}`, 'info');
+            }
+        };
+
+        campusMap.init();
+    </script>
+</body>
+
+</html>

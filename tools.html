@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Toolkit - Poornimites</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/bento-grid.css">
-    <link rel="stylesheet" href="assets/css/sub-page.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Toolkit - Poornimites</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/toolkit.css">
 </head>
+
 <body>
   <header class="navbar">
     <div class="logo">🎓 <a href="index.html">Poornimites</a></div>
@@ -25,16 +26,308 @@
       <a href="settings.html">⚙️</a>
     </div>
   </header>
-  <main class="bento-grid">
-    <div class="page-header">
+
+  <main class="toolkit-container">
+    <div class="toolkit-header">
       <h1>🔧 Student Toolkit</h1>
-      <p>CGPA Calculator, QR Generator, Timer, File Converter & more.</p>
+      <p>Your complete academic companion with 35+ powerful tools</p>
+
+      <!-- Search Bar -->
+      <div class="search-bar" style="max-width: 600px; margin: 1.5rem auto 0;">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="toolSearch" class="form-control" placeholder="Search tools...">
+      </div>
     </div>
-    <div class="card">
-      <h2>Coming Soon</h2>
-      <p>This page is under development. Check back later for updates!</p>
+
+    <!-- Academic Tools Category -->
+    <div class="tool-section">
+      <h2>📚 Academic Tools</h2>
+      <div class="tool-grid-3">
+        <div class="tool-card" data-keywords="calculator math scientific">
+          <span class="category-icon">🧮</span>
+          <h3>Scientific Calculator</h3>
+          <p>Advanced calculator with scientific functions, memory, and history</p>
+          <a href="pages/toolkit/calculator.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="unit converter measurement">
+          <span class="category-icon">📏</span>
+          <h3>Unit Converter</h3>
+          <p>Convert between length, weight, temperature, and more</p>
+          <a href="pages/toolkit/unit-converter.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="gpa cgpa grade calculator">
+          <span class="category-icon">📊</span>
+          <h3>GPA Calculator</h3>
+          <p>Calculate your GPA/CGPA with semester tracking</p>
+          <a href="pages/toolkit/gpa-calculator.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="citation reference apa mla">
+          <span class="category-icon">📝</span>
+          <h3>Citation Generator</h3>
+          <p>Generate citations in APA, MLA, Chicago, and Harvard formats</p>
+          <a href="pages/toolkit/citation-generator.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="plagiarism checker">
+          <span class="category-icon">🔍</span>
+          <h3>Plagiarism Checker</h3>
+          <p>Basic plagiarism detection using web search</p>
+          <a href="pages/toolkit/plagiarism-checker.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Document Tools Category -->
+    <div class="tool-section">
+      <h2>📄 Document Tools</h2>
+      <div class="tool-grid-3">
+        <div class="tool-card" data-keywords="pdf reader viewer">
+          <span class="category-icon">📖</span>
+          <h3>PDF Reader</h3>
+          <p>View and navigate PDF files with search and zoom</p>
+          <a href="pages/toolkit/pdf-reader.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="pdf converter word excel">
+          <span class="category-icon">🔄</span>
+          <h3>PDF Converter</h3>
+          <p>Convert PDF to Word/Excel and images to PDF</p>
+          <a href="pages/toolkit/pdf-converter.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="ocr scanner text recognition">
+          <span class="category-icon">📷</span>
+          <h3>OCR Scanner</h3>
+          <p>Extract text from images using OCR technology</p>
+          <a href="pages/toolkit/ocr-scanner.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="pdf highlighter annotate">
+          <span class="category-icon">🖍️</span>
+          <h3>PDF Highlighter</h3>
+          <p>Highlight and annotate PDF documents</p>
+          <a href="pages/toolkit/pdf-highlighter.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="markdown pdf export">
+          <span class="category-icon">📑</span>
+          <h3>Markdown to PDF</h3>
+          <p>Write in markdown and export to styled PDF</p>
+          <a href="pages/toolkit/markdown-export.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Productivity Tools Category -->
+    <div class="tool-section">
+      <h2>⚡ Productivity Tools</h2>
+      <div class="tool-grid-3">
+        <div class="tool-card" data-keywords="notes notepad editor">
+          <span class="category-icon">📝</span>
+          <h3>Note Taking</h3>
+          <p>Rich text note-taking with folders and search</p>
+          <a href="pages/toolkit/notes.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="todo task list">
+          <span class="category-icon">✅</span>
+          <h3>To-Do List</h3>
+          <p>Manage tasks with priorities and due dates</p>
+          <a href="pages/toolkit/todo-list.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="pomodoro timer focus">
+          <span class="category-icon">⏱️</span>
+          <h3>Pomodoro Timer</h3>
+          <p>Stay focused with customizable work/break intervals</p>
+          <a href="pages/toolkit/pomodoro.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="assignment tracker deadline">
+          <span class="category-icon">📅</span>
+          <h3>Assignment Tracker</h3>
+          <p>Track assignments with deadlines and status</p>
+          <a href="pages/toolkit/assignment-tracker.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="reminder notification">
+          <span class="category-icon">🔔</span>
+          <h3>Reminders</h3>
+          <p>Set reminders with browser notifications</p>
+          <a href="pages/toolkit/reminders.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="timetable schedule class">
+          <span class="category-icon">🗓️</span>
+          <h3>Timetable</h3>
+          <p>Create and manage your class schedule</p>
+          <a href="pages/toolkit/timetable.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Academic Resources Category -->
+    <div class="tool-section">
+      <h2>🎓 Academic Resources</h2>
+      <div class="tool-grid-3">
+        <div class="tool-card" data-keywords="resume cv template">
+          <span class="category-icon">📄</span>
+          <h3>Resume Builder</h3>
+          <p>Create professional resumes with templates</p>
+          <a href="pages/toolkit/resume-templates.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="lecture notes upload">
+          <span class="category-icon">📚</span>
+          <h3>Lecture Notes</h3>
+          <p>Upload and organize lecture notes by subject</p>
+          <a href="pages/toolkit/lecture-notes.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="file organizer manager">
+          <span class="category-icon">🗂️</span>
+          <h3>File Organizer</h3>
+          <p>Batch rename and organize files efficiently</p>
+          <a href="pages/toolkit/file-organizer.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="google scholar search research">
+          <span class="category-icon">🔬</span>
+          <h3>Scholar Search</h3>
+          <p>Quick access to Google Scholar with history</p>
+          <a href="pages/toolkit/scholar-search.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="reference manager bibliography">
+          <span class="category-icon">📚</span>
+          <h3>Reference Manager</h3>
+          <p>Manage references and generate bibliographies</p>
+          <a href="pages/toolkit/reference-manager.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Developer Tools Category -->
+    <div class="tool-section">
+      <h2>💻 Developer Tools</h2>
+      <div class="tool-grid-3">
+        <div class="tool-card" data-keywords="code editor ide">
+          <span class="category-icon">⌨️</span>
+          <h3>Code Editor</h3>
+          <p>Lightweight editor with syntax highlighting</p>
+          <a href="pages/toolkit/code-editor.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="snippet code manager">
+          <span class="category-icon">📋</span>
+          <h3>Snippet Manager</h3>
+          <p>Save and organize code snippets</p>
+          <a href="pages/toolkit/snippet-manager.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="formatter sql json beautify">
+          <span class="category-icon">🎨</span>
+          <h3>Code Formatters</h3>
+          <p>Format SQL, JSON, XML, HTML, and CSS</p>
+          <a href="pages/toolkit/formatters.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="github shortcuts repo">
+          <span class="category-icon">🐙</span>
+          <h3>GitHub Shortcuts</h3>
+          <p>Quick access to your GitHub repositories</p>
+          <a href="pages/toolkit/github-shortcuts.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="csv viewer editor">
+          <span class="category-icon">📊</span>
+          <h3>CSV Viewer</h3>
+          <p>View, edit, and convert CSV files</p>
+          <a href="pages/toolkit/csv-viewer.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="chart graph generator">
+          <span class="category-icon">📈</span>
+          <h3>Chart Generator</h3>
+          <p>Create charts and graphs from data</p>
+          <a href="pages/toolkit/chart-generator.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Campus Features Category -->
+    <div class="tool-section">
+      <h2>🏫 Campus Features</h2>
+      <div class="tool-grid-3">
+        <div class="tool-card" data-keywords="campus map location">
+          <span class="category-icon">🗺️</span>
+          <h3>Campus Map</h3>
+          <p>Interactive map of campus buildings</p>
+          <a href="pages/toolkit/campus-map.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="faculty directory professor">
+          <span class="category-icon">👨‍🏫</span>
+          <h3>Faculty Directory</h3>
+          <p>Search faculty by department</p>
+          <a href="faculty-details.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="library search books">
+          <span class="category-icon">📚</span>
+          <h3>Library Search</h3>
+          <p>Quick access to library catalog</p>
+          <a href="pages/toolkit/library-search.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="bus timetable transport">
+          <span class="category-icon">🚌</span>
+          <h3>Bus Timetable</h3>
+          <p>Campus bus routes and schedules</p>
+          <a href="pages/toolkit/bus-timetable.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="attendance tracker">
+          <span class="category-icon">📊</span>
+          <h3>Attendance Tracker</h3>
+          <p>Track and calculate attendance percentage</p>
+          <a href="pages/toolkit/attendance.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collaboration Tools Category -->
+    <div class="tool-section">
+      <h2>🤝 Collaboration Tools</h2>
+      <div class="tool-grid-3">
+        <div class="tool-card" data-keywords="shared notes collaborate">
+          <span class="category-icon">📝</span>
+          <h3>Shared Notes</h3>
+          <p>Collaborate on notes in real-time</p>
+          <a href="pages/toolkit/shared-notes.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="study chat group">
+          <span class="category-icon">💬</span>
+          <h3>Study Chat</h3>
+          <p>Create study group chat rooms</p>
+          <a href="pages/toolkit/study-chat.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+
+        <div class="tool-card" data-keywords="whiteboard draw collaborate">
+          <span class="category-icon">🎨</span>
+          <h3>Whiteboard</h3>
+          <p>Collaborative drawing and brainstorming</p>
+          <a href="pages/toolkit/whiteboard.html" class="btn btn-primary btn-sm">Open Tool →</a>
+        </div>
+      </div>
+    </div>
+
   </main>
+
   <footer class="footer">
     <div class="footer-links">
       <a href="about.html">About</a>
@@ -47,6 +340,35 @@
       Made with 💙 by Students for Students. © 2025 Poornimites
     </div>
   </footer>
-  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/toolkit-common.js"></script>
+  <script>
+    // Search functionality
+    const searchInput = document.getElementById('toolSearch');
+    const toolCards = document.querySelectorAll('.tool-card');
+
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+
+      toolCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        const keywords = card.dataset.keywords || '';
+
+        const matches = title.includes(searchTerm) ||
+          description.includes(searchTerm) ||
+          keywords.includes(searchTerm);
+
+        card.style.display = matches ? 'flex' : 'none';
+      });
+
+      // Hide empty sections
+      document.querySelectorAll('.tool-section').forEach(section => {
+        const visibleCards = section.querySelectorAll('.tool-card[style="display: flex;"], .tool-card:not([style*="display"])');
+        section.style.display = visibleCards.length > 0 ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
+
 </html>
