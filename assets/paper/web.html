@@ -1,0 +1,961 @@
+<html>
+
+<head>
+    <style>
+        /* Disable text selection and copying */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Disable printing */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        /* Full-page watermark overlay */
+        #watermark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+            font-size: 3rem;
+            color: red;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-30deg);
+            white-space: nowrap;
+        }
+    </style>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">
+        .lst-kix_cpucja3ugitl-6>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-6
+        }
+
+        ol.lst-kix_cpucja3ugitl-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_cpucja3ugitl-2.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-2 0
+        }
+
+        ol.lst-kix_cpucja3ugitl-0.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-0 0
+        }
+
+        ol.lst-kix_cpucja3ugitl-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_cpucja3ugitl-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_cpucja3ugitl-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_cpucja3ugitl-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_cpucja3ugitl-0>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-0
+        }
+
+        ol.lst-kix_cpucja3ugitl-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_cpucja3ugitl-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_cpucja3ugitl-3>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-3
+        }
+
+        ol.lst-kix_cpucja3ugitl-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_cpucja3ugitl-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_cpucja3ugitl-1>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-1, lower-latin) ". "
+        }
+
+        .lst-kix_cpucja3ugitl-2>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-2
+        }
+
+        .lst-kix_cpucja3ugitl-0>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-0, decimal) ". "
+        }
+
+        ol.lst-kix_cpucja3ugitl-6.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-6 0
+        }
+
+        ol.lst-kix_cpucja3ugitl-3.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-3 0
+        }
+
+        ol.lst-kix_cpucja3ugitl-1.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-1 0
+        }
+
+        ol.lst-kix_cpucja3ugitl-8.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-8 0
+        }
+
+        .lst-kix_cpucja3ugitl-5>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-5
+        }
+
+        .lst-kix_cpucja3ugitl-2>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-2, lower-roman) ". "
+        }
+
+        .lst-kix_cpucja3ugitl-8>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-8
+        }
+
+        li.li-bullet-0:before {
+            margin-left: -18pt;
+            white-space: nowrap;
+            display: inline-block;
+            min-width: 18pt
+        }
+
+        .lst-kix_cpucja3ugitl-3>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-3, decimal) ". "
+        }
+
+        .lst-kix_cpucja3ugitl-4>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-4, lower-latin) ". "
+        }
+
+        ol.lst-kix_cpucja3ugitl-5.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-5 0
+        }
+
+        ol.lst-kix_cpucja3ugitl-4.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-4 0
+        }
+
+        .lst-kix_cpucja3ugitl-5>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-5, lower-roman) ". "
+        }
+
+        .lst-kix_cpucja3ugitl-1>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-1
+        }
+
+        .lst-kix_cpucja3ugitl-7>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-7, lower-latin) ". "
+        }
+
+        .lst-kix_cpucja3ugitl-8>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_cpucja3ugitl-7.start {
+            counter-reset: lst-ctn-kix_cpucja3ugitl-7 0
+        }
+
+        .lst-kix_cpucja3ugitl-4>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-4
+        }
+
+        .lst-kix_cpucja3ugitl-6>li:before {
+            content: "" counter(lst-ctn-kix_cpucja3ugitl-6, decimal) ". "
+        }
+
+        .lst-kix_cpucja3ugitl-7>li {
+            counter-increment: lst-ctn-kix_cpucja3ugitl-7
+        }
+
+        ol {
+            margin: 0;
+            padding: 0
+        }
+
+        table td,
+        table th {
+            padding: 0
+        }
+
+        .c0 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c4 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left;
+            height: 11pt
+        }
+
+        .c3 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c1 {
+            padding-top: 12pt;
+            padding-bottom: 12pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c11 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 25pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c5 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 15pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c6 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c7 {
+            background-color: #ffffff;
+            max-width: 451.3pt;
+            padding: 72pt 72pt 72pt 72pt
+        }
+
+        .c8 {
+            padding: 0;
+            margin: 0
+        }
+
+        .c9 {
+            margin-left: 36pt;
+            padding-left: 0pt
+        }
+
+        .c2 {
+            font-weight: 700
+        }
+
+        .c10 {
+            font-style: italic
+        }
+
+        .title {
+            padding-top: 0pt;
+            color: #000000;
+            font-size: 26pt;
+            padding-bottom: 3pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .subtitle {
+            padding-top: 0pt;
+            color: #666666;
+            font-size: 15pt;
+            padding-bottom: 16pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        li {
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        h1 {
+            padding-top: 20pt;
+            color: #000000;
+            font-size: 20pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h2 {
+            padding-top: 18pt;
+            color: #000000;
+            font-size: 16pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h3 {
+            padding-top: 16pt;
+            color: #434343;
+            font-size: 14pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h4 {
+            padding-top: 14pt;
+            color: #666666;
+            font-size: 12pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h5 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h6 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            font-style: italic;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+    </style>
+</head>
+
+<body class="c7 doc-content">
+    <p class="c6"><span class="c2 c11">Web Services</span></p>
+    <p class="c6"><span class="c2 c5">UNIT 1</span></p>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">1. Cloud Computing with examples</span></p>
+    <p class="c1"><span class="c0">Cloud computing delivers computing resources&mdash;servers, storage, databases,
+            networking, software&mdash;over the internet on a pay-as-you-go basis.</span></p>
+    <p class="c1"><span class="c0">Core attributes: on-demand availability, scalability, elasticity, reduced capital
+            cost, global access, managed infrastructure.</span></p>
+    <p class="c1"><span class="c0">Types of resources provided:<br> &bull; Computing power: virtual machines,
+            containers.<br> &bull; Storage: object, file, block storage.<br> &bull; Databases: SQL, NoSQL,
+            in-memory.<br> &bull; Networking: load balancers, VPN, VPC.</span></p>
+    <p class="c1"><span class="c0">Examples:<br> &bull; Gmail uses cloud servers to store emails and allow access
+            anywhere.<br> &bull; Netflix uses cloud infrastructure to stream content globally.<br> &bull; Google Drive
+            stores and synchronizes user files across devices.<br> &bull; By using AWS EC2, a company deploys a website
+            without owning servers.</span></p>
+    <p class="c1"><span class="c0">Mechanism: cloud service providers operate massive datacenters. Users access their
+            allocated resources via web consoles or APIs. Providers automate provisioning, scaling, monitoring, and
+            security.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">2. IaaS vs PaaS vs SaaS with real-world applications</span></p>
+    <p class="c1"><span class="c0">IaaS (Infrastructure as a Service):<br> &bull; Delivers raw compute, storage, and
+            networking resources.<br> &bull; User controls OS, applications, runtime.<br> &bull; Use cases: hosting
+            websites, running custom applications, backup and recovery systems.<br> &bull; Examples: AWS EC2, Google
+            Compute Engine, Azure VMs, DigitalOcean Droplets.</span></p>
+    <p class="c1"><span class="c0">PaaS (Platform as a Service):<br> &bull; Delivers a ready-to-use platform including
+            OS, runtime, database, and tools.<br> &bull; Developer focuses only on code and deployment, not the
+            underlying infrastructure.<br> &bull; Use cases: application development, CI/CD automation,
+            microservices.<br> &bull; Examples: AWS Elastic Beanstalk, Google App Engine, Heroku.</span></p>
+    <p class="c1"><span class="c0">SaaS (Software as a Service):<br> &bull; Fully managed application delivered over the
+            internet.<br> &bull; User only consumes the service; no installation or maintenance.<br> &bull; Use cases:
+            email, CRM, collaboration tools, ERP.<br> &bull; Examples: Gmail, Salesforce, Microsoft 365, Zoom.</span>
+    </p>
+    <p class="c1"><span class="c0">Differences summarized:<br> &bull; IaaS &rarr; maximum control.<br> &bull; PaaS
+            &rarr; balanced control and convenience.<br> &bull; SaaS &rarr; minimum control, maximum convenience.</span>
+    </p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">3. Cloud Deployment Models</span></p>
+    <p class="c1"><span class="c0">Public Cloud:<br> &bull; Services delivered over the public internet by third-party
+            providers.<br> &bull; Resources are shared among multiple users.<br> &bull; High scalability, low cost, easy
+            access.<br> &bull; Example: AWS, Azure, GCP.</span></p>
+    <p class="c1"><span class="c0">Private Cloud:<br> &bull; Dedicated infrastructure for a single organization.<br>
+            &bull; Hosted on-premises or in a private datacenter.<br> &bull; High security, customization,
+            compliance.<br> &bull; Example: VMware private cloud, OpenStack deployment inside a company.</span></p>
+    <p class="c1"><span class="c0">Hybrid Cloud:<br> &bull; Mix of public and private cloud.<br> &bull; Data and
+            applications move between environments.<br> &bull; Useful for sensitive + non-sensitive workloads.<br>
+            &bull; Example: bank keeps customer data on private cloud but uses AWS for analytics.</span></p>
+    <p class="c1"><span class="c0">Community Cloud:<br> &bull; Shared infrastructure for organizations with common
+            requirements (security, compliance, mission).<br> &bull; Managed by one organization or a third party.<br>
+            &bull; Example: healthcare organizations sharing a HIPAA-compliant cloud.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">4. Why AWS? Its compute, storage, database, and networking options</span></p>
+    <p class="c1"><span class="c0">Reasons for AWS dominance:<br> &bull; Global infrastructure: multiple regions and
+            availability zones.<br> &bull; Scalability and elasticity: Auto Scaling, Load Balancers.<br> &bull;
+            Reliability: fault-tolerant architecture.<br> &bull; Security: IAM, encryption, compliance.<br> &bull;
+            Pay-as-you-go pricing.<br> &bull; Rich ecosystem of services (&quot;largest cloud service
+            catalog&quot;).</span></p>
+    <p class="c1"><span class="c0">Compute services:<br> &bull; EC2: virtual servers with many instance types.<br>
+            &bull; Lambda: serverless compute triggered by events.<br> &bull; ECS/EKS: container orchestration for
+            Docker/Kubernetes.<br> &bull; AWS Batch: batch processing jobs.</span></p>
+    <p class="c1"><span class="c0">Storage services:<br> &bull; S3: scalable object storage for files, media,
+            backups.<br> &bull; EBS: block storage for EC2 instances.<br> &bull; EFS: elastic file system for shared
+            access.<br> &bull; Glacier: archival cold storage.</span></p>
+    <p class="c1"><span class="c0">Database services:<br> &bull; RDS: managed relational databases (MySQL, PostgreSQL,
+            Oracle, SQL Server).<br> &bull; DynamoDB: serverless NoSQL key-value database.<br> &bull; Aurora:
+            high-performance relational database.<br> &bull; ElastiCache: in-memory caching (Redis, Memcached).<br>
+            &bull; Redshift: data warehousing.</span></p>
+    <p class="c1"><span class="c0">Networking services:<br> &bull; VPC: isolated virtual network environment.<br> &bull;
+            Route 53: DNS and domain management.<br> &bull; Elastic Load Balancer: distributes traffic.<br> &bull;
+            Direct Connect: private connection from on-premises to AWS.<br> &bull; CloudFront: content delivery
+            network.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">5. AWS Pricing Models: On-Demand, Reserved, Spot</span></p>
+    <p class="c1"><span class="c0">On-Demand Pricing:<br> &bull; Pay by the hour/second for compute and storage.<br>
+            &bull; No upfront payments or long-term commitments.<br> &bull; Used when workloads are unpredictable,
+            short-term, or for testing.</span></p>
+    <p class="c1"><span class="c0">Reserved Instances (RIs):<br> &bull; Commit to a 1-year or 3-year term.<br> &bull;
+            Receive major discounts (up to 70% compared to On-Demand).<br> &bull; Best for steady-state workloads,
+            predictable traffic.</span></p>
+    <p class="c1"><span class="c0">Spot Instances:<br> &bull; Purchase unused AWS capacity at deep discounts (up to
+            90%).<br> &bull; AWS can reclaim the instance anytime if demand increases.<br> &bull; Suitable for
+            fault-tolerant and flexible workloads (batch jobs, data processing, ML training).</span></p>
+    <p class="c1"><span class="c0">Pricing logic:<br> &bull; On-Demand &rarr; flexibility.<br> &bull; Reserved &rarr;
+            cost optimization for stable workloads.<br> &bull; Spot &rarr; lowest cost for interruptible tasks.</span>
+    </p>
+    <p class="c1"><span class="c0">This completes Unit 1 in detailed, exam-ready form.</span></p>
+    <p class="c4"><span class="c0"></span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c6"><span class="c5 c2">UNIT 2</span></p>
+    <p class="c1"><span class="c3 c2">1. EC2 and Different Instance Types (purpose + examples)</span></p>
+    <p class="c1"><span>Amazon EC2 (Elastic Compute Cloud) provides virtual servers&mdash;called </span><span
+            class="c10">instances</span><span class="c0">&mdash;to run applications. EC2 gives full control over OS,
+            storage, network, and software. Instances scale up or down based on workload.</span></p>
+    <p class="c1"><span class="c0">Instance families and their purposes:</span></p>
+    <p class="c1"><span class="c0">General Purpose Instances (T-series, M-series):<br> &bull; Balanced CPU, memory, and
+            network.<br> &bull; Used for web servers, small databases, development environments.<br> &bull; Examples:
+            t2.micro for simple websites, m5.large for enterprise apps.</span></p>
+    <p class="c1"><span class="c0">Compute-Optimized Instances (C-series):<br> &bull; High-performance processors.<br>
+            &bull; Used for heavy computation: scientific modeling, ML inference, game servers.<br> &bull; Example:
+            c5.xlarge.</span></p>
+    <p class="c1"><span class="c0">Memory-Optimized Instances (R-series, X-series):<br> &bull; Large RAM compared to
+            CPU.<br> &bull; Used for in-memory databases, caching, real-time analytics.<br> &bull; Example: r5.large,
+            x1e.32xlarge for SAP HANA.</span></p>
+    <p class="c1"><span class="c0">Storage-Optimized Instances (I-series, D-series):<br> &bull; High IOPS and local NVMe
+            SSDs.<br> &bull; Used for NoSQL databases, OLTP systems, data warehousing.<br> &bull; Example:
+            i3.large.</span></p>
+    <p class="c1"><span class="c0">GPU Instances (P-series, G-series):<br> &bull; GPUs for parallel processing.<br>
+            &bull; Used for deep learning, 3D rendering, video processing.<br> &bull; Example: p3.2xlarge,
+            g4dn.xlarge.</span></p>
+    <p class="c1"><span class="c0">Burstable Instances (T-series):<br> &bull; Provide baseline performance with CPU
+            burst capability.<br> &bull; Suitable for apps with variable load.<br> &bull; Example: t3.micro for
+            WordPress hosting.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">2. Steps to Launch an EC2 Instance (including AMI selection and
+            configuration)</span></p>
+    <p class="c1"><span class="c0">Step 1: Open EC2 Console<br> Navigate to AWS Management Console &rarr; EC2 &rarr;
+            Launch Instance.</span></p>
+    <p class="c1"><span class="c0">Step 2: Choose AMI<br> Select an Amazon Machine Image that defines OS and
+            preinstalled software.<br> Examples: Amazon Linux AMI, Ubuntu, Windows Server, custom AMIs.</span></p>
+    <p class="c1"><span class="c0">Step 3: Choose Instance Type<br> Select based on CPU, RAM, storage, network
+            features.</span></p>
+    <p class="c1"><span class="c0">Step 4: Configure Instance<br> Define:<br> &bull; Number of instances<br> &bull;
+            Network (VPC, subnet)<br> &bull; IAM role<br> &bull; Shutdown behavior<br> &bull; Monitoring
+            (CloudWatch)<br> &bull; User data script (for automatic setup)</span></p>
+    <p class="c1"><span class="c0">Step 5: Add Storage<br> Choose EBS volume type: gp2/gp3 (general purpose), io1/io2
+            (high IOPS), st1/sc1 (throughput optimized).<br> Set volume size.</span></p>
+    <p class="c1"><span class="c0">Step 6: Add Tags<br> Key&ndash;value identifiers for management.<br> Example: Name =
+            WebServer1.</span></p>
+    <p class="c1"><span class="c0">Step 7: Configure Security Group<br> Define inbound rules: SSH (22), HTTP (80), HTTPS
+            (443).<br> Outbound traffic is usually open by default.</span></p>
+    <p class="c1"><span class="c0">Step 8: Create/Select Key Pair<br> Used to connect securely to the instance.<br>
+            Download PEM/PPK file.</span></p>
+    <p class="c1"><span>Step 9: Launch Instance<br> Instance gets a public IP if launched in a public subnet.<br> Wait
+            until state becomes </span><span class="c10">running</span><span class="c0">.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">3. AMI and How to Create AMI from a Running Instance</span></p>
+    <p class="c1"><span class="c0">AMI (Amazon Machine Image) is a template that contains:<br> &bull; Operating
+            System<br> &bull; Application software<br> &bull; Configuration (packages, settings)<br> &bull; EBS
+            snapshot(s)</span></p>
+    <p class="c1"><span class="c0">AMI enables launching identical instances quickly.</span></p>
+    <p class="c1"><span class="c0">Types:<br> &bull; Public AMI<br> &bull; Private AMI<br> &bull; Marketplace AMI<br>
+            &bull; Customized AMI created by users</span></p>
+    <p class="c1"><span class="c0">Creating AMI from a running instance:</span></p>
+    <ol class="c8 lst-kix_cpucja3ugitl-0 start" start="1">
+        <li class="c1 c9 li-bullet-0"><span class="c0">Select the instance in EC2 Console.<br></span></li>
+        <li class="c1 c9 li-bullet-0"><span>Choose </span><span class="c2">Actions &rarr; Image and Templates &rarr;
+                Create Image</span><span class="c0">.<br></span></li>
+        <li class="c1 c9 li-bullet-0"><span class="c0">Provide name, description, choose volumes to include.<br></span>
+        </li>
+        <li class="c1 c9 li-bullet-0"><span class="c0">AWS takes a snapshot of the root EBS volume.<br></span></li>
+        <li class="c1 c9 li-bullet-0"><span>AMI becomes available under </span><span class="c2">Images &rarr;
+                AMIs</span><span class="c0">.<br></span></li>
+    </ol>
+    <p class="c1"><span class="c0">Use case:<br> &bull; Creating consistent environments for scaling.<br> &bull; Backup
+            before application upgrades.<br> &bull; Launching multiple identical servers.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">4. Auto Scaling and Elastic Load Balancing with examples</span></p>
+    <p class="c1"><span class="c0">Auto Scaling:<br> &bull; Automatically adjusts the number of EC2 instances based on
+            demand.<br> &bull; Ensures sufficient capacity during peak load and reduces cost in low load.</span></p>
+    <p class="c1"><span class="c0">Components:<br> &bull; Launch template: defines AMI, instance type, security
+            group.<br> &bull; Auto Scaling Group (ASG): manages minimum, maximum, and desired number of instances.<br>
+            &bull; Scaling policies:<br> &ndash; Target tracking (e.g., keep CPU at 50%)<br> &ndash; Step scaling<br>
+            &ndash; Scheduled scaling</span></p>
+    <p class="c1"><span class="c0">Example:<br> An e-commerce site increases traffic during festivals. Auto Scaling adds
+            more web server instances to handle the load and terminates unused instances after peak hours.</span></p>
+    <p class="c1"><span class="c0">Elastic Load Balancing (ELB):<br> &bull; Distributes incoming traffic across multiple
+            EC2 instances.<br> &bull; Detects unhealthy instances and routes traffic only to healthy ones.</span></p>
+    <p class="c1"><span class="c0">Types:<br> &bull; Application Load Balancer (ALB) &ndash; HTTP/HTTPS, layer 7.<br>
+            &bull; Network Load Balancer (NLB) &ndash; TCP/UDP, ultra-low latency.<br> &bull; Classic Load Balancer
+            &ndash; older version.</span></p>
+    <p class="c1"><span class="c0">Example:<br> A website with multiple EC2 instances behind an ALB receives user
+            requests. If one instance fails, ALB routes traffic to others, maintaining availability.</span></p>
+    <p class="c1"><span class="c0">Auto Scaling + ELB:<br> When Auto Scaling adds new instances, ELB automatically
+            registers them. When instances terminate, ELB deregisters them.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">5. EBS-Backed vs Instance-Store-Backed Instances</span></p>
+    <p class="c1"><span class="c0">EBS-Backed Instances:<br> &bull; Root volume stored on EBS (Elastic Block Store).<br>
+            &bull; Persistent storage: data persists even after instance stops.<br> &bull; Instances can be stopped and
+            restarted without data loss.<br> &bull; Snapshots allow backup and AMI creation.<br> &bull; Suitable for
+            production workloads.</span></p>
+    <p class="c1"><span class="c0">Instance-Store-Backed Instances:<br> &bull; Root volume stored on physical disks
+            attached to the host.<br> &bull; Non-persistent: data is lost if instance stops, fails, or host hardware
+            changes.<br> &bull; Faster I/O but temporary.<br> &bull; Cannot stop and start; only reboot or
+            terminate.<br> &bull; Suitable for temporary storage, caching, buffers.</span></p>
+    <p class="c1"><span class="c0">Key difference:<br> &bull; EBS = persistent and reliable.<br> &bull; Instance Store =
+            temporary, high-performance but volatile.</span></p>
+    <p class="c1"><span class="c0">These points complete Unit 2 in detailed, exam-ready form.</span></p>
+    <p class="c4"><span class="c0"></span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c6"><span class="c5 c2">UNIT 3</span></p>
+    <p class="c1"><span class="c3 c2">1. AWS Elastic Beanstalk and how it helps in deploying scalable apps</span></p>
+    <p class="c1"><span class="c0">Elastic Beanstalk is a managed platform service that automates deployment, scaling,
+            monitoring, and management of web applications. It removes the need to manually provision EC2, load
+            balancers, security groups, auto scaling, and software configurations.</span></p>
+    <p class="c1"><span class="c0">Core functions:<br> &bull; Supports multiple languages: Java, Python, Node.js, PHP,
+            .NET, Go, Ruby.<br> &bull; Automatically provisions infrastructure: EC2, ELB, Auto Scaling Groups, RDS
+            (optional), networking.<br> &bull; Provides version control of application deployments.<br> &bull; Offers
+            environment types: Web Server Environment and Worker Environment.<br> &bull; Applies platform updates
+            through managed updates.</span></p>
+    <p class="c1"><span class="c0">How it enables scalability:<br> &bull; Auto Scaling is integrated and adjusts
+            instance count based on load.<br> &bull; Load balancers distribute traffic automatically.<br> &bull;
+            Developers deploy code; Beanstalk handles capacity and health monitoring.</span></p>
+    <p class="c1"><span class="c0">Example:<br> Deploying a Node.js web app: upload ZIP file &rarr; Beanstalk creates
+            EC2 instances, configures Nginx, sets scaling policies &rarr; app scales automatically under traffic
+            spikes.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c2 c3">2. CloudFormation and CloudWatch (metrics + alarms)</span></p>
+    <p class="c1"><span class="c0">AWS CloudFormation:<br> &bull; Infrastructure-as-Code (IaC) service.<br> &bull;
+            Defines AWS resources in JSON/YAML templates.<br> &bull; Automates creation, updating, and deletion of
+            entire stacks in a controlled manner.<br> &bull; Ensures consistent and repeatable deployments.<br> &bull;
+            Supports versioning, rollback, and drift detection.</span></p>
+    <p class="c1"><span class="c0">Example:<br> A CloudFormation template defines VPC, subnets, EC2, RDS. Deploying the
+            template creates the full architecture without manual configuration.</span></p>
+    <p class="c1"><span class="c0">AWS CloudWatch:<br> &bull; Monitoring and observability service.<br> &bull; Collects
+            metrics, logs, and events from AWS services and applications.</span></p>
+    <p class="c1"><span class="c0">CloudWatch Metrics:<br> &bull; CPUUtilization, NetworkIn/Out for EC2<br> &bull;
+            RequestCount, Latency for ELB<br> &bull; ReadIOPS/WriteIOPS for EBS<br> &bull; Invocations/Errors for
+            Lambda<br> &bull; Custom metrics from applications</span></p>
+    <p class="c1"><span class="c0">CloudWatch Alarms:<br> &bull; Triggered when a metric breaches a defined
+            threshold.<br> &bull; Actions include sending SNS notifications, auto scaling adjustments, or EC2
+            recovery.</span></p>
+    <p class="c1"><span class="c0">Example:<br> Set an alarm: EC2 CPU &gt; 80% for 5 minutes &rarr; trigger Auto Scaling
+            to add an instance.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">3. SNS vs SQS vs SES with examples</span></p>
+    <p class="c1"><span class="c0">Amazon SNS (Simple Notification Service):<br> &bull; Pub/Sub messaging system.<br>
+            &bull; Pushes messages to subscribers immediately.<br> &bull; Supports protocols: SMS, email, HTTP endpoint,
+            Lambda.<br> &bull; Used for broadcast notifications.</span></p>
+    <p class="c1"><span class="c0">Example:<br> A CloudWatch alarm triggers SNS &rarr; sends SMS to admin &rarr;
+            triggers Lambda for automated response.</span></p>
+    <p class="c1"><span class="c0">Amazon SQS (Simple Queue Service):<br> &bull; Fully managed message queue.<br> &bull;
+            Decouples distributed systems.<br> &bull; Messages are pulled by consumers, not pushed.<br> &bull; Ensures
+            reliable delivery, supports FIFO and standard queues.</span></p>
+    <p class="c1"><span class="c0">Example:<br> Web server sends jobs to SQS &rarr; worker processes consume jobs &rarr;
+            handles asynchronous processing like image resizing.</span></p>
+    <p class="c1"><span class="c0">Amazon SES (Simple Email Service):<br> &bull; Scalable email sending service.<br>
+            &bull; Used for transactional and marketing emails.<br> &bull; Supports SMTP and API-based sending.</span>
+    </p>
+    <p class="c1"><span class="c0">Example:<br> Sending password reset emails or bulk promotional emails.</span></p>
+    <p class="c1"><span class="c0">Key differences:<br> &bull; SNS &rarr; publish/subscribe, instant push
+            notifications.<br> &bull; SQS &rarr; queue for asynchronous processing, pull mechanism.<br> &bull; SES
+            &rarr; email sending.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">4. IAM&mdash;users, groups, roles, policies</span></p>
+    <p class="c1"><span class="c0">IAM (Identity and Access Management) controls authentication and authorization for
+            AWS resources.</span></p>
+    <p class="c1"><span class="c0">IAM Users:<br> &bull; Individual identities.<br> &bull; Each user has unique
+            credentials (password, access keys).<br> &bull; Used for real people or applications needing direct
+            access.</span></p>
+    <p class="c1"><span class="c0">IAM Groups:<br> &bull; Collections of users.<br> &bull; Policies applied to groups
+            affect all members.<br> &bull; Example: Admins, Developers, Auditors.</span></p>
+    <p class="c1"><span class="c0">IAM Roles:<br> &bull; Temporary access identity with permissions.<br> &bull; Used by
+            AWS services, applications, or cross-account access.<br> &bull; No long-term credentials; uses temporary
+            session tokens.</span></p>
+    <p class="c1"><span class="c0">Examples:<br> &bull; EC2 instance role allowing S3 access.<br> &bull; Lambda
+            execution role.<br> &bull; Cross-account roles for sharing resources.</span></p>
+    <p class="c1"><span class="c0">IAM Policies:<br> &bull; JSON documents defining allowed/denied actions.<br> &bull;
+            Types: AWS-managed, customer-managed, inline.<br> &bull; Example policy: Allow s3:ListBucket and
+            s3:GetObject.</span></p>
+    <p class="c1"><span class="c0">Policy structure:<br> &bull; Version<br> &bull; Statement(s)<br> &bull; Effect
+            (Allow/Deny)<br> &bull; Action<br> &bull; Resource<br> &bull; Condition (optional)</span></p>
+    <p class="c1"><span class="c0">IAM provides least-privilege security by ensuring users/services get only necessary
+            permissions.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">5. AWS KMS and Data Security (at rest &amp; in motion)</span></p>
+    <p class="c1"><span class="c0">AWS KMS (Key Management Service):<br> &bull; Managed service for creating, storing,
+            and controlling encryption keys.<br> &bull; Supports symmetric and asymmetric keys.<br> &bull; Integrated
+            with S3, EBS, RDS, Lambda, CloudTrail, and many AWS services.<br> &bull; Manages key rotation, access
+            control, auditing.</span></p>
+    <p class="c1"><span class="c0">Key features:<br> &bull; Customer Master Keys (CMKs)<br> &bull; Envelope encryption
+            (data keys encrypted by CMKs)<br> &bull; Logging via CloudTrail</span></p>
+    <p class="c1"><span class="c0">Data Security at Rest:<br> &bull; Protects stored data.<br> &bull; AWS offers
+            server-side encryption using KMS-managed keys (SSE-KMS).<br> &bull; EBS volumes, S3 objects, RDS databases
+            can be encrypted automatically.<br> &bull; Encryption is transparent to applications.</span></p>
+    <p class="c1"><span class="c0">Example:<br> S3 bucket with SSE-KMS &rarr; objects stored as encrypted files using
+            AES-256.</span></p>
+    <p class="c1"><span class="c0">Data Security in Motion:<br> &bull; Protects data during transfer using
+            TLS/HTTPS.<br> &bull; Secure connections to APIs, endpoints, and load balancers.<br> &bull; VPN and Direct
+            Connect with encryption ensure secure hybrid connectivity.</span></p>
+    <p class="c1"><span class="c0">Example:<br> Client &rarr; ALB (HTTPS) &rarr; EC2 uses TLS to prevent eavesdropping
+            or tampering.</span></p>
+    <p class="c1"><span class="c0">Combined security model:<br> &bull; KMS handles key lifecycle.<br> &bull; Encryption
+            at rest protects against disk theft or unauthorized access.<br> &bull; Encryption in motion protects against
+            interception during transit.</span></p>
+    <p class="c1"><span class="c0">This completes Unit 3 in detailed technical form.</span></p>
+    <p class="c4"><span class="c0"></span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c6"><span class="c5 c2">UNIT 4</span></p>
+    <p class="c1"><span class="c3 c2">1. Amazon S3 &ndash; buckets, objects, storage classes, use cases</span></p>
+    <p class="c1"><span>Amazon S3 (Simple Storage Service) is object storage designed for durability, availability, and
+            scalability. Data is stored as </span><span class="c2">objects</span><span>&nbsp;inside </span><span
+            class="c2">buckets</span><span class="c0">.</span></p>
+    <p class="c1"><span class="c0">Buckets:<br> &bull; Logical containers that store objects.<br> &bull; Globally unique
+            names.<br> &bull; Properties: versioning, lifecycle rules, encryption, access policies, logging.</span></p>
+    <p class="c1"><span class="c0">Objects:<br> &bull; Fundamental storage units in S3.<br> &bull; Consist of data,
+            metadata, and a unique key.<br> &bull; Any file type: images, videos, logs, backups.</span></p>
+    <p class="c1"><span class="c0">Storage Classes:<br> &bull; S3 Standard: high availability, frequent access.<br>
+            &bull; S3 Intelligent-Tiering: auto-moves data between tiers based on access patterns.<br> &bull; S3
+            Standard-IA (Infrequent Access): lower cost, retrieval fee.<br> &bull; S3 One Zone-IA: stored in one AZ.<br>
+            &bull; S3 Glacier Instant Retrieval: archival with quick access.<br> &bull; S3 Glacier Flexible Retrieval:
+            minutes to hours restore.<br> &bull; S3 Glacier Deep Archive: lowest-cost long-term archival.</span></p>
+    <p class="c1"><span class="c0">Use Cases:<br> &bull; Website hosting (static sites).<br> &bull; Backup and
+            restore.<br> &bull; Data lake storage for analytics.<br> &bull; Application logs.<br> &bull; Media storage
+            and delivery.<br> &bull; ML training datasets.<br> &bull; Disaster recovery.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">2. Difference between S3, EBS, and Glacier (type, use, cost)</span></p>
+    <p class="c1"><span class="c0">Amazon S3:<br> &bull; Storage type: object storage.<br> &bull; Use: static files,
+            backups, media, logs, data lakes.<br> &bull; Cost: low, pay per GB stored + request charges.<br> &bull;
+            Access: HTTP-based API.</span></p>
+    <p class="c1"><span class="c0">EBS (Elastic Block Store):<br> &bull; Storage type: block storage.<br> &bull; Use:
+            EC2 root volumes, databases, file systems.<br> &bull; Cost: higher than S3; charged per provisioned GB +
+            IOPS.<br> &bull; Access: attaches to EC2 like a virtual hard disk.</span></p>
+    <p class="c1"><span class="c0">Glacier:<br> &bull; Storage type: archival object storage.<br> &bull; Use: long-term
+            archival, compliance data.<br> &bull; Cost: extremely low storage cost; retrieval cost/time applies.<br>
+            &bull; Access: asynchronous retrieval.</span></p>
+    <p class="c1"><span class="c0">Comparison Summary:<br> &bull; S3 &rarr; general-purpose object storage.<br> &bull;
+            EBS &rarr; persistent storage for running EC2 workloads.<br> &bull; Glacier &rarr; cold archival with long
+            retrieval times.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">3. EBS volume types and usage</span></p>
+    <p class="c1"><span class="c0">EBS provides persistent block storage for EC2 instances. Volume types:</span></p>
+    <p class="c1"><span class="c0">General Purpose SSD (gp2, gp3):<br> &bull; Balanced price/performance.<br> &bull;
+            Suitable for boot volumes, web servers, small databases.</span></p>
+    <p class="c1"><span class="c0">Provisioned IOPS SSD (io1, io2):<br> &bull; High IOPS for latency-sensitive
+            workloads.<br> &bull; Suitable for large relational DBs, NoSQL DBs, OLTP workloads.</span></p>
+    <p class="c1"><span class="c0">Throughput-Optimized HDD (st1):<br> &bull; High throughput, low cost.<br> &bull;
+            Suitable for big data, log processing, streaming workloads.</span></p>
+    <p class="c1"><span class="c0">Cold HDD (sc1):<br> &bull; Lowest-cost HDD option.<br> &bull; Suitable for
+            infrequently accessed data.</span></p>
+    <p class="c1"><span class="c0">Key characteristics:<br> &bull; Volumes are AZ-specific.<br> &bull; Snapshots stored
+            in S3 for backups.<br> &bull; Can resize volumes without downtime.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">4. DynamoDB and key features (partitioning, throughput)</span></p>
+    <p class="c1"><span class="c0">DynamoDB is a fully managed NoSQL key-value and document database.</span></p>
+    <p class="c1"><span class="c0">Key features:<br> &bull; Serverless architecture with automatic scaling.<br> &bull;
+            Fast performance with single-digit millisecond latency.<br> &bull; Multi-region replication.<br> &bull;
+            Integrated security, backups, caching with DAX.</span></p>
+    <p class="c1"><span>Partitioning:<br> &bull; DynamoDB distributes data across partitions based on </span><span
+            class="c2">partition key</span><span class="c0">.<br> &bull; Hot partitions are avoided by selecting
+            high-cardinality partition keys.<br> &bull; Partitions ensure horizontal scaling for large datasets.</span>
+    </p>
+    <p class="c1"><span class="c0">Throughput:<br> &bull; Two modes:<br> &ndash; Provisioned: specify Read Capacity
+            Units (RCU) and Write Capacity Units (WCU).<br> &ndash; On-Demand: auto-scales based on request load.</span>
+    </p>
+    <p class="c1"><span class="c0">&bull; Auto-scaling adjusts RCU/WCU based on traffic.<br> &bull; Burst capacity
+            handles short spikes.</span></p>
+    <p class="c1"><span class="c0">Additional features:<br> &bull; Streams for change tracking.<br> &bull; TTL for
+            automatic item expiration.<br> &bull; Global secondary indexes (GSI) and local secondary indexes (LSI) for
+            flexible queries.</span></p>
+    <p class="c1"><span class="c0">Use cases:<br> &bull; Gaming leaderboards.<br> &bull; IoT real-time data.<br> &bull;
+            E-commerce catalogs.<br> &bull; Session stores.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">5. RDS and steps to launch an RDS instance</span></p>
+    <p class="c1"><span class="c0">Amazon RDS (Relational Database Service) is a managed service for relational
+            databases.</span></p>
+    <p class="c1"><span class="c0">Supported engines:<br> &bull; MySQL<br> &bull; PostgreSQL<br> &bull; MariaDB<br>
+            &bull; Oracle<br> &bull; SQL Server<br> &bull; Amazon Aurora</span></p>
+    <p class="c1"><span class="c0">Key features:<br> &bull; Automated backups.<br> &bull; Multi-AZ failover.<br> &bull;
+            Read replicas.<br> &bull; Monitoring and performance insights.<br> &bull; Automated patching.<br> &bull;
+            Storage autoscaling.</span></p>
+    <p class="c1"><span class="c0">Steps to launch an RDS instance:</span></p>
+    <p class="c1"><span class="c0">Step 1: Open RDS Console<br> Choose Create Database.</span></p>
+    <p class="c1"><span class="c0">Step 2: Select Database Engine<br> Choose MySQL, PostgreSQL, etc.</span></p>
+    <p class="c1"><span class="c0">Step 3: Choose Deployment Type<br> &bull; Production (Multi-AZ)<br> &bull; Dev/Test
+            (single AZ)</span></p>
+    <p class="c1"><span class="c0">Step 4: DB Instance Class<br> Specify CPU and memory (db.t3.micro,
+            db.m5.large).</span></p>
+    <p class="c1"><span class="c0">Step 5: Storage Configuration<br> Select storage type: gp2, io1, or autoscaling
+            storage.</span></p>
+    <p class="c1"><span class="c0">Step 6: Set Master Credentials<br> Define username and password.</span></p>
+    <p class="c1"><span class="c0">Step 7: Connectivity<br> &bull; Choose VPC, subnet group, security group.<br> &bull;
+            Decide public or private access.<br> &bull; Configure port (default MySQL = 3306).</span></p>
+    <p class="c1"><span class="c0">Step 8: Additional Settings<br> &bull; DB name<br> &bull; Backup retention period<br>
+            &bull; Monitoring<br> &bull; Maintenance window<br> &bull; Encryption (KMS)</span></p>
+    <p class="c1"><span class="c0">Step 9: Create Database<br> AWS provisions DB instance.<br> Endpoint becomes
+            available for application connection.</span></p>
+    <p class="c1"><span class="c0">Use cases:<br> &bull; Web application databases.<br> &bull; ERP/CRM systems.<br>
+            &bull; Analytics workloads.<br> &bull; Scalable relational database hosting without manual
+            administration.</span></p>
+    <p class="c1"><span class="c0">This completes Unit 4 in detailed and exam-level clarity.</span></p>
+    <p class="c4"><span class="c0"></span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c6"><span class="c5 c2">UNIT 5</span></p>
+    <p class="c1"><span class="c3 c2">1. VPC architecture &ndash; subnets, routing, ACLs, Security Groups, IGW</span>
+    </p>
+    <p class="c1"><span class="c0">A Virtual Private Cloud (VPC) is an isolated, customizable virtual network inside
+            AWS. It contains networking components that define how resources communicate internally and with the
+            internet.</span></p>
+    <p class="c1"><span class="c0">Core components:</span></p>
+    <p class="c1"><span class="c0">Subnets:<br> &bull; Logical divisions of the VPC&rsquo;s IP address range.<br> &bull;
+            Public subnets: connected to the internet through an Internet Gateway.<br> &bull; Private subnets: no direct
+            internet access; often used for databases or internal services.<br> &bull; Each subnet belongs to a single
+            Availability Zone.</span></p>
+    <p class="c1"><span class="c0">Route Tables:<br> &bull; Define routing rules for outbound traffic.<br> &bull; Public
+            subnet route table includes a default route (0.0.0.0/0) pointing to IGW.<br> &bull; Private subnet route
+            table might route traffic to NAT Gateway or stay internal.</span></p>
+    <p class="c1"><span class="c0">Network ACLs (NACLs):<br> &bull; Stateless firewall at the subnet level.<br> &bull;
+            Controls inbound and outbound traffic.<br> &bull; Rules allow or deny traffic based on IP, port, and
+            protocol.</span></p>
+    <p class="c1"><span class="c0">Security Groups:<br> &bull; Stateful firewalls attached to EC2 or other
+            resources.<br> &bull; Control inbound and outbound traffic at instance level.<br> &bull; Automatically allow
+            return traffic.</span></p>
+    <p class="c1"><span class="c0">Internet Gateway (IGW):<br> &bull; Enables communication between VPC resources and
+            the internet.<br> &bull; Must be attached to VPC and referenced in route table for public subnets.</span>
+    </p>
+    <p class="c1"><span class="c0">How the components work together:<br> &bull; Public subnets allow public-facing
+            services (web servers).<br> &bull; Private subnets isolate sensitive resources.<br> &bull; Route tables
+            determine where traffic goes.<br> &bull; SGs and NACLs enforce security at different layers.<br> &bull; IGW
+            enables internet connectivity.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">2. Difference between Security Groups and Network ACLs</span></p>
+    <p class="c1"><span class="c0">Security Groups (SG):<br> &bull; Applied at instance level.<br> &bull; Stateful:
+            return traffic automatically allowed.<br> &bull; Only allow rules; no explicit deny rules.<br> &bull;
+            Default: all outbound allowed, inbound denied.<br> &bull; Easier to manage for applications.</span></p>
+    <p class="c1"><span class="c0">Network ACLs (NACL):<br> &bull; Applied at subnet level.<br> &bull; Stateless: return
+            traffic must be explicitly allowed.<br> &bull; Supports both allow and deny rules.<br> &bull; Default NACL
+            allows all traffic; custom NACL denies all until configured.<br> &bull; Used for broad subnet-level traffic
+            control.</span></p>
+    <p class="c1"><span class="c0">Comparison summary:<br> &bull; SG &rarr; fine-grained, instance-level security.<br>
+            &bull; NACL &rarr; coarse, subnet-level traffic filtering.<br> &bull; SG = stateful, NACL =
+            stateless.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">3. 3-tier VPC architecture (public &amp; private subnets)</span></p>
+    <p class="c1"><span class="c0">A 3-tier architecture separates application layers for scalability, security, and
+            maintainability:</span></p>
+    <p class="c1"><span class="c0">Tier 1: Presentation Layer (Web Tier)<br> &bull; Located in public subnets.<br>
+            &bull; Contains web servers or load balancers receiving internet traffic.<br> &bull; Public subnet routes
+            traffic to IGW.</span></p>
+    <p class="c1"><span class="c0">Tier 2: Application Layer (App Tier)<br> &bull; Located in private subnets.<br>
+            &bull; Contains backend application servers.<br> &bull; Communicates with web tier using internal IPs.<br>
+            &bull; No direct internet access.</span></p>
+    <p class="c1"><span class="c0">Tier 3: Database Layer (DB Tier)<br> &bull; Located in isolated private subnets.<br>
+            &bull; Contains RDS, DynamoDB (via VPC endpoints), or EC2 databases.<br> &bull; No internet access;
+            reachable only from app tier.</span></p>
+    <p class="c1"><span class="c0">Traffic flow:<br> User &rarr; Internet &rarr; Load Balancer (public subnet) &rarr;
+            App Servers (private subnet) &rarr; Database (private isolated subnet).</span></p>
+    <p class="c1"><span class="c0">Advantages:<br> &bull; Strong security isolation.<br> &bull; Independent scaling of
+            each tier.<br> &bull; Fine-grained control over network access.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">4. Route 53 and CloudFront with use cases</span></p>
+    <p class="c1"><span class="c0">Amazon Route 53:<br> &bull; Highly available DNS (Domain Name System) service.<br>
+            &bull; Functions: domain registration, DNS routing, and health checking.<br> &bull; Supports routing
+            policies:<br> &ndash; Simple<br> &ndash; Weighted<br> &ndash; Latency-based<br> &ndash; Geolocation<br>
+            &ndash; Failover<br> &ndash; Multi-value answer</span></p>
+    <p class="c1"><span class="c0">Use cases:<br> &bull; Routing global user traffic to nearest server.<br> &bull;
+            Failover DNS for high-availability apps.<br> &bull; Domain management for websites.</span></p>
+    <p class="c1"><span class="c0">CloudFront:<br> &bull; Content Delivery Network (CDN).<br> &bull; Caches content at
+            edge locations worldwide for low latency.<br> &bull; Works with S3, EC2, ALB, Media Services, and custom
+            origins.<br> &bull; Provides HTTPS termination and DDoS protection.</span></p>
+    <p class="c1"><span class="c0">Use cases:<br> &bull; Delivering static websites stored in S3.<br> &bull;
+            Accelerating media streaming and downloads.<br> &bull; Protecting applications behind AWS Shield +
+            CloudFront.<br> &bull; Reducing latency for global applications.</span></p>
+    <p class="c1"><span class="c0">Together:<br> Route 53 directs users to CloudFront &rarr; CloudFront serves cached
+            content or fetches from origin.</span></p>
+    <hr>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c1"><span class="c3 c2">5. VPN and Customer Gateway setup</span></p>
+    <p class="c1"><span class="c0">A VPN (Virtual Private Network) provides secure communication between on-premises
+            data center and AWS VPC using encrypted tunnels over the public internet.</span></p>
+    <p class="c1"><span class="c0">Components:</span></p>
+    <p class="c1"><span class="c0">Customer Gateway (CGW):<br> &bull; On-premises device (router or firewall) or
+            software appliance.<br> &bull; Represents your physical network in AWS.</span></p>
+    <p class="c1"><span class="c0">Virtual Private Gateway (VGW):<br> &bull; AWS-side gateway attached to the VPC.<br>
+            &bull; Establishes IPSec tunnel with CGW.</span></p>
+    <p class="c1"><span class="c0">VPN Setup Process:</span></p>
+    <p class="c1"><span class="c0">Step 1: Create a Virtual Private Gateway<br> Attach it to the target VPC.</span></p>
+    <p class="c1"><span class="c0">Step 2: Create a Customer Gateway<br> Specify:<br> &bull; Public IP of on-prem
+            router<br> &bull; Routing type (static or BGP dynamic routing)</span></p>
+    <p class="c1"><span class="c0">Step 3: Create a VPN Connection<br> Link CGW and VGW.<br> AWS generates tunnel
+            configuration files.</span></p>
+    <p class="c1"><span class="c0">Step 4: Configure On-Premises Router<br> Apply tunnel configuration downloaded from
+            AWS (supports Cisco, Juniper, etc.).</span></p>
+    <p class="c1"><span class="c0">Step 5: Test Connectivity<br> Ping EC2 in private subnets using private IPs.</span>
+    </p>
+    <p class="c1"><span class="c0">Use cases:<br> &bull; Hybrid cloud setup.<br> &bull; Secure connection from office
+            network to AWS.<br> &bull; Backup link for Direct Connect.</span></p>
+    <p class="c1"><span class="c0">This completes Unit 5 in detailed and structured form.</span></p>
+    <p class="c4"><span class="c0"></span></p>
+    <div id="watermark">https://poornimites.vercel.app/notes.html <br>
+        CONFIDENCIAL || DO NOT SHARE <br>  Also Fuck Rahul Singhi</div>
+
+    <h1>Secure Test</h1>
+    <p>This is secure test content. Copying, printing, or screenshots are restricted.</p>
+
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Disable keyboard shortcuts for copy, print, save, view source, and screenshot
+        document.addEventListener('keydown', e => {
+            const blocked = ['c', 'p', 's', 'u', 'PrintScreen'];
+            if (e.ctrlKey && blocked.includes(e.key.toLowerCase())) {
+                e.preventDefault();
+                alert('Action disabled');
+            }
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                alert('Screenshots disabled');
+            }
+        });
+
+        // Disable copy event
+        document.addEventListener('copy', e => {
+            e.preventDefault();
+            alert('Copy disabled');
+        });
+
+        // Prevent printing
+        window.onbeforeprint = () => {
+            document.body.style.display = 'none';
+            alert('Printing disabled');
+            setTimeout(() => location.reload(), 1000);
+        };
+
+        // Disable caching
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(() => { });
+        }
+    </script>
+
+</body>
+
+</html>

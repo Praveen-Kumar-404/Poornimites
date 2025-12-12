@@ -1,0 +1,3330 @@
+<html>
+
+<head>
+    <style>
+        /* Disable text selection and copying */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Disable printing */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        /* Full-page watermark overlay */
+        #watermark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+            font-size: 3rem;
+            color: red;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-30deg);
+            white-space: nowrap;
+        }
+    </style>
+
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">
+        .lst-kix_6y6l56trlqi4-0>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-0, decimal) ". "
+        }
+
+        .lst-kix_6y6l56trlqi4-7>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-7
+        }
+
+        ol.lst-kix_6y6l56trlqi4-7.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-7 0
+        }
+
+        .lst-kix_6qyuobhh2sye-5>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-5
+        }
+
+        .lst-kix_78fekjelk3jb-6>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-6
+        }
+
+        .lst-kix_nhedsuxa4jsj-2>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-2
+        }
+
+        ol.lst-kix_dbzz354idblu-1.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-1 0
+        }
+
+        .lst-kix_ws2geikfo4v-1>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-1
+        }
+
+        .lst-kix_6y6l56trlqi4-8>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-8, lower-roman) ". "
+        }
+
+        .lst-kix_yvt1g7qjtl87-0>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-0
+        }
+
+        .lst-kix_lal492abkhd9-4>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-4
+        }
+
+        ol.lst-kix_hdk79un131cd-1.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-1 0
+        }
+
+        ol.lst-kix_gn791hphx8r-4.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-4 0
+        }
+
+        .lst-kix_ehftah2a0ic6-8>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-8
+        }
+
+        ol.lst-kix_3x49c8wb7orw-5.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-5 0
+        }
+
+        ol.lst-kix_78fekjelk3jb-0.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-0 0
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-7.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-7 0
+        }
+
+        .lst-kix_dbzz354idblu-5>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-5
+        }
+
+        ol.lst-kix_xhdy1ner8luu-7.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-7 0
+        }
+
+        .lst-kix_d9ag0niyht5e-2>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-2
+        }
+
+        ol.lst-kix_d9ag0niyht5e-3.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-3 0
+        }
+
+        .lst-kix_qiluwakcqo81-4>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-4
+        }
+
+        .lst-kix_3x49c8wb7orw-5>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-5
+        }
+
+        .lst-kix_lal492abkhd9-8>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-8
+        }
+
+        ol.lst-kix_42k0etr1gc4k-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_42k0etr1gc4k-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_s8kh5kd79e4z-6>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-6, decimal) ". "
+        }
+
+        .lst-kix_s8kh5kd79e4z-8>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_42k0etr1gc4k-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6y6l56trlqi4-2.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-2 0
+        }
+
+        ol.lst-kix_42k0etr1gc4k-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_42k0etr1gc4k-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_42k0etr1gc4k-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_s8kh5kd79e4z-7>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-7, lower-latin) ". "
+        }
+
+        .lst-kix_nhedsuxa4jsj-6>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-6
+        }
+
+        .lst-kix_s8kh5kd79e4z-2>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-2, lower-roman) ". "
+        }
+
+        .lst-kix_s8kh5kd79e4z-1>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-1, lower-latin) ". "
+        }
+
+        .lst-kix_s8kh5kd79e4z-3>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-3, decimal) ". "
+        }
+
+        .lst-kix_s8kh5kd79e4z-4>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-4, lower-latin) ". "
+        }
+
+        ol.lst-kix_ws2geikfo4v-2.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-2 0
+        }
+
+        .lst-kix_s8kh5kd79e4z-5>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-5, lower-roman) ". "
+        }
+
+        .lst-kix_dbzz354idblu-1>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-1
+        }
+
+        ol.lst-kix_lal492abkhd9-8.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-8 0
+        }
+
+        .lst-kix_nhedsuxa4jsj-4>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-4, lower-latin) ". "
+        }
+
+        .lst-kix_ws2geikfo4v-5>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-5
+        }
+
+        .lst-kix_nhedsuxa4jsj-2>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-2, lower-roman) ". "
+        }
+
+        .lst-kix_yvt1g7qjtl87-4>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-4
+        }
+
+        ol.lst-kix_6qyuobhh2sye-4.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-4 0
+        }
+
+        ol.lst-kix_lal492abkhd9-1.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-1 0
+        }
+
+        .lst-kix_gn791hphx8r-0>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-0
+        }
+
+        .lst-kix_nhedsuxa4jsj-3>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-3, decimal) ". "
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_nhedsuxa4jsj-6>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-6, decimal) ". "
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-3.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-3 0
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_3x49c8wb7orw-1>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-1
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_nhedsuxa4jsj-5>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-5, lower-roman) ". "
+        }
+
+        .lst-kix_ws2geikfo4v-8>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-8
+        }
+
+        .lst-kix_6y6l56trlqi4-7>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_6y6l56trlqi4-6>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-6, decimal) ". "
+        }
+
+        .lst-kix_yvt1g7qjtl87-7>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-7
+        }
+
+        ol.lst-kix_3x49c8wb7orw-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-2.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-2 0
+        }
+
+        .lst-kix_6y6l56trlqi4-5>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_3x49c8wb7orw-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_3x49c8wb7orw-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_3x49c8wb7orw-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_s8kh5kd79e4z-0>li:before {
+            content: "" counter(lst-ctn-kix_s8kh5kd79e4z-0, decimal) ". "
+        }
+
+        ol.lst-kix_3x49c8wb7orw-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_nca6e1kz4i2w-6>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-6
+        }
+
+        ol.lst-kix_3x49c8wb7orw-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_dbzz354idblu-8.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-8 0
+        }
+
+        ol.lst-kix_3x49c8wb7orw-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_6y6l56trlqi4-4>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-4, lower-latin) ". "
+        }
+
+        ol.lst-kix_3x49c8wb7orw-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_d9ag0niyht5e-8.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-8 0
+        }
+
+        .lst-kix_nhedsuxa4jsj-7>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-7, lower-latin) ". "
+        }
+
+        .lst-kix_6y6l56trlqi4-1>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-1, lower-latin) ". "
+        }
+
+        .lst-kix_nhedsuxa4jsj-8>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_3x49c8wb7orw-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_6y6l56trlqi4-3>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-3, decimal) ". "
+        }
+
+        .lst-kix_6y6l56trlqi4-2>li:before {
+            content: "" counter(lst-ctn-kix_6y6l56trlqi4-2, lower-roman) ". "
+        }
+
+        .lst-kix_qiluwakcqo81-8>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-8
+        }
+
+        .lst-kix_d9ag0niyht5e-7>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-7, lower-latin) ". "
+        }
+
+        .lst-kix_d9ag0niyht5e-5>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-5
+        }
+
+        .lst-kix_42k0etr1gc4k-1>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-1
+        }
+
+        .lst-kix_s8kh5kd79e4z-1>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-1
+        }
+
+        .lst-kix_gn791hphx8r-7>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-7
+        }
+
+        .lst-kix_d9ag0niyht5e-5>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_hdk79un131cd-8.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-8 0
+        }
+
+        ol.lst-kix_3x49c8wb7orw-7.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-7 0
+        }
+
+        .lst-kix_d9ag0niyht5e-1>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-1, lower-latin) ". "
+        }
+
+        .lst-kix_nca6e1kz4i2w-2>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-2
+        }
+
+        .lst-kix_d9ag0niyht5e-3>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-3, decimal) ". "
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-8.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-8 0
+        }
+
+        .lst-kix_gn791hphx8r-8>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-8
+        }
+
+        .lst-kix_78fekjelk3jb-2>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-2
+        }
+
+        .lst-kix_nhedsuxa4jsj-0>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-0, decimal) ". "
+        }
+
+        .lst-kix_42k0etr1gc4k-2>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-2
+        }
+
+        .lst-kix_s8kh5kd79e4z-2>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-2
+        }
+
+        ol.lst-kix_ws2geikfo4v-7.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-7 0
+        }
+
+        ol.lst-kix_ws2geikfo4v-4.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-4 0
+        }
+
+        .lst-kix_xhdy1ner8luu-5>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-5
+        }
+
+        ol.lst-kix_lal492abkhd9-3.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-3 0
+        }
+
+        ol.lst-kix_dbzz354idblu-3.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-3 0
+        }
+
+        .lst-kix_6y6l56trlqi4-0>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-0
+        }
+
+        ol.lst-kix_lal492abkhd9-6.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-6 0
+        }
+
+        .lst-kix_78fekjelk3jb-3>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-3
+        }
+
+        ol.lst-kix_dbzz354idblu-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_dbzz354idblu-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_dbzz354idblu-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xhdy1ner8luu-0.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-0 2
+        }
+
+        ol.lst-kix_78fekjelk3jb-7.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-7 0
+        }
+
+        ol.lst-kix_42k0etr1gc4k-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_dbzz354idblu-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_42k0etr1gc4k-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_dbzz354idblu-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_42k0etr1gc4k-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_42k0etr1gc4k-6.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-6 0
+        }
+
+        .lst-kix_yvt1g7qjtl87-8>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-8
+        }
+
+        ol.lst-kix_dbzz354idblu-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-2.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-2 0
+        }
+
+        ol.lst-kix_dbzz354idblu-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_dbzz354idblu-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_dbzz354idblu-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_ehftah2a0ic6-4>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-4
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-6.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-6 0
+        }
+
+        .lst-kix_dbzz354idblu-2>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-2
+        }
+
+        ol.lst-kix_6qyuobhh2sye-7.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-7 0
+        }
+
+        ol.lst-kix_dbzz354idblu-6.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-6 0
+        }
+
+        .lst-kix_6qyuobhh2sye-1>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-1
+        }
+
+        .lst-kix_hdk79un131cd-3>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-3
+        }
+
+        .lst-kix_ws2geikfo4v-4>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-4
+        }
+
+        ol.lst-kix_6y6l56trlqi4-5.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-5 0
+        }
+
+        ol.lst-kix_hdk79un131cd-6.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-6 0
+        }
+
+        .lst-kix_yvt1g7qjtl87-3>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-3
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-5.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-5 0
+        }
+
+        .lst-kix_nca6e1kz4i2w-4>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-4, lower-latin) ". "
+        }
+
+        .lst-kix_nca6e1kz4i2w-6>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-6, decimal) ". "
+        }
+
+        ol.lst-kix_xhdy1ner8luu-2.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-2 0
+        }
+
+        ol.lst-kix_42k0etr1gc4k-8.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-8 0
+        }
+
+        .lst-kix_42k0etr1gc4k-8>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-8
+        }
+
+        .lst-kix_nca6e1kz4i2w-0>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-0, decimal) ". "
+        }
+
+        .lst-kix_nca6e1kz4i2w-8>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-8, lower-roman) ". "
+        }
+
+        .lst-kix_d9ag0niyht5e-6>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-6
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-4.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-4 0
+        }
+
+        ol.lst-kix_78fekjelk3jb-5.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-5 0
+        }
+
+        .lst-kix_nca6e1kz4i2w-2>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-0.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-0 1
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-1.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-1 0
+        }
+
+        .lst-kix_nca6e1kz4i2w-7>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-7
+        }
+
+        ol.lst-kix_ws2geikfo4v-0.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-0 2
+        }
+
+        .lst-kix_6qyuobhh2sye-4>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-4
+        }
+
+        .lst-kix_xhdy1ner8luu-0>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-0, decimal) ". "
+        }
+
+        .lst-kix_78fekjelk3jb-8>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-8, lower-roman) ". "
+        }
+
+        .lst-kix_ws2geikfo4v-0>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-0
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-4.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-4 0
+        }
+
+        .lst-kix_hdk79un131cd-4>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-4
+        }
+
+        .lst-kix_nhedsuxa4jsj-3>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-3
+        }
+
+        .lst-kix_78fekjelk3jb-5>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-5, lower-roman) ". "
+        }
+
+        .lst-kix_3x49c8wb7orw-6>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-6, decimal) ". "
+        }
+
+        .lst-kix_42k0etr1gc4k-6>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-6
+        }
+
+        .lst-kix_3x49c8wb7orw-5>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-5, lower-roman) ". "
+        }
+
+        .lst-kix_s8kh5kd79e4z-8>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-8
+        }
+
+        .lst-kix_3x49c8wb7orw-2>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-2, lower-roman) ". "
+        }
+
+        .lst-kix_78fekjelk3jb-4>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-4, lower-latin) ". "
+        }
+
+        .lst-kix_6y6l56trlqi4-6>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-6
+        }
+
+        .lst-kix_yvt1g7qjtl87-4>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-4, lower-latin) ". "
+        }
+
+        .lst-kix_qiluwakcqo81-2>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-2, lower-roman) ". "
+        }
+
+        .lst-kix_hdk79un131cd-6>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-6
+        }
+
+        .lst-kix_3x49c8wb7orw-1>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_xhdy1ner8luu-4.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-4 0
+        }
+
+        .lst-kix_6y6l56trlqi4-8>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-8
+        }
+
+        .lst-kix_yvt1g7qjtl87-0>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-0, decimal) ". "
+        }
+
+        .lst-kix_78fekjelk3jb-1>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-1, lower-latin) ". "
+        }
+
+        .lst-kix_xhdy1ner8luu-8>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-8, lower-roman) ". "
+        }
+
+        .lst-kix_42k0etr1gc4k-0>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-0, decimal) ". "
+        }
+
+        .lst-kix_qiluwakcqo81-6>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-6, decimal) ". "
+        }
+
+        .lst-kix_78fekjelk3jb-0>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-0, decimal) ". "
+        }
+
+        .lst-kix_lal492abkhd9-3>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-3
+        }
+
+        .lst-kix_yvt1g7qjtl87-1>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-1, lower-latin) ". "
+        }
+
+        .lst-kix_yvt1g7qjtl87-8>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_qiluwakcqo81-2.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-2 0
+        }
+
+        .lst-kix_qiluwakcqo81-7>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_gn791hphx8r-6.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-6 0
+        }
+
+        ol.lst-kix_6qyuobhh2sye-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6qyuobhh2sye-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_xhdy1ner8luu-4>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-4, lower-latin) ". "
+        }
+
+        ol.lst-kix_ehftah2a0ic6-7.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-7 0
+        }
+
+        ol.lst-kix_6qyuobhh2sye-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6qyuobhh2sye-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6qyuobhh2sye-6.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-6 0
+        }
+
+        .lst-kix_xhdy1ner8luu-3>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-3, decimal) ". "
+        }
+
+        .lst-kix_xhdy1ner8luu-7>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_6qyuobhh2sye-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6qyuobhh2sye-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6qyuobhh2sye-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6qyuobhh2sye-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_yvt1g7qjtl87-5>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-5, lower-roman) ". "
+        }
+
+        .lst-kix_6qyuobhh2sye-6>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-6
+        }
+
+        ol.lst-kix_6qyuobhh2sye-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_qiluwakcqo81-3>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-3, decimal) ". "
+        }
+
+        ol.lst-kix_qiluwakcqo81-8.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-8 0
+        }
+
+        ol.lst-kix_hdk79un131cd-3.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-3 0
+        }
+
+        .lst-kix_3x49c8wb7orw-8>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-8
+        }
+
+        ol.lst-kix_78fekjelk3jb-8.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-8 0
+        }
+
+        .lst-kix_42k0etr1gc4k-7>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_qiluwakcqo81-1.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-1 0
+        }
+
+        .lst-kix_42k0etr1gc4k-8>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_ehftah2a0ic6-1.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-1 0
+        }
+
+        .lst-kix_6qyuobhh2sye-2>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-2
+        }
+
+        .lst-kix_qiluwakcqo81-5>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-5
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-3.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-3 0
+        }
+
+        ol.lst-kix_d9ag0niyht5e-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_42k0etr1gc4k-3>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-3, decimal) ". "
+        }
+
+        ol.lst-kix_d9ag0niyht5e-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_42k0etr1gc4k-4>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-4, lower-latin) ". "
+        }
+
+        .lst-kix_ehftah2a0ic6-3>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-3
+        }
+
+        ol.lst-kix_ehftah2a0ic6-8.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-8 0
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-3.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-3 0
+        }
+
+        ol.lst-kix_gn791hphx8r-7.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-7 0
+        }
+
+        ol.lst-kix_3x49c8wb7orw-2.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-2 0
+        }
+
+        .lst-kix_ws2geikfo4v-2>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-2
+        }
+
+        .lst-kix_gn791hphx8r-3>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-3
+        }
+
+        .lst-kix_lal492abkhd9-0>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-0, decimal) ". "
+        }
+
+        .lst-kix_lal492abkhd9-1>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-1, lower-latin) ". "
+        }
+
+        .lst-kix_yvt1g7qjtl87-1>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-1
+        }
+
+        ol.lst-kix_3x49c8wb7orw-3.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-3 0
+        }
+
+        ol.lst-kix_qiluwakcqo81-7.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-7 0
+        }
+
+        ol.lst-kix_d9ag0niyht5e-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_d9ag0niyht5e-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_d9ag0niyht5e-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hdk79un131cd-4.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-4 0
+        }
+
+        ol.lst-kix_d9ag0niyht5e-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_d9ag0niyht5e-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_d9ag0niyht5e-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-0.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-0 2
+        }
+
+        ol.lst-kix_d9ag0niyht5e-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-4.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-4 0
+        }
+
+        .lst-kix_nca6e1kz4i2w-3>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-3
+        }
+
+        ol.lst-kix_xhdy1ner8luu-5.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-5 0
+        }
+
+        ol.lst-kix_ehftah2a0ic6-2.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-2 0
+        }
+
+        .lst-kix_hdk79un131cd-8>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-8
+        }
+
+        .lst-kix_nca6e1kz4i2w-0>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-0
+        }
+
+        .lst-kix_6y6l56trlqi4-1>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-1
+        }
+
+        .lst-kix_ehftah2a0ic6-1>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-1
+        }
+
+        ol.lst-kix_qiluwakcqo81-3.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-3 0
+        }
+
+        ol.lst-kix_ehftah2a0ic6-6.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-6 0
+        }
+
+        .lst-kix_d9ag0niyht5e-6>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-6, decimal) ". "
+        }
+
+        ol.lst-kix_xhdy1ner8luu-8.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-8 0
+        }
+
+        ol.lst-kix_qiluwakcqo81-6.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-6 0
+        }
+
+        .lst-kix_ehftah2a0ic6-2>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-2, lower-roman) ". "
+        }
+
+        .lst-kix_ws2geikfo4v-7>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-7
+        }
+
+        .lst-kix_lal492abkhd9-4>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-4, lower-latin) ". "
+        }
+
+        .lst-kix_dbzz354idblu-0>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-0
+        }
+
+        .lst-kix_yvt1g7qjtl87-6>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-6
+        }
+
+        .lst-kix_d9ag0niyht5e-2>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-2, lower-roman) ". "
+        }
+
+        .lst-kix_ehftah2a0ic6-6>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-6, decimal) ". "
+        }
+
+        .lst-kix_nhedsuxa4jsj-1>li:before {
+            content: "" counter(lst-ctn-kix_nhedsuxa4jsj-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_ehftah2a0ic6-3.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-3 0
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-0.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-0 1
+        }
+
+        .lst-kix_xhdy1ner8luu-2>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-2
+        }
+
+        ol.lst-kix_xhdy1ner8luu-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xhdy1ner8luu-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_dbzz354idblu-1>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-1, lower-latin) ". "
+        }
+
+        .lst-kix_dbzz354idblu-5>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_xhdy1ner8luu-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_qiluwakcqo81-7>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-7
+        }
+
+        ol.lst-kix_6qyuobhh2sye-2.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-2 0
+        }
+
+        ol.lst-kix_xhdy1ner8luu-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-2.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-2 0
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-0.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-0 0
+        }
+
+        ol.lst-kix_3x49c8wb7orw-1.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-1 0
+        }
+
+        ol.lst-kix_ws2geikfo4v-1.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-1 0
+        }
+
+        .lst-kix_lal492abkhd9-8>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-8, lower-roman) ". "
+        }
+
+        .lst-kix_hdk79un131cd-1>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-1
+        }
+
+        ol.lst-kix_hdk79un131cd-2.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-2 0
+        }
+
+        .lst-kix_42k0etr1gc4k-4>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-4
+        }
+
+        ol.lst-kix_ehftah2a0ic6-4.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-4 0
+        }
+
+        .lst-kix_gn791hphx8r-5>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-5
+        }
+
+        .lst-kix_6qyuobhh2sye-2>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-2, lower-roman) ". "
+        }
+
+        .lst-kix_qiluwakcqo81-0>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-0
+        }
+
+        .lst-kix_s8kh5kd79e4z-5>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-5
+        }
+
+        ol.lst-kix_qiluwakcqo81-5.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-5 0
+        }
+
+        .lst-kix_nhedsuxa4jsj-5>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-5
+        }
+
+        ol.lst-kix_6qyuobhh2sye-0.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-0 2
+        }
+
+        .lst-kix_6y6l56trlqi4-3>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-3
+        }
+
+        ol.lst-kix_xhdy1ner8luu-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_lal492abkhd9-1>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-1
+        }
+
+        ol.lst-kix_xhdy1ner8luu-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xhdy1ner8luu-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_ws2geikfo4v-1>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_xhdy1ner8luu-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_xhdy1ner8luu-8 {
+            list-style-type: none
+        }
+
+        .lst-kix_6qyuobhh2sye-6>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-6, decimal) ". "
+        }
+
+        .lst-kix_nca6e1kz4i2w-5>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-5
+        }
+
+        .lst-kix_nca6e1kz4i2w-5>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_3x49c8wb7orw-3>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-3
+        }
+
+        ol.lst-kix_ehftah2a0ic6-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ehftah2a0ic6-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ehftah2a0ic6-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_3x49c8wb7orw-0.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-0 1
+        }
+
+        ol.lst-kix_ehftah2a0ic6-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ehftah2a0ic6-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ehftah2a0ic6-5.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-5 0
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hdk79un131cd-0.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-0 0
+        }
+
+        .lst-kix_hdk79un131cd-6>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-6, decimal) ". "
+        }
+
+        .lst-kix_ws2geikfo4v-5>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_ehftah2a0ic6-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ehftah2a0ic6-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ehftah2a0ic6-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ehftah2a0ic6-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_nca6e1kz4i2w-1>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-1, lower-latin) ". "
+        }
+
+        .lst-kix_hdk79un131cd-2>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-1.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-1 0
+        }
+
+        ol.lst-kix_qiluwakcqo81-4.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-4 0
+        }
+
+        ol.lst-kix_6qyuobhh2sye-1.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-1 0
+        }
+
+        ol.lst-kix_lal492abkhd9-7.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-7 0
+        }
+
+        .lst-kix_gn791hphx8r-0>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-0, decimal) ". "
+        }
+
+        .lst-kix_qiluwakcqo81-2>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-2
+        }
+
+        ol.lst-kix_42k0etr1gc4k-7.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-7 0
+        }
+
+        .lst-kix_gn791hphx8r-2>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-2
+        }
+
+        .lst-kix_gn791hphx8r-3>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-3, decimal) ". "
+        }
+
+        .lst-kix_gn791hphx8r-4>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-4, lower-latin) ". "
+        }
+
+        .lst-kix_d9ag0niyht5e-0>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-0
+        }
+
+        .lst-kix_gn791hphx8r-1>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-1, lower-latin) ". "
+        }
+
+        .lst-kix_gn791hphx8r-2>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-2, lower-roman) ". "
+        }
+
+        .lst-kix_gn791hphx8r-5>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-5, lower-roman) ". "
+        }
+
+        .lst-kix_gn791hphx8r-6>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-6, decimal) ". "
+        }
+
+        .lst-kix_nca6e1kz4i2w-8>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-8
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-4.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-4 0
+        }
+
+        ol.lst-kix_xhdy1ner8luu-1.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-1 0
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-1.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-1 0
+        }
+
+        ol.lst-kix_78fekjelk3jb-6.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-6 0
+        }
+
+        .lst-kix_78fekjelk3jb-8>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-8
+        }
+
+        .lst-kix_gn791hphx8r-7>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-7, lower-latin) ". "
+        }
+
+        .lst-kix_gn791hphx8r-8>li:before {
+            content: "" counter(lst-ctn-kix_gn791hphx8r-8, lower-roman) ". "
+        }
+
+        .lst-kix_lal492abkhd9-6>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-6
+        }
+
+        ol.lst-kix_dbzz354idblu-7.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-7 0
+        }
+
+        .lst-kix_6y6l56trlqi4-5>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-5
+        }
+
+        .lst-kix_xhdy1ner8luu-7>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-7
+        }
+
+        .lst-kix_yvt1g7qjtl87-2>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-2
+        }
+
+        ol.lst-kix_ws2geikfo4v-8.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-8 0
+        }
+
+        .lst-kix_nhedsuxa4jsj-4>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-4
+        }
+
+        .lst-kix_s8kh5kd79e4z-7>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-7
+        }
+
+        ol.lst-kix_6y6l56trlqi4-1.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-1 0
+        }
+
+        .lst-kix_6qyuobhh2sye-3>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-3
+        }
+
+        .lst-kix_42k0etr1gc4k-7>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-7
+        }
+
+        ol.lst-kix_lal492abkhd9-2.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-2 0
+        }
+
+        ol.lst-kix_6qyuobhh2sye-3.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-3 0
+        }
+
+        .lst-kix_lal492abkhd9-2>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-2
+        }
+
+        .lst-kix_nhedsuxa4jsj-0>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-0
+        }
+
+        ol.lst-kix_gn791hphx8r-3.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-3 0
+        }
+
+        .lst-kix_3x49c8wb7orw-7>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-7
+        }
+
+        ol.lst-kix_78fekjelk3jb-1.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-1 0
+        }
+
+        ol.lst-kix_xhdy1ner8luu-6.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-6 0
+        }
+
+        .lst-kix_d9ag0niyht5e-7>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-7
+        }
+
+        .lst-kix_s8kh5kd79e4z-0>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-0
+        }
+
+        .lst-kix_s8kh5kd79e4z-3>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-3
+        }
+
+        .lst-kix_d9ag0niyht5e-4>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-4
+        }
+
+        .lst-kix_42k0etr1gc4k-0>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-0
+        }
+
+        .lst-kix_ehftah2a0ic6-6>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-6
+        }
+
+        .lst-kix_42k0etr1gc4k-3>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-3
+        }
+
+        .lst-kix_dbzz354idblu-7>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-7
+        }
+
+        ol.lst-kix_dbzz354idblu-2.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-2 0
+        }
+
+        ol.lst-kix_gn791hphx8r-8.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-8 0
+        }
+
+        .lst-kix_78fekjelk3jb-4>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-4
+        }
+
+        .lst-kix_hdk79un131cd-5>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-5
+        }
+
+        .lst-kix_xhdy1ner8luu-0>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-0
+        }
+
+        ol.lst-kix_ws2geikfo4v-3.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-3 0
+        }
+
+        .lst-kix_gn791hphx8r-6>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-6
+        }
+
+        ol.lst-kix_3x49c8wb7orw-4.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-4 0
+        }
+
+        .lst-kix_nca6e1kz4i2w-1>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-1
+        }
+
+        .lst-kix_78fekjelk3jb-1>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-1
+        }
+
+        .lst-kix_ehftah2a0ic6-3>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-3, decimal) ". "
+        }
+
+        ol.lst-kix_gn791hphx8r-5.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-5 0
+        }
+
+        .lst-kix_hdk79un131cd-1>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_6qyuobhh2sye-8.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-8 0
+        }
+
+        .lst-kix_ehftah2a0ic6-1>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-1, lower-latin) ". "
+        }
+
+        .lst-kix_ehftah2a0ic6-7>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-8.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-8 0
+        }
+
+        .lst-kix_nhedsuxa4jsj-8>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-8
+        }
+
+        .lst-kix_xhdy1ner8luu-4>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-4
+        }
+
+        .lst-kix_lal492abkhd9-5>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-5, lower-roman) ". "
+        }
+
+        .lst-kix_3x49c8wb7orw-0>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-0
+        }
+
+        ol.lst-kix_6qyuobhh2sye-5.start {
+            counter-reset: lst-ctn-kix_6qyuobhh2sye-5 0
+        }
+
+        .lst-kix_ehftah2a0ic6-5>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_qiluwakcqo81-0.start {
+            counter-reset: lst-ctn-kix_qiluwakcqo81-0 0
+        }
+
+        .lst-kix_lal492abkhd9-3>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-3, decimal) ". "
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-5.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-5 0
+        }
+
+        .lst-kix_dbzz354idblu-4>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-4, lower-latin) ". "
+        }
+
+        .lst-kix_dbzz354idblu-2>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-2, lower-roman) ". "
+        }
+
+        .lst-kix_dbzz354idblu-6>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-6, decimal) ". "
+        }
+
+        ol.lst-kix_6y6l56trlqi4-8.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-8 0
+        }
+
+        .lst-kix_6qyuobhh2sye-0>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-0
+        }
+
+        .lst-kix_dbzz354idblu-0>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-0, decimal) ". "
+        }
+
+        .lst-kix_dbzz354idblu-8>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_ehftah2a0ic6-0.start {
+            counter-reset: lst-ctn-kix_ehftah2a0ic6-0 0
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-5.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-5 0
+        }
+
+        ol.lst-kix_78fekjelk3jb-4.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-4 0
+        }
+
+        .lst-kix_lal492abkhd9-7>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-2.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-2 0
+        }
+
+        ol.lst-kix_hdk79un131cd-5.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-5 0
+        }
+
+        .lst-kix_nhedsuxa4jsj-7>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-7
+        }
+
+        .lst-kix_6qyuobhh2sye-3>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-3, decimal) ". "
+        }
+
+        .lst-kix_6qyuobhh2sye-5>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_xhdy1ner8luu-3.start {
+            counter-reset: lst-ctn-kix_xhdy1ner8luu-3 0
+        }
+
+        .lst-kix_ws2geikfo4v-3>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-3
+        }
+
+        .lst-kix_6qyuobhh2sye-1>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-1, lower-latin) ". "
+        }
+
+        ol.lst-kix_ws2geikfo4v-5.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-5 0
+        }
+
+        .lst-kix_6qyuobhh2sye-7>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-7
+        }
+
+        .lst-kix_ws2geikfo4v-4>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-4, lower-latin) ". "
+        }
+
+        ol.lst-kix_lal492abkhd9-5.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-5 0
+        }
+
+        .lst-kix_ws2geikfo4v-2>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-2, lower-roman) ". "
+        }
+
+        .lst-kix_ws2geikfo4v-0>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-0, decimal) ". "
+        }
+
+        .lst-kix_6qyuobhh2sye-7>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-3.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-3 0
+        }
+
+        ol.lst-kix_yvt1g7qjtl87-6.start {
+            counter-reset: lst-ctn-kix_yvt1g7qjtl87-6 0
+        }
+
+        .lst-kix_dbzz354idblu-3>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-3
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_3x49c8wb7orw-6>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-6
+        }
+
+        ol.lst-kix_nhedsuxa4jsj-7.start {
+            counter-reset: lst-ctn-kix_nhedsuxa4jsj-7 0
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_hdk79un131cd-7>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_hdk79un131cd-5>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_hdk79un131cd-7.start {
+            counter-reset: lst-ctn-kix_hdk79un131cd-7 0
+        }
+
+        .lst-kix_ws2geikfo4v-6>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-6, decimal) ". "
+        }
+
+        ol.lst-kix_6y6l56trlqi4-6.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-6 0
+        }
+
+        .lst-kix_ws2geikfo4v-8>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_ws2geikfo4v-6.start {
+            counter-reset: lst-ctn-kix_ws2geikfo4v-6 0
+        }
+
+        ol.lst-kix_dbzz354idblu-5.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-5 0
+        }
+
+        .lst-kix_hdk79un131cd-3>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-3, decimal) ". "
+        }
+
+        ol.lst-kix_3x49c8wb7orw-6.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-6 0
+        }
+
+        ol.lst-kix_lal492abkhd9-4.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-4 0
+        }
+
+        .lst-kix_lal492abkhd9-5>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-5
+        }
+
+        ol.lst-kix_78fekjelk3jb-3.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-3 0
+        }
+
+        ol.lst-kix_dbzz354idblu-4.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-4 0
+        }
+
+        ol.lst-kix_6y6l56trlqi4-4.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-4 0
+        }
+
+        .lst-kix_xhdy1ner8luu-1>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-1, lower-latin) ". "
+        }
+
+        .lst-kix_xhdy1ner8luu-2>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-2, lower-roman) ". "
+        }
+
+        .lst-kix_3x49c8wb7orw-8>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-8, lower-roman) ". "
+        }
+
+        .lst-kix_3x49c8wb7orw-7>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-7, lower-latin) ". "
+        }
+
+        .lst-kix_78fekjelk3jb-6>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-6, decimal) ". "
+        }
+
+        .lst-kix_78fekjelk3jb-7>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-7, lower-latin) ". "
+        }
+
+        .lst-kix_3x49c8wb7orw-4>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-4
+        }
+
+        .lst-kix_3x49c8wb7orw-4>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-4, lower-latin) ". "
+        }
+
+        .lst-kix_dbzz354idblu-6>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-6
+        }
+
+        ol.lst-kix_gn791hphx8r-1.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-1 0
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-1.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-1 0
+        }
+
+        .lst-kix_qiluwakcqo81-3>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-3
+        }
+
+        ol.lst-kix_78fekjelk3jb-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_78fekjelk3jb-2>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-2, lower-roman) ". "
+        }
+
+        .lst-kix_78fekjelk3jb-3>li:before {
+            content: "" counter(lst-ctn-kix_78fekjelk3jb-3, decimal) ". "
+        }
+
+        .lst-kix_ehftah2a0ic6-7>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-7
+        }
+
+        .lst-kix_gn791hphx8r-1>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-1
+        }
+
+        .lst-kix_xhdy1ner8luu-8>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-8
+        }
+
+        .lst-kix_3x49c8wb7orw-3>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-3, decimal) ". "
+        }
+
+        ol.lst-kix_78fekjelk3jb-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lal492abkhd9-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_78fekjelk3jb-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_yvt1g7qjtl87-3>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-3, decimal) ". "
+        }
+
+        ol.lst-kix_lal492abkhd9-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_78fekjelk3jb-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lal492abkhd9-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_78fekjelk3jb-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lal492abkhd9-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_qiluwakcqo81-0>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-0, decimal) ". "
+        }
+
+        ol.lst-kix_78fekjelk3jb-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lal492abkhd9-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_78fekjelk3jb-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_yvt1g7qjtl87-2>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_lal492abkhd9-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_78fekjelk3jb-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_yvt1g7qjtl87-6>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-6, decimal) ". "
+        }
+
+        ol.lst-kix_78fekjelk3jb-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_78fekjelk3jb-5>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-5
+        }
+
+        .lst-kix_nhedsuxa4jsj-1>li {
+            counter-increment: lst-ctn-kix_nhedsuxa4jsj-1
+        }
+
+        .lst-kix_qiluwakcqo81-1>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-1, lower-latin) ". "
+        }
+
+        .lst-kix_yvt1g7qjtl87-7>li:before {
+            content: "" counter(lst-ctn-kix_yvt1g7qjtl87-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_d9ag0niyht5e-0.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-0 1
+        }
+
+        .lst-kix_3x49c8wb7orw-0>li:before {
+            content: "" counter(lst-ctn-kix_3x49c8wb7orw-0, decimal) ". "
+        }
+
+        ol.lst-kix_3x49c8wb7orw-8.start {
+            counter-reset: lst-ctn-kix_3x49c8wb7orw-8 0
+        }
+
+        ol.lst-kix_lal492abkhd9-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lal492abkhd9-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_lal492abkhd9-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_xhdy1ner8luu-5>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-5, lower-roman) ". "
+        }
+
+        .lst-kix_xhdy1ner8luu-6>li:before {
+            content: "" counter(lst-ctn-kix_xhdy1ner8luu-6, decimal) ". "
+        }
+
+        .lst-kix_qiluwakcqo81-5>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-5, lower-roman) ". "
+        }
+
+        .lst-kix_ehftah2a0ic6-5>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-5
+        }
+
+        ol.lst-kix_d9ag0niyht5e-6.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-6 0
+        }
+
+        .lst-kix_dbzz354idblu-8>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-8
+        }
+
+        .lst-kix_qiluwakcqo81-4>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-4, lower-latin) ". "
+        }
+
+        .lst-kix_qiluwakcqo81-1>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-1
+        }
+
+        ol.lst-kix_hdk79un131cd-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hdk79un131cd-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hdk79un131cd-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hdk79un131cd-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_6y6l56trlqi4-4>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-4
+        }
+
+        ol.lst-kix_hdk79un131cd-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hdk79un131cd-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hdk79un131cd-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_hdk79un131cd-2>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-2
+        }
+
+        ol.lst-kix_hdk79un131cd-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_42k0etr1gc4k-6>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-6, decimal) ". "
+        }
+
+        .lst-kix_d9ag0niyht5e-8>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-8
+        }
+
+        ol.lst-kix_42k0etr1gc4k-5.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-5 0
+        }
+
+        .lst-kix_6qyuobhh2sye-8>li {
+            counter-increment: lst-ctn-kix_6qyuobhh2sye-8
+        }
+
+        ol.lst-kix_6y6l56trlqi4-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_42k0etr1gc4k-2>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-2, lower-roman) ". "
+        }
+
+        ol.lst-kix_6y6l56trlqi4-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6y6l56trlqi4-2 {
+            list-style-type: none
+        }
+
+        .lst-kix_42k0etr1gc4k-1>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-1, lower-latin) ". "
+        }
+
+        .lst-kix_42k0etr1gc4k-5>li:before {
+            content: "" counter(lst-ctn-kix_42k0etr1gc4k-5, lower-roman) ". "
+        }
+
+        ol.lst-kix_6y6l56trlqi4-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6y6l56trlqi4-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6y6l56trlqi4-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6y6l56trlqi4-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6y6l56trlqi4-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-6.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-6 0
+        }
+
+        ol.lst-kix_6y6l56trlqi4-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_d9ag0niyht5e-7.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-7 0
+        }
+
+        ol.lst-kix_ws2geikfo4v-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_6y6l56trlqi4-3.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-3 0
+        }
+
+        ol.lst-kix_ws2geikfo4v-7 {
+            list-style-type: none
+        }
+
+        .lst-kix_dbzz354idblu-4>li {
+            counter-increment: lst-ctn-kix_dbzz354idblu-4
+        }
+
+        ol.lst-kix_ws2geikfo4v-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ws2geikfo4v-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ws2geikfo4v-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_lal492abkhd9-2>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-2, lower-roman) ". "
+        }
+
+        .lst-kix_d9ag0niyht5e-1>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-1
+        }
+
+        ol.lst-kix_ws2geikfo4v-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ws2geikfo4v-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gn791hphx8r-2.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-2 0
+        }
+
+        .lst-kix_s8kh5kd79e4z-6>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-6
+        }
+
+        ol.lst-kix_d9ag0niyht5e-1.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-1 0
+        }
+
+        ol.lst-kix_gn791hphx8r-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_42k0etr1gc4k-4.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-4 0
+        }
+
+        ol.lst-kix_78fekjelk3jb-2.start {
+            counter-reset: lst-ctn-kix_78fekjelk3jb-2 0
+        }
+
+        .lst-kix_xhdy1ner8luu-3>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-3
+        }
+
+        ol.lst-kix_ws2geikfo4v-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gn791hphx8r-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_ws2geikfo4v-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gn791hphx8r-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_hdk79un131cd-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_xhdy1ner8luu-6>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-6
+        }
+
+        ol.lst-kix_gn791hphx8r-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gn791hphx8r-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gn791hphx8r-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gn791hphx8r-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gn791hphx8r-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-7.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-7 0
+        }
+
+        .lst-kix_78fekjelk3jb-7>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-7
+        }
+
+        ol.lst-kix_gn791hphx8r-3 {
+            list-style-type: none
+        }
+
+        .lst-kix_d9ag0niyht5e-8>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_qiluwakcqo81-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qiluwakcqo81-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qiluwakcqo81-6 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qiluwakcqo81-5 {
+            list-style-type: none
+        }
+
+        .lst-kix_ehftah2a0ic6-0>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-0, decimal) ". "
+        }
+
+        ol.lst-kix_s8kh5kd79e4z-8.start {
+            counter-reset: lst-ctn-kix_s8kh5kd79e4z-8 0
+        }
+
+        .lst-kix_d9ag0niyht5e-4>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-4, lower-latin) ". "
+        }
+
+        .lst-kix_ws2geikfo4v-6>li {
+            counter-increment: lst-ctn-kix_ws2geikfo4v-6
+        }
+
+        ol.lst-kix_qiluwakcqo81-0 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-8 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qiluwakcqo81-4 {
+            list-style-type: none
+        }
+
+        .lst-kix_hdk79un131cd-0>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-0, decimal) ". "
+        }
+
+        ol.lst-kix_qiluwakcqo81-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qiluwakcqo81-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_qiluwakcqo81-1 {
+            list-style-type: none
+        }
+
+        .lst-kix_d9ag0niyht5e-0>li:before {
+            content: "" counter(lst-ctn-kix_d9ag0niyht5e-0, decimal) ". "
+        }
+
+        .lst-kix_lal492abkhd9-0>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-0
+        }
+
+        ol.lst-kix_6y6l56trlqi4-0.start {
+            counter-reset: lst-ctn-kix_6y6l56trlqi4-0 0
+        }
+
+        .lst-kix_lal492abkhd9-6>li:before {
+            content: "" counter(lst-ctn-kix_lal492abkhd9-6, decimal) ". "
+        }
+
+        .lst-kix_ehftah2a0ic6-4>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-4, lower-latin) ". "
+        }
+
+        .lst-kix_ehftah2a0ic6-8>li:before {
+            content: "" counter(lst-ctn-kix_ehftah2a0ic6-8, lower-roman) ". "
+        }
+
+        .lst-kix_ehftah2a0ic6-0>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-0
+        }
+
+        ol.lst-kix_42k0etr1gc4k-0.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-0 0
+        }
+
+        ol.lst-kix_lal492abkhd9-0.start {
+            counter-reset: lst-ctn-kix_lal492abkhd9-0 2
+        }
+
+        ol.lst-kix_d9ag0niyht5e-2.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-2 0
+        }
+
+        .lst-kix_hdk79un131cd-0>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-0
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-5.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-5 0
+        }
+
+        .lst-kix_dbzz354idblu-3>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-3, decimal) ". "
+        }
+
+        .lst-kix_dbzz354idblu-7>li:before {
+            content: "" counter(lst-ctn-kix_dbzz354idblu-7, lower-latin) ". "
+        }
+
+        .lst-kix_6y6l56trlqi4-2>li {
+            counter-increment: lst-ctn-kix_6y6l56trlqi4-2
+        }
+
+        ol.lst-kix_42k0etr1gc4k-3.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-3 0
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-1 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-8.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-8 0
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-0 {
+            list-style-type: none
+        }
+
+        .lst-kix_78fekjelk3jb-0>li {
+            counter-increment: lst-ctn-kix_78fekjelk3jb-0
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-3 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_gn791hphx8r-0.start {
+            counter-reset: lst-ctn-kix_gn791hphx8r-0 1
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-2 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-5 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-4 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-7 {
+            list-style-type: none
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-6 {
+            list-style-type: none
+        }
+
+        .lst-kix_yvt1g7qjtl87-5>li {
+            counter-increment: lst-ctn-kix_yvt1g7qjtl87-5
+        }
+
+        ol.lst-kix_dbzz354idblu-0.start {
+            counter-reset: lst-ctn-kix_dbzz354idblu-0 1
+        }
+
+        .lst-kix_ehftah2a0ic6-2>li {
+            counter-increment: lst-ctn-kix_ehftah2a0ic6-2
+        }
+
+        .lst-kix_nca6e1kz4i2w-4>li {
+            counter-increment: lst-ctn-kix_nca6e1kz4i2w-4
+        }
+
+        .lst-kix_6qyuobhh2sye-4>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-4, lower-latin) ". "
+        }
+
+        .lst-kix_3x49c8wb7orw-2>li {
+            counter-increment: lst-ctn-kix_3x49c8wb7orw-2
+        }
+
+        ol.lst-kix_d9ag0niyht5e-4.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-4 0
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-6.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-6 0
+        }
+
+        ol.lst-kix_42k0etr1gc4k-2.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-2 0
+        }
+
+        .lst-kix_s8kh5kd79e4z-4>li {
+            counter-increment: lst-ctn-kix_s8kh5kd79e4z-4
+        }
+
+        .lst-kix_d9ag0niyht5e-3>li {
+            counter-increment: lst-ctn-kix_d9ag0niyht5e-3
+        }
+
+        .lst-kix_qiluwakcqo81-6>li {
+            counter-increment: lst-ctn-kix_qiluwakcqo81-6
+        }
+
+        .lst-kix_ws2geikfo4v-3>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-3, decimal) ". "
+        }
+
+        .lst-kix_hdk79un131cd-7>li {
+            counter-increment: lst-ctn-kix_hdk79un131cd-7
+        }
+
+        .lst-kix_qiluwakcqo81-8>li:before {
+            content: "" counter(lst-ctn-kix_qiluwakcqo81-8, lower-roman) ". "
+        }
+
+        .lst-kix_gn791hphx8r-4>li {
+            counter-increment: lst-ctn-kix_gn791hphx8r-4
+        }
+
+        .lst-kix_xhdy1ner8luu-1>li {
+            counter-increment: lst-ctn-kix_xhdy1ner8luu-1
+        }
+
+        .lst-kix_42k0etr1gc4k-5>li {
+            counter-increment: lst-ctn-kix_42k0etr1gc4k-5
+        }
+
+        .lst-kix_6qyuobhh2sye-8>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-8, lower-roman) ". "
+        }
+
+        .lst-kix_lal492abkhd9-7>li {
+            counter-increment: lst-ctn-kix_lal492abkhd9-7
+        }
+
+        .lst-kix_nca6e1kz4i2w-7>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-7, lower-latin) ". "
+        }
+
+        ol.lst-kix_d9ag0niyht5e-5.start {
+            counter-reset: lst-ctn-kix_d9ag0niyht5e-5 0
+        }
+
+        .lst-kix_hdk79un131cd-8>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-8, lower-roman) ". "
+        }
+
+        ol.lst-kix_nca6e1kz4i2w-7.start {
+            counter-reset: lst-ctn-kix_nca6e1kz4i2w-7 0
+        }
+
+        .lst-kix_6qyuobhh2sye-0>li:before {
+            content: "" counter(lst-ctn-kix_6qyuobhh2sye-0, decimal) ". "
+        }
+
+        .lst-kix_ws2geikfo4v-7>li:before {
+            content: "" counter(lst-ctn-kix_ws2geikfo4v-7, lower-latin) ". "
+        }
+
+        .lst-kix_nca6e1kz4i2w-3>li:before {
+            content: "" counter(lst-ctn-kix_nca6e1kz4i2w-3, decimal) ". "
+        }
+
+        ol.lst-kix_42k0etr1gc4k-1.start {
+            counter-reset: lst-ctn-kix_42k0etr1gc4k-1 0
+        }
+
+        .lst-kix_hdk79un131cd-4>li:before {
+            content: "" counter(lst-ctn-kix_hdk79un131cd-4, lower-latin) ". "
+        }
+
+        ol {
+            margin: 0;
+            padding: 0
+        }
+
+        table td,
+        table th {
+            padding: 0
+        }
+
+        .c1 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c2 {
+            padding-top: 10pt;
+            padding-bottom: 2pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left;
+            height: 11pt
+        }
+
+        .c7 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c5 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c8 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 15pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c11 {
+            padding-top: 0pt;
+            padding-bottom: 12pt;
+            line-height: 1.0;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c3 {
+            padding-top: 12pt;
+            padding-bottom: 12pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c9 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 9pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c6 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.15;
+            orphans: 2;
+            widows: 2;
+            text-align: center
+        }
+
+        .c15 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 25pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c16 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c12 {
+            background-color: #ffffff;
+            max-width: 451.3pt;
+            padding: 72pt 72pt 72pt 72pt
+        }
+
+        .c10 {
+            font-size: 15pt
+        }
+
+        .c13 {
+            font-size: 17pt
+        }
+
+        .c4 {
+            height: 11pt
+        }
+
+        .c0 {
+            font-weight: 700
+        }
+
+        .c14 {
+            font-size: 16pt
+        }
+
+        .title {
+            padding-top: 0pt;
+            color: #000000;
+            font-size: 26pt;
+            padding-bottom: 3pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .subtitle {
+            padding-top: 0pt;
+            color: #666666;
+            font-size: 15pt;
+            padding-bottom: 16pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        li {
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        h1 {
+            padding-top: 20pt;
+            color: #000000;
+            font-size: 20pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h2 {
+            padding-top: 18pt;
+            color: #000000;
+            font-size: 16pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h3 {
+            padding-top: 16pt;
+            color: #434343;
+            font-size: 14pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h4 {
+            padding-top: 14pt;
+            color: #666666;
+            font-size: 12pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h5 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h6 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.15;
+            page-break-after: avoid;
+            font-style: italic;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+    </style>
+</head>
+
+<body class="c12 doc-content">
+    <p class="c6"><span class="c0 c15">Internet of Things</span></p>
+    <p class="c6"><span class="c16 c13 c0">UNIT 1</span></p>
+    <p class="c6 c4"><span class="c16 c13 c0"></span></p>
+    <p class="c5 c4"><span class="c1"></span></p>
+    <p class="c11"><span class="c8 c0">1. Characteristics and Functional Blocks of IoT</span></p>
+    <p class="c11"><span><br> </span><span class="c0">Characteristics:</span><span class="c1"><br> &bull; Connectivity
+            enables devices to communicate across heterogeneous networks.<br> &bull; Intelligence arises from embedded
+            processing and analytics.<br> &bull; Dynamic changes allow devices to adapt to context, such as mobility or
+            environmental changes.<br> &bull; Scalability supports large deployments of sensors and nodes.<br> &bull;
+            Heterogeneity allows integration of different hardware, software, and communication technologies.<br> &bull;
+            Security ensures confidentiality, integrity, and authentication.<br> &bull; Data-driven operation uses
+            collected data to trigger actions and decisions.<br></span></p>
+    <p class="c3"><span class="c0">Functional Blocks:</span><span class="c1"><br> &bull; Device: sensors and actuators
+            that interact with the physical world.<br> &bull; Communication: wired or wireless interfaces that transport
+            data.<br> &bull; Services: identity, authentication, data processing, and analytics.<br> &bull; Application:
+            domain-specific logic such as home automation or industrial control.<br> &bull; Management: configuration,
+            monitoring, update, diagnostics.<br> &bull; Security: encryption, access control, trust management.</span>
+    </p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c8 c0">2. Physical and Logical Design of IoT</span></p>
+    <p class="c3"><span><br></span><span class="c0">&nbsp;Physical design:</span><span class="c1"><br> Focuses on real
+            components.<br> &bull; IoT devices: contain microcontrollers, sensors, actuators.<br> &bull; Sensors:
+            capture physical parameters (temperature, motion).<br> &bull; Actuators: perform actions (switching,
+            movement).<br> &bull; Communication modules: Wi-Fi, BLE, ZigBee, NFC, cellular.<br> &bull; Power units:
+            batteries, energy harvesting.<br> &bull; Edge nodes and gateways: connect local networks to the
+            internet.<br></span></p>
+    <p class="c3"><span class="c0">Logical design:</span><span class="c1"><br> Describes structure, behavior, and
+            abstract models.<br> &bull; Functional blocks define how data flows through sensing, processing,
+            communication, and application layers.<br> &bull; Communication models (request&ndash;response,
+            publish&ndash;subscribe) define data exchange patterns.<br> &bull; IoT protocols (MQTT, CoAP, HTTP) define
+            messaging rules.<br> &bull; Logical components: data ingestion, filtering, storage, analytics,
+            visualization.<br> &bull; Abstraction enables system-level understanding without hardware detail.</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c8 c0">3. Comparison of IoT Communication Models</span></p>
+    <p class="c3"><span class="c10 c0"><br></span><span>&nbsp;</span><span
+            class="c0">Request&ndash;Response:</span><span class="c1"><br> &bull; Client sends a request; server returns
+            response.<br> &bull; Synchronous, direct interaction.<br> &bull; Used when immediate data is needed, such as
+            polling a sensor.<br> &bull; Drawback: increased traffic due to repeated requests.<br></span></p>
+    <p class="c3"><span class="c0">Publish&ndash;Subscribe:<br></span><span class="c1">&nbsp;&bull; Publisher sends data
+            to a broker; subscribers receive relevant messages.<br> &bull; Asynchronous, decoupled interaction.<br>
+            &bull; Supports large-scale IoT systems with distributed nodes.<br> &bull; Efficient for real-time updates
+            (MQTT uses this model).</span></p>
+    <p class="c3"><span class="c0">Push&ndash;Pull:<br></span><span class="c1">&nbsp;&bull; Data producers push
+            information into a queue or buffer.<br> &bull; Consumers pull data when required.<br> &bull; Provides load
+            balancing and decouples production from consumption rate.<br> &bull; Suitable for data streams where
+            processing may not be real time.</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c8 c0">4. IoT Communication Protocols</span></p>
+    <p class="c3"><span class="c10 c0"><br></span><span>&nbsp;</span><span class="c0">Purpose:</span><span
+            class="c1">&nbsp;define how data is formatted, transmitted, routed, and received between IoT devices and
+            cloud or gateway systems. Protocols are selected based on power limits, bandwidth, reliability, and
+            application domain.</span></p>
+    <p class="c3"><span class="c0">Categories:</span><span class="c1"><br> &bull; Network layer protocols:<br> &ndash;
+            IPv6: large address space for billions of IoT devices.<br> &ndash; 6LoWPAN: adapts IPv6 for low-power
+            wireless networks through header compression.<br> &ndash; RPL: routing for constrained networks using
+            Directed Acyclic Graphs.</span></p>
+    <p class="c3"><span class="c1">&bull; Transport and messaging protocols:<br> &ndash; MQTT: lightweight
+            publish&ndash;subscribe for low-power devices; uses a broker.<br> &ndash; CoAP: lightweight REST-like
+            protocol over UDP; supports constrained devices.<br> &ndash; AMQP: reliable message queuing for enterprise
+            IoT.<br> &ndash; HTTP/HTTPS: widely used but heavy for constrained nodes.</span></p>
+    <p class="c3"><span class="c1">&bull; Communication technologies:<br> &ndash; Bluetooth/BLE for short range.<br>
+            &ndash; ZigBee for mesh networking.<br> &ndash; NFC for very short range.<br> &ndash; Wi-Fi for high
+            bandwidth.<br> &ndash; Cellular (4G/5G) for long-range, high mobility.</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c6"><span class="c0 c13">UNIT 2</span></p>
+    <p class="c3"><span class="c8 c0">1. Sensors and Actuators</span></p>
+    <p class="c3"><span><br></span><span class="c0">&nbsp;Sensors:</span><span class="c1">&nbsp;input devices that
+            detect physical or environmental conditions and convert them into electrical signals.<br> Types:<br> &bull;
+            Temperature (thermistors, RTDs).<br> &bull; Motion (PIR).<br> &bull; Proximity (IR, ultrasonic).<br> &bull;
+            Humidity (capacitive humidity sensors).<br> &bull; Gas (MQ-series).<br> &bull; Pressure (piezoresistive
+            sensors).<br> &bull; Light (LDR, photodiodes).<br></span></p>
+    <p class="c3"><span class="c1">Working principle: physical change &rarr; transducer &rarr; analog/digital signal
+            &rarr; microcontroller.</span></p>
+    <p class="c3"><span class="c0">Actuators:</span><span class="c1">&nbsp;output devices that perform physical action
+            in response to electrical input.<br> Types:<br> &bull; Motors (DC, servo, stepper).<br> &bull; Relays
+            (electrically controlled switches).<br> &bull; Solenoids (linear motion).<br> &bull; Valves (fluid
+            control).</span></p>
+    <p class="c3"><span class="c1">Working principle: electrical signal &rarr; mechanical motion, switching, or
+            controlling.<br> Role in IoT: sensors gather data; actuators execute decisions such as turning ON a motor or
+            locking a door.</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c10 c0">2. Wireless Sensor Network (WSN) Architecture</span><span class="c1"><br> WSN is
+            a distributed network of sensor nodes communicating wirelessly to monitor physical conditions.<br></span>
+    </p>
+    <p class="c3"><span class="c0">Node architecture:<br></span><span class="c1">&nbsp;&bull; Sensor unit: measures
+            environmental parameters.<br> &bull; Microcontroller: processes sensed data.<br> &bull; Radio transceiver:
+            handles wireless communication (IEEE 802.15.4, ZigBee, BLE).<br> &bull; Power unit: battery or
+            energy-harvesting module.<br> &bull; Optional: memory, location unit (GPS), actuator interface.</span></p>
+    <p class="c3"><span class="c0">Network architecture:</span><span class="c1"><br> &bull; Sensor nodes form clusters
+            or mesh networks.<br> &bull; Cluster-head nodes aggregate and forward data.<br> &bull; Multi-hop routing
+            delivers data from nodes to base station or gateway.<br> &bull; Gateway connects the WSN to the
+            internet/cloud.</span></p>
+    <p class="c3"><span class="c1">Design goals: low power usage, scalability, robustness to node failure,
+            self-organization, efficient routing.</span></p>
+    <h6 class="c2" id="h.65edmw7ma583"><span class="c0 c9"></span></h6>
+    <hr>
+    <h6 class="c2" id="h.hig8co5ny18x"><span class="c9 c0"></span></h6>
+    <p class="c3"><span class="c8 c0">3. How Nodes Communicate in a Wireless Sensor Network.</span></p>
+    <p class="c3"><span class="c1"><br> Communication operates through short-range radios using low-power protocols such
+            as IEEE 802.15.4, ZigBee, or BLE.<br> Core mechanisms:<br> &bull; Broadcasting: nodes announce availability
+            or status to nearby nodes.<br> &bull; Multi-hop routing: data is forwarded through intermediate nodes
+            instead of a single long-range transmission.<br> &bull; Cluster-based communication: cluster-head nodes
+            collect data from member nodes, compress or aggregate it, and forward it to the base station.<br> &bull;
+            TDMA/CSMA access: nodes share the wireless medium using scheduled time slots (TDMA) or collision-avoidance
+            carrier sensing (CSMA).<br> &bull; Sleep&ndash;wake cycles: radios stay off most of the time, waking only to
+            sense or transmit, minimizing power consumption.<br> Data path: sensor node &rarr; neighboring node(s)
+            &rarr; cluster-head or router &rarr; gateway/base station &rarr; cloud or server.<br> Communication
+            emphasizes low power, reliability in noisy environments, and self-healing routing when nodes fail.</span>
+    </p>
+    <p class="c3"><span><br></span>
+        <hr><span class="c10 c0">4. Node Deployment and Connectivity</span>
+    </p>
+    <p class="c3"><span class="c1"><br> Deployment defines how sensor nodes are placed in the environment; connectivity
+            defines the ability of nodes to form a functioning network.<br></span></p>
+    <p class="c3"><span class="c0">Deployment models:</span><span class="c1"><br> &bull; Random deployment: nodes are
+            scattered in large or inaccessible areas (forests, disaster zones). Topology self-organizes
+            automatically.<br> &bull; Grid deployment: nodes placed at fixed intervals for uniform coverage.<br> &bull;
+            Cluster deployment: nodes grouped around cluster-heads to reduce transmission distance.<br> &bull; Manual
+            placement: specific locations selected for targeted monitoring.</span></p>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c0">Connectivity principles:</span><span class="c1"><br> &bull; Nodes must remain within
+            radio range of at least one neighbor to maintain the network.<br> &bull; Redundant nodes create
+            fault-tolerance; if a node dies, alternative routes maintain connectivity.<br> &bull; Network density
+            affects routing: sparse networks risk disconnections; dense networks improve reliability but increase
+            collisions.<br> &bull; Energy-aware connectivity: nodes adjust transmission power to preserve battery life
+            while maintaining communication links.<br> Connectivity performance depends on topology, radio range,
+            deployment area size, and environmental obstacles.</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c10 c0">5. Compare Arduino and Raspberry Pi Development Boards</span></p>
+    <p class="c3"><span class="c10 c0"><br></span><span>&nbsp;</span><span class="c0">Arduino:</span><span
+            class="c1"><br> &bull; Microcontroller-based (ATmega series).<br> &bull; Runs a single embedded program; no
+            operating system.<br> &bull; Real-time control of sensors and actuators due to deterministic timing.<br>
+            &bull; Interfaces: GPIO, PWM, ADC, I2C, SPI, UART.<br> &bull; Suitable for simple, low-power, hardware-level
+            tasks (temperature monitoring, motor control).<br> &bull; Programmed through Arduino IDE with C/C++ style
+            sketches.<br></span></p>
+    <p class="c3"><span class="c0">Raspberry Pi:</span><span class="c1"><br> &bull; Microprocessor-based; full Linux
+            operating system.<br> &bull; Capable of multitasking, running servers, databases, and high-level
+            applications.<br> &bull; Interfaces: GPIO, USB, HDMI, Ethernet, Wi-Fi, Bluetooth.<br> &bull; Supports
+            Python, C, Java, Node.js, and full OS services.<br> &bull; Suitable for applications requiring computation,
+            networking, multimedia, or cloud connectivity (edge computing, camera processing).</span></p>
+    <p class="c3"><span class="c0">Comparison:</span><span class="c1"><br> &bull; Performance: Raspberry Pi is
+            significantly more powerful; Arduino is minimal and deterministic.<br> &bull; Power consumption: Arduino is
+            low power; Raspberry Pi is high power.<br> &bull; Use-case: Arduino for direct sensor/actuator control;
+            Raspberry Pi for analytics, communication, and complex applications.<br> &bull; Complexity: Arduino is
+            simpler; Raspberry Pi requires OS-level configuration.</span></p>
+    <h6 class="c2" id="h.9got47il5sl9"><span class="c9 c0"></span></h6>
+    <hr>
+    <h6 class="c2" id="h.vml9u6aqxf0t"><span class="c9 c0"></span></h6>
+    <p class="c6"><span class="c16 c13 c0">UNIT 3</span></p>
+    <p class="c6 c4"><span class="c16 c13 c0"></span></p>
+    <p class="c3"><span class="c8 c0">1. Compare ZigBee, BLE, NFC, and Z-Wave.</span></p>
+    <p class="c3"><span><br></span><span class="c0">&nbsp;ZigBee:</span><span class="c1"><br> &bull; Based on IEEE
+            802.15.4.<br> &bull; Mesh networking with large node counts.<br> &bull; Low power, moderate range
+            (10&ndash;100 m).<br> &bull; Used in home automation, industrial monitoring.<br></span></p>
+    <p class="c3"><span class="c0">BLE (Bluetooth Low Energy):</span><span class="c1"><br> &bull; Point-to-point,
+            broadcast, and mesh support.<br> &bull; Very low power; short&ndash;medium range (~10&ndash;50 m).<br>
+            &bull; Optimized for wearables, health sensors, mobile-connected IoT.</span></p>
+    <p class="c3"><span class="c0">NFC (Near Field Communication):</span><span class="c1"><br> &bull; Extremely short
+            range (&le;4 cm).<br> &bull; No pairing necessary; tap-based communication.<br> &bull; Used for payments,
+            access control, identification.<br> &bull; Low data rate; not suitable for sensor networks.</span></p>
+    <p class="c3"><span class="c0">Z-Wave:</span><span class="c1"><br> &bull; Proprietary low-power mesh technology.<br>
+            &bull; Operates in sub-GHz bands &rarr; less interference than 2.4 GHz devices.<br> &bull; Range
+            ~30&ndash;100 m.<br> &bull; Focused on smart home automation (lights, locks, sensors).</span></p>
+    <p class="c3"><span class="c0">Comparison summary:</span><span class="c1"><br> &bull; Range: NFC &lt; BLE &lt;
+            ZigBee/Z-Wave.<br> &bull; Network type: ZigBee/Z-Wave = mesh; BLE optional mesh; NFC none.<br> &bull; Power
+            consumption: NFC lowest (passive), BLE low, ZigBee/Z-Wave moderate.<br> &bull; Use-cases: NFC for
+            authentication; BLE for personal devices; ZigBee/Z-Wave for home/industrial IoT.</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c0 c14 c16">2. WPAN (IEEE 802.15.4) Architecture with Diagram Description</span></p>
+    <p class="c3"><span class="c0 c14"><br></span><span>&nbsp;IEEE 802.15.4 defines the physical and MAC layers for
+            low-rate, low-power wireless networks. It is the foundation for ZigBee, 6LoWPAN, Thread, and many WSN
+            systems.<br></span></p>
+    <p class="c3"><span class="c0">Physical Layer (PHY):</span><span class="c1"><br> &bull; Modulation (O-QPSK, BPSK)
+            and frequency bands (2.4 GHz, 915 MHz, 868 MHz).<br> &bull; Handles transmission, reception, energy
+            detection, clear-channel assessment, link quality.</span></p>
+    <p class="c3"><span class="c0">MAC Layer:</span><span class="c1"><br> &bull; Manages channel access using
+            CSMA/CA.<br> &bull; Frame formats, addressing (16-bit short or 64-bit extended addresses).<br> &bull; Beacon
+            and non-beacon modes for synchronization.<br> &bull; Guaranteed Time Slots (GTS) for time-critical
+            traffic.</span></p>
+    <p class="c3"><span class="c0">Network Structure:</span><span class="c1"><br> &bull; Two device types:<br> &ndash;
+            FFD (Full-Function Device): can act as coordinator or router.<br> &ndash; RFD (Reduced-Function Device):
+            simple end nodes.<br> &bull; Topologies supported: star, peer-to-peer, mesh (via higher protocols like
+            ZigBee).</span></p>
+    <p class="c3"><span class="c0">Diagram description:</span><span class="c1"><br> Application Layer &larr; not part of
+            802.15.4<br> Network Layer &larr; not part of 802.15.4<br> MAC Layer &larr; medium access, addressing,
+            framing<br> PHY Layer &larr; modulation, signaling, RF transmission</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c8 c0">4. Remote Monitoring and Sensing:</span></p>
+    <p class="c3"><span class="c10 c0"><br></span><span class="c1">&nbsp;Remote monitoring: observing and tracking
+            environmental or system parameters from a distant location through networked sensors.<br> Core
+            components:<br> &bull; Sensors collect real-world data: temperature, motion, gas, vibration.<br> &bull; IoT
+            nodes preprocess the data.<br> &bull; Wireless transmission through ZigBee, BLE, Wi-Fi, cellular, or
+            6LoWPAN.<br> &bull; Cloud/storage receives continuous data streams.<br> &bull; Dashboards or alerts
+            represent the monitored values.<br></span></p>
+    <p class="c3"><span class="c0">Functions:<br></span><span class="c1">&nbsp;&bull; Real-time observation without
+            physical presence.<br> &bull; Automated alerts when values exceed thresholds.<br> &bull; Historical data
+            storage for trend analysis.</span></p>
+    <p class="c3"><span class="c0">Applications:<br></span><span class="c1">&nbsp;&bull; Industrial equipment monitoring
+            (vibration, fault detection).<br> &bull; Smart agriculture (soil moisture, humidity).<br> &bull; Smart
+            cities (air pollution, traffic density).<br> &bull; Healthcare (remote patient vitals).</span></p>
+    <p class="c3"><span class="c1">Sensing:<br> &bull; Data acquisition from the environment using transducers.<br>
+            &bull; Conversion of analog signals to digital for processing.<br> &bull; Continuous or periodic sampling
+            based on application needs.</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c0 c8">3. 6LoWPAN Architecture</span></p>
+    <p class="c3"><span class="c1"><br>6LoWPAN enables IPv6 packets to run over low-power wireless networks built on
+            IEEE 802.15.4. It provides an adaptation layer between the IPv6 network layer and the 802.15.4 MAC/PHY
+            layers.<br></span></p>
+    <p class="c3"><span class="c0">Purpose:<br></span><span class="c1">&nbsp;&bull; Compress IPv6 headers to fit within
+            the small 127-byte 802.15.4 frame.<br> &bull; Enable routing, fragmentation, and reassembly for constrained
+            nodes.<br> &bull; Allow end-to-end IP communication directly from sensor nodes to the internet.</span></p>
+    <p class="c3"><span class="c0">Architecture Layers:<br></span><span class="c1">&nbsp;&bull; IPv6 Layer: standard
+            IPv6 addressing, routing, and datagram structure.<br> &bull; 6LoWPAN Adaptation Layer:<br> &ndash; Header
+            Compression (HC): compress IPv6, UDP, ICMP headers using context information.<br> &ndash; Fragmentation:
+            splits large IPv6 packets into smaller 802.15.4 frames; reassembly at the destination.<br> &ndash; Mesh
+            Addressing: forwards packets across multi-hop wireless networks.<br> &ndash; Dispatch Format: identifies
+            packet types within the LoWPAN frame.<br> &bull; IEEE 802.15.4 MAC/PHY:<br> &ndash; Handles radio
+            transmission, CSMA/CA access, energy detection, and radio-level framing.</span></p>
+    <p class="c3"><span class="c0">Key Features:<br></span><span class="c1">&nbsp;&bull; Low power operation suitable
+            for battery-based sensors.<br> &bull; IPv6 compatibility allows direct integration with the internet.<br>
+            &bull; Supports mesh networking through route-over or mesh-under models.<br> &bull; Efficient bandwidth use
+            through compression and optimized routing.</span></p>
+    <p class="c3"><span class="c1">Applications: smart meters, large sensor deployments, building automation.</span></p>
+    <hr>
+    <p class="c5 c4"><span class="c1"></span></p>
+    <p class="c6"><span class="c13 c0">UNIT 4</span></p>
+    <p class="c3"><span class="c10 c0">1. NodeMCU Board Architecture and Pin Description</span></p>
+    <p class="c3"><span class="c0 c10"><br></span><span class="c1">&nbsp;NodeMCU uses the ESP8266 Wi-Fi SoC, integrating
+            Wi-Fi connectivity with GPIO capabilities for IoT prototyping.<br></span></p>
+    <p class="c3"><span class="c0">Architecture Components:<br></span><span class="c1">&nbsp;&bull; ESP8266EX
+            Microcontroller: 32-bit Tensilica CPU, integrated Wi-Fi module, clock up to 160 MHz.<br> &bull; Memory:
+            on-chip SRAM, external flash for firmware.<br> &bull; Wi-Fi Module: 2.4 GHz, supports 802.11 b/g/n, station
+            and soft-AP modes.<br> &bull; USB&ndash;Serial Converter (CH340/CP2102): used for programming from a PC.<br>
+            &bull; Voltage Regulation: 5 V USB input regulated down to 3.3 V for ESP8266.<br> &bull; GPIO subsystem:
+            usable pins exposed for user applications.<br> &bull; ADC: one analog input channel (0&ndash;1 V input
+            range).</span></p>
+    <p class="c3"><span class="c0">Pin Description:<br></span><span class="c1">&nbsp;&bull; GPIO Pins (D0&ndash;D8):
+            digital I/O for sensors, actuators, communication modules.<br> &ndash; GPIO0, GPIO2, GPIO15 affect boot mode
+            and require proper logic states.<br> &bull; ADC0: analog input for reading analog sensors.<br> &bull; UART
+            (RX, TX): programming and serial communication.<br> &bull; I2C (SDA, SCL): software I2C on GPIO4 and
+            GPIO5.<br> &bull; SPI (MISO, MOSI, CLK, CS): communication with high-speed peripherals.<br> &bull; Power
+            pins:<br> &ndash; VIN: 5 V input from USB or external source.<br> &ndash; 3V3: regulated output for
+            low-power modules.<br> &ndash; GND: ground reference.<br> &bull; RST: reset the board.<br> &bull; EN
+            (CH_PD): enable pin for powering the chip.</span></p>
+    <p class="c3"><span class="c1">Operational features: deep-sleep support, Wi-Fi stack, lightweight hardware ideal for
+            cloud-connected applications.</span></p>
+    <hr>
+    <p class="c5 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c8 c0">2. MQTT Protocol to Build a Publish&ndash;Subscribe IoT Application</span></p>
+    <p class="c3"><span class="c1"><br> MQTT is a lightweight messaging protocol designed for constrained devices and
+            unreliable networks. It follows publish&ndash;subscribe architecture through a central broker.<br></span>
+    </p>
+    <p class="c3"><span class="c0">Core Components:<br></span><span class="c1">&nbsp;&bull; Publisher: device or service
+            sending messages to a topic.<br> &bull; Subscriber: device that requests messages from a specific topic.<br>
+            &bull; Broker: server responsible for receiving all messages and routing them to appropriate
+            subscribers.</span></p>
+    <p class="c3"><span class="c0">Protocol Workflow:<br></span><span class="c1">&nbsp;&bull; Devices connect to broker
+            using TCP (with optional TLS encryption).<br> &bull; Publisher sends data tagged with a topic (example:
+            home/room1/temp).<br> &bull; Broker forwards data to all subscribers of that topic.<br> &bull; Subscribers
+            receive data without needing direct connection to the publisher.</span></p>
+    <p class="c3"><span class="c0">Features:<br></span><span class="c1">&nbsp;&bull; Very low network overhead; ideal
+            for low-power sensors.<br> &bull; Supports QoS levels:<br> &ndash; QoS 0: at most once.<br> &ndash; QoS 1:
+            at least once.<br> &ndash; QoS 2: exactly once.<br> &bull; Supports persistent sessions and retained
+            messages.<br> &bull; Runs efficiently on NodeMCU, Arduino, Raspberry Pi.</span></p>
+    <p class="c3"><span class="c0">Use Cases</span><span class="c1">: environment monitoring, smart home data exchange,
+            machine health diagnostics.</span></p>
+    <p class="c3"><span class="c0">Application Example:<br></span><span class="c1">&nbsp;NodeMCU reads temperature
+            &rarr; publishes to topic &quot;/sensor/temp&quot; &rarr; cloud MQTT broker &rarr; dashboard subscribes
+            &rarr; displays real-time values.</span></p>
+    <hr>
+    <h6 class="c2" id="h.3a7g2hxcb1q9"><span class="c9 c0"></span></h6>
+    <p class="c3"><span class="c8 c0">1. Big Data</span></p>
+    <p class="c3"><span class="c1"><br>Big Data refers to extremely large, diverse, and continuously growing datasets
+            generated from sensors, devices, social media, transactions, logs, and IoT systems. Traditional
+            data-processing tools cannot efficiently store, analyze, or extract insights from this scale of
+            data.<br></span></p>
+    <p class="c3"><span class="c0">Types of Data:</span><span class="c1"><br> &bull; Structured Data: organized into
+            tables or fixed formats (SQL databases, spreadsheets).<br> &bull; Semi-Structured Data: partially organized
+            using tags or markers (JSON, XML, logs).<br> &bull; Unstructured Data: no predefined structure (images,
+            audio, video, free text).</span></p>
+    <p class="c3"><span class="c0">Characteristics (5Vs):</span><span class="c1"><br> &bull; Volume: massive quantities
+            of data from millions of devices.<br> &bull; Velocity: rapid data generation and arrival speed, often
+            requiring real-time processing.<br> &bull; Variety: multiple formats such as sensor readings, text, images,
+            audio.<br> &bull; Veracity: data reliability and accuracy affected by noise, missing values, or errors.<br>
+            &bull; Value: meaningful insights extracted from data for decisions and automation.</span></p>
+    <p class="c3"><span class="c0">Big Data in IoT:</span><span class="c1"><br> Sensor networks produce continuous
+            streams of data requiring scalable storage, distributed processing, and analytics engines using Hadoop,
+            Spark, NoSQL databases, and cloud services.</span></p>
+    <p class="c5"><span class="c0">Cloud Computing Platforms for IoT:</span><span class="c1"><br>Cloud platforms provide
+            essential infrastructure, services, and tools for storing, processing, and managing IoT-generated
+            data.<br></span></p>
+    <p class="c3"><span class="c0">Core Functions:</span><span class="c1"><br> &bull; Device Management: provisioning,
+            authentication, monitoring, remote updates.<br> &bull; Data Storage: scalable databases for time-series,
+            logs, media, and structured data.<br> &bull; Data Processing: stream processing, batch analytics, machine
+            learning.<br> &bull; APIs and Integration: REST or MQTT endpoints connecting devices to cloud
+            applications.<br> &bull; Visualization: dashboards and alerts for real-time monitoring.</span></p>
+    <p class="c3"><span class="c0">Key Cloud Platforms:</span><span class="c1"><br> &bull; AWS IoT Core: device
+            registry, MQTT broker, Lambda processing, S3 storage.<br> &bull; Microsoft Azure IoT Hub: device twin,
+            analytics, cloud storage.<br> &bull; Google Cloud IoT Core (legacy): secure device gateway, Pub/Sub
+            messaging.<br> &bull; IBM Watson IoT: device management and analytics.<br> &bull; Open-source platforms:
+            ThingsBoard, Kaa IoT, Node-RED.</span></p>
+    <p class="c3"><span class="c1">Benefits: scalability, reliability, global accessibility, reduced infrastructure
+            cost, built-in analytics, easy integration with machine learning and big data services.</span></p>
+    <hr>
+    <p class="c5 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c8 c0">4. Design an IoT-Based Smart Parking System Using Sensors, NodeMCU, and Cloud
+            Storage.</span></p>
+    <p class="c3"><span><br></span><span class="c0">Goal:</span><span class="c1">&nbsp;detect vehicle presence in
+            parking slots, update availability in real time, and store data on the cloud for monitoring.<br></span></p>
+    <p class="c3"><span class="c0">System Components:</span><span><br> &bull; Sensor Layer: ultrasonic sensors or IR
+            sensors at each parking slot to detect vehicle occupancy.<br> &bull; Controller Layer: NodeMCU (ESP8266)
+            collects sensor data and provides Wi-Fi connectivity.<br> &bull; Cloud Layer: cloud database (Firebase, AWS,
+            ThingsBoard) stores parking slot status.<br></span><span class="c0 c7">&nbsp;&bull; Application Layer:
+            dashboard or mobile app displays available/occupied slots.</span></p>
+    <p class="c3"><span class="c0">Architecture:</span><span class="c1"><br> &bull; Each slot has a sensor &rarr;
+            outputs distance or presence signal.<br> &bull; NodeMCU reads sensor values through GPIO pins.<br> &bull;
+            NodeMCU processes these values and determines slot state (occupied/free).<br> &bull; NodeMCU connects to
+            cloud via Wi-Fi and updates the status through REST API or MQTT topic.<br> &bull; Cloud stores each
+            slot&rsquo;s state in a real-time database.<br> &bull; User interface retrieves cloud data and displays
+            parking availability in real time.</span></p>
+    <p class="c3"><span class="c0">Workflow:</span><span class="c1"><br> &bull; Vehicle enters a slot &rarr; sensor
+            detects reduced distance &rarr; NodeMCU sends &ldquo;occupied&rdquo;.<br> &bull; Vehicle leaves &rarr;
+            sensor reports open status &rarr; NodeMCU updates &ldquo;free&rdquo;.<br> &bull; Cloud dashboard refreshes
+            automatically, showing slot counts and location map.</span></p>
+    <p class="c3"><span class="c0">Key Features</span><span class="c1">:<br> &bull; Real-time monitoring with minimal
+            latency.<br> &bull; Remote accessibility through mobile or web application.<br> &bull; Scalable: more slots
+            and NodeMCU units can be added.<br> &bull; Low-cost components suitable for IoT automation.</span></p>
+    <p class="c3"><span class="c1">Applications: malls, offices, smart cities, residential parking systems.</span></p>
+    <hr>
+    <p class="c3 c4"><span class="c1"></span></p>
+    <p class="c6"><span class="c13 c0">UNIT 5</span></p>
+    <p class="c3"><span class="c8 c0">1. Legal Challenges and Ethical Issues in IoT.</span></p>
+    <p class="c3"><span><br> </span><span class="c0">Legal Challenges:</span><span class="c1"><br> &bull; Data Privacy:
+            IoT devices continuously collect sensitive data (location, habits, health metrics). Laws such as GDPR
+            require explicit consent, data minimization, and secure handling. Violations arise when devices collect more
+            data than necessary or share data without authorization.<br> &bull; Data Ownership: ambiguity about who owns
+            the data generated by IoT devices &ndash; the user, manufacturer, or service provider. Ownership determines
+            rights to access, modify, or delete data.<br> &bull; Security and Liability: insecure IoT devices can be
+            hacked, leading to unauthorized access, surveillance, or physical harm. Determining liability for failures
+            (device maker, software vendor, user) is legally complex.<br> &bull; Cross-Border Data Transfer: cloud
+            platforms often store data in different countries, which may violate local data protection laws.<br> &bull;
+            Compliance Requirements: industries such as healthcare, automotive, and energy have strict regulations. IoT
+            systems must comply with safety, encryption, and auditing standards.<br></span></p>
+    <p class="c3"><span class="c0">Ethical Issues:</span><span class="c1"><br> &bull; Surveillance and Tracking:
+            continuous monitoring of users&rsquo; behavior may infringe on personal autonomy and freedom.<br> &bull;
+            Lack of Transparency: many IoT devices do not clearly inform users about what data is collected and how
+            it&#39;s used.<br> &bull; Bias in Automated Decisions: IoT analytics and AI may create unfair or
+            discriminatory outcomes if data is incomplete or biased.<br> &bull; Consent and Control: ethical design
+            requires users to have meaningful control over devices, including data access, deletion, and disabling
+            tracking features.<br> &bull; Environmental Impact: production and disposal of billions of IoT devices
+            contribute to e-waste and carbon footprint.</span></p>
+    <p class="c3"><span class="c1">Ethical IoT design emphasizes transparency, data minimization, security by design,
+            and fair use of collected information.</span></p>
+    <hr>
+    <p class="c5 c4"><span class="c1"></span></p>
+    <p class="c3"><span class="c8 c0">2. Role of IoT in Agriculture and Environmental Protection.</span></p>
+    <p class="c3"><span class="c10 c0"><br></span><span class="c0">&nbsp;Agriculture:</span><span class="c1"><br> &bull;
+            Precision Farming: IoT sensors measure soil moisture, humidity, temperature, nutrient levels. Data helps
+            optimize irrigation, fertilizer usage, and pesticide application.<br> &bull; Smart Irrigation Systems: soil
+            moisture sensors and weather data automatically control irrigation pumps, reducing water waste.<br> &bull;
+            Livestock Monitoring: wearable IoT devices track animal health, movement, and feeding patterns, enabling
+            early detection of diseases.<br> &bull; Crop Health Monitoring: drones and imaging sensors identify pest
+            attacks and nutrient deficiencies early.<br> &bull; Supply Chain Tracking: RFID and GPS-based IoT devices
+            track agricultural produce from field to market, improving transparency and reducing spoilage.<br></span>
+    </p>
+    <p class="c3"><span class="c1">Benefits: higher crop yield, reduced water and fertilizer usage, improved resource
+            efficiency, lower operational costs.</span></p>
+    <p class="c3"><span class="c0">Environmental Protection:</span><span class="c1"><br> &bull; Air Quality Monitoring:
+            IoT sensors measure pollutants (CO&#8322;, PM2.5, NO&#8322;) in real time, enabling rapid response to
+            hazardous conditions.<br> &bull; Water Quality Monitoring: sensors track pH, turbidity, dissolved oxygen,
+            and contaminants in rivers, lakes, and reservoirs.<br> &bull; Wildlife Tracking: GPS-enabled IoT tags
+            monitor endangered species&rsquo; movement to prevent poaching and support conservation.<br> &bull; Waste
+            Management: smart bins with fill-level sensors optimize waste collection routes, reducing fuel
+            consumption.<br> &bull; Disaster Management: distributed sensor networks detect floods, landslides, forest
+            fires, and earthquakes, enabling early warnings.</span></p>
+    <p class="c3"><span class="c1">Impact: improved environmental sustainability, faster detection of ecological
+            threats, and data-driven conservation policies.</span></p>
+    <p class="c4 c5"><span class="c1"></span></p>
+    <div id="watermark">https://poornimites.vercel.app/notes.html <br>
+        CONFIDENCIAL || DO NOT SHARE</div>
+
+    <h1>Secure Test</h1>
+    <p>This is secure test content. Copying, printing, or screenshots are restricted.</p>
+
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Disable keyboard shortcuts for copy, print, save, view source, and screenshot
+        document.addEventListener('keydown', e => {
+            const blocked = ['c', 'p', 's', 'u', 'PrintScreen'];
+            if (e.ctrlKey && blocked.includes(e.key.toLowerCase())) {
+                e.preventDefault();
+                alert('Action disabled');
+            }
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                alert('Screenshots disabled');
+            }
+        });
+
+        // Disable copy event
+        document.addEventListener('copy', e => {
+            e.preventDefault();
+            alert('Copy disabled');
+        });
+
+        // Prevent printing
+        window.onbeforeprint = () => {
+            document.body.style.display = 'none';
+            alert('Printing disabled');
+            setTimeout(() => location.reload(), 1000);
+        };
+
+        // Disable caching
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(() => { });
+        }
+    </script>
+
+
+
+
+
+</body>
+
+</html>
