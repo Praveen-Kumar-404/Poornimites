@@ -773,3 +773,294 @@ select.form-control {
 .progress-bar-danger {
     background: var(--toolkit-danger);
 }
+
+/* ===================================
+   MOBILE RESPONSIVE STYLES
+   =================================== */
+
+@media (max-width: 768px) {
+
+    /* Container */
+    .toolkit-container {
+        padding: 1rem;
+    }
+
+    /* Header */
+    .toolkit-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .toolkit-header p {
+        font-size: 0.95rem;
+    }
+
+    /* Grid Layouts */
+    .tool-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .tool-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Tool Cards */
+    .tool-card {
+        padding: 1.25rem;
+    }
+
+    .tool-card h3 {
+        font-size: 1.1rem;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-block {
+        width: 100%;
+    }
+
+    /* Forms */
+    .form-control {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+    }
+
+    /* Tables */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+
+    /* Calculator */
+    .calculator-display {
+        font-size: 1.5rem;
+        padding: 1rem;
+    }
+
+    .calculator-buttons {
+        gap: 0.5rem;
+    }
+
+    .calc-btn {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    /* Tabs */
+    .tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab {
+        flex: 1 1 auto;
+        min-width: 100px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 1.5rem;
+    }
+
+    /* File Upload */
+    .file-upload {
+        padding: 2rem 1rem;
+    }
+
+    /* Cards */
+    .card {
+        padding: 1rem;
+    }
+
+    /* Utility Classes */
+    .d-flex {
+        flex-wrap: wrap;
+    }
+
+    .gap-2 {
+        gap: 0.5rem !important;
+    }
+
+    /* Hide text on small buttons */
+    .btn-sm {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    /* Timetable */
+    .timetable-grid {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Chart containers */
+    canvas {
+        max-width: 100%;
+        height: auto !important;
+    }
+
+    /* Whiteboard */
+    #whiteboardCanvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Notes sidebar */
+    .notes-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--toolkit-border);
+    }
+
+    /* Code editor */
+    .CodeMirror {
+        font-size: 12px;
+    }
+
+    /* Search bar */
+    .search-bar {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Tool sections */
+    .tool-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Progress bars */
+    .progress {
+        height: 25px;
+    }
+
+    .progress-bar {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Extra small screens */
+    .toolkit-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .toolkit-header p {
+        font-size: 0.9rem;
+    }
+
+    /* Smaller padding */
+    .toolkit-container {
+        padding: 0.75rem;
+    }
+
+    .tool-content {
+        padding: 1rem;
+    }
+
+    /* Stack everything */
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .justify-between {
+        justify-content: flex-start !important;
+    }
+
+    /* Buttons full width on tiny screens */
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Calculator buttons smaller */
+    .calc-btn {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    /* Smaller modals */
+    .modal-content {
+        width: 98%;
+        padding: 1rem;
+    }
+
+    /* Compact cards */
+    .card {
+        padding: 0.75rem;
+    }
+
+    /* Smaller badges */
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .toolkit-header {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .toolkit-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .tool-section {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+
+    /* Larger touch targets */
+    .btn,
+    .tool-btn,
+    .tab {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Larger form inputs */
+    .form-control,
+    select,
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="date"],
+    input[type="time"],
+    textarea {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    /* Remove hover effects on touch devices */
+    .tool-card:hover,
+    .btn:hover,
+    .tab:hover {
+        transform: none;
+    }
+
+    /* Larger checkboxes and radio buttons */
+    input[type="checkbox"],
+    input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+}
