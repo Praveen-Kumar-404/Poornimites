@@ -2,139 +2,149 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subscription - Poornimites</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/header.css">
-    <link rel="stylesheet" href="../assets/css/footer.css">
-    <link rel="stylesheet" href="../assets/css/bento-grid.css">
-    <style>
-        .price-tag {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #004080;
-            margin-bottom: 0.5rem;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscription - Poornimites</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/header.css">
+  <link rel="stylesheet" href="../assets/css/footer.css">
+  <link rel="stylesheet" href="../assets/css/bento-grid.css">
+  <style>
+    .price-tag {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #004080;
+      margin-bottom: 0.5rem;
+    }
 
-        .yearly-price {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 1rem;
-        }
+    .yearly-price {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
 
-        .tag {
-            background-color: #e0f7fa;
-            color: #00796b;
-            padding: 0.3rem 0.6rem;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: auto;
-        }
+    .tag {
+      background-color: #e0f7fa;
+      color: #00796b;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: auto;
+    }
 
-        .best-value .tag {
-            background-color: #ffeb3b;
-            color: #333;
-        }
+    .best-value .tag {
+      background-color: #ffeb3b;
+      color: #333;
+    }
 
-        .plan-toggle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-top: 2rem; /* Added padding */
-        }
+    .plan-toggle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 2rem;
+      /* Added padding */
+    }
 
-        .switch-container {
-            display: flex;
-            align-items: center;
-        }
+    .switch-container {
+      display: flex;
+      align-items: center;
+    }
 
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 120px; /* Increased width */
-            height: 60px; /* Increased height */
-            margin: 0 15px;
-        }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 120px;
+      /* Increased width */
+      height: 60px;
+      /* Increased height */
+      margin: 0 15px;
+    }
 
-        .switch input { 
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #eaeaea;
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: 999px; /* Make it a pill shape */
-            box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.12);
-        }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #eaeaea;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 999px;
+      /* Make it a pill shape */
+      box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.12);
+    }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 40px; /* Increased size */
-            width: 40px; /* Increased size */
-            left: 10px; /* Adjusted position */
-            bottom: 10px; /* Adjusted position */
-            background-color: #ee5f39;
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: 50%;
-        }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 40px;
+      /* Increased size */
+      width: 40px;
+      /* Increased size */
+      left: 10px;
+      /* Adjusted position */
+      bottom: 10px;
+      /* Adjusted position */
+      background-color: #ee5f39;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+    }
 
-        input:checked + .slider {
-            background-color: #eaeaea; /* Same background */
-        }
+    input:checked+.slider {
+      background-color: #eaeaea;
+      /* Same background */
+    }
 
-        input:focus + .slider {
-            box-shadow: 0 0 1px #3957ee;
-        }
+    input:focus+.slider {
+      box-shadow: 0 0 1px #3957ee;
+    }
 
-        input:checked + .slider:before {
-            -webkit-transform: translateX(40px);
-            -ms-transform: translateX(40px);
-            transform: translateX(40px);
-            background-color: #3957ee;
-        }
+    input:checked+.slider:before {
+      -webkit-transform: translateX(40px);
+      -ms-transform: translateX(40px);
+      transform: translateX(40px);
+      background-color: #3957ee;
+    }
 
-        .slider.round {
-            -webkit-transform: translateX(60px); /* Nudging it slightly */
-            -ms-transform: translateX(60px);
-            transform: translateX(60px);
-            background-color: #3957ee;
-        }
+    .slider.round {
+      -webkit-transform: translateX(60px);
+      /* Nudging it slightly */
+      -ms-transform: translateX(60px);
+      transform: translateX(60px);
+      background-color: #3957ee;
+    }
 
-        .plan-toggle span {
-            margin: 0 10px;
-            font-weight: bold;
-        }
+    .plan-toggle span {
+      margin: 0 10px;
+      font-weight: bold;
+    }
 
-        .yearly-price {
-            display: none;
-        }
+    .yearly-price {
+      display: none;
+    }
 
-        .card.selected {
-            border: 2px solid #3957ee;
-            box-shadow: 0 0 15px rgba(57, 87, 238, 0.5);
-        }
-    </style>
+    .card.selected {
+      border: 2px solid #3957ee;
+      box-shadow: 0 0 15px rgba(57, 87, 238, 0.5);
+    }
+  </style>
 </head>
 
 <body>
 
   <header class="navbar">
     <div class="logo">🎓 <a href="../index.html">Poornimites</a></div>
-  
+
     <nav class="nav-links" id="navLinks">
       <a href="../tools.html">Tools</a>
       <a href="../notes.html">Notes</a>
@@ -142,10 +152,10 @@
       <a href="../community.html">Community</a>
       <a href="../career.html">Career</a>
     </nav>
-  
+
     <div class="nav-icons" id="navIcons">
       <a href="#" id="auth-btn">👤</a>
-      <a href="../settings.html">⚙️</a>
+      <a href="../profile.html">⚙️</a>
     </div>
   </header>
 
@@ -157,7 +167,7 @@
     </label>
     <span>Yearly</span>
   </div>
-  
+
   <main class="bento-grid">
 
     <!-- Basic Plan -->
@@ -172,13 +182,13 @@
 
     <!-- Standard Plan -->
     <div class="card best-value" id="standard-plan">
-        <h2>Standard</h2>
-        <p class="price-tag monthly-price">₹99/month</p>
-        <p class="price-tag yearly-price">₹799/year</p>
-        <p class="yearly-price-monthly">(₹66/month)</p>
-        <p class="tag">⭐ Best Value ⭐</p>
-        <a href="#">Choose Plan →</a>
-      </div>
+      <h2>Standard</h2>
+      <p class="price-tag monthly-price">₹99/month</p>
+      <p class="price-tag yearly-price">₹799/year</p>
+      <p class="yearly-price-monthly">(₹66/month)</p>
+      <p class="tag">⭐ Best Value ⭐</p>
+      <a href="#">Choose Plan →</a>
+    </div>
 
     <!-- Premium Plan -->
     <div class="card">
@@ -231,9 +241,9 @@
 
     // Set initial state on page load
     function setInitialState() {
-        planSwitch.checked = true;
-        updatePrices();
-        standardPlan.classList.add('selected');
+      planSwitch.checked = true;
+      updatePrices();
+      standardPlan.classList.add('selected');
     }
 
     window.addEventListener('load', setInitialState);
