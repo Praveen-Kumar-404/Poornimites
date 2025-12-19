@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Clubs - Poornimites</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/bento-grid.css">
-    <link rel="stylesheet" href="assets/css/sub-page.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clubs & Societies - Poornimites</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/clubs.css">
 </head>
+
 <body>
   <header class="navbar">
     <div class="logo">🎓 <a href="index.html">Poornimites</a></div>
@@ -25,16 +26,108 @@
       <a href="settings.html">⚙️</a>
     </div>
   </header>
-  <main class="bento-grid">
-    <div class="page-header">
-      <h1>🎭 Student Clubs</h1>
-      <p>Join campus clubs, events, and activities.</p>
+
+  <main class="clubs-container">
+    <!-- Hero Section -->
+    <section class="clubs-hero">
+      <div class="hero-content">
+        <h1>🎭 Clubs & Societies</h1>
+        <p class="subtitle">Join or explore student clubs, events, and their activities.</p>
+        <div class="search-bar-container">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="clubSearch" placeholder="Search clubs by name or keyword...">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Navigation -->
+    <nav class="category-nav" aria-label="Club categories">
+      <button class="category-pill active" data-category="all">All</button>
+      <button class="category-pill" data-category="technical">Technical & Coding</button>
+      <button class="category-pill" data-category="cultural">Cultural & Arts</button>
+      <button class="category-pill" data-category="sports">Sports & Fitness</button>
+      <button class="category-pill" data-category="literary">Literary & Debate</button>
+      <button class="category-pill" data-category="entrepreneurship">Entrepreneurship</button>
+      <button class="category-pill" data-category="social">Social Service</button>
+      <button class="category-pill" data-category="gaming">Gaming & Esports</button>
+    </nav>
+
+    <!-- Club Listings Grid -->
+    <div class="clubs-grid" id="clubsGrid">
+      <!-- Clubs will be dynamically inserted here -->
+      <div class="loading-state">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
     </div>
-    <div class="card">
-      <h2>Coming Soon</h2>
-      <p>This page is under development. Check back later for updates!</p>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <div class="empty-icon">🔍</div>
+      <h3>No clubs found</h3>
+      <p>Try adjusting your search or category filter.</p>
+      <button class="btn-primary" onclick="resetFilters()">View All Clubs</button>
     </div>
   </main>
+
+  <!-- Club Detail Modal -->
+  <div class="modal" id="clubModal" role="dialog" aria-modal="true">
+    <div class="modal-content modal-large">
+      <button class="modal-close" aria-label="Close modal">✕</button>
+      <div class="modal-body" id="clubDetailContent">
+        <!-- Content injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Join Club Modal -->
+  <div class="modal" id="joinModal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Join Club</h2>
+        <button class="modal-close" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="joinForm">
+          <input type="hidden" id="joinClubId">
+          <div class="form-group">
+            <label for="studentName">Full Name *</label>
+            <input type="text" id="studentName" required>
+          </div>
+          <div class="form-group">
+            <label for="studentId">Student ID *</label>
+            <input type="text" id="studentId" required>
+          </div>
+          <div class="form-group">
+            <label for="studentEmail">Email *</label>
+            <input type="email" id="studentEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="studentYear">Year *</label>
+            <select id="studentYear" required>
+              <option value="">Select Year</option>
+              <option value="1">1st Year</option>
+              <option value="2">2nd Year</option>
+              <option value="3">3rd Year</option>
+              <option value="4">4th Year</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="interestReason">Why do you want to join? (Optional)</label>
+            <textarea id="interestReason" rows="3"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-secondary modal-close-btn">Cancel</button>
+            <button type="submit" class="btn-primary">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="footer-links">
       <a href="about.html">About</a>
@@ -47,6 +140,9 @@
       Made with 💙 by Students for Students. © 2025 Poornimites
     </div>
   </footer>
+
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/clubs.js"></script>
 </body>
+
 </html>
