@@ -1,0 +1,389 @@
+/* assets/css/student-lounge.css */
+
+:root {
+    --primary-bg: #f5faff;
+    --text-color: #003366;
+    --accent-color: #0066cc;
+    --card-bg: #ffffff;
+    --border-color: #d0e2f3;
+    --shadow-color: rgba(0, 51, 102, 0.08);
+    --header-bg: #004080;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+
+    /* Lounge specific */
+    --confession-bg: #fff0f5;
+    --membrane-bg: #f0f8ff;
+    --poll-bar-bg: #e9ecef;
+    --upvote-color: #ff4500;
+    --downvote-color: #7193ff;
+}
+
+/* Layout Reuse from Bazaar */
+.lounge-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.lounge-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.lounge-header h1 {
+    font-size: 2.5rem;
+    color: var(--header-bg);
+    margin: 0 0 0.5rem 0;
+}
+
+/* Tabs */
+.lounge-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+    overflow-x: auto;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    color: var(--accent-color);
+    background-color: rgba(0, 102, 204, 0.05);
+}
+
+.tab-btn.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+/* Main Grid Layout */
+.lounge-content {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Feed Column */
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Card Styles */
+.post-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease;
+}
+
+.post-card:hover {
+    border-color: var(--accent-color);
+}
+
+/* Post Header */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.post-author {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.anonymous-badge {
+    background: #333;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+}
+
+/* Post Content */
+.post-body {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    white-space: pre-wrap;
+}
+
+.post-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background: #eef2f6;
+    color: #4a5568;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.tag.academic {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.tag.relationship {
+    background: #fce4ec;
+    color: #c2185b;
+}
+
+.tag.rant {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.tag.funny {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+/* Actions */
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.vote-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.vote-btn {
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0 4px;
+    transition: color 0.2s;
+}
+
+.vote-btn.up:hover,
+.vote-btn.up.active {
+    color: var(--upvote-color);
+}
+
+.vote-btn.down:hover,
+.vote-btn.down.active {
+    color: var(--downvote-color);
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+}
+
+.action-btn:hover {
+    color: var(--accent-color);
+}
+
+/* Right Panel */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 2rem;
+}
+
+.panel-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+.panel-card h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.trend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.trend-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+}
+
+.trend-item:last-child {
+    border-bottom: none;
+}
+
+.trend-item a {
+    color: var(--text-color);
+}
+
+/* Create Post FAB */
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    color: white;
+    font-size: 2rem;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    z-index: 100;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Poll Specifics */
+.poll-option {
+    margin-bottom: 0.8rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.poll-bar-container {
+    background: #f0f0f0;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.poll-fill {
+    background: rgba(0, 102, 204, 0.2);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: width 0.5s ease;
+}
+
+.poll-label {
+    position: relative;
+    z-index: 1;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: 500;
+}
+
+/* Memes */
+.meme-card .post-body {
+    padding: 0;
+}
+
+.meme-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .lounge-content {
+        grid-template-columns: 1fr;
+    }
+
+    .side-panel {
+        /* Stack at bottom for details */
+        margin-top: 2rem;
+    }
+}
