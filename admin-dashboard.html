@@ -1,563 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Poornimites</title>
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/sub-page.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     <style>
-        .admin-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 1rem;
+        .dashboard-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .admin-card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stat-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #004080;
-            margin: 0.5rem 0;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        
-        th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-        
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .status-active {
-            color: #28a745;
-            font-weight: 500;
-        }
-        
-        .status-inactive {
-            color: #6c757d;
-        }
-        
-        .filter-controls {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .filter-control {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        select, input {
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .login-required {
-            text-align: center;
-            padding: 3rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            margin: 2rem auto;
-            max-width: 500px;
-        }
-        
-        .admin-required {
-            text-align: center;
-            padding: 3rem;
-            background: #fff3cd;
-            border-radius: 8px;
-            margin: 2rem auto;
-            max-width: 500px;
+
+        .dashboard-section.active {
+            display: block;
+            opacity: 1;
         }
     </style>
 </head>
-<body>
-    <header class="navbar">
-        <div class="logo">
-            <a href="index.html">Poornimites</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="tools.html">Tools</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a id="auth-btn" href="#">👤</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <div class="login-required" id="login-message">
-            <h2>Login Required</h2>
-            <p>Please log in to access the admin dashboard.</p>
-            <p>Click the 👤 icon in the top right corner to log in.</p>
+<body class="theme-admin" data-role="admin">
+    <aside class="sidebar">
+        <div class="brand"><span>🎓</span> Poornimites</div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" data-section="section-dashboard"><i>📊</i> Dashboard</a>
+            <a href="#" class="nav-item" data-section="section-users"><i>👥</i> User Management</a>
+            <a href="#" class="nav-item" data-section="section-roles"><i>🛡️</i> Roles & Permissions</a>
+            <a href="#" class="nav-item" data-section="section-content"><i>📦</i> Content Control</a>
+            <a href="#" class="nav-item" data-section="section-settings"><i>⚙️</i> Platform Settings</a>
+            <a href="#" class="nav-item" data-section="section-backups"><i>💾</i> Backups</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-mini">
+                <div class="avatar">A</div>
+                <div class="user-info">
+                    <div>System Admin</div>
+                    <div class="user-role">Administrator</div>
+                </div>
+            </div>
         </div>
-        
-        <div class="admin-required" id="admin-message" style="display: none;">
-            <h2>Admin Access Required</h2>
-            <p>You don't have permission to access this page.</p>
-            <p>Please contact the administrator if you believe this is an error.</p>
-        </div>
-        
-        <div class="admin-container" id="admin-content" style="display: none;">
-            <div class="admin-header">
-                <h1>Admin Dashboard</h1>
-                <div>
-                    <button id="refresh-btn" class="btn">Refresh Data</button>
-                </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <i class="menu-toggle" id="menuToggle">☰</i>
+                <h2>Admin Control Panel</h2>
             </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">Total Users</div>
-                    <div class="stat-value" id="total-users">-</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Active Now</div>
-                    <div class="stat-value" id="active-users">-</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Today's Logins</div>
-                    <div class="stat-value" id="today-logins">-</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Avg. Session Time</div>
-                    <div class="stat-value" id="avg-session">-</div>
-                </div>
+            <div class="header-actions">
+                <button class="icon-btn">🔔<span class="badge"></span></button>
             </div>
-            
-            <div class="admin-card">
-                <h2>User Sessions</h2>
-                <div class="filter-controls">
-                    <div class="filter-control">
-                        <label for="date-filter">Date:</label>
-                        <select id="date-filter">
-                            <option value="all">All Time</option>
-                            <option value="today" selected>Today</option>
-                            <option value="yesterday">Yesterday</option>
-                            <option value="week">This Week</option>
-                            <option value="month">This Month</option>
-                        </select>
+        </header>
+
+        <div class="dashboard-scroll">
+
+            <!-- SECTION: DASHBOARD (DEFAULT) -->
+            <div id="section-dashboard" class="dashboard-section active">
+                <div class="dashboard-grid">
+                    <div id="admin-widgets" style="display:contents;">
+                        <!-- JS Injected Widgets -->
                     </div>
-                    <div class="filter-control">
-                        <label for="user-search">Search:</label>
-                        <input type="text" id="user-search" placeholder="Search by name or email">
+
+                    <!-- Quick Actions -->
+                    <div class="card" style="grid-column: 1 / -1; margin-top:2rem;">
+                        <div class="card-header">
+                            <h3 class="card-title">Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions-grid" style="margin-bottom:0;">
+                            <div class="action-card">
+                                <span class="action-icon">👤</span> Add User
+                            </div>
+                            <div class="action-card">
+                                <span class="action-icon">📢</span> Post Notice
+                            </div>
+                            <div class="action-card">
+                                <span class="action-icon">🔧</span> Maintenance
+                            </div>
+                            <div class="action-card">
+                                <span class="action-icon">💾</span> Backup
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Stats -->
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Content Overview</h3>
+                        </div>
+                        <div class="stats-row" style="margin-bottom:0;">
+                            <div class="stat-item">
+                                <div class="stat-icon">📚</div>
+                                <div>
+                                    <div class="stat-val">45</div>
+                                    <div class="stat-label">Active Courses</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">📝</div>
+                                <div>
+                                    <div class="stat-val">128</div>
+                                    <div class="stat-label">Assignments</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">📂</div>
+                                <div>
+                                    <div class="stat-val">3k+</div>
+                                    <div class="stat-label">Files Hosted</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="table-container">
-                    <table id="sessions-table">
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Email</th>
-                                <th>Login Time</th>
-                                <th>Last Active</th>
-                                <th>Duration</th>
-                                <th>Status</th>
-                                <th>Browser</th>
-                            </tr>
-                        </thead>
-                        <tbody id="sessions-body">
-                            <!-- Sessions will be loaded here -->
-                            <tr>
-                                <td colspan="7" class="text-center">Loading sessions data...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </div>
+
+            <!-- SECTION: USER MANAGEMENT -->
+            <div id="section-users" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">User Management</h3>
+                            <button class="btn-primary">Add User +</button>
+                        </div>
+                        <div style="margin-bottom:1rem; display:flex; gap:1rem;">
+                            <input type="text" placeholder="Search users..."
+                                style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px; flex:1;">
+                            <select style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px;">
+                                <option>All Roles</option>
+                                <option>Student</option>
+                                <option>Teacher</option>
+                            </select>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Praveen Kumar</td>
+                                    <td><span class="status-pill status-success">Student</span></td>
+                                    <td>praveen@example.com</td>
+                                    <td>Active</td>
+                                    <td><button class="icon-btn">✏️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Dr. Sarah Wilson</td>
+                                    <td><span class="status-pill status-warning">Teacher</span></td>
+                                    <td>sarah@example.com</td>
+                                    <td>Active</td>
+                                    <td><button class="icon-btn">✏️</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            <!-- SECTION: ROLES & PERMISSIONS -->
+            <div id="section-roles" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Role Configuration</h3> <button class="btn-primary">Save
+                                Changes</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Permission</th>
+                                    <th style="text-align:center;">Student</th>
+                                    <th style="text-align:center;">Teacher</th>
+                                    <th style="text-align:center;">Moderator</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>View Courses</td>
+                                    <td style="text-align:center;">✅</td>
+                                    <td style="text-align:center;">✅</td>
+                                    <td style="text-align:center;">✅</td>
+                                </tr>
+                                <tr>
+                                    <td>Create Assignments</td>
+                                    <td style="text-align:center;">❌</td>
+                                    <td style="text-align:center;">✅</td>
+                                    <td style="text-align:center;">❌</td>
+                                </tr>
+                                <tr>
+                                    <td>Ban Users</td>
+                                    <td style="text-align:center;">❌</td>
+                                    <td style="text-align:center;">❌</td>
+                                    <td style="text-align:center;">✅</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: CONTENT CONTROL -->
+            <div id="section-content" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Storage Usage</h3>
+                        </div>
+                        <div class="progress-bar" style="margin-bottom:1rem; height:20px;">
+                            <div class="progress-fill" style="width: 45%; background:#ef4444;"></div>
+                        </div>
+                        <p style="color:#64748b;">450GB used of 1TB</p>
+                    </div>
+
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Recent Uploads</h3>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Size</th>
+                                    <th>Uploader</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CS101_Midterm.pdf</td>
+                                    <td>12 MB</td>
+                                    <td>Dr. Sarah Wilson</td>
+                                    <td>Today</td>
+                                </tr>
+                                <tr>
+                                    <td>Project_Demo.mp4</td>
+                                    <td>150 MB</td>
+                                    <td>Student_Praveen</td>
+                                    <td>Yesterday</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: SETTINGS -->
+            <div id="section-settings" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">General Settings</h3> <button class="btn-primary">Save</button>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:1rem;">
+                            <div>
+                                <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Site Name</label>
+                                <input type="text" value="Poornimites"
+                                    style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px; width:100%;">
+                            </div>
+                            <div>
+                                <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Maintenance
+                                    Mode</label>
+                                <label style="display:flex; align-items:center; gap:0.5rem;">
+                                    <input type="checkbox"> Enable System Maintenance
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Email Configuration</h3>
+                        </div>
+                        <div>
+                            <label style="display:block; margin-bottom:0.5rem; font-weight:600;">SMTP Server</label>
+                            <input type="text" value="smtp.example.com"
+                                style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px; width:100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: BACKUPS -->
+            <div id="section-backups" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">System Backups</h3> <button class="btn-primary">Create
+                                Backup</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Backup File</th>
+                                    <th>Size</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>backup_2023_12_28.zip</td>
+                                    <td>1.2 GB</td>
+                                    <td>Today</td>
+                                    <td><span class="status-pill status-success">Scheduled</span></td>
+                                    <td><button class="btn-primary"
+                                            style="padding:0.25rem 0.5rem; font-size:0.8rem;">Download</button></td>
+                                </tr>
+                                <tr>
+                                    <td>backup_2023_12_27.zip</td>
+                                    <td>1.2 GB</td>
+                                    <td>Yesterday</td>
+                                    <td><span class="status-pill status-success">Scheduled</span></td>
+                                    <td><button class="btn-primary"
+                                            style="padding:0.25rem 0.5rem; font-size:0.8rem;">Download</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
-        import {
-            getAuth,
-            signInWithPopup,
-            signOut,
-            GoogleAuthProvider,
-            onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-        import { 
-            getFirestore, 
-            collection, 
-            query, 
-            where, 
-            orderBy, 
-            getDocs, 
-            doc, 
-            getDoc,
-            Timestamp 
-        } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-
-        // Firebase config
-        const firebaseConfig = {
-            apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
-            authDomain: "poornimites-2bbe7.firebaseapp.com",
-            projectId: "poornimites-2bbe7",
-            storageBucket: "poornimites-2bbe7.appspot.com",
-            messagingSenderId: "597165564910",
-            appId: "1:597165564910:web:4d87e756fa1250359324ff",
-            measurementId: "G-2M98Z8JY7Q"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const provider = new GoogleAuthProvider();
-
-        // Admin emails - add your admin emails here
-        const adminEmails = ["2023bcapraveen14906@poornima.edu.in"];
-
-        // DOM elements
-        const loginMessage = document.getElementById('login-message');
-        const adminMessage = document.getElementById('admin-message');
-        const adminContent = document.getElementById('admin-content');
-        const authBtn = document.getElementById('auth-btn');
-        const refreshBtn = document.getElementById('refresh-btn');
-        const dateFilter = document.getElementById('date-filter');
-        const userSearch = document.getElementById('user-search');
-        const sessionsBody = document.getElementById('sessions-body');
-        
-        // Stats elements
-        const totalUsersEl = document.getElementById('total-users');
-        const activeUsersEl = document.getElementById('active-users');
-        const todayLoginsEl = document.getElementById('today-logins');
-        const avgSessionEl = document.getElementById('avg-session');
-
-        // Check if user is admin
-        function isAdmin(user) {
-            return adminEmails.includes(user.email);
-        }
-
-        // Format timestamp to readable date/time
-        function formatTimestamp(timestamp) {
-            if (!timestamp) return 'N/A';
-            
-            const date = timestamp.toDate();
-            return date.toLocaleString();
-        }
-
-        // Calculate time difference in human-readable format
-        function getTimeDifference(start, end) {
-            if (!start) return 'N/A';
-            
-            const startDate = start.toDate();
-            const endDate = end ? end.toDate() : new Date();
-            
-            const diffMs = endDate - startDate;
-            const diffMins = Math.floor(diffMs / 60000);
-            
-            if (diffMins < 1) return 'Just now';
-            if (diffMins < 60) return `${diffMins} min${diffMins !== 1 ? 's' : ''}`;
-            
-            const hours = Math.floor(diffMins / 60);
-            const mins = diffMins % 60;
-            
-            if (hours < 24) {
-                return `${hours} hr${hours !== 1 ? 's' : ''} ${mins} min${mins !== 1 ? 's' : ''}`;
-            }
-            
-            const days = Math.floor(hours / 24);
-            return `${days} day${days !== 1 ? 's' : ''} ${hours % 24} hr${hours % 24 !== 1 ? 's' : ''}`;
-        }
-
-        // Get date range based on filter
-        function getDateRange(filter) {
-            const now = new Date();
-            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            
-            switch (filter) {
-                case 'today':
-                    return {
-                        start: Timestamp.fromDate(today),
-                        end: Timestamp.fromDate(new Date(today.getTime() + 24 * 60 * 60 * 1000))
-                    };
-                case 'yesterday':
-                    const yesterday = new Date(today);
-                    yesterday.setDate(yesterday.getDate() - 1);
-                    return {
-                        start: Timestamp.fromDate(yesterday),
-                        end: Timestamp.fromDate(today)
-                    };
-                case 'week':
-                    const weekStart = new Date(today);
-                    weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-                    return {
-                        start: Timestamp.fromDate(weekStart),
-                        end: Timestamp.fromDate(now)
-                    };
-                case 'month':
-                    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-                    return {
-                        start: Timestamp.fromDate(monthStart),
-                        end: Timestamp.fromDate(now)
-                    };
-                default:
-                    return {
-                        start: null,
-                        end: null
-                    };
-            }
-        }
-
-        // Load user sessions
-        async function loadSessions() {
-            try {
-                sessionsBody.innerHTML = '<tr><td colspan="7" class="text-center">Loading sessions data...</td></tr>';
-                
-                // Get date range from filter
-                const dateRange = getDateRange(dateFilter.value);
-                
-                // Create query
-                let sessionsQuery = collection(db, "userSessions");
-                
-                if (dateRange.start) {
-                    sessionsQuery = query(
-                        sessionsQuery,
-                        where("loginTime", ">=", dateRange.start),
-                        where("loginTime", "<=", dateRange.end)
-                    );
-                }
-                
-                sessionsQuery = query(sessionsQuery, orderBy("loginTime", "desc"));
-                
-                const sessionsSnapshot = await getDocs(sessionsQuery);
-                
-                // Process sessions
-                let sessions = [];
-                sessionsSnapshot.forEach(doc => {
-                    sessions.push({
-                        id: doc.id,
-                        ...doc.data()
-                    });
-                });
-                
-                // Filter by search term if provided
-                const searchTerm = userSearch.value.toLowerCase();
-                if (searchTerm) {
-                    sessions = sessions.filter(session => 
-                        (session.displayName && session.displayName.toLowerCase().includes(searchTerm)) ||
-                        (session.email && session.email.toLowerCase().includes(searchTerm))
-                    );
-                }
-                
-                // Update stats
-                updateStats(sessions);
-                
-                // Render sessions
-                renderSessions(sessions);
-                
-            } catch (error) {
-                console.error("Error loading sessions:", error);
-                sessionsBody.innerHTML = `<tr><td colspan="7" class="text-center">Error loading data: ${error.message}</td></tr>`;
-            }
-        }
-
-        // Update dashboard stats
-        function updateStats(sessions) {
-            // Total unique users
-            const uniqueUsers = new Set(sessions.map(s => s.userId));
-            totalUsersEl.textContent = uniqueUsers.size;
-            
-            // Active users (active in last 5 minutes)
-            const fiveMinutesAgo = new Date();
-            fiveMinutesAgo.setMinutes(fiveMinutesAgo.getMinutes() - 5);
-            const fiveMinutesAgoTimestamp = Timestamp.fromDate(fiveMinutesAgo);
-            
-            const activeUsers = sessions.filter(s => 
-                s.lastActive && s.lastActive.toMillis() >= fiveMinutesAgoTimestamp.toMillis()
-            );
-            activeUsersEl.textContent = activeUsers.length;
-            
-            // Today's logins
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const todayTimestamp = Timestamp.fromDate(today);
-            
-            const todayLogins = sessions.filter(s => 
-                s.loginTime && s.loginTime.toMillis() >= todayTimestamp.toMillis()
-            );
-            todayLoginsEl.textContent = todayLogins.length;
-            
-            // Average session time
-            let totalSessionTime = 0;
-            let sessionCount = 0;
-            
-            sessions.forEach(s => {
-                if (s.loginTime) {
-                    const endTime = s.lastActive || Timestamp.now();
-                    const sessionTime = (endTime.toMillis() - s.loginTime.toMillis()) / 60000; // in minutes
-                    
-                    if (sessionTime > 0 && sessionTime < 24 * 60) { // Ignore sessions longer than 24 hours
-                        totalSessionTime += sessionTime;
-                        sessionCount++;
-                    }
-                }
-            });
-            
-            const avgSessionMins = sessionCount > 0 ? Math.round(totalSessionTime / sessionCount) : 0;
-            avgSessionEl.textContent = avgSessionMins > 0 ? `${avgSessionMins} min` : 'N/A';
-        }
-
-        // Render sessions table
-        function renderSessions(sessions) {
-            if (sessions.length === 0) {
-                sessionsBody.innerHTML = '<tr><td colspan="7" class="text-center">No sessions found</td></tr>';
-                return;
-            }
-            
-            const now = Timestamp.now();
-            const fiveMinutesAgo = new Date();
-            fiveMinutesAgo.setMinutes(fiveMinutesAgo.getMinutes() - 5);
-            const fiveMinutesAgoTimestamp = Timestamp.fromDate(fiveMinutesAgo);
-            
-            let html = '';
-            
-            sessions.forEach(session => {
-                const isActive = session.lastActive && 
-                                session.lastActive.toMillis() >= fiveMinutesAgoTimestamp.toMillis();
-                
-                html += `
-                    <tr>
-                        <td>${session.displayName || 'Unknown'}</td>
-                        <td>${session.email || 'N/A'}</td>
-                        <td>${formatTimestamp(session.loginTime)}</td>
-                        <td>${formatTimestamp(session.lastActive)}</td>
-                        <td>${getTimeDifference(session.loginTime, session.lastActive || now)}</td>
-                        <td class="${isActive ? 'status-active' : 'status-inactive'}">
-                            ${isActive ? 'Active' : 'Inactive'}
-                        </td>
-                        <td>${session.browser ? session.browser.split(' ')[0] : 'Unknown'}</td>
-                    </tr>
-                `;
-            });
-            
-            sessionsBody.innerHTML = html;
-        }
-
-        // Auth state change listener
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is signed in
-                loginMessage.style.display = 'none';
-                
-                // Check if user is admin
-                if (isAdmin(user)) {
-                    adminMessage.style.display = 'none';
-                    adminContent.style.display = 'block';
-                    loadSessions();
-                } else {
-                    adminMessage.style.display = 'block';
-                    adminContent.style.display = 'none';
-                }
-                
-                // Update auth button
-                authBtn.textContent = "🚪";
-                authBtn.onclick = (e) => {
-                    e.preventDefault();
-                    signOut(auth)
-                        .then(() => alert("Logged out successfully"))
-                        .catch((err) => {
-                            console.error(err);
-                            alert("Logout failed");
-                        });
-                };
-            } else {
-                // User is signed out
-                loginMessage.style.display = 'block';
-                adminMessage.style.display = 'none';
-                adminContent.style.display = 'none';
-                
-                // Update auth button
-                authBtn.textContent = "👤";
-                authBtn.onclick = (e) => {
-                    e.preventDefault();
-                    signInWithPopup(auth, provider)
-                        .then((result) => {
-                            alert(`Welcome ${result.user.displayName}`);
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                            alert("Login failed");
-                        });
-                };
-            }
-        });
-
-        // Event listeners
-        if (refreshBtn) {
-            refreshBtn.addEventListener('click', loadSessions);
-        }
-        
-        if (dateFilter) {
-            dateFilter.addEventListener('change', loadSessions);
-        }
-        
-        if (userSearch) {
-            userSearch.addEventListener('input', () => {
-                // Debounce search to avoid too many queries
-                clearTimeout(userSearch.debounceTimer);
-                userSearch.debounceTimer = setTimeout(loadSessions, 300);
-            });
-        }
-    </script>
+    <script src="assets/js/dashboard.js"></script>
 </body>
+
 </html>

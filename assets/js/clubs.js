@@ -11,6 +11,7 @@ const CLUBS_DATA = [
         status: "recruiting",
         description: "The official coding community of Poornima. We host hackathons, workshops, and competitive programming contests to foster a culture of problem solving.",
         mission: "To create a community of developers who build, learn, and grow together.",
+        schedule: "Every Wednesday, 2:00 PM @ Lab 3",
         leadership: [
             { role: "President", name: "Aarav Sharma" },
             { role: "Vice President", name: "Neha Gupta" },
@@ -23,6 +24,12 @@ const CLUBS_DATA = [
         events: [
             { title: "Hack-a-thon 2025", date: "2025-01-15", time: "10:00 AM", type: "upcoming" },
             { title: "React Workshop", date: "2024-12-10", time: "2:00 PM", type: "past" }
+        ],
+        achievements: ["Winners of SIH 2024", "Best Tech Club Award 2023"],
+        gallery: [
+            "https://via.placeholder.com/150/004080/fff",
+            "https://via.placeholder.com/150/0056b3/fff",
+            "https://via.placeholder.com/150/0069d9/fff"
         ]
     },
     {
@@ -32,8 +39,9 @@ const CLUBS_DATA = [
         banner: "https://via.placeholder.com/600x200/e91e63/ffffff?text=Dance+Club",
         category: "cultural",
         status: "active",
-        description: "Express yourself through movement. We explore improved styles including hip-hop, classical, and contemporary dance forms.",
+        description: "Express yourself through movement. We explore different styles including hip-hop, classical, and contemporary dance forms.",
         mission: "To promote dance as an art form and provide a platform for student talent.",
+        schedule: "Mon & Fri, 4:30 PM @ Auditorium",
         leadership: [
             { role: "President", name: "Sanya Malhotra" },
             { role: "Choreographer", name: "Vikram Singh" }
@@ -44,7 +52,9 @@ const CLUBS_DATA = [
         },
         events: [
             { title: "Annual Cultural Fest", date: "2025-02-20", time: "5:00 PM", type: "upcoming" }
-        ]
+        ],
+        achievements: ["1st Prize at IIT Jodhpur Fest"],
+        gallery: []
     },
     {
         id: "robotics-club",
@@ -55,6 +65,7 @@ const CLUBS_DATA = [
         status: "closed",
         description: "Building the future, one bot at a time. Join us to learn electronics, Arduino programming, and bot fabrication.",
         mission: "Empowering students with hands-on robotics and automation skills.",
+        schedule: "Thursdays, 3:00 PM @ Robotics Lab",
         leadership: [
             { role: "President", name: "Kunal Shah" },
             { role: "Secretary", name: "Priya Das" }
@@ -63,7 +74,9 @@ const CLUBS_DATA = [
             email: "robotics@poornima.edu.in",
             instagram: "@robotech_pu"
         },
-        events: []
+        events: [],
+        achievements: [],
+        gallery: []
     },
     {
         id: "debate-club",
@@ -74,6 +87,7 @@ const CLUBS_DATA = [
         status: "recruiting",
         description: "Fostering critical thinking and public speaking. We organize parliamentary debates, poetry slams, and creative writing sessions.",
         mission: "To cultivate articulate leaders and thinkers.",
+        schedule: "Tuesday, 4:00 PM @ Seminar Hall A",
         leadership: [
             { role: "President", name: "Ananya Roy" }
         ],
@@ -83,7 +97,9 @@ const CLUBS_DATA = [
         },
         events: [
             { title: "Freshers Debate", date: "2025-01-10", time: "3:00 PM", type: "upcoming" }
-        ]
+        ],
+        achievements: [],
+        gallery: []
     },
     {
         id: "entrepreneurship-cell",
@@ -94,6 +110,7 @@ const CLUBS_DATA = [
         status: "active",
         description: "Turning ideas into reality. Support for startups, incubation guidance, and talks by successful founders.",
         mission: "Igniting the entrepreneurial spirit in every student.",
+        schedule: "Alternating Saturdays, 11:00 AM @ Incubation Center",
         leadership: [
             { role: "Head", name: "Rahul Jain" },
             { role: "Coordinator", name: "Simran Kaur" }
@@ -104,7 +121,9 @@ const CLUBS_DATA = [
         },
         events: [
             { title: "Startup Saturday", date: "2025-01-25", time: "11:00 AM", type: "upcoming" }
-        ]
+        ],
+        achievements: ["Incubated 5 student startups in 2024"],
+        gallery: []
     },
     {
         id: "gaming-club",
@@ -115,6 +134,7 @@ const CLUBS_DATA = [
         status: "recruiting",
         description: "The ultimate gaming community. Regular tournaments for BGMI, Valorant, FIFA, and Chess.",
         mission: "To build a competitive and fun gaming ecosystem on campus.",
+        schedule: "Online Discord events every weekend",
         leadership: [
             { role: "President", name: "Arjun Reddy" }
         ],
@@ -122,8 +142,33 @@ const CLUBS_DATA = [
             email: "gaming@poornima.edu.in",
             instagram: "@esports_pu"
         },
-        events: []
+        events: [],
+        achievements: ["Top 10 in National Valorant League"],
+        gallery: []
     }
+];
+
+// Mock Global Events
+const GLOBAL_EVENTS = [
+    { title: "Hack-a-thon 2025", club: "Coding Club", date: "2025-01-15", time: "10:00 AM", venue: "Auditorium", type: "technical" },
+    { title: "Freshers Debate", club: "Debate Society", date: "2025-01-10", time: "3:00 PM", venue: "Seminar Hall A", type: "literary" },
+    { title: "Startup Saturday", club: "E-Cell", date: "2025-01-25", time: "11:00 AM", venue: "Incubation Ctr", type: "entrepreneurship" },
+    { title: "Annual Cultural Fest", club: "Dance Club", date: "2025-02-20", time: "5:00 PM", venue: "Main Ground", type: "cultural" }
+];
+
+// Mock Announcements
+const ANNOUNCEMENTS = [
+    { title: "Club Registration Deadline Extended", date: "Dec 30, 2024", tag: "Important" },
+    { title: "Coding Club wins First Prize at SIH!", date: "Dec 20, 2024", tag: "Achievement" },
+    { title: "New Music Club starting next semester", date: "Dec 15, 2024", tag: "New Club" }
+];
+
+// Mock Resources
+const RESOURCES = [
+    { title: "Start a New Club", icon: "🚀", link: "#" },
+    { title: "Funding Guidelines", icon: "💰", link: "#" },
+    { title: "Event Approval Form", icon: "📝", link: "#" },
+    { title: "Room Booking", icon: "📅", link: "#" }
 ];
 
 // State Management
@@ -131,6 +176,7 @@ const ClubState = {
     clubs: CLUBS_DATA,
     activeCategory: 'all',
     searchQuery: '',
+    sortBy: 'name',
     selectedClub: null
 };
 
@@ -138,6 +184,7 @@ const ClubState = {
 const clubsGrid = document.getElementById('clubsGrid');
 const searchInput = document.getElementById('clubSearch');
 const categoryPills = document.querySelectorAll('.category-pill');
+const sortSelect = document.getElementById('sortClubs');
 const clubModal = document.getElementById('clubModal');
 const joinModal = document.getElementById('joinModal');
 const emptyState = document.getElementById('emptyState');
@@ -145,6 +192,9 @@ const emptyState = document.getElementById('emptyState');
 // Initialize
 function init() {
     renderClubs();
+    renderGlobalEvents();
+    renderAnnouncements();
+    renderResources();
     setupEventListeners();
 }
 
@@ -152,23 +202,36 @@ function init() {
 function renderClubs() {
     clubsGrid.innerHTML = '';
 
-    // Filter data
-    const filteredClubs = ClubState.clubs.filter(club => {
+    // Filter
+    let filtered = ClubState.clubs.filter(club => {
         const matchesCategory = ClubState.activeCategory === 'all' || club.category === ClubState.activeCategory;
         const matchesSearch = club.name.toLowerCase().includes(ClubState.searchQuery.toLowerCase()) ||
             club.description.toLowerCase().includes(ClubState.searchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
     });
 
+    // Sort
+    if (ClubState.sortBy === 'name') {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (ClubState.sortBy === 'active') { // "Most Active" -> Just prioritization logic
+        // logic: 'active' status first, then 'recruiting', then 'closed'
+        const priorities = { 'active': 1, 'recruiting': 2, 'closed': 3 };
+        filtered.sort((a, b) => priorities[a.status] - priorities[b.status]);
+    } else if (ClubState.sortBy === 'newest') {
+        // Mock logic: reverse original array order or random
+        // interacting with original data for simplicity
+        filtered.reverse();
+    }
+
     // Show empty state
-    if (filteredClubs.length === 0) {
+    if (filtered.length === 0) {
         emptyState.style.display = 'block';
         return;
     }
     emptyState.style.display = 'none';
 
     // Generate Cards
-    filteredClubs.forEach(club => {
+    filtered.forEach(club => {
         const card = document.createElement('div');
         card.className = 'club-card';
         card.innerHTML = `
@@ -188,6 +251,46 @@ function renderClubs() {
         `;
         clubsGrid.appendChild(card);
     });
+}
+
+function renderGlobalEvents() {
+    const list = document.getElementById('globalEventsList');
+    if (!list) return;
+    list.innerHTML = GLOBAL_EVENTS.map(ev => `
+        <div class="global-event-card">
+            <span class="ge-date">${new Date(ev.date).toDateString()}</span>
+            <h4 class="ge-title">${ev.title}</h4>
+            <div class="ge-info">
+                <span>📍 ${ev.venue}</span> • <span>⏰ ${ev.time}</span>
+            </div>
+            <div style="font-size: 0.85rem;">HOST: <strong>${ev.club}</strong></div>
+            <button class="btn-view" style="width:100%; margin-top:1rem;" onclick="alert('RSVP feature coming soon!')">RSVP Now</button>
+        </div>
+    `).join('');
+}
+
+function renderAnnouncements() {
+    const grid = document.getElementById('announcementsGrid');
+    if (!grid) return;
+    grid.innerHTML = ANNOUNCEMENTS.map(ann => `
+        <div class="announcement-card">
+            <span class="ann-tag">${ann.tag}</span>
+            <h4 class="ann-title">${ann.title}</h4>
+            <span class="ann-date">Posted on ${ann.date}</span>
+        </div>
+    `).join('');
+}
+
+function renderResources() {
+    const grid = document.getElementById('resourcesGrid');
+    if (!grid) return;
+    grid.innerHTML = RESOURCES.map(res => `
+        <div class="resource-card" onclick="alert('Redirecting to resource...')" style="cursor:pointer;">
+            <span class="res-icon">${res.icon}</span>
+            <h4 class="res-title">${res.title}</h4>
+            <span style="color: var(--accent-color); font-size: 0.9rem;">View →</span>
+        </div>
+    `).join('');
 }
 
 // Open Detailed View
@@ -215,6 +318,15 @@ window.openClubDetail = function (clubId) {
             <div class="left-col">
                 <div class="section-title">About Us</div>
                 <p style="margin-bottom: 2rem; line-height: 1.6;">${club.description} ${club.mission}</p>
+                
+                ${club.achievements && club.achievements.length > 0 ? `
+                <div class="section-title">Achievements</div>
+                <ul style="margin-bottom: 2rem; padding-left: 1.2rem; line-height: 1.6;">
+                    ${club.achievements.map(a => `<li>${a}</li>`).join('')}
+                </ul>` : ''}
+
+                <div class="section-title">Weekly Schedule</div>
+                <p style="margin-bottom: 2rem;">🕒 ${club.schedule || "Contact for schedule"}</p>
 
                 <div class="section-title">Upcoming Events</div>
                 <div class="events-list">
@@ -248,6 +360,12 @@ window.openClubDetail = function (clubId) {
                 <p><strong>Email:</strong> ${club.contact.email}</p>
                 <p><strong>Instagram:</strong> ${club.contact.instagram}</p>
 
+                ${club.gallery && club.gallery.length > 0 ? `
+                <div class="section-title" style="margin-top: 2rem;">Gallery</div>
+                <div class="gallery-grid">
+                    ${club.gallery.map(img => `<img src="${img}" class="gallery-img" alt="Gallery">`).join('')}
+                </div>` : ''}
+
                 <button class="btn-join" style="width: 100%; margin-top: 2rem;" onclick="openJoinModal('${club.id}')">
                     Join This Club
                 </button>
@@ -260,9 +378,7 @@ window.openClubDetail = function (clubId) {
 
 // Open Join Modal
 window.openJoinModal = function (clubId) {
-    // If called from main grid, we need to close detail modal first if open
-    closeModal(clubModal);
-
+    closeModal(clubModal); // Close detail if open
     document.getElementById('joinClubId').value = clubId;
     const club = ClubState.clubs.find(c => c.id === clubId);
     document.querySelector('#joinModal h2').innerText = `Join ${club.name}`;
@@ -281,6 +397,7 @@ function closeModal(modal) {
 }
 
 function capitalize(str) {
+    if (!str) return '';
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
@@ -295,14 +412,17 @@ function setupEventListeners() {
     // Filtering
     categoryPills.forEach(pill => {
         pill.addEventListener('click', () => {
-            // Update UI
             categoryPills.forEach(p => p.classList.remove('active'));
             pill.classList.add('active');
-
-            // Update State
             ClubState.activeCategory = pill.dataset.category;
             renderClubs();
         });
+    });
+
+    // Sorting
+    sortSelect.addEventListener('change', (e) => {
+        ClubState.sortBy = e.target.value;
+        renderClubs();
     });
 
     // Close Modals
@@ -313,7 +433,6 @@ function setupEventListeners() {
         });
     });
 
-    // Close on Outside Click
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal')) {
             closeModal(e.target);
@@ -325,10 +444,7 @@ function setupEventListeners() {
         e.preventDefault();
         const clubId = document.getElementById('joinClubId').value;
         const studentName = document.getElementById('studentName').value;
-
-        // Simulating API call
         alert(`Application sent for ${studentName}! The club admin will review your request.`);
-
         closeModal(joinModal);
         document.getElementById('joinForm').reset();
     });
@@ -337,7 +453,9 @@ function setupEventListeners() {
     window.resetFilters = function () {
         ClubState.searchQuery = '';
         ClubState.activeCategory = 'all';
+        ClubState.sortBy = 'name';
         searchInput.value = '';
+        sortSelect.value = 'name';
         categoryPills.forEach(p => p.classList.remove('active'));
         categoryPills[0].classList.add('active');
         renderClubs();

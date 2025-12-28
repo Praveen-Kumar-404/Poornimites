@@ -1,0 +1,235 @@
+/* Game Animations */
+
+/* Global Settings */
+:root {
+    --anim-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --anim-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Page Entry */
+.page-enter {
+    animation: fadeInScale 0.6s var(--anim-fast) forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Modal / Route */
+.modal-enter {
+    animation: slideUpFade 0.4s var(--anim-fast) forwards;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Interactions */
+.game-card {
+    transition: transform 0.3s var(--anim-fast), box-shadow 0.3s var(--anim-fast);
+}
+
+.game-card:hover {
+    transform: translateY(-4px) rotateX(2deg) rotateY(2deg);
+    /* Micro tilt simulation (needs perspective on parent usually, but simple lift works here) */
+}
+
+.game-card:active {
+    transform: scale(0.96);
+}
+
+/* Utilities */
+.anim-shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.anim-pop {
+    animation: pop 0.3s var(--anim-bounce);
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.anim-pulse {
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    to {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+.text-glow {
+    animation: textGlow 1s infinite alternate;
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    to {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+    }
+}
+
+/* Button Ripple */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Game Specific DOM Animations */
+
+/* Whack-a-Mole */
+.mole-pop {
+    animation: molePop 0.4s var(--anim-bounce);
+}
+
+@keyframes molePop {
+    0% {
+        transform: translateY(100%);
+    }
+
+    60% {
+        transform: translateY(-10%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* UNO */
+.card-flip {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-flip.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-slide-in {
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* General Flash */
+.flash-red {
+    animation: flashRed 0.3s;
+}
+
+@keyframes flashRed {
+    0% {
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+/* Swirl Color */
+@keyframes swirlColor {
+    0% {
+        filter: hue-rotate(0deg);
+        transform: rotate(0deg) scale(0.5);
+    }
+
+    50% {
+        filter: hue-rotate(180deg);
+        transform: rotate(180deg) scale(1.2);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+        transform: rotate(360deg) scale(1);
+    }
+}

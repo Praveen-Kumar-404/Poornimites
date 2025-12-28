@@ -43,15 +43,24 @@
     </section>
 
     <!-- Category Navigation -->
-    <nav class="category-nav" aria-label="Club categories">
-      <button class="category-pill active" data-category="all">All</button>
-      <button class="category-pill" data-category="technical">Technical & Coding</button>
-      <button class="category-pill" data-category="cultural">Cultural & Arts</button>
-      <button class="category-pill" data-category="sports">Sports & Fitness</button>
-      <button class="category-pill" data-category="literary">Literary & Debate</button>
-      <button class="category-pill" data-category="entrepreneurship">Entrepreneurship</button>
-      <button class="category-pill" data-category="social">Social Service</button>
-      <button class="category-pill" data-category="gaming">Gaming & Esports</button>
+    <nav class="category-nav-container">
+      <div class="category-nav" aria-label="Club categories">
+        <button class="category-pill active" data-category="all">All</button>
+        <button class="category-pill" data-category="technical">Technical & Coding</button>
+        <button class="category-pill" data-category="cultural">Cultural & Arts</button>
+        <button class="category-pill" data-category="sports">Sports & Fitness</button>
+        <button class="category-pill" data-category="literary">Literary & Debate</button>
+        <button class="category-pill" data-category="entrepreneurship">Entrepreneurship</button>
+        <button class="category-pill" data-category="social">Social Service</button>
+        <button class="category-pill" data-category="gaming">Gaming & Esports</button>
+      </div>
+      <div class="sort-container">
+        <select id="sortClubs" class="sort-select" aria-label="Sort clubs">
+          <option value="name">Name (A-Z)</option>
+          <option value="newest">Newest</option>
+          <option value="active">Most Active</option>
+        </select>
+      </div>
     </nav>
 
     <!-- Club Listings Grid -->
@@ -71,6 +80,49 @@
       <p>Try adjusting your search or category filter.</p>
       <button class="btn-primary" onclick="resetFilters()">View All Clubs</button>
     </div>
+
+    <!-- Events Section -->
+    <section class="section-container" id="upcomingEvents">
+      <div class="section-header">
+        <h2>📅 Upcoming Campus Events</h2>
+        <a href="event-hub.html" class="see-all-link">See All Events →</a>
+      </div>
+      <div class="events-horizontal-scroll" id="globalEventsList">
+        <!-- Events injected via JS -->
+      </div>
+    </section>
+
+    <!-- Announcements Section -->
+    <section class="section-container" id="clubAnnouncements">
+      <div class="section-header">
+        <h2>📢 Announcements & Highlights</h2>
+      </div>
+      <div class="announcements-grid" id="announcementsGrid">
+        <!-- Announcements injected via JS -->
+      </div>
+    </section>
+
+    <!-- Student Resources -->
+    <section class="section-container" id="studentResources">
+      <div class="section-header">
+        <h2>📚 Student Resources</h2>
+      </div>
+      <div class="resources-grid" id="resourcesGrid">
+        <!-- Resources injected via JS -->
+      </div>
+    </section>
+
+    <!-- Newsletter / Stay Updated -->
+    <section class="newsletter-section">
+      <div class="newsletter-content">
+        <h2>Stay in the Loop</h2>
+        <p>Get the latest club news, event updates, and opportunities delivered to your inbox.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+          <input type="email" placeholder="Enter your student email" required>
+          <button type="submit" class="btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
   </main>
 
   <!-- Club Detail Modal -->
@@ -131,8 +183,10 @@
   <footer class="footer">
     <div class="footer-links">
       <a href="about.html">About</a>
+      <a href="#" onclick="alert('Student Affairs page coming soon!')">Student Affairs</a>
       <a href="faq.html">FAQ</a>
       <a href="roadmap.html">Roadmap</a>
+      <a href="#" onclick="alert('Code of Conduct coming soon!')">Code of Conduct</a>
       <a href="privacy.html">Privacy</a>
       <a href="credits.html">Credits</a>
     </div>

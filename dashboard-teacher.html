@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Poornimites</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <style>
+        .dashboard-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dashboard-section.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="theme-teacher" data-role="teacher">
+    <aside class="sidebar">
+        <div class="brand"><span>🎓</span> Poornimites</div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" data-section="section-dashboard"><i>📊</i> Dashboard</a>
+            <a href="#" class="nav-item" data-section="section-classes"><i>🏫</i> My Classes</a>
+            <a href="#" class="nav-item" data-section="section-assignments"><i>📝</i> Assignments</a>
+            <a href="#" class="nav-item" data-section="section-attendance"><i>📅</i> Attendance</a>
+            <a href="#" class="nav-item" data-section="section-gradebook"><i>📈</i> Gradebook</a>
+            <a href="#" class="nav-item" data-section="section-resources"><i>📚</i> Resources</a>
+            <a href="profile.html" class="nav-item"><i>⚙️</i> Settings</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-mini">
+                <div class="avatar">T</div>
+                <div class="user-info">
+                    <div>Teacher Name</div>
+                    <div class="user-role">Teacher</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <i class="menu-toggle" id="menuToggle">☰</i>
+                <h2>Teacher Portal</h2>
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary">Create New +</button>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+
+            <!-- SECTION: DASHBOARD (DEFAULT) -->
+            <div id="section-dashboard" class="dashboard-section active">
+                <div class="dashboard-grid">
+                    <div id="teacher-widgets" style="display:contents;">
+                        <!-- JS Injected Widgets -->
+                    </div>
+
+                    <!-- At-Risk Alert Box -->
+                    <div class="card" style="grid-column: 1 / -1; padding:0; overflow:hidden;">
+                        <div class="alert-box"
+                            style="margin:0; border-radius:0; border:none; border-bottom:1px solid #fda4af;">
+                            <div class="alert-title">⚠️ Attention Required</div>
+                            <p style="margin:0;">3 Students are at risk of failing CS101 due to low attendance.</p>
+                        </div>
+                    </div>
+
+                    <!-- Assignments Kanban -->
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Assignment Tracker</h3>
+                        </div>
+                        <div class="kanban-board">
+                            <div class="kanban-col">
+                                <div class="kanban-header">Drafts</div>
+                                <div class="kanban-item">Quiz 4: Recursion</div>
+                            </div>
+                            <div class="kanban-col">
+                                <div class="kanban-header">Active</div>
+                                <div class="kanban-item">Lab 3: React Hooks</div>
+                                <div class="kanban-item">Midterm Project</div>
+                            </div>
+                            <div class="kanban-col">
+                                <div class="kanban-header">Grading</div>
+                                <div class="kanban-item">Final Exam</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: CLASSES -->
+            <div id="section-classes" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">My Active Classes</h3>
+                        </div>
+                        <div
+                            style="display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:1.5rem;">
+                            <!-- Class 1 -->
+                            <div class="card" style="padding:1.5rem; text-align:center; border:1px solid #e2e8f0;">
+                                <div style="font-size:3rem; margin-bottom:1rem;">💻</div>
+                                <h3 style="margin:0;">CS101: Intro to CS</h3>
+                                <p style="color:#64748b;">Mon, Wed, Fri - 10:00 AM</p>
+                                <div style="display:flex; justify-content:center; gap:0.5rem; margin-top:1rem;">
+                                    <button class="btn-primary" style="padding:0.5rem 1rem;">View Roster</button>
+                                    <button class="icon-btn">✉️</button>
+                                </div>
+                            </div>
+                            <!-- Class 2 -->
+                            <div class="card" style="padding:1.5rem; text-align:center; border:1px solid #e2e8f0;">
+                                <div style="font-size:3rem; margin-bottom:1rem;">🌐</div>
+                                <h3 style="margin:0;">CS305: Web Dev</h3>
+                                <p style="color:#64748b;">Tue, Thu - 2:00 PM</p>
+                                <div style="display:flex; justify-content:center; gap:0.5rem; margin-top:1rem;">
+                                    <button class="btn-primary" style="padding:0.5rem 1rem;">View Roster</button>
+                                    <button class="icon-btn">✉️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: ASSIGNMENTS -->
+            <div id="section-assignments" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">All Assignments</h3>
+                            <button class="btn-primary" style="padding:0.25rem 0.75rem; font-size:0.85rem;">+
+                                Create</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Assignment Title</th>
+                                    <th>Class</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Submissions</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Lab 3: React Hooks</strong></td>
+                                    <td>CS305</td>
+                                    <td>Dec 20, 2023</td>
+                                    <td><span class="status-pill status-warning">Grading</span></td>
+                                    <td>45/50</td>
+                                    <td>
+                                        <button class="btn-primary"
+                                            style="padding:0.25rem 0.5rem; font-size:0.8rem;">Grade</button>
+                                        <button class="icon-btn" style="font-size:1rem;">✏️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Final Project Proposal</strong></td>
+                                    <td>CS401</td>
+                                    <td>Jan 05, 2024</td>
+                                    <td><span class="status-pill status-success">Published</span></td>
+                                    <td>12/50</td>
+                                    <td>
+                                        <button class="btn-primary"
+                                            style="padding:0.25rem 0.5rem; font-size:0.8rem; background:#64748b;">View</button>
+                                        <button class="icon-btn" style="font-size:1rem;">✏️</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: ATTENDANCE -->
+            <div id="section-attendance" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">CS305: Web Dev - Attendance</h3>
+                            <button class="btn-primary">Save Attendance</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th style="text-align:center;">Present</th>
+                                    <th style="text-align:center;">Absent</th>
+                                    <th style="text-align:center;">Late</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-family:monospace;">ST_001</td>
+                                    <td>Praveen Kumar</td>
+                                    <td style="text-align:center;"><input type="radio" name="st1" checked></td>
+                                    <td style="text-align:center;"><input type="radio" name="st1"></td>
+                                    <td style="text-align:center;"><input type="radio" name="st1"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-family:monospace;">ST_002</td>
+                                    <td>John Doe</td>
+                                    <td style="text-align:center;"><input type="radio" name="st2" checked></td>
+                                    <td style="text-align:center;"><input type="radio" name="st2"></td>
+                                    <td style="text-align:center;"><input type="radio" name="st2"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: GRADEBOOK -->
+            <div id="section-gradebook" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1; overflow-x:auto;">
+                        <div class="card-header">
+                            <h3 class="card-title">Gradebook: CS305</h3>
+                            <button class="btn-primary">Export CSV</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Assignment 1</th>
+                                    <th>Mid-Term</th>
+                                    <th>Lab 3</th>
+                                    <th>Total</th>
+                                    <th>Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Praveen Kumar</strong></td>
+                                    <td>95</td>
+                                    <td>88</td>
+                                    <td>--</td>
+                                    <td>183//200</td>
+                                    <td><strong>A</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>John Doe</strong></td>
+                                    <td>75</td>
+                                    <td>80</td>
+                                    <td>90</td>
+                                    <td>245/300</td>
+                                    <td><strong>B+</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: RESOURCES -->
+            <div id="section-resources" class="dashboard-section">
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Class Resources</h3> <button class="btn-primary">Upload +</button>
+                        </div>
+                        <div
+                            style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:1rem;">
+
+                            <div
+                                style="border:1px solid #e2e8f0; padding:1.5rem; text-align:center; border-radius:8px; background:white;">
+                                <div style="font-size:2rem;">📄</div>
+                                <h4 style="margin:0.5rem 0;">Lecture 1 Slides.pdf</h4>
+                                <p style="font-size:0.8rem; color:#64748b;">2.5 MB • Added yesterday</p>
+                            </div>
+
+                            <div
+                                style="border:1px solid #e2e8f0; padding:1.5rem; text-align:center; border-radius:8px; background:white;">
+                                <div style="font-size:2rem;">📕</div>
+                                <h4 style="margin:0.5rem 0;">Textbook Chapter 3.pdf</h4>
+                                <p style="font-size:0.8rem; color:#64748b;">15 MB • Added last week</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+
+</html>

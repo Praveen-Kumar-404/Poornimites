@@ -1,0 +1,354 @@
+/* assets/css/career.css */
+
+/* Global Page Layout overrides */
+.career-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Colors & Variables (Matching system) */
+:root {
+    --primary-bg: #f5faff;
+    --text-color: #003366;
+    --accent-color: #0066cc;
+    --card-bg: #ffffff;
+    --border-color: #d0e2f3;
+    --success-bg: #d4edda;
+    --success-text: #155724;
+    --warning-bg: #fff3cd;
+    --warning-text: #856404;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 64, 128, 0.2);
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Section Common Styles */
+.section-wrapper {
+    margin-bottom: 4rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-title {
+    font-size: 1.75rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Filter Controls */
+.filter-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.filter-select {
+    padding: 0.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+}
+
+/* Internships Grid */
+.internship-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.internship-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.internship-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: var(--accent-color);
+}
+
+.job-main {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.job-logo {
+    width: 60px;
+    height: 60px;
+    background: #f0f4f8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.job-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.job-company {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.job-tags {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.tag.paid {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.job-action {
+    text-align: right;
+    min-width: 150px;
+}
+
+.deadline-text {
+    display: block;
+    font-size: 0.85rem;
+    color: #ef4444;
+    margin-bottom: 0.5rem;
+}
+
+.btn-apply {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.btn-apply:hover {
+    background: #004080;
+}
+
+/* Project Showcase */
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.project-img {
+    width: 100%;
+    height: 180px;
+    background: #e2e8f0;
+    object-fit: cover;
+}
+
+.project-body {
+    padding: 1.25rem;
+}
+
+.project-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 0.75rem;
+}
+
+/* Skill Resources */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: border-color 0.2s;
+    cursor: pointer;
+}
+
+.skill-card:hover {
+    border-color: var(--accent-color);
+    background: #f8fafc;
+}
+
+.skill-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.skill-title {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.skill-count {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Career Support & Templates */
+.support-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.support-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    gap: 1.5rem;
+}
+
+.support-icon-area {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.btn-outline {
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    background: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.btn-outline:hover {
+    background: #f0f7ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .internship-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .job-action {
+        width: 100%;
+        text-align: left;
+        margin-top: 0.5rem;
+    }
+
+    .support-section {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}

@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games - Poornimites</title>
+    <title>Mini-Games - Poornimites</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="pages/games/styles.css">
+    <link rel="stylesheet" href="assets/css/games.css">
+    <link rel="stylesheet" href="assets/css/game-animations.css">
 </head>
 
 <body>
@@ -27,141 +28,99 @@
     </header>
 
     <main class="games-container">
-        <!-- Game Selection Screen -->
-        <div id="game-menu" class="game-menu">
-            <h1 class="page-title">Games Collection</h1>
-            <p class="page-subtitle">Choose a game to play</p>
-
-            <div class="games-grid">
-                <!-- Classic Games -->
-                <div class="game-card" data-game="snake">
-                    <div class="game-icon">🐍</div>
-                    <h3 class="game-title">Snake</h3>
-                    <p class="game-description">Classic snake game</p>
-                    <div class="game-stats">
-                        <span class="high-score">High Score: <span id="snake-high">0</span></span>
-                    </div>
-                    <button class="play-btn" onclick="startGame('snake')">Play</button>
-                </div>
-
-                <div class="game-card" data-game="flappy">
-                    <div class="game-icon">🐦</div>
-                    <h3 class="game-title">Flappy Bird</h3>
-                    <p class="game-description">Tap to fly</p>
-                    <div class="game-stats">
-                        <span class="high-score">High Score: <span id="flappy-high">0</span></span>
-                    </div>
-                    <button class="play-btn" onclick="startGame('flappy')">Play</button>
-                </div>
-
-                <div class="game-card" data-game="breakout">
-                    <div class="game-icon">🧱</div>
-                    <h3 class="game-title">Breakout</h3>
-                    <p class="game-description">Break all bricks</p>
-                    <div class="game-stats">
-                        <span class="high-score">High Score: <span id="breakout-high">0</span></span>
-                    </div>
-                    <button class="play-btn" onclick="startGame('breakout')">Play</button>
-                </div>
-
-                <div class="game-card" data-game="pong">
-                    <div class="game-icon">🏓</div>
-                    <h3 class="game-title">Pong</h3>
-                    <p class="game-description">Classic pong vs AI</p>
-                    <div class="game-stats">
-                        <span class="high-score">High Score: <span id="pong-high">0</span></span>
-                    </div>
-                    <button class="play-btn" onclick="startGame('pong')">Play</button>
-                </div>
-
-                <!-- Puzzle Games -->
-                <div class="game-card" data-game="2048">
-                    <div class="game-icon">🔢</div>
-                    <h3 class="game-title">2048</h3>
-                    <p class="game-description">Merge tiles to 2048</p>
-                    <div class="game-stats">
-                        <span class="high-score">High Score: <span id="2048-high">0</span></span>
-                    </div>
-                    <button class="play-btn" onclick="startGame('2048')">Play</button>
-                </div>
-
-                <div class="game-card" data-game="dordle">
-                    <div class="game-icon">📝</div>
-                    <h3 class="game-title">Dordle</h3>
-                    <p class="game-description">2 Wordles at once</p>
-                    <div class="game-stats">
-                        <span class="high-score">Wins: <span id="dordle-high">0</span></span>
-                    </div>
-                    <button class="play-btn" onclick="startGame('dordle')">Play</button>
-                </div>
-
-                <div class="game-card" data-game="quordle">
-                    <div class="game-icon">📋</div>
-                    <h3 class="game-title">Quordle</h3>
-                    <p class="game-description">4 Wordles at once</p>
-                    <div class="game-stats">
-                        <span class="high-score">Wins: <span id="quordle-high">0</span></span>
-                    </div>
-                    <button class="play-btn" onclick="startGame('quordle')">Play</button>
-                </div>
-
-                <div class="game-card" data-game="nerdle">
-                    <div class="game-icon">🧮</div>
-                    <h3 class="game-title">Nerdle</h3>
-                    <p class="game-description">Math equation puzzle</p>
-                    <div class="game-stats">
-                        <span class="high-score">Wins: <span id="nerdle-high">0</span></span>
-                    </div>
-                    <button class="play-btn" onclick="startGame('nerdle')">Play</button>
-                </div>
-            </div>
+        <div class="page-header">
+            <h1>🎮 Mini-Game Hub</h1>
+            <p>11 Lightweight Games. Pure JS. No Ads.</p>
         </div>
 
-        <!-- Game Play Screen -->
-        <div id="game-screen" class="game-screen hidden">
-            <div class="game-header">
-                <button class="back-btn" onclick="backToMenu()">← Back</button>
-                <h2 id="current-game-title">Game</h2>
-                <div class="game-controls">
-                    <button id="unified-control-btn" class="control-btn">▶ Play</button>
-                </div>
+        <div class="games-grid">
+            <!-- Game 1 -->
+            <div class="game-card" data-game="flappy">
+                <div class="game-icon">🐦</div>
+                <h3 class="game-title">Flappy Clone</h3>
+                <p class="game-desc">Tap to fly, avoid pipes.</p>
             </div>
-
-            <div class="score-display">
-                <div class="score-item">
-                    <span class="score-label">Score:</span>
-                    <span id="current-score" class="score-value">0</span>
-                </div>
-                <div class="score-item">
-                    <span class="score-label">High Score:</span>
-                    <span id="game-high-score" class="score-value">0</span>
-                </div>
+            <!-- Game 2 -->
+            <div class="game-card" data-game="runner">
+                <div class="game-icon">🏃</div>
+                <h3 class="game-title">Endless Runner</h3>
+                <p class="game-desc">Jump over obstacles, go fast.</p>
             </div>
-
-            <div id="game-container" class="game-canvas-container">
-                <!-- Game-specific content will be injected here -->
+            <!-- Game 3 -->
+            <div class="game-card" data-game="brick-breaker">
+                <div class="game-icon">🧱</div>
+                <h3 class="game-title">Brick Breaker</h3>
+                <p class="game-desc">Smash bricks with a ball.</p>
             </div>
-
-            <div id="game-instructions" class="game-instructions">
-                <!-- Game-specific instructions -->
+            <!-- Game 4 -->
+            <div class="game-card" data-game="whack-a-mole">
+                <div class="game-icon">🔨</div>
+                <h3 class="game-title">Whack-a-Mole</h3>
+                <p class="game-desc">Hit them before they hide.</p>
+            </div>
+            <!-- Game 5 -->
+            <div class="game-card" data-game="fruit-slice">
+                <div class="game-icon">🍉</div>
+                <h3 class="game-title">Fruit Slice</h3>
+                <p class="game-desc">Slice fruits, avoid bombs.</p>
+            </div>
+            <!-- Game 6 -->
+            <div class="game-card" data-game="space-shooter">
+                <div class="game-icon">🚀</div>
+                <h3 class="game-title">Space Shooter</h3>
+                <p class="game-desc">Defend against alien waves.</p>
+            </div>
+            <!-- Game 7 -->
+            <div class="game-card" data-game="reaction">
+                <div class="game-icon">⚡</div>
+                <h3 class="game-title">Reaction Test</h3>
+                <p class="game-desc">How fast can you click?</p>
+            </div>
+            <!-- Game 8 -->
+            <div class="game-card" data-game="aim-trainer">
+                <div class="game-icon">🎯</div>
+                <h3 class="game-title">Aim Trainer</h3>
+                <p class="game-desc">Test your mouse accuracy.</p>
+            </div>
+            <!-- Game 9 -->
+            <div class="game-card" data-game="dodger">
+                <div class="game-icon">☄️</div>
+                <h3 class="game-title">Dodger</h3>
+                <p class="game-desc">Avoid falling objects.</p>
+            </div>
+            <!-- Game 10 -->
+            <div class="game-card" data-game="typing">
+                <div class="game-icon">⌨️</div>
+                <h3 class="game-title">Typing Challenge</h3>
+                <p class="game-desc">Type fast, type accurate.</p>
+            </div>
+            <!-- Game 11 -->
+            <div class="game-card" data-game="uno">
+                <div class="game-icon">🃏</div>
+                <h3 class="game-title">UNO</h3>
+                <p class="game-desc">Classic card game vs Bots.</p>
             </div>
         </div>
     </main>
 
-    <!-- Load Firebase and Auth -->
-    <script type="module" src="assets/js/auth.js"></script>
+    <!-- Game Modal -->
+    <div id="game-modal" class="game-modal">
+        <div class="game-frame">
+            <div class="game-header-bar">
+                <button id="close-game" class="btn-icon">← Exit</button>
+                <span id="game-title-display" class="game-header-title">Game Title</span>
+                <div class="game-controls-top">
+                    <button id="sound-toggle" class="btn-icon">🔇</button>
+                </div>
+            </div>
 
-    <!-- Load Games -->
-    <script src="pages/games/game-engine.js"></script>
-    <script src="pages/games/games/snake.js"></script>
-    <script src="pages/games/games/flappy.js"></script>
-    <script src="pages/games/games/breakout.js"></script>
-    <script src="pages/games/games/pong.js"></script>
-    <script src="pages/games/games/2048.js"></script>
-    <script src="pages/games/games/dordle.js"></script>
-    <script src="pages/games/games/quordle.js"></script>
-    <script src="pages/games/games/nerdle.js"></script>
-    <script src="pages/games/main.js"></script>
+            <div id="game-canvas-area" class="game-canvas-area">
+                <!-- Canvas or Game Elements Injected Here -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/game-hub.js"></script>
 </body>
 
 </html>
