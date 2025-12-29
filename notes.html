@@ -189,18 +189,10 @@
   </script>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
-    import {
-      getAuth,
-      signInWithPopup,
-      signOut,
-      GoogleAuthProvider,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { supabase } from "./assets/js/supabase-init.js";
 
     // Authentication protection - hide content if not logged in
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', async function () {
       const mainContent = document.querySelector('main.bento-grid');
       const loginMessage = document.createElement('div');
       loginMessage.className = 'login-message';
@@ -216,8 +208,8 @@
       mainContent.style.display = 'none';
       document.body.insertBefore(loginMessage, mainContent);
 
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
+      supabase.auth.onAuthStateChange((event, session) => {
+        const user = session ? session.user : null;
         if (user) {
           // User is logged in, show content
           mainContent.style.display = 'grid';
@@ -227,55 +219,36 @@
           mainContent.style.display = 'none';
           loginMessage.style.display = 'block';
         }
+        updateAuthButton(user);
       });
     });
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
-      authDomain: "poornimites-2bbe7.firebaseapp.com",
-      projectId: "poornimites-2bbe7",
-      storageBucket: "poornimites-2bbe7.appspot.com",
-      messagingSenderId: "597165564910",
-      appId: "1:597165564910:web:4d87e756fa1250359324ff",
-      measurementId: "G-2M98Z8JY7Q"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
     const authBtn = document.getElementById("auth-btn");
 
-    onAuthStateChanged(auth, (user) => {
+    function updateAuthButton(user) {
       if (user) {
         authBtn.textContent = "🚪";
         authBtn.href = "#";
-        authBtn.onclick = (e) => {
+        authBtn.onclick = async (e) => {
           e.preventDefault();
-          signOut(auth)
-            .then(() => alert("Logged out successfully"))
-            .catch((err) => {
-              console.error(err);
-              alert("Logout failed");
-            });
+          const { error } = await supabase.auth.signOut();
+          if (error) {
+            console.error(error);
+            alert("Logout failed");
+          } else {
+            alert("Logged out successfully");
+          }
         };
       } else {
         authBtn.textContent = "👤";
         authBtn.href = "#";
         authBtn.onclick = (e) => {
           e.preventDefault();
-          signInWithPopup(auth, provider)
-            .then((result) => {
-              alert(`Welcome ${result.user.displayName}`);
-            })
-            .catch((error) => {
-              console.error(error);
-              alert("Login failed");
-            });
+          // Redirect to auth page
+          window.location.href = `auth.html?redirect=${encodeURIComponent(window.location.pathname.split('/').pop() || 'index.html')}`;
         };
       }
-    });
+    }
   </script>
 
 

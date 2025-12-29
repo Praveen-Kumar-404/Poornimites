@@ -1,41 +1,47 @@
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
-    signOut,
-    onAuthStateChanged,
-    updateProfile
-} from 'firebase/auth';
-import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 
-const auth = getAuth();
-const db = getFirestore();
+import { supabase } from '../../assets/js/supabase-init.js';
 
 export const AuthService = {
     // Observer
     init(callback) {
-        onAuthStateChanged(auth, callback);
+        supabase.auth.onAuthStateChange((event, session) => {
+            const user = session ? session.user : null;
+            callback(user);
+        });
     },
 
     // Sign Up
     async signUp(email, password, username) {
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-
-            // Update Profile
-            await updateProfile(user, { displayName: username });
-
-            // Create User Document
-            await setDoc(doc(db, 'users', user.uid), {
-                username: username,
-                email: email,
-                photoURL: user.photoURL || `https://ui-avatars.com/api/?name=${username}`,
-                createdAt: serverTimestamp(),
-                status: 'online'
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: {
+                        display_name: username,
+                        full_name: username
+                    }
+                }
             });
+
+            if (error) throw error;
+            const user = data.user;
+
+            // Create User Document (Public Profile)
+            if (user) {
+                const { error: dbError } = await supabase
+                    .from('users')
+                    .upsert({
+                        id: user.id,
+                        username: username,
+                        email: email,
+                        photo_url: `https://ui-avatars.com/api/?name=${username}`,
+                        created_at: new Date().toISOString(),
+                        status: 'online'
+                    });
+
+                if (dbError) console.error("Error creating user profile:", dbError);
+            }
 
             return user;
         } catch (error) {
@@ -47,8 +53,12 @@ export const AuthService = {
     // Sign In
     async signIn(email, password) {
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            return userCredential.user;
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            });
+            if (error) throw error;
+            return data.user;
         } catch (error) {
             console.error("Error signing in:", error);
             throw error;
@@ -58,22 +68,18 @@ export const AuthService = {
     // Google Sign In
     async signInWithGoogle() {
         try {
-            const provider = new GoogleAuthProvider();
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    queryParams: {
+                        hd: "poornima.edu.in"
+                    }
+                }
+            });
 
-            // Check if user doc exists, if not create it
-            const userDoc = await getDoc(doc(db, 'users', user.uid));
-            if (!userDoc.exists()) {
-                await setDoc(doc(db, 'users', user.uid), {
-                    username: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoURL,
-                    createdAt: serverTimestamp(),
-                    status: 'online'
-                });
-            }
-            return user;
+            if (error) throw error;
+            // Note: This often triggers a redirect
+            return null;
         } catch (error) {
             console.error("Error with Google Sign In:", error);
             throw error;
@@ -83,14 +89,16 @@ export const AuthService = {
     // Sign Out
     async logout() {
         try {
-            await signOut(auth);
+            const { error } = await supabase.auth.signOut();
+            if (error) throw error;
         } catch (error) {
             console.error("Error signing out:", error);
             throw error;
         }
     },
 
-    getCurrentUser() {
-        return auth.currentUser;
+    async getCurrentUser() {
+        const { data: { user } } = await supabase.auth.getUser();
+        return user;
     }
 };

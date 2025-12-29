@@ -1,44 +1,10 @@
-// Firebase imports
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-import {
-    getFirestore,
-    doc,
-    setDoc,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyA5wdR7hw8OeMInj7MPCzwg2N40PmWJ19E",
-    authDomain: "poornimites-2bbe7.firebaseapp.com",
-    projectId: "poornimites-2bbe7",
-    storageBucket: "poornimites-2bbe7.appspot.com",
-    messagingSenderId: "597165564910",
-    appId: "1:597165564910:web:4d87e756fa1250359324ff",
-    measurementId: "G-2M98Z8JY7Q"
-};
+// assets/js/auth-handler.js
+// Supabase Auth Handler
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+import { supabase } from "./supabase-init.js";
 
-// Initialize Google Auth Provider
-const googleProvider = new GoogleAuthProvider();
 const allowedDomain = "poornima.edu.in";
-
-// Set Google Auth to only allow poornima.edu.in domain
-googleProvider.setCustomParameters({
-    hd: allowedDomain
-});
 
 // Get redirect URL from query parameter
 function getRedirectUrl() {
@@ -69,17 +35,22 @@ function setLoading(button, isLoading) {
     }
 }
 
-// Create user document in Firestore
+// Create user document in Supabase
 async function createUserDocument(user, username = null) {
     try {
-        await setDoc(doc(db, 'users', user.uid), {
-            username: username || user.displayName || user.email.split('@')[0],
-            email: user.email,
-            photoURL: user.photoURL || `https://ui-avatars.com/api/?name=${username || user.displayName || 'User'}`,
-            createdAt: serverTimestamp(),
-            lastLogin: serverTimestamp(),
-            status: 'online'
-        }, { merge: true });
+        const { error } = await supabase
+            .from('users')
+            .upsert({
+                id: user.id,
+                username: username || user.user_metadata.full_name || user.email.split('@')[0],
+                email: user.email,
+                photo_url: user.user_metadata.avatar_url || `https://ui-avatars.com/api/?name=${username || user.user_metadata.full_name || 'User'}`,
+                created_at: new Date().toISOString(),
+                last_login: new Date().toISOString(),
+                status: 'online'
+            }, { onConflict: 'id' });
+
+        if (error) throw error;
     } catch (error) {
         console.error("Error creating user document:", error);
     }
@@ -106,28 +77,22 @@ export async function handleLogin(email, password, button) {
     setLoading(button, true);
 
     try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        await handleAuthSuccess(userCredential.user);
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+
+        if (error) throw error;
+
+        await handleAuthSuccess(data.user);
     } catch (error) {
         console.error("Login error:", error);
         let errorMessage = "Login failed. Please try again.";
 
-        switch (error.code) {
-            case 'auth/user-not-found':
-                errorMessage = "No account found with this email.";
-                break;
-            case 'auth/wrong-password':
-                errorMessage = "Incorrect password.";
-                break;
-            case 'auth/invalid-email':
-                errorMessage = "Invalid email address.";
-                break;
-            case 'auth/user-disabled':
-                errorMessage = "This account has been disabled.";
-                break;
-            case 'auth/too-many-requests':
-                errorMessage = "Too many failed attempts. Please try again later.";
-                break;
+        if (error.message.includes("Invalid login credentials")) {
+            errorMessage = "Invalid email or password.";
+        } else if (error.message.includes("Email not confirmed")) {
+            errorMessage = "Please confirm your email address.";
         }
 
         showError(errorMessage);
@@ -155,28 +120,35 @@ export async function handleSignup(email, password, username, button) {
     }
 
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        await handleAuthSuccess(userCredential.user, username);
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    display_name: username,
+                    full_name: username,
+                }
+            }
+        });
+
+        if (error) throw error;
+
+        // If auto-confirm is enabled, we get a session/user immediately
+        if (data.user) {
+            // For Supabase, signUp might return a user but if email confirm is required, session might be null.
+            // But let's assume soft reset where we might not strictly enforce email confirm or it's disabled for migration ease,
+            // Or we just handle the user creation.
+            // If data.session is null, it means check email.
+            if (data.session) {
+                await handleAuthSuccess(data.user, username);
+            } else {
+                showError("Please check your email to confirm your account.");
+                setLoading(button, false);
+            }
+        }
     } catch (error) {
         console.error("Signup error:", error);
-        let errorMessage = "Signup failed. Please try again.";
-
-        switch (error.code) {
-            case 'auth/email-already-in-use':
-                errorMessage = "An account with this email already exists.";
-                break;
-            case 'auth/invalid-email':
-                errorMessage = "Invalid email address.";
-                break;
-            case 'auth/operation-not-allowed':
-                errorMessage = "Email/password accounts are not enabled.";
-                break;
-            case 'auth/weak-password':
-                errorMessage = "Password is too weak. Use at least 6 characters.";
-                break;
-        }
-
-        showError(errorMessage);
+        showError(error.message);
         setLoading(button, false);
     }
 }
@@ -187,50 +159,35 @@ export async function handleGoogleSignIn(button) {
     setLoading(button, true);
 
     try {
-        console.log('Attempting to open Google sign-in popup...');
-        const result = await signInWithPopup(auth, googleProvider);
-        console.log('Google sign-in successful:', result.user.email);
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: window.location.origin + '/auth.html', // Redirect back to auth to handle session
+                queryParams: {
+                    access_type: 'offline',
+                    prompt: 'consent',
+                    hd: allowedDomain
+                }
+            }
+        });
 
-        // Verify domain
-        const email = result.user.email;
-        const domain = email.split("@")[1];
+        if (error) throw error;
 
-        if (domain !== allowedDomain) {
-            console.log('Domain verification failed:', domain);
-            await auth.signOut();
-            showError(`Only ${allowedDomain} emails are allowed.`);
-            setLoading(button, false);
-            return;
-        }
-
-        console.log('Domain verified, proceeding with auth success...');
-        await handleAuthSuccess(result.user);
+        // Supabase OAuth redirects, so line below might not be reached if redirect happens immediately
     } catch (error) {
         console.error("Google sign-in error:", error);
-        console.error("Error code:", error.code);
-        console.error("Error message:", error.message);
-
-        let errorMessage = "Google sign-in failed. Please try again.";
-
-        switch (error.code) {
-            case 'auth/popup-closed-by-user':
-                errorMessage = "Sign-in popup was closed.";
-                break;
-            case 'auth/popup-blocked':
-                errorMessage = "Sign-in popup was blocked by your browser. Please allow popups for this site.";
-                break;
-            case 'auth/cancelled-popup-request':
-                errorMessage = "Sign-in was cancelled.";
-                break;
-            case 'auth/unauthorized-domain':
-                errorMessage = "This domain is not authorized for Google sign-in. Please contact support.";
-                break;
-        }
-
-        showError(errorMessage);
+        showError("Google sign-in failed. " + error.message);
         setLoading(button, false);
     }
 }
 
-// Export auth instance for other modules
-export { auth, db };
+// Initialize Auth State Listener (Global)
+supabase.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'SIGNED_IN') {
+        // Optional: Ensure user doc exists
+        // This runs on every page load if this file is imported
+    }
+});
+
+// Export supabase client for compatibility if needed, though mostly using internal functions
+export { supabase as auth, supabase as db }; 

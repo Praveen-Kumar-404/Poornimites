@@ -1,35 +1,38 @@
-import { ref, uploadBytesResumable, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
-import { storage } from '../firebase-init.js';
+
+import { supabase } from '../../assets/js/supabase-init.js';
 
 export const StorageService = {
     uploadFile(file, path, onProgress) {
-        return new Promise((resolve, reject) => {
-            const storageRef = ref(storage, path);
-            const uploadTask = uploadBytesResumable(storageRef, file);
+        return new Promise(async (resolve, reject) => {
+            try {
+                // Remove 'servers/' from start if present in path construction to match bucket structure if needed
+                // Supabase storage usually works with buckets. Let's assume bucket is 'chat-attachments'
+                // path passed is like: servers/serverid/channels/channelid/filename
 
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    if (onProgress) onProgress(progress);
-                },
-                (error) => {
-                    console.error("Upload failed:", error);
-                    reject(error);
-                },
-                async () => {
-                    try {
-                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                        resolve({
-                            url: downloadURL,
-                            name: file.name,
-                            size: file.size,
-                            type: file.type
-                        });
-                    } catch (error) {
-                        reject(error);
-                    }
-                }
-            );
+                const { data, error } = await supabase.storage
+                    .from('chat-attachments')
+                    .upload(path, file, {
+                        cacheControl: '3600',
+                        upsert: false
+                    });
+
+                if (error) throw error;
+
+                // Get public URL
+                const { data: { publicUrl } } = supabase.storage
+                    .from('chat-attachments')
+                    .getPublicUrl(path);
+
+                resolve({
+                    url: publicUrl,
+                    name: file.name,
+                    size: file.size,
+                    type: file.type
+                });
+            } catch (error) {
+                console.error("Upload failed:", error);
+                reject(error);
+            }
         });
     }
 };

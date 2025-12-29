@@ -1,23 +1,8 @@
-// auth.js - Updated to use centralized Firebase initialization
-import { app } from "./shared/firebase-init.js";
-import { auth, db } from "./shared/auth-manager.js";
-import {
-  signInWithPopup,
-  signOut,
-  GoogleAuthProvider,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-const provider = new GoogleAuthProvider();
+// assets/js/auth.js - Updated to use Supabase
+import { supabase } from "./supabase-init.js";
 
-// Restrict signup domain
 const allowedDomain = "poornima.edu.in";
-
-// Set Google Auth to only allow poornima.edu.in domain
-provider.setCustomParameters({
-  hd: allowedDomain
-});
 
 // Email/password registration
 export async function register(email, password) {
@@ -25,40 +10,41 @@ export async function register(email, password) {
   if (domain !== allowedDomain) {
     throw new Error("Only poornima.edu.in emails are allowed");
   }
-  return await createUserWithEmailAndPassword(auth, email, password);
+  return await supabase.auth.signUp({
+    email,
+    password
+  });
 }
 
 // Track user login session
 async function trackUserSession(user) {
   try {
-    // Create a user session document
-    const sessionData = {
-      userId: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      loginTime: serverTimestamp(),
-      lastActive: serverTimestamp(),
-      browser: navigator.userAgent,
-      platform: navigator.platform
-    };
+    const userId = user.id;
+    const email = user.email;
+    const displayName = user.user_metadata.full_name || user.user_metadata.display_name || email.split('@')[0];
 
-    // Store in Firestore
-    await setDoc(doc(db, "userSessions", `${user.uid}_${Date.now()}`), sessionData);
+    // Create a user session document - In Supabase usually we just update the user table
+    // If we want a separate session table we need to create it, but for migration let's stick to updating user
 
-    // Update user's last login in users collection
-    await setDoc(doc(db, "users", user.uid), {
-      email: user.email,
-      displayName: user.displayName,
-      lastLogin: serverTimestamp(),
-      photoURL: user.photoURL || null
-    }, { merge: true });
+    // Update user's last login in users table
+    await supabase.from("users").upsert({
+      id: userId,
+      email: email,
+      username: displayName,
+      last_login: new Date().toISOString(),
+      photo_url: user.user_metadata.avatar_url || null
+    }, { onConflict: 'id' });
 
     // Set up activity tracking
     const activityInterval = setInterval(async () => {
-      if (auth.currentUser) {
-        await updateDoc(doc(db, "users", user.uid), {
-          lastActive: serverTimestamp()
-        });
+      // Check if user is still logged in
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        // Update last_active
+        await supabase.from("users").update({
+          status: 'online', // or last_active column if we had one, 'status' seems to be the field used in other files
+          // creating 'last_active' might be good if schema supports it, but preserving 'status' is safer
+        }).eq('id', userId);
       } else {
         clearInterval(activityInterval);
       }
@@ -72,39 +58,42 @@ async function trackUserSession(user) {
 // Google sign-in/out button logic
 const authBtn = document.getElementById("auth-btn");
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // Track user login
-    trackUserSession(user);
+if (authBtn) {
+  supabase.auth.onAuthStateChange((event, session) => {
+    const user = session ? session.user : null;
+    if (user) {
+      // Track user login
+      if (event === 'SIGNED_IN') {
+        trackUserSession(user);
+      }
 
-    authBtn.textContent = "🚪";
-    authBtn.href = "#";
-    authBtn.onclick = (e) => {
-      e.preventDefault();
-      signOut(auth)
-        .then(() => {
-          // Record logout time
-          if (user && user.uid) {
-            updateDoc(doc(db, "users", user.uid), {
-              lastLogout: serverTimestamp()
-            }).catch(err => console.error("Error recording logout time:", err));
-          }
-          alert("Logged out successfully");
-        })
-        .catch((err) => {
-          console.error(err);
+      authBtn.textContent = "🚪";
+      authBtn.href = "#";
+      authBtn.onclick = async (e) => {
+        e.preventDefault();
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+          console.error(error);
           alert("Logout failed");
-        });
-    };
-  } else {
-    authBtn.textContent = "👤";
-    authBtn.href = "#";
-    authBtn.onclick = (e) => {
-      e.preventDefault();
-      // Get current page path
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      // Redirect to auth page with current page as redirect parameter
-      window.location.href = `auth.html?redirect=${encodeURIComponent(currentPage)}`;
-    };
-  }
-});
+        } else {
+          // Record logout time
+          await supabase.from("users").update({
+            // lastLogout: new Date().toISOString() // if column exists
+            status: 'offline'
+          }).eq('id', user.id);
+          alert("Logged out successfully");
+        }
+      };
+    } else {
+      authBtn.textContent = "👤";
+      authBtn.href = "#";
+      authBtn.onclick = (e) => {
+        e.preventDefault();
+        // Get current page path
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        // Redirect to auth page with current page as redirect parameter
+        window.location.href = `auth.html?redirect=${encodeURIComponent(currentPage)}`;
+      };
+    }
+  });
+}
