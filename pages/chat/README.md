@@ -19,33 +19,18 @@ pages/chat/
 
 ## 🚀 Setup Instructions
 
-### 1. Update Firebase Configuration
+### 1. Update Supabase Configuration
 
-Edit `firebase-config.js` and replace the placeholder values with your Firebase project credentials:
+Edit `assets/js/supabase-init.js` and replace the placeholder values with your Supabase project credentials:
 
 ```javascript
-export const firebaseConfig = {
-    apiKey: "YOUR_ACTUAL_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
-    measurementId: "YOUR_MEASUREMENT_ID"
-};
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
 ```
 
-### 2. Deploy Firestore Security Rules
+### 2. Database Schema
 
-```bash
-firebase deploy --only firestore:rules
-```
-
-### 3. Deploy Storage Security Rules
-
-```bash
-firebase deploy --only storage
-```
+Ensure your Supabase table schema matches the expected structure (tables: `users`, `servers`, `channels`, `messages`).
 
 ### 4. Deploy Cloud Functions (Optional)
 
@@ -104,11 +89,10 @@ The application uses a Discord-like 4-column layout:
 ## 🔧 Technologies Used
 
 - **Frontend**: Vanilla JavaScript (ES6+)
-- **Backend**: Firebase
-  - Firestore (database)
-  - Firebase Auth (authentication)
-  - Firebase Storage (file uploads)
-  - Cloud Functions (optional)
+- **Backend**: Supabase
+  - PostgreSQL (database)
+  - Supabase Auth (authentication)
+  - Supabase Storage (file uploads)
 - **Styling**: Pure CSS with CSS Variables
 
 ## 📝 Next Steps

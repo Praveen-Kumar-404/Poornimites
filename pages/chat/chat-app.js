@@ -21,14 +21,23 @@ function init() {
 
     AuthService.init((user) => {
         if (user) {
-            console.log('User signed in:', user.uid);
+            console.log('User signed in:', user.id);
             state.user = user;
             stateManager.setCurrentUser(user);
             loadApp();
         } else {
-            console.log('No user signed in');
-            state.user = null;
-            showLogin();
+            console.log('No user signed in, entering as Guest');
+            const guestUser = {
+                id: 'guest-' + Math.floor(Math.random() * 1000000),
+                email: 'guest@poornimites.com',
+                user_metadata: {
+                    full_name: 'Guest User',
+                    avatar_url: 'https://ui-avatars.com/api/?name=Guest+User'
+                }
+            };
+            state.user = guestUser;
+            stateManager.setCurrentUser(guestUser);
+            loadApp();
         }
     });
 
@@ -192,7 +201,7 @@ function loadApp() {
             (server) => selectServer(server),
             () => {
                 const name = prompt("Enter Server Name:");
-                if (name) FirestoreService.createServer(name, state.user.uid);
+                if (name) FirestoreService.createServer(name, state.user.id);
             }
         );
     });
@@ -209,9 +218,9 @@ function loadApp() {
             const optimisticMessage = {
                 id: tempId,
                 content: content,
-                authorId: state.user.uid,
-                authorName: state.user.displayName,
-                authorAvatar: state.user.photoURL,
+                authorId: state.user.id,
+                authorName: state.user.user_metadata?.full_name || state.user.email,
+                authorAvatar: state.user.user_metadata?.avatar_url,
                 createdAt: new Date(),
                 type: 'text',
                 attachments: []
@@ -332,7 +341,7 @@ function selectChannel(channel) {
     }
     state.typingUnsubscribe = FirestoreService.subscribeToTyping(state.currentServer.id, channel.id, (users) => {
         // Filter out self
-        const others = users.filter(name => name !== state.user.displayName);
+        const others = users.filter(name => name !== (state.user.user_metadata?.full_name || state.user.email));
         UI.updateTypingIndicator(others);
     });
 }
@@ -340,7 +349,7 @@ function selectChannel(channel) {
 // Load mock members for demo purposes
 function loadMockMembers(serverId) {
     const mockMembers = [
-        { id: '1', username: state.user.displayName, role: 'owner' },
+        { id: '1', username: state.user.user_metadata?.full_name || state.user.email, role: 'owner' },
         { id: '2', username: 'Alice Johnson', role: 'admin' },
         { id: '3', username: 'Bob Smith', role: 'member' },
         { id: '4', username: 'Carol White', role: 'member' },

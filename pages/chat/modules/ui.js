@@ -99,22 +99,22 @@ export const UI = {
         this.clear();
 
         this.appContainer.innerHTML = `
-            <div class="chat-container">
+            <div class="app-shell">
                 <!-- Servers Column -->
-                <div class="servers-column">
+                <div class="servers-col">
                     <div class="server-list" id="server-list"></div>
                 </div>
 
                 <!-- Channels Column -->
-                <div class="channels-column">
-                    <div class="server-header">
+                <div class="channels-col">
+                    <div class="channels-header">
                         <span class="server-name" id="server-name">Select a Server</span>
                     </div>
                     <div class="channels-list" id="channels-list"></div>
                     <div class="user-area">
-                        <div class="user-avatar">${this.getInitials(user.displayName)}</div>
+                        <div class="user-avatar">${this.getInitials(user.user_metadata?.full_name || user.email)}</div>
                         <div class="user-info">
-                            <div class="user-name">${user.displayName}</div>
+                            <div class="user-name">${user.user_metadata?.full_name || user.email}</div>
                             <div class="user-discriminator">#${this.generateDiscriminator()}</div>
                         </div>
                         <div class="user-controls">
@@ -124,23 +124,23 @@ export const UI = {
                 </div>
 
                 <!-- Message Pane -->
-                <div class="message-pane">
+                <div class="main-col">
                     <div class="channel-header">
                         <span class="channel-header-hash">#</span>
                         <span class="channel-header-name" id="channel-name">general</span>
                         <span class="channel-topic" id="channel-topic">Welcome to the channel!</span>
                     </div>
-                    <div class="messages-container" id="messages-container">
+                    <div class="messages-wrap" id="messages-container">
                         <div class="message-list" id="messages-list"></div>
                         <div class="new-messages-badge" id="new-messages-badge">New messages ↓</div>
                     </div>
-                    <div class="message-input-container">
+                    <div class="message-input">
                         <form id="message-form">
                             <div class="message-input-wrapper">
                                 <button type="button" class="attach-btn" id="attach-btn">+</button>
                                 <textarea 
                                     id="message-input" 
-                                    class="message-input" 
+                                    class="message-textarea" 
                                     placeholder="Message #general"
                                     rows="1"
                                 ></textarea>
@@ -159,8 +159,11 @@ export const UI = {
                 </div>
 
                 <!-- Members Column -->
-                <div class="members-column">
+                <div class="members-col">
                     <div class="members-header">Members</div>
+                    <div class="members-search">
+                        <input type="text" placeholder="Search members...">
+                    </div>
                     <div class="members-list" id="members-list"></div>
                 </div>
             </div>
@@ -392,14 +395,14 @@ export const UI = {
     // Create message node
     createMessageNode(msg) {
         const el = document.createElement('div');
-        el.className = 'message';
+        el.className = 'message-item';
         el.dataset.id = msg.id;
 
         const date = msg.createdAt?.toDate ?
             msg.createdAt.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) :
             new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-        const isOwner = this.currentUser && msg.authorId === this.currentUser.uid;
+        const isOwner = this.currentUser && msg.authorId === this.currentUser.id;
         const contentHtml = Markdown.parse(msg.content || '');
 
         // Attachments
@@ -439,7 +442,7 @@ export const UI = {
         if (msg.reactions && Object.keys(msg.reactions).length > 0) {
             reactionsHtml = '<div class="message-reactions">';
             for (const [emoji, users] of Object.entries(msg.reactions)) {
-                const hasReacted = this.currentUser && users.includes(this.currentUser.uid);
+                const hasReacted = this.currentUser && users.includes(this.currentUser.id);
                 reactionsHtml += `
                     <button class="reaction ${hasReacted ? 'reacted' : ''}" 
                             data-id="${msg.id}" 
@@ -479,7 +482,7 @@ export const UI = {
                     <span class="message-timestamp">${date}</span>
                     ${msg.editedAt ? '<span class="message-edited">(edited)</span>' : ''}
                 </div>
-                <div class="message-body">${contentHtml}</div>
+                <div class="message-text">${contentHtml}</div>
                 ${attachmentsHtml}
                 ${reactionsHtml}
             </div>
@@ -517,13 +520,11 @@ export const UI = {
     // Render member group
     renderMemberGroup(title, members) {
         return `
-            <div class="member-group">
-                <div class="member-group-header">
-                    <span>${title}</span>
-                    <span class="member-count">— ${members.length}</span>
-                </div>
-                ${members.map(member => this.createMemberNode(member)).join('')}
+            <div class="member-category">
+                <span>${title}</span>
+                <span class="member-count">— ${members.length}</span>
             </div>
+            ${members.map(member => this.createMemberNode(member)).join('')}
         `;
     },
 
@@ -532,11 +533,13 @@ export const UI = {
         const presence = stateManager.getPresence(member.id);
         return `
             <div class="member-item" data-id="${member.id}">
-                <div class="member-avatar-wrapper">
+                <div class="member-avatar-wrap">
                     <div class="member-avatar">${this.getInitials(member.username)}</div>
-                    <div class="presence-indicator ${presence}"></div>
+                    <div class="member-status ${presence}"></div>
                 </div>
-                <div class="member-name">${member.username}</div>
+                <div class="member-info">
+                    <div class="member-name">${member.username}</div>
+                </div>
             </div>
         `;
     },

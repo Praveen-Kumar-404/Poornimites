@@ -1,5 +1,5 @@
 
-import { supabase } from '../../assets/js/supabase-init.js';
+import { supabase } from '../../../assets/js/supabase-init.js';
 
 export const StorageService = {
     uploadFile(file, path, onProgress) {
