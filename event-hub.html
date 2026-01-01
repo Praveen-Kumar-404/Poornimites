@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/header.css">
   <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/bento-grid.css">
-  <link rel="stylesheet" href="assets/css/sub-page.css">
+  <link rel="stylesheet" href="assets/css/event-hub.css">
 </head>
 
 <body>
@@ -27,29 +27,142 @@
       <a href="profile.html">⚙️</a>
     </div>
   </header>
-  <main class="bento-grid">
-    <div class="page-header">
-      <h1>📅 Event Hub</h1>
-      <p>Discover and join campus events and activities</p>
-    </div>
-    <div class="card">
-      <h2>Coming Soon</h2>
-      <p>This page is under development. Check back later for updates!</p>
-    </div>
+
+  <main class="event-hub-container">
+
+    <!-- Hero Section -->
+    <section class="event-hero">
+      <h1>Event Hub</h1>
+      <p>Explore upcoming campus events and past galleries.</p>
+      <div class="hero-actions">
+        <a href="#submit-event" class="btn-primary">Submit Event</a>
+        <a href="#calendar-view" class="btn-secondary">View Calendar</a>
+        <a href="#contact" class="btn-secondary">Contact</a>
+      </div>
+    </section>
+
+    <!-- Tool Bar: Search & Filter -->
+    <section class="events-toolbar">
+      <div class="filters">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="event-search" placeholder="Search events...">
+        </div>
+        <select id="category-filter" class="filter-select">
+          <option value="all">All Categories</option>
+          <option value="clubs">Clubs</option>
+          <option value="academic">Academic</option>
+          <option value="sports">Sports</option>
+          <option value="arts">Arts</option>
+          <option value="social">Social</option>
+        </select>
+        <select id="date-filter" class="filter-select">
+          <option value="upcoming">Upcoming</option>
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+        </select>
+      </div>
+
+      <div class="view-toggles">
+        <button class="view-btn active" data-view="list">List</button>
+        <button class="view-btn" data-view="calendar">Calendar</button>
+        <button class="view-btn" data-view="map">Map</button>
+      </div>
+    </section>
+
+    <!-- Upcoming Events Dynamic Container -->
+    <section id="events-container" class="events-section">
+      <!-- Events will be injected here via JS -->
+      <div class="loader">Loading events...</div>
+    </section>
+
+    <!-- Past Galleries Section -->
+    <section class="galleries-section">
+      <div class="page-header" style="text-align: left; margin-bottom: 2rem;">
+        <h2>📸 Past Event Galleries</h2>
+        <p>Relive the memories from previous campus events.</p>
+      </div>
+      <div class="gallery-grid">
+        <!-- Gallery items injected via JS -->
+      </div>
+    </section>
+
+    <!-- Submission Form -->
+    <section id="submit-event" class="submission-section">
+      <div class="page-header">
+        <h2>📢 Host an Event</h2>
+        <p>Submit your event details for approval. Please read the guidelines first.</p>
+      </div>
+
+      <form id="event-form" onsubmit="event.preventDefault(); alert('Event submitted for moderation!');">
+        <div class="form-group">
+          <label for="event-title">Event Title</label>
+          <input type="text" id="event-title" required placeholder="e.g. Annual Tech Symposium">
+        </div>
+
+        <div class="form-group">
+          <label for="event-desc">Description (min 50 chars)</label>
+          <textarea id="event-desc" rows="4" required minlength="50" placeholder="Describe your event..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="event-cat">Category</label>
+            <select id="event-cat" required>
+              <option value="">Select...</option>
+              <option value="clubs">Clubs</option>
+              <option value="academic">Academic</option>
+              <option value="sports">Sports</option>
+              <option value="arts">Arts</option>
+              <option value="social">Social</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="event-loc">Location</label>
+            <input type="text" id="event-loc" required placeholder="e.g. Auditorium">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="start-time">Start Time</label>
+            <input type="datetime-local" id="start-time" required>
+          </div>
+          <div class="form-group">
+            <label for="end-time">End Time</label>
+            <input type="datetime-local" id="end-time" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="organizer-email">Student Email</label>
+          <input type="email" id="organizer-email" required placeholder="you@poornima.edu.in">
+          <small>We will contact you here for approval.</small>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%;">Submit for Review</button>
+      </form>
+    </section>
+
   </main>
-  <footer class="footer">
+
+  <footer class="footer" id="contact">
     <div class="footer-links">
       <a href="about.html">About</a>
       <a href="faq.html">FAQ</a>
       <a href="roadmap.html">Roadmap</a>
       <a href="privacy.html">Privacy</a>
       <a href="credits.html">Credits</a>
+      <a href="sitemap.html">Sitemap</a>
     </div>
     <div class="footer-text">
       Made with 💙 by Students for Students. © 2025 Poornimites
     </div>
   </footer>
+
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/event-hub.js"></script>
 </body>
 
 </html>
