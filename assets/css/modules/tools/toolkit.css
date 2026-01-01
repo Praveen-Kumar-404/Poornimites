@@ -30,16 +30,21 @@ main {
 
 /* Tool Page Layout */
 .toolkit-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+}
+
+.toolkit-container.fluid {
+    max-width: 100%;
+    padding: 1rem 2rem;
 }
 
 .toolkit-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--toolkit-border);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--toolkit-border);
 }
 
 .toolkit-header h1 {
@@ -63,7 +68,7 @@ main {
 }
 
 .tool-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .tool-section h2 {
@@ -78,7 +83,7 @@ main {
 .tool-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .tool-grid-3 {
@@ -212,7 +217,7 @@ select.form-control {
 .tool-card {
     background: white;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1.25rem;
     box-shadow: 0 4px 12px var(--toolkit-shadow);
     transition: transform 0.2s ease;
     display: flex;
@@ -1058,9 +1063,138 @@ select.form-control {
     }
 
     /* Larger checkboxes and radio buttons */
-    input[type="checkbox"],
     input[type="radio"] {
         width: 20px;
         height: 20px;
     }
+}
+
+/* ===================================
+   APP SUITE LAYOUTS (Shared)
+   =================================== */
+
+.app-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: calc(100vh - 140px);
+    gap: 0;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-top: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.app-sidebar {
+    background: #f8f9fa;
+    border-right: 1px solid var(--toolkit-border);
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-item {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--toolkit-dark);
+    transition: all 0.2s;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.sidebar-item:hover {
+    background: #e9ecef;
+    color: var(--toolkit-primary);
+}
+
+.sidebar-item.active {
+    background: var(--toolkit-primary);
+    color: white;
+}
+
+.app-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    position: relative;
+    background: white;
+}
+
+.tool-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tool-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* File Drop Zone */
+.drop-zone {
+    border: 2px dashed var(--toolkit-border);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.3s;
+    background: #fdfdfd;
+    cursor: pointer;
+}
+
+.drop-zone:hover {
+    border-color: var(--toolkit-primary);
+    background: #f0f7ff;
+}
+
+.file-icon {
+    font-size: 3rem;
+    color: var(--toolkit-primary);
+    margin-bottom: 1rem;
+}
+
+/* Dark Mode Overrides (basic support) */
+.dark-theme .app-container {
+    background: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.dark-theme .app-sidebar {
+    background: #252526;
+    border-color: #333;
+}
+
+.dark-theme .sidebar-item {
+    color: #cccccc;
+}
+
+.dark-theme .sidebar-item:hover {
+    background: #2a2d2e;
+    color: white;
+}
+
+.dark-theme .app-content {
+    background: #1e1e1e;
+}
+
+.dark-theme .drop-zone {
+    background: #252526;
+    border-color: #444;
+}
+
+.dark-theme .drop-zone:hover {
+    background: #2a2d2e;
+    border-color: var(--toolkit-primary);
 }

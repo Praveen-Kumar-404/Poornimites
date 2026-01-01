@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Workspace - Poornimites</title>
+    <link rel="stylesheet" href="../../assets/css/core/style.css">
+    <link rel="stylesheet" href="../../assets/css/core/header.css">
+    <link rel="stylesheet" href="../../assets/css/core/footer.css">
+    <link rel="stylesheet" href="../../assets/css/modules/tools/toolkit.css">
+    <!-- Shared Styles from toolkit.css -->
+    /* Notes-specific overrides */
+
+    /* Notes-specific overrides */
+    .app-container {
+    /* Minimal overrides if necessary */
+    }
+
+    /* Mode Sidebar */
+    .app-sidebar {
+    background: #003366;
+    color: white;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    }
+
+    .sidebar-item {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.2s;
+    }
+
+    .sidebar-item:hover,
+    .sidebar-item.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar-item.active {
+    border-left: 4px solid #00a8e8;
+    }
+
+    /* List Sidebar */
+    /* .notes-list styles are now mostly handled by .app-sidebar with inline overrides */
+
+    .list-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--toolkit-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .note-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--toolkit-border);
+    cursor: pointer;
+    transition: 0.2s;
+    }
+
+    .note-item:hover {
+    background: white;
+    }
+
+    .note-item.active {
+    background: white;
+    border-left: 3px solid var(--toolkit-primary);
+    }
+
+    .note-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--toolkit-dark);
+    }
+
+    .note-preview {
+    font-size: 0.85rem;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+    /* Editor overrides */
+    .app-content {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    }
+
+    .editor-toolbar {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--toolkit-border);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    }
+
+    .editor-content {
+    flex: 1;
+    padding: 2rem;
+    outline: none;
+    overflow-y: auto;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    }
+
+    .editor-title {
+    font-size: 2rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--toolkit-primary);
+    }
+
+    textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container fluid">
+        <!-- Using unified 3-column grid for notes app, reusing app-container variables where possible -->
+        <div class="app-container" style="grid-template-columns: 250px 300px 1fr;">
+            <!-- Mode Sidebar -->
+            <nav class="app-sidebar">
+                <div class="p-3 mb-2"
+                    style="font-weight: bold; opacity: 0.5; font-size: 0.8rem; text-transform: uppercase; padding-left: 1.5rem;">
+                    Workspaces
+                </div>
+
+                <div class="sidebar-item active" onclick="switchMode('private')">
+                    <span>🔒</span> Private Notes
+                </div>
+                <div class="sidebar-item" onclick="switchMode('shared')">
+                    <span>👥</span> Shared Notes
+                </div>
+                <div class="sidebar-item" onclick="switchMode('lecture')">
+                    <span>🎓</span> Lecture Notes
+                </div>
+
+                <div style="flex-grow: 1;"></div>
+
+                <div class="sidebar-item">
+                    <span>⚙️</span> Settings
+                </div>
+            </nav>
+
+            <!-- Notes List (Middle Column) -->
+            <aside class="app-sidebar" style="background: #f8f9fa; border-right: 1px solid var(--toolkit-border);">
+                <div class="list-header">
+                    <h3 style="margin: 0; font-size: 1.1rem;">All Notes</h3>
+                    <button class="btn btn-primary btn-sm" onclick="createNewNote()">+</button>
+                </div>
+                <div class="p-2">
+                    <input type="text" class="form-control" placeholder="Search notes..."
+                        style="padding: 0.5rem; width: 100%;">
+                </div>
+                <div id="notes-list-container" style="overflow-y: auto; flex: 1;">
+                    <!-- Note Items Generated Here -->
+                    <div class="note-item active">
+                        <div class="note-title">Project Ideas</div>
+                        <div class="note-preview">Remember to check the new API docs...</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Editor -->
+            <section class="app-content">
+                <div class="editor-toolbar">
+                    <button class="btn btn-sm btn-secondary">B</button>
+                    <button class="btn btn-sm btn-secondary">I</button>
+                    <button class="btn btn-sm btn-secondary">U</button>
+                    <div style="border-right: 1px solid #ddd; height: 20px;"></div>
+                    <button class="btn btn-sm btn-secondary">H1</button>
+                    <button class="btn btn-sm btn-secondary">H2</button>
+                    <div style="flex-grow: 1;"></div>
+                    <button class="btn btn-sm btn-success" onclick="saveNote()">Save</button>
+                </div>
+                <div class="editor-content">
+                    <input type="text" class="editor-title" placeholder="Note Title" value="Project Ideas">
+                    <textarea
+                        placeholder="Start typing...">Remember to check the new API docs for the integration features.</textarea>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../site/about.html">About</a>
+            <a href="../site/faq.html">FAQ</a>
+            <a href="../site/privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/modules/tools/toolkit-common.js"></script>
+    <script>
+        function switchMode(mode) {
+            document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            // Logic to load different notes sets would go here
+            console.log("Switching to " + mode);
+        }
+
+        function saveNote() {
+            ToolkitUtils.showToast('Note saved locally!', 'success');
+        }
+
+        function createNewNote() {
+            // Mock creation
+            const list = document.getElementById('notes-list-container');
+            const newItem = document.createElement('div');
+            newItem.className = 'note-item';
+            newItem.innerHTML = `
+                <div class="note-title">New Note</div>
+                <div class="note-preview">No content yet...</div>
+            `;
+            list.prepend(newItem);
+        }
+    </script>
+</body>
+
+</html>
