@@ -1,0 +1,344 @@
+/* ===================================
+   PERSONAL PLANNER STYLES
+   Specific styles for the Personal Planner Dashboard
+   =================================== */
+
+:root {
+    --planner-bg: #f3f4f6;
+    --planner-card-bg: #ffffff;
+    --planner-primary: #003366;
+    --planner-accent: #00a8e8;
+    --planner-text: #1f2937;
+    --planner-text-muted: #6b7280;
+    --planner-border: #e5e7eb;
+
+    --planner-danger: #ef4444;
+    --planner-warning: #f59e0b;
+    --planner-success: #10b981;
+}
+
+/* Layout & Grid */
+.planner-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.planner-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .planner-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sidebar / Quick Tools */
+.planner-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Main Content Area */
+.planner-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Cards */
+.planner-card {
+    background: var(--planner-card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--planner-border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.planner-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--planner-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Modules: Quick Capture */
+.quick-capture {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.quick-capture input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid var(--planner-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.quick-capture input:focus {
+    outline: none;
+    border-color: var(--planner-accent);
+}
+
+.btn-capture {
+    background: var(--planner-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 48px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-capture:hover {
+    background: var(--planner-accent);
+}
+
+/* Modules: Habit Tracker (Compact) */
+.habit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--planner-border);
+}
+
+.habit-row:last-child {
+    border-bottom: none;
+}
+
+.habit-name {
+    font-weight: 500;
+    color: var(--planner-text);
+}
+
+.habit-streak {
+    font-size: 0.85rem;
+    color: var(--planner-text-muted);
+}
+
+.habit-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 2px solid var(--planner-border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.2s;
+}
+
+.habit-check.done {
+    background: var(--planner-success);
+    border-color: var(--planner-success);
+}
+
+/* Modules: Tasks (Kanban-lite) */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid var(--planner-border);
+    cursor: grab;
+}
+
+.task-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+    background: #f1f5f9;
+}
+
+.task-checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 2px solid #cbd5e1;
+    cursor: pointer;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-text {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.task-meta {
+    font-size: 0.75rem;
+    color: var(--planner-text-muted);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tag {
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    background: #e2e8f0;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.tag-urgent {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.tag-project {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+/* Modules: Schedule / Time Blocking */
+.schedule-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--planner-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.schedule-header {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    background: white;
+    padding: 0.5rem;
+    font-weight: 600;
+    color: var(--planner-text-muted);
+}
+
+.schedule-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    background: white;
+    min-height: 3rem;
+}
+
+.time-slot {
+    font-size: 0.75rem;
+    color: var(--planner-text-muted);
+    padding: 0.5rem;
+    text-align: right;
+    border-right: 1px solid var(--planner-border);
+}
+
+.event-slot {
+    padding: 0.25rem;
+    position: relative;
+}
+
+.event-card {
+    background: #e0e7ff;
+    color: #3730a3;
+    border-left: 3px solid #4f46e5;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+}
+
+/* Tabs */
+.planner-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--planner-border);
+    padding-bottom: 0.5rem;
+}
+
+.planner-tab {
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--planner-text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    border: none;
+}
+
+.planner-tab:hover {
+    color: var(--planner-primary);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.planner-tab.active {
+    background: var(--planner-primary);
+    color: white;
+}
+
+/* Tab Content */
+.tab-content-area {
+    display: none;
+}
+
+.tab-content-area.active {
+    display: block;
+}
+
+/* Stats/KPIs */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.kpi-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--planner-border);
+}
+
+.kpi-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--planner-primary);
+}
+
+.kpi-label {
+    font-size: 0.85rem;
+    color: var(--planner-text-muted);
+}

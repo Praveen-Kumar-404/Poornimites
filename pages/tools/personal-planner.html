@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Planner - Poornimites</title>
+    <link rel="stylesheet" href="../../assets/css/core/style.css">
+    <link rel="stylesheet" href="../../assets/css/core/header.css">
+    <link rel="stylesheet" href="../../assets/css/core/footer.css">
+    <link rel="stylesheet" href="../../assets/css/modules/tools/planner.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="planner-container">
+        <!-- Header -->
+        <div class="card-header" style="margin-top: 1rem;">
+            <div>
+                <h1 style="color: var(--planner-primary); margin: 0;">My Planner</h1>
+                <p style="color: var(--planner-text-muted); margin: 0;" id="planner-date">...</p>
+            </div>
+            <div style="text-align: right;">
+                <h2 style="margin: 0; font-size: 2rem; color: var(--planner-primary);" id="planner-clock">...</h2>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="planner-tabs">
+            <button class="planner-tab active" onclick="Planner.switchTab('planner')" data-tab="planner">📅 Focus &
+                Schedule</button>
+            <button class="planner-tab" onclick="Planner.switchTab('tracker')" data-tab="tracker">📈 Habits &
+                Goals</button>
+            <button class="planner-tab" onclick="Planner.switchTab('life')" data-tab="life">🗂️ Life Admin</button>
+        </div>
+
+        <!-- TAB: FOCUS & SCHEDULE (Main) -->
+        <div id="tab-planner" class="tab-content-area active">
+            <div class="planner-grid">
+                <!-- Sidebar: Tasks & Quick Capture -->
+                <div class="planner-sidebar">
+                    <!-- Quick Capture -->
+                    <div class="planner-card">
+                        <div class="card-header">
+                            <h3 class="card-title">⚡ Quick Capture</h3>
+                        </div>
+                        <div class="quick-capture">
+                            <input type="text" id="quick-capture-input" placeholder="Task, idea, or reminder...">
+                            <button class="btn-capture" onclick="Planner.handleQuickCapture()">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Task Inbox -->
+                    <div class="planner-card" style="flex: 1;">
+                        <div class="card-header">
+                            <h3 class="card-title">📝 My Tasks <span class="tag tag-urgent" id="stat-tasks-pending"
+                                    style="margin-left:auto; font-size: 0.9rem;">0</span></h3>
+                            <button class="btn-icon"
+                                style="font-size:0.8rem; background:none; border:none; cursor:pointer;">View
+                                All</button>
+                        </div>
+                        <div class="task-list" id="planner-task-list">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main: Schedule -->
+                <div class="planner-main">
+                    <div class="planner-card">
+                        <div class="card-header">
+                            <h3 class="card-title">📅 Today's Schedule</h3>
+                            <button class="btn-primary"
+                                style="padding: 0.5rem 1rem; font-size: 0.9rem; background: var(--planner-primary); color: white; border: none; border-radius: 6px; cursor: pointer;">+
+                                Add Event</button>
+                        </div>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1rem;">Synced with Class
+                            Timetable</p>
+                        <div class="schedule-view" id="planner-schedule">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: TRACKER (Habits, Expenses, Subs) -->
+        <div id="tab-tracker" class="tab-content-area">
+            <div class="planner-grid">
+                <div class="planner-sidebar">
+                    <!-- KPI Cards -->
+                    <div class="kpi-grid" style="grid-template-columns: 1fr;">
+                        <div class="kpi-card">
+                            <div class="kpi-value" id="stat-habits-done">0/0</div>
+                            <div class="kpi-label">Habits Today</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value">₹450</div>
+                            <div class="kpi-label">Spent this Week</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="planner-main">
+                    <!-- Habit Tracker -->
+                    <div class="planner-card">
+                        <div class="card-header">
+                            <h3 class="card-title">🔥 Habit Tracker</h3>
+                            <button class="btn-icon"
+                                style="background:none; border:none; color: var(--planner-accent); cursor:pointer;">Manage
+                                Habits</button>
+                        </div>
+                        <div id="planner-habit-list">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Subscription Tracker Mock -->
+                    <div class="planner-card">
+                        <div class="card-header">
+                            <h3 class="card-title">💳 Subscriptions</h3>
+                        </div>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                            <tr style="border-bottom: 1px solid var(--planner-border); text-align:left;">
+                                <th style="padding: 0.5rem;">Service</th>
+                                <th style="padding: 0.5rem;">Cost</th>
+                                <th style="padding: 0.5rem;">Renewal</th>
+                                <th style="padding: 0.5rem;">Status</th>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--planner-border);">
+                                <td style="padding: 0.5rem;">Spotify</td>
+                                <td style="padding: 0.5rem;">₹119</td>
+                                <td style="padding: 0.5rem;">Jan 15</td>
+                                <td style="padding: 0.5rem;"><span class="tag tag-project">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem;">Netflix</td>
+                                <td style="padding: 0.5rem;">₹499</td>
+                                <td style="padding: 0.5rem;">Jan 20</td>
+                                <td style="padding: 0.5rem;"><span class="tag tag-project">Active</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: LIFE ADMIN (Internships, Docs) -->
+        <div id="tab-life" class="tab-content-area">
+            <div class="planner-grid">
+                <div class="planner-main" style="grid-column: 1 / -1;">
+                    <div class="planner-card">
+                        <div class="card-header">
+                            <h3 class="card-title">💼 Internship Pipeline</h3>
+                            <button class="btn-primary"
+                                style="padding: 0.5rem 1rem; font-size: 0.9rem; background: var(--planner-primary); color: white; border: none; border-radius: 6px; cursor: pointer;">+
+                                Add Application</button>
+                        </div>
+                        <div style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem;">
+                            <!-- Pipeline Stage: Applied -->
+                            <div
+                                style="flex: 1; min-width: 250px; background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                <h4 style="margin-top: 0; font-size: 0.9rem; color: var(--planner-text-muted);">Applied
+                                    (2)</h4>
+                                <div class="task-item" style="background: white; margin-bottom: 0.5rem;">
+                                    <div class="task-content">
+                                        <span class="task-text">Google - STEP Intern</span>
+                                        <span class="tag">Submitted 2d ago</span>
+                                    </div>
+                                </div>
+                                <div class="task-item" style="background: white;">
+                                    <div class="task-content">
+                                        <span class="task-text">Microsoft - Engage</span>
+                                        <span class="tag">Submitted 5d ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pipeline Stage: Interview -->
+                            <div
+                                style="flex: 1; min-width: 250px; background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                <h4 style="margin-top: 0; font-size: 0.9rem; color: var(--planner-text-muted);">
+                                    Interview (1)</h4>
+                                <div class="task-item"
+                                    style="background: white; border-left: 3px solid var(--planner-warning);">
+                                    <div class="task-content">
+                                        <span class="task-text">Atlassian - Frontend</span>
+                                        <span class="tag tag-urgent">Jan 10 - Technical Round</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pipeline Stage: Offer -->
+                            <div
+                                style="flex: 1; min-width: 250px; background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                <h4 style="margin-top: 0; font-size: 0.9rem; color: var(--planner-text-muted);">Offer
+                                    (0)</h4>
+                                <div class="text-muted text-center" style="font-size: 0.85rem; padding: 1rem;">No offers
+                                    yet</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="planner-card">
+                        <div class="card-header">
+                            <h3 class="card-title">🔒 Document Vault</h3>
+                        </div>
+                        <p class="text-muted">Securely store your resume, transcripts, and ID proofs. (Mock View)</p>
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="text-align: center; cursor: pointer;">
+                                <div style="font-size: 3rem;">📄</div>
+                                <div style="font-size: 0.9rem;">Resume_V2.pdf</div>
+                            </div>
+                            <div style="text-align: center; cursor: pointer;">
+                                <div style="font-size: 3rem;">🎓</div>
+                                <div style="font-size: 0.9rem;">Semester_5.pdf</div>
+                            </div>
+                            <div style="text-align: center; cursor: pointer; opacity: 0.5;">
+                                <div style="font-size: 3rem;">➕</div>
+                                <div style="font-size: 0.9rem;">Upload</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../site/about.html">About</a>
+            <a href="../site/faq.html">FAQ</a>
+            <a href="../site/privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/modules/tools/planner.js"></script>
+</body>
+
+</html>
