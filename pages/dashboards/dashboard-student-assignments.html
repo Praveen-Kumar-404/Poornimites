@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments - Student Dashboard</title>
+    <link rel="stylesheet" href="../../assets/css/modules/dashboards/dashboard.css">
+</head>
+
+<body class="theme-student" data-role="student">
+    <aside class="sidebar">
+        <div class="brand"><span>🎓</span> Poornimites</div>
+        <nav class="nav-menu">
+            <a href="dashboard-student.html" class="nav-item"><i>📊</i> Dashboard</a>
+            <a href="dashboard-student-courses.html" class="nav-item"><i>📚</i> My Courses</a>
+            <a href="dashboard-student-assignments.html" class="nav-item active"><i>📝</i> Assignments</a>
+            <a href="../resources/career.html" class="nav-item"><i>🚀</i> Growth Zone</a>
+            <a href="dashboard-student-certificates.html" class="nav-item"><i>🏆</i> Certificates</a>
+            <a href="../user/profile.html" class="nav-item"><i>⚙️</i> Profile</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-mini">
+                <div class="avatar">PK</div>
+                <div class="user-info">
+                    <div>Student Name</div>
+                    <div class="user-role">Student</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <i class="menu-toggle" id="menuToggle">☰</i>
+                <h2>Assignments</h2>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn">🔔<span class="badge"></span></button>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <div class="dashboard-grid">
+                <div class="card" style="grid-column: 1 / -1;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Assignment</th>
+                                <th>Course</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>React Project Phase 1</strong></td>
+                                <td>Web Technologies</td>
+                                <td style="color:#ef4444;">Today, 11:59 PM</td>
+                                <td><span class="status-pill status-warning">Pending</span></td>
+                                <td><button class="btn-primary"
+                                        style="padding:0.25rem 0.5rem; font-size:0.8rem;">Upload</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Algorithm Analysis Paper</strong></td>
+                                <td>Algorithm Design</td>
+                                <td>Jan 15, 2024</td>
+                                <td><span class="status-pill status-warning">Not Started</span></td>
+                                <td><button class="btn-primary"
+                                        style="padding:0.25rem 0.5rem; font-size:0.8rem; background:#64748b;">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Database Schema Design</strong></td>
+                                <td>Database Systems</td>
+                                <td>Dec 20, 2023</td>
+                                <td><span class="status-pill status-success">Submitted</span></td>
+                                <td><span style="font-size:0.85rem; color:#64748b;">Graded: 95/100</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../../assets/js/modules/dashboards/dashboard.js"></script>
+</body>
+
+</html>

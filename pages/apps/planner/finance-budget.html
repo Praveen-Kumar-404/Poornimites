@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance & Budget - Poornimites</title>
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+    <link rel="stylesheet" href="../../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../../assets/css/sub-page.css">
+    <link rel="stylesheet" href="../../../assets/css/apps/planner/finance-budget.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="../../../index.html">← Back to Planner</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Finance & Budget</h1>
+
+        <section id="summary">
+            <div style="margin-bottom: 1rem;">
+                <h4 style="color: #004080; margin-bottom: 0.75rem;">💳 Daily Expenses</h4>
+                <div class="expense-input-section">
+                    <div class="expense-input-row">
+                        <input type="text" id="new-expense-description" placeholder="Expense description" class="expense-description form-input">
+                        <input type="number" id="new-expense-amount" placeholder="Amount" class="expense-amount form-input">
+                        <button id="add-expense-btn" class="btn btn-primary">Add</button>
+                    </div>
+                    <ul id="daily-expenses-list" class="expense-list"></ul>
+                    <hr style="margin: 0.5rem 0;">
+                    <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                        <span>Total Today:</span>
+                        <span id="total-expenses">INR 0.00</span>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            <div style="margin-bottom: 1rem;">
+                <h4 style="color: #004080; margin-bottom: 0.75rem;">💰 Savings Tracker</h4>
+                <div class="savings-tracker-section">
+                    <div class="savings-input-row">
+                        <input type="number" id="savings-goal" placeholder="Monthly Goal" class="savings-input form-input">
+                        <input type="number" id="current-savings" placeholder="Current Savings" class="savings-input form-input">
+                        <button id="update-savings-btn" class="btn btn-success">Update</button>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="savings-progress-fill" class="progress-fill" style="width: 0%;"></div>
+                    </div>
+                    <div style="text-align: center; margin-top: 0.5rem; font-weight: bold;">
+                        <span id="savings-display">INR 0.00 / INR 0.00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="no-spend-challenge" style="margin-top: 1.5rem;">
+                <label class="checkbox-container" style="display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="no-spend" style="margin-right: 0.5rem;">
+                    <span class="checkmark" style="font-weight: bold; color: #004080;">🚫 No-spend day challenge</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Daily Expenses
+            const newExpenseDescription = document.getElementById('new-expense-description');
+            const newExpenseAmount = document.getElementById('new-expense-amount');
+            const addExpenseBtn = document.getElementById('add-expense-btn');
+            const dailyExpensesList = document.getElementById('daily-expenses-list');
+            const totalExpensesSpan = document.getElementById('total-expenses');
+
+            let expenses = JSON.parse(localStorage.getItem('dailyExpenses')) || [];
+
+            function saveExpenses() {
+                localStorage.setItem('dailyExpenses', JSON.stringify(expenses));
+            }
+
+            function renderExpenses() {
+                dailyExpensesList.innerHTML = '';
+                let total = 0;
+                expenses.forEach((expense, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'expense-item';
+                    li.innerHTML = `
+                        <span>${expense.description}</span>
+                        <span style="font-weight: bold;">INR ${expense.amount.toFixed(2)}</span>
+                        <button class="remove-btn" data-index="${index}">✖</button>
+                    `;
+                    dailyExpensesList.appendChild(li);
+                    total += expense.amount;
+                });
+                totalExpensesSpan.textContent = `INR ${total.toFixed(2)}`;
+                addExpenseEventListeners();
+            }
+
+            function addExpenseEventListeners() {
+                document.querySelectorAll('.remove-btn').forEach(button => {
+                    button.removeEventListener('click', handleRemoveExpense);
+                    button.addEventListener('click', handleRemoveExpense);
+                });
+            }
+
+            function handleRemoveExpense(event) {
+                const index = parseInt(event.target.dataset.index);
+                expenses.splice(index, 1);
+                saveExpenses();
+                renderExpenses();
+            }
+
+            addExpenseBtn.addEventListener('click', () => {
+                const description = newExpenseDescription.value.trim();
+                const amount = parseFloat(newExpenseAmount.value);
+
+                if (description && !isNaN(amount) && amount > 0) {
+                    expenses.push({ description, amount });
+                    saveExpenses();
+                    newExpenseDescription.value = '';
+                    newExpenseAmount.value = '';
+                    renderExpenses();
+                }
+            });
+
+            newExpenseAmount.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    addExpenseBtn.click();
+                }
+            });
+
+            // Savings Tracker
+            const savingsGoalInput = document.getElementById('savings-goal');
+            const currentSavingsInput = document.getElementById('current-savings');
+            const updateSavingsBtn = document.getElementById('update-savings-btn');
+            const savingsProgressFill = document.getElementById('savings-progress-fill');
+            const savingsDisplay = document.getElementById('savings-display');
+
+            let savings = JSON.parse(localStorage.getItem('savingsTracker')) || { goal: 0, current: 0 };
+
+            function saveSavings() {
+                localStorage.setItem('savingsTracker', JSON.stringify(savings));
+            }
+
+            function renderSavings() {
+                savingsGoalInput.value = savings.goal > 0 ? savings.goal : '';
+                currentSavingsInput.value = savings.current > 0 ? savings.current : '';
+
+                const percentage = savings.goal > 0 ? (savings.current / savings.goal) * 100 : 0;
+                savingsProgressFill.style.width = `${Math.min(percentage, 100)}%`;
+                savingsDisplay.textContent = `INR ${savings.current.toFixed(2)} / INR ${savings.goal.toFixed(2)}`;
+            }
+
+            updateSavingsBtn.addEventListener('click', () => {
+                const goal = parseFloat(savingsGoalInput.value);
+                const current = parseFloat(currentSavingsInput.value);
+
+                if (!isNaN(goal) && goal >= 0) {
+                    savings.goal = goal;
+                }
+                if (!isNaN(current) && current >= 0) {
+                    savings.current = current;
+                }
+                saveSavings();
+                renderSavings();
+            });
+
+            renderExpenses();
+            renderSavings();
+        });
+    </script>
+</body>
+</html>

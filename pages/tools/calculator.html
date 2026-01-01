@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scientific Calculator - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../chat/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/modules/tools/toolkit.css">
+    <style>
+        .calculator-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .calculator-display {
+            background: #f8f9fa;
+            border: 2px solid var(--toolkit-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            min-height: 80px;
+        }
+
+        .display-expression {
+            color: #666;
+            font-size: 1rem;
+            min-height: 24px;
+            margin-bottom: 0.5rem;
+        }
+
+        .display-result {
+            color: var(--toolkit-primary);
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: right;
+            word-break: break-all;
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calc-btn {
+            padding: 1.25rem;
+            font-size: 1.25rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            background: white;
+            border: 2px solid var(--toolkit-border);
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--toolkit-shadow-lg);
+        }
+
+        .calc-btn:active {
+            transform: translateY(0);
+        }
+
+        .calc-btn.operator {
+            background: var(--toolkit-primary);
+            color: white;
+            border-color: var(--toolkit-primary);
+        }
+
+        .calc-btn.function {
+            background: var(--toolkit-secondary);
+            color: white;
+            border-color: var(--toolkit-secondary);
+            font-size: 1rem;
+        }
+
+        .calc-btn.special {
+            background: var(--toolkit-danger);
+            color: white;
+            border-color: var(--toolkit-danger);
+        }
+
+        .calc-btn.wide {
+            grid-column: span 2;
+        }
+
+        .history-panel {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .history-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--toolkit-border);
+            cursor: pointer;
+        }
+
+        .history-item:hover {
+            background: white;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .memory-display {
+            background: var(--toolkit-warning);
+            color: var(--toolkit-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>🧮 Scientific Calculator</h1>
+            <p>Advanced calculator with scientific functions and history</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="calculator-container">
+                    <div id="memoryDisplay" class="memory-display" style="display: none;">
+                        Memory: <span id="memoryValue">0</span>
+                    </div>
+
+                    <div class="calculator-display">
+                        <div class="display-expression" id="expression"></div>
+                        <div class="display-result" id="result">0</div>
+                    </div>
+
+                    <div class="calculator-buttons">
+                        <!-- Row 1: Memory and Clear -->
+                        <button class="calc-btn function" onclick="calculator.memoryRecall()">MR</button>
+                        <button class="calc-btn function" onclick="calculator.memoryClear()">MC</button>
+                        <button class="calc-btn function" onclick="calculator.memoryAdd()">M+</button>
+                        <button class="calc-btn function" onclick="calculator.memorySubtract()">M-</button>
+
+                        <!-- Row 2: Scientific Functions -->
+                        <button class="calc-btn function" onclick="calculator.addFunction('sin(')">sin</button>
+                        <button class="calc-btn function" onclick="calculator.addFunction('cos(')">cos</button>
+                        <button class="calc-btn function" onclick="calculator.addFunction('tan(')">tan</button>
+                        <button class="calc-btn function" onclick="calculator.addFunction('log(')">log</button>
+
+                        <!-- Row 3: More Functions -->
+                        <button class="calc-btn function" onclick="calculator.addFunction('sqrt(')">√</button>
+                        <button class="calc-btn function" onclick="calculator.addToExpression('^')">x^y</button>
+                        <button class="calc-btn function" onclick="calculator.addToExpression('(')">(</button>
+                        <button class="calc-btn function" onclick="calculator.addToExpression(')')">)</button>
+
+                        <!-- Row 4: Clear and Backspace -->
+                        <button class="calc-btn special" onclick="calculator.clear()">C</button>
+                        <button class="calc-btn special" onclick="calculator.backspace()">⌫</button>
+                        <button class="calc-btn operator" onclick="calculator.addToExpression('%')">%</button>
+                        <button class="calc-btn operator" onclick="calculator.addToExpression('/')">÷</button>
+
+                        <!-- Row 5-7: Numbers and Operators -->
+                        <button class="calc-btn" onclick="calculator.addToExpression('7')">7</button>
+                        <button class="calc-btn" onclick="calculator.addToExpression('8')">8</button>
+                        <button class="calc-btn" onclick="calculator.addToExpression('9')">9</button>
+                        <button class="calc-btn operator" onclick="calculator.addToExpression('*')">×</button>
+
+                        <button class="calc-btn" onclick="calculator.addToExpression('4')">4</button>
+                        <button class="calc-btn" onclick="calculator.addToExpression('5')">5</button>
+                        <button class="calc-btn" onclick="calculator.addToExpression('6')">6</button>
+                        <button class="calc-btn operator" onclick="calculator.addToExpression('-')">−</button>
+
+                        <button class="calc-btn" onclick="calculator.addToExpression('1')">1</button>
+                        <button class="calc-btn" onclick="calculator.addToExpression('2')">2</button>
+                        <button class="calc-btn" onclick="calculator.addToExpression('3')">3</button>
+                        <button class="calc-btn operator" onclick="calculator.addToExpression('+')">+</button>
+
+                        <!-- Row 8: Zero and Equals -->
+                        <button class="calc-btn wide" onclick="calculator.addToExpression('0')">0</button>
+                        <button class="calc-btn" onclick="calculator.addToExpression('.')">.</button>
+                        <button class="calc-btn operator" onclick="calculator.calculate()">=</button>
+                    </div>
+
+                    <div class="mt-3 d-flex gap-2">
+                        <button class="btn btn-secondary btn-sm" onclick="calculator.copyResult()">📋 Copy</button>
+                        <button class="btn btn-secondary btn-sm" onclick="calculator.clearHistory()">🗑️ Clear
+                            History</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <h2>📜 History</h2>
+                    <div class="history-panel" id="historyPanel">
+                        <p class="text-muted text-center">No calculations yet</p>
+                    </div>
+                </div>
+
+                <div class="tool-section mt-3">
+                    <h2>ℹ️ Instructions</h2>
+                    <ul>
+                        <li><strong>Basic Operations:</strong> +, −, ×, ÷</li>
+                        <li><strong>Scientific:</strong> sin, cos, tan, log, √</li>
+                        <li><strong>Memory:</strong> M+ (add), M- (subtract), MR (recall), MC (clear)</li>
+                        <li><strong>Keyboard:</strong> Use number keys and operators</li>
+                        <li><strong>History:</strong> Click any history item to reuse</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../site/about.html">About</a>
+            <a href="../site/faq.html">FAQ</a>
+            <a href="../site/privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/modules/tools/toolkit-common.js"></script>
+    <script>
+        const calculator = {
+            expression: '',
+            result: '0',
+            memory: 0,
+            history: [],
+
+            init() {
+                this.loadHistory();
+                this.updateDisplay();
+                this.setupKeyboard();
+            },
+
+            addToExpression(value) {
+                this.expression += value;
+                this.updateDisplay();
+            },
+
+            addFunction(func) {
+                this.expression += func;
+                this.updateDisplay();
+            },
+
+            backspace() {
+                this.expression = this.expression.slice(0, -1);
+                this.updateDisplay();
+            },
+
+            clear() {
+                this.expression = '';
+                this.result = '0';
+                this.updateDisplay();
+            },
+
+            calculate() {
+                if (!this.expression) return;
+
+                try {
+                    // Replace mathematical functions
+                    let expr = this.expression
+                        .replace(/sin\(/g, 'Math.sin(')
+                        .replace(/cos\(/g, 'Math.cos(')
+                        .replace(/tan\(/g, 'Math.tan(')
+                        .replace(/log\(/g, 'Math.log10(')
+                        .replace(/sqrt\(/g, 'Math.sqrt(')
+                        .replace(/\^/g, '**')
+                        .replace(/π/g, 'Math.PI')
+                        .replace(/e/g, 'Math.E');
+
+                    // Evaluate
+                    const result = eval(expr);
+                    this.result = this.formatResult(result);
+
+                    // Add to history
+                    this.addToHistory(this.expression, this.result);
+
+                    // Update expression to result for chaining
+                    this.expression = this.result;
+                    this.updateDisplay();
+
+                } catch (error) {
+                    this.result = 'Error';
+                    this.updateDisplay();
+                    ToolkitUtils.showToast('Invalid expression', 'error');
+                }
+            },
+
+            formatResult(num) {
+                if (isNaN(num) || !isFinite(num)) return 'Error';
+
+                // Round to 10 decimal places
+                const rounded = Math.round(num * 10000000000) / 10000000000;
+
+                // Convert to string and remove trailing zeros
+                return rounded.toString();
+            },
+
+            updateDisplay() {
+                document.getElementById('expression').textContent = this.expression || '';
+                document.getElementById('result').textContent = this.result;
+            },
+
+            memoryAdd() {
+                const current = parseFloat(this.result);
+                if (!isNaN(current)) {
+                    this.memory += current;
+                    this.updateMemoryDisplay();
+                    ToolkitUtils.showToast('Added to memory', 'success');
+                }
+            },
+
+            memorySubtract() {
+                const current = parseFloat(this.result);
+                if (!isNaN(current)) {
+                    this.memory -= current;
+                    this.updateMemoryDisplay();
+                    ToolkitUtils.showToast('Subtracted from memory', 'success');
+                }
+            },
+
+            memoryRecall() {
+                this.expression = this.memory.toString();
+                this.result = this.memory.toString();
+                this.updateDisplay();
+            },
+
+            memoryClear() {
+                this.memory = 0;
+                this.updateMemoryDisplay();
+                ToolkitUtils.showToast('Memory cleared', 'info');
+            },
+
+            updateMemoryDisplay() {
+                const display = document.getElementById('memoryDisplay');
+                const value = document.getElementById('memoryValue');
+
+                if (this.memory !== 0) {
+                    display.style.display = 'block';
+                    value.textContent = this.memory;
+                } else {
+                    display.style.display = 'none';
+                }
+            },
+
+            addToHistory(expr, result) {
+                this.history.unshift({ expr, result, timestamp: new Date() });
+
+                // Keep only last 50 items
+                if (this.history.length > 50) {
+                    this.history = this.history.slice(0, 50);
+                }
+
+                this.saveHistory();
+                this.renderHistory();
+            },
+
+            renderHistory() {
+                const panel = document.getElementById('historyPanel');
+
+                if (this.history.length === 0) {
+                    panel.innerHTML = '<p class="text-muted text-center">No calculations yet</p>';
+                    return;
+                }
+
+                panel.innerHTML = this.history.map((item, index) => `
+                <div class="history-item" onclick="calculator.useHistoryItem(${index})">
+                    <div><strong>${item.expr}</strong></div>
+                    <div class="text-primary">= ${item.result}</div>
+                </div>
+            `).join('');
+            },
+
+            useHistoryItem(index) {
+                const item = this.history[index];
+                this.expression = item.expr;
+                this.result = item.result;
+                this.updateDisplay();
+            },
+
+            copyResult() {
+                ToolkitUtils.copyToClipboard(this.result);
+            },
+
+            clearHistory() {
+                if (confirm('Clear all calculation history?')) {
+                    this.history = [];
+                    this.saveHistory();
+                    this.renderHistory();
+                    ToolkitUtils.showToast('History cleared', 'info');
+                }
+            },
+
+            saveHistory() {
+                ToolkitUtils.storage.save('calculator_history', this.history);
+            },
+
+            loadHistory() {
+                this.history = ToolkitUtils.storage.load('calculator_history', []);
+                this.renderHistory();
+            },
+
+            setupKeyboard() {
+                document.addEventListener('keydown', (e) => {
+                    // Numbers and operators
+                    if (/^[0-9+\-*/.()%]$/.test(e.key)) {
+                        e.preventDefault();
+                        this.addToExpression(e.key);
+                    }
+                    // Enter for calculate
+                    else if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.calculate();
+                    }
+                    // Backspace
+                    else if (e.key === 'Backspace') {
+                        e.preventDefault();
+                        this.backspace();
+                    }
+                    // Escape for clear
+                    else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        this.clear();
+                    }
+                });
+            }
+        };
+
+        // Initialize calculator on page load
+        calculator.init();
+    </script>
+</body>
+
+</html>

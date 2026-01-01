@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Courses - Student Dashboard</title>
+    <link rel="stylesheet" href="../../assets/css/modules/dashboards/dashboard.css">
+</head>
+
+<body class="theme-student" data-role="student">
+    <aside class="sidebar">
+        <div class="brand"><span>🎓</span> Poornimites</div>
+        <nav class="nav-menu">
+            <a href="dashboard-student.html" class="nav-item"><i>📊</i> Dashboard</a>
+            <a href="dashboard-student-courses.html" class="nav-item active"><i>📚</i> My Courses</a>
+            <a href="dashboard-student-assignments.html" class="nav-item"><i>📝</i> Assignments</a>
+            <a href="../resources/career.html" class="nav-item"><i>🚀</i> Growth Zone</a>
+            <a href="dashboard-student-certificates.html" class="nav-item"><i>🏆</i> Certificates</a>
+            <a href="../user/profile.html" class="nav-item"><i>⚙️</i> Profile</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-mini">
+                <div class="avatar">PK</div>
+                <div class="user-info">
+                    <div>Student Name</div>
+                    <div class="user-role">Student</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <i class="menu-toggle" id="menuToggle">☰</i>
+                <h2>My Courses</h2>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn">🔔<span class="badge"></span></button>
+            </div>
+        </header>
+
+        <div class="dashboard-scroll">
+            <div class="dashboard-grid">
+                <div class="card" style="grid-column: 1 / -1;">
+                    <div class="card-header">
+                        <h3 class="card-title">Current Semester</h3>
+                    </div>
+                    <div
+                        style="display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:1.5rem;">
+
+                        <!-- Course Card 1 -->
+                        <div class="card" style="border:1px solid #e2e8f0; padding:0; overflow:hidden;">
+                            <div style="height:100px; background:linear-gradient(45deg, #2563eb, #60a5fa);"></div>
+                            <div style="padding:1.5rem;">
+                                <h4 style="margin:0 0 0.5rem 0;">Algorithm Design</h4>
+                                <p style="font-size:0.85rem; color:#64748b; margin-bottom:1rem;">Prof. Alan Turing</p>
+                                <div class="progress-bar" style="margin-bottom:1rem;">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <button class="btn-primary" style="width:100%;">Continue Learning</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 2 -->
+                        <div class="card" style="border:1px solid #e2e8f0; padding:0; overflow:hidden;">
+                            <div style="height:100px; background:linear-gradient(45deg, #3b82f6, #93c5fd);"></div>
+                            <div style="padding:1.5rem;">
+                                <h4 style="margin:0 0 0.5rem 0;">Web Technologies</h4>
+                                <p style="font-size:0.85rem; color:#64748b; margin-bottom:1rem;">Prof. Tim Berners-Lee
+                                </p>
+                                <div class="progress-bar" style="margin-bottom:1rem;">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                                <button class="btn-primary" style="width:100%;">Continue Learning</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../../assets/js/modules/dashboards/dashboard.js"></script>
+</body>
+
+</html>

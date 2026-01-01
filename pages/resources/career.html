@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Growth Zone - Poornimites</title>
+  <link rel="stylesheet" href="../../chat/style.css">
+  <link rel="stylesheet" href="../../assets/css/header.css">
+  <link rel="stylesheet" href="../../assets/css/footer.css">
+  <link rel="stylesheet" href="../../assets/css/modules/resources/career.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="../../tools.html">Tools</a>
+      <a href="notes.html">Notes</a>
+      <a href="../../index.html">Planner</a>
+      <a href="community.html">Community</a>
+      <a href="career.html" class="active">Career</a>
+    </nav>
+    <div class="nav-icons" id="navIcons">
+      <a href="#" id="auth-btn">👤</a>
+      <a href="../user/profile.html">⚙️</a>
+    </div>
+  </header>
+
+  <main class="career-container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1>🚀 Growth Zone</h1>
+      <p>Your gateway to internships, student project showcases, and skill-building resources.</p>
+    </section>
+
+    <!-- Internships Hub -->
+    <section class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">💼 Internship Hub</h2>
+      </div>
+
+      <div class="filter-container">
+        <span style="color: #64748b; font-weight: 600;">Find Opportunities:</span>
+        <input type="text" id="internshipSearch" class="search-input"
+          placeholder="Search by role, company, or skill...">
+        <select id="internshipFilter" class="filter-select">
+          <option value="all">All Types</option>
+          <option value="paid">Paid Only</option>
+          <option value="remote">Remote Only</option>
+        </select>
+      </div>
+
+      <div class="internship-list" id="internshipList">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- Project Showcase -->
+    <section class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">🏆 Student Project Showcase</h2>
+        <button class="btn-outline" onclick="alert('Submission form coming soon!')">Submit Your Project +</button>
+      </div>
+
+      <div class="showcase-grid" id="projectGrid">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- Skill Development -->
+    <section class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">⚡ Skill Development</h2>
+      </div>
+      <div class="skills-grid" id="skillGrid">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- Career Support -->
+    <section class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">🎯 Career Support</h2>
+      </div>
+      <div class="support-section">
+        <div class="support-box">
+          <div class="support-icon-area">📄</div>
+          <div>
+            <h3>Resume & Cover Letters</h3>
+            <p>Download ATS-friendly templates and guides to craft the perfect application.</p>
+            <button class="btn-outline">Browse Templates</button>
+          </div>
+        </div>
+        <div class="support-box">
+          <div class="support-icon-area">🤝</div>
+          <div>
+            <h3>Mock Interviews</h3>
+            <p>Practice with peers or mentors. Get feedback on your communication skills.</p>
+            <button class="btn-outline">Book Session</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs & Events -->
+    <section class="section-wrapper">
+      <div class="section-header">
+        <h2 class="section-title">📅 Upcoming Programs</h2>
+      </div>
+      <div class="internship-card" style="border-left: 5px solid #8b5cf6;">
+        <div class="job-main">
+          <div class="job-logo" style="color: #8b5cf6;">H</div>
+          <div class="job-info">
+            <h3>Winter Hackathon 2025</h3>
+            <div class="job-company">Innovation Lab • Campus Center</div>
+            <div class="job-tags">
+              <span class="tag">Coding</span>
+              <span class="tag">Prizes</span>
+              <span class="tag">48 Hours</span>
+            </div>
+          </div>
+        </div>
+        <div class="job-action">
+          <span class="deadline-text">Feb 15 - 17, 2025</span>
+          <button class="btn-apply" style="background: #8b5cf6;">Register</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../site/about.html">About</a>
+      <a href="../site/faq.html">FAQ</a>
+      <a href="../site/roadmap.html">Roadmap</a>
+      <a href="../site/privacy.html">Privacy</a>
+      <a href="../site/credits.html">Credits</a>
+    </div>
+    <div class="footer-text">
+      Made with 💙 by Students for Students. © 2025 Poornimites
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core/main.js"></script>
+  <script src="../../assets/js/modules/resources/career.js"></script>
+</body>
+
+</html>

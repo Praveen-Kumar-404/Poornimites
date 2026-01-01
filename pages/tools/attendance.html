@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Tracker - Poornimites Toolkit</title>
+    <link rel="stylesheet" href="../../chat/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/modules/tools/toolkit.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+        <nav class="nav-links">
+            <a href="../../tools.html">← Back to Toolkit</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="../../index.html">🏠</a>
+        </div>
+    </header>
+
+    <main class="toolkit-container">
+        <div class="toolkit-header">
+            <h1>📊 Attendance Tracker</h1>
+            <p>Track your class attendance and calculate percentage</p>
+        </div>
+
+        <div class="tool-grid">
+            <div>
+                <div class="tool-section">
+                    <h2>Add Subject</h2>
+                    <div class="form-group">
+                        <input type="text" id="subjectName" class="form-control" placeholder="Subject name">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="totalClasses" class="form-control" placeholder="Total classes" min="0">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="attendedClasses" class="form-control" placeholder="Classes attended"
+                            min="0">
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="attendance.add()">+ Add Subject</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="tool-section">
+                    <h2>Attendance Summary</h2>
+                    <div id="attendanceList"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="../site/about.html">About</a>
+            <a href="../site/faq.html">FAQ</a>
+            <a href="../site/privacy.html">Privacy</a>
+        </div>
+        <div class="footer-text">
+            Made with 💙 by Students for Students. © 2025 Poornimites
+        </div>
+    </footer>
+
+    <script src="../../assets/js/modules/tools/toolkit-common.js"></script>
+    <script>
+        const attendance = {
+            subjects: [],
+
+            init() {
+                this.load();
+                this.render();
+            },
+
+            add() {
+                const name = document.getElementById('subjectName').value.trim();
+                const total = parseInt(document.getElementById('totalClasses').value) || 0;
+                const attended = parseInt(document.getElementById('attendedClasses').value) || 0;
+
+                if (!name || total === 0) {
+                    ToolkitUtils.showToast('Please fill all fields', 'warning');
+                    return;
+                }
+
+                this.subjects.push({
+                    id: ToolkitUtils.generateId('subject'),
+                    name,
+                    total,
+                    attended
+                });
+
+                this.save();
+                this.render();
+
+                document.getElementById('subjectName').value = '';
+                document.getElementById('totalClasses').value = '';
+                document.getElementById('attendedClasses').value = '';
+
+                ToolkitUtils.showToast('Subject added!', 'success');
+            },
+
+            updateAttendance(id, attended) {
+                const subject = this.subjects.find(s => s.id === id);
+                if (subject) {
+                    subject.attended = parseInt(attended);
+                    this.save();
+                    this.render();
+                }
+            },
+
+            delete(id) {
+                if (confirm('Delete this subject?')) {
+                    this.subjects = this.subjects.filter(s => s.id !== id);
+                    this.save();
+                    this.render();
+                }
+            },
+
+            render() {
+                const container = document.getElementById('attendanceList');
+
+                if (this.subjects.length === 0) {
+                    container.innerHTML = '<p class="text-muted text-center">No subjects added</p>';
+                    return;
+                }
+
+                container.innerHTML = this.subjects.map(subject => {
+                    const percentage = ((subject.attended / subject.total) * 100).toFixed(1);
+                    const color = percentage >= 75 ? 'success' : percentage >= 60 ? 'warning' : 'danger';
+
+                    return `
+                    <div class="card mb-3 p-3">
+                        <div class="d-flex justify-between align-center mb-2">
+                            <h3 style="margin: 0;">${subject.name}</h3>
+                            <button class="btn btn-danger btn-sm" onclick="attendance.delete('${subject.id}')">×</button>
+                        </div>
+                        <div class="progress mb-2">
+                            <div class="progress-bar progress-bar-${color}" style="width: ${percentage}%">${percentage}%</div>
+                        </div>
+                        <div class="d-flex justify-between align-center">
+                            <div>
+                                <input type="number" value="${subject.attended}" min="0" max="${subject.total}" 
+                                       class="form-control" style="width: 80px; display: inline-block;"
+                                       onchange="attendance.updateAttendance('${subject.id}', this.value)">
+                                / ${subject.total} classes
+                            </div>
+                            <div class="text-${color}">
+                                ${percentage >= 75 ? '✓ Good' : percentage >= 60 ? '⚠ Warning' : '✗ Low'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                }).join('');
+            },
+
+            save() {
+                ToolkitUtils.storage.save('attendance_data', this.subjects);
+            },
+
+            load() {
+                this.subjects = ToolkitUtils.storage.load('attendance_data', []);
+            }
+        };
+
+        attendance.init();
+    </script>
+</body>
+
+</html>

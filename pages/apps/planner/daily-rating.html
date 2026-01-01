@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Rating - Poornima Planner</title>
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+    <link rel="stylesheet" href="../../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../../assets/css/sub-page.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="../../../index.html">← Back to Planner</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Daily Rating</h1>
+        <div class="content-card">
+            <div class="rating-section">
+                <h4>How was your day?</h4>
+                <div class="star-rating" id="dayRatingStars">
+                    <span class="star" data-value="1">⭐</span>
+                    <span class="star" data-value="2">⭐</span>
+                    <span class="star" data-value="3">⭐</span>
+                    <span class="star" data-value="4">⭐</span>
+                    <span class="star" data-value="5">⭐</span>
+                </div>
+                <div id="dayRatingText"></div>
+            </div>
+            
+            <div class="rating-section">
+                <h4>⚡ Energy Level</h4>
+                <div class="energy-level-container">
+                    <div class="energy-level-bar">
+                        <span>Low</span>
+                        <input type="range" min="0" max="100" value="70" class="slider" id="energyRange">
+                        <span>High</span>
+                    </div>
+                    <div id="energyValue">70%</div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const energyRange = document.getElementById('energyRange');
+            const energyValue = document.getElementById('energyValue');
+            const dayRatingStars = document.getElementById('dayRatingStars');
+            const dayRatingText = document.getElementById('dayRatingText');
+        
+        
+            let currentRating = 0;
+        
+            // Load saved data on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                const savedRating = localStorage.getItem('dailyRating');
+                const savedReflection = localStorage.getItem('dailyReflection');
+                const savedEnergy = localStorage.getItem('energyLevel');
+        
+                if (savedRating) {
+                    currentRating = parseInt(savedRating);
+                    updateStarRating(currentRating);
+                }
+        
+                if (savedEnergy) {
+                    energyRange.value = savedEnergy;
+                    energyValue.innerHTML = savedEnergy + '%';
+                }
+            });
+        
+            energyRange.oninput = function() {
+                energyValue.innerHTML = this.value + '%';
+                localStorage.setItem('energyLevel', this.value);
+            };
+        
+            dayRatingStars.addEventListener('click', (e) => {
+                if (e.target.classList.contains('star')) {
+                    currentRating = parseInt(e.target.dataset.value);
+                    updateStarRating(currentRating);
+                }
+            });
+        
+            function updateStarRating(rating) {
+                const stars = dayRatingStars.querySelectorAll('.star');
+                stars.forEach(star => {
+                    if (parseInt(star.dataset.value) <= rating) {
+                        star.classList.add('active');
+                    } else {
+                        star.classList.remove('active');
+                    }
+                });
+                dayRatingText.innerHTML = `${rating}/5 - ${getRatingText(rating)}`;
+            }
+        
+            function getRatingText(rating) {
+                switch (rating) {
+                    case 1: return 'Very Bad Day';
+                    case 2: return 'Bad Day';
+                    case 3: return 'Okay Day';
+                    case 4: return 'Good Day';
+                    case 5: return 'Excellent Day';
+                    default: return '';
+                }
+            }
+        
+        
+        </script>
+    </div>
+</body>
+</html>

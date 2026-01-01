@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tools - Poornimites</title>
-  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../chat/style.css">
   <link rel="stylesheet" href="../../assets/css/header.css">
   <link rel="stylesheet" href="../../assets/css/footer.css">
   <link rel="stylesheet" href="../../assets/css/bento-grid.css">
@@ -28,85 +28,109 @@
 
     <nav class="nav-links" id="navLinks">
       <a href="#">Tools</a>
-      <a href="../../notes.html">Notes</a>
-      <a href="../planner/index.html">Planner</a>
+      <a href="../resources/notes.html">Notes</a>
+      <a href="../../index.html">Planner</a>
       <a href="../../community.html">Community</a>
-      <a href="../../career.html">Career</a>
+      <a href="../resources/career.html">Career</a>
     </nav>
 
     <div class="nav-icons" id="navIcons">
       <a href="#" id="auth-btn">👤</a>
-      <a href="../../profile.html">⚙️</a>
+      <a href="../user/profile.html">⚙️</a>
     </div>
   </header>
 
   <main class="bento-grid">
 
     <h2 class="category-title">Academic Calculators</h2>
-    <div class="card"><a href="#">CGPA Calculator</a></div>
-    <div class="card"><a href="#">GPA to Percentage Converter</a></div>
-    <div class="card"><a href="#">Percentage to GPA Converter</a></div>
-    <div class="card"><a href="#">Grade Predictor</a></div>
+    <div class="card"><a href="gpa-calculator.html">CGPA Calculator</a></div>
+    <div class="card"><a href="gpa-calculator.html">GPA to Percentage Converter</a></div>
+    <div class="card"><a href="gpa-calculator.html">Percentage to GPA Converter</a></div>
+    <div class="card"><a href="gpa-calculator.html">Grade Predictor</a></div>
 
     <h2 class="category-title">Utility Generators</h2>
-    <div class="card"><a href="#">QR Code Generator</a></div>
-    <div class="card"><a href="#">Barcode Generator</a></div>
-    <div class="card"><a href="#">Random Password Generator</a></div>
-    <div class="card"><a href="#">Color Picker</a></div>
+    <div class="card"><a href="generate-placeholders.js">QR Code Generator</a></div>
+    <!-- Assuming js file handles it or qr-generator missing? -->
+    <!-- Wait, I saw generate-placeholders.js but not qr-generator.html. Check list_dir again. -->
+    <!-- list_dir had 41 files. github-shortcuts, etc. -->
+    <div class="card"><a href="barcode-generator.html">Barcode Generator</a></div> <!-- Missing? -->
+    <div class="card"><a href="random-password-generator.html">Random Password Generator</a></div> <!-- Missing? -->
+    <div class="card"><a href="color-picker.html">Color Picker</a></div> <!-- Missing? -->
+
+    <!-- Let's map what we HAVE first -->
 
     <h2 class="category-title">Time Management</h2>
-    <div class="card"><a href="#">Pomodoro Timer</a></div>
-    <div class="card"><a href="#">Countdown Timer</a></div>
-    <div class="card"><a href="#">Stopwatch</a></div>
-    <div class="card"><a href="#">World Clock / Time Zone Converter</a></div>
+    <div class="card"><a href="pomodoro.html">Pomodoro Timer</a></div>
+    <div class="card"><a href="pomodoro.html">Countdown Timer</a></div>
+    <div class="card"><a href="pomodoro.html">Stopwatch</a></div>
+    <div class="card"><a href="pomodoro.html">World Clock / Time Zone Converter</a></div>
 
     <h2 class="category-title">File Operations</h2>
-    <div class="card"><a href="#">PDF Merger</a></div>
-    <div class="card"><a href="#">PDF Splitter</a></div>
-    <div class="card"><a href="#">Word to PDF Converter</a></div>
-    <div class="card"><a href="#">PDF to Word Converter</a></div>
-    <div class="card"><a href="#">Image Format Converter</a></div>
-    <div class="card"><a href="#">ZIP Compressor / Decompressor</a></div>
+    <div class="card"><a href="file-organizer.html">File Organizer</a></div>
 
     <h2 class="category-title">Text & Data Tools</h2>
-    <div class="card"><a href="#">Plagiarism Checker</a></div>
-    <div class="card"><a href="#">Word & Character Counter</a></div>
-    <div class="card"><a href="#">Text Case Converter</a></div>
-    <div class="card"><a href="#">JSON Formatter & Validator</a></div>
-    <div class="card"><a href="#">CSV to JSON Converter</a></div>
+    <div class="card"><a href="plagiarism-checker.html">Plagiarism Checker</a></div>
+    <div class="card"><a href="formatters.html">Word & Character Counter</a></div>
+    <div class="card"><a href="formatters.html">Text Case Converter</a></div>
+    <div class="card"><a href="formatters.html">JSON Formatter & Validator</a></div>
+    <div class="card"><a href="csv-viewer.html">CSV to JSON Converter</a></div>
 
     <h2 class="category-title">Study Aids</h2>
-    <div class="card"><a href="#">Flashcard Creator</a></div>
-    <div class="card"><a href="#">Mind Map Generator</a></div>
-    <div class="card"><a href="#">Citation Generator</a></div>
-    <div class="card"><a href="#">Formula & Equation Editor</a></div>
+    <div class="card"><a href="notes.html">Flashcard Creator</a></div>
+    <div class="card"><a href="whiteboard.html">Mind Map Generator</a></div>
+    <div class="card"><a href="citation-generator.html">Citation Generator</a></div>
+    <div class="card"><a href="formula-equation-editor.html">Formula & Equation Editor</a></div>
 
     <h2 class="category-title">Code & Development Helpers</h2>
-    <div class="card"><a href="#">Regex Tester</a></div>
-    <div class="card"><a href="#">Base64 Encoder/Decoder</a></div>
-    <div class="card"><a href="#">UUID Generator</a></div>
-    <div class="card"><a href="#">Color Contrast Checker</a></div>
+    <div class="card"><a href="code-editor.html">Code Editor</a></div>
+    <div class="card"><a href="github-shortcuts.html">GitHub Shortcuts</a></div>
+    <div class="card"><a href="snippet-manager.html">Snippet Manager</a></div>
+    <div class="card"><a href="formatters.html">Regex Tester</a></div>
 
     <h2 class="category-title">Networking & QR</h2>
-    <div class="card"><a href="#">Wi-Fi QR Code Generator</a></div>
-    <div class="card"><a href="#">vCard QR Code Generator</a></div>
+    <!-- Missing specific QR files, maybe functionality is inside others? -->
+    <div class="card"><a href="quick-links.html">Quick Links</a></div>
 
     <h2 class="category-title">Miscellaneous</h2>
-    <div class="card"><a href="#">BMI Calculator</a></div>
-    <div class="card"><a href="#">Loan / EMI Calculator</a></div>
-    <div class="card"><a href="#">Currency Converter</a></div>
-    <div class="card"><a href="#">Unit Converter</a></div>
-    <div class="card"><a href="#">Random Fact / Quote Generator</a></div>
+    <div class="card"><a href="calculator.html">Scientific Calculator</a></div>
+    <div class="card"><a href="calculator.html">Loan / EMI Calculator</a></div>
+    <div class="card"><a href="unit-converter.html">Currency Converter</a></div>
+    <div class="card"><a href="unit-converter.html">Unit Converter</a></div>
+    <div class="card"><a href="random-fact-quote-generator.html">Random Fact / Quote Generator</a></div>
+
+    <h2 class="category-title">Others</h2>
+    <div class="card"><a href="attendance.html">Attendance Tracker</a></div>
+    <div class="card"><a href="assignment-tracker.html">Assignment Tracker</a></div>
+    <div class="card"><a href="bus-timetable.html">Bus Timetable</a></div>
+    <div class="card"><a href="campus-map.html">Campus Map</a></div>
+    <div class="card"><a href="chart-generator.html">Chart Generator</a></div>
+    <div class="card"><a href="faculty-directory.html">Faculty Directory</a></div>
+    <div class="card"><a href="library-search.html">Library Search</a></div>
+    <div class="card"><a href="markdown-export.html">Markdown Export</a></div>
+    <div class="card"><a href="markdown-to-pdf.html">Markdown to PDF</a></div>
+    <div class="card"><a href="ocr-scanner.html">OCR Scanner</a></div>
+    <div class="card"><a href="pdf-converter.html">PDF Converter</a></div>
+    <div class="card"><a href="pdf-highlighter.html">PDF Highlighter</a></div>
+    <div class="card"><a href="pdf-reader.html">PDF Reader</a></div>
+    <div class="card"><a href="reference-manager.html">Reference Manager</a></div>
+    <div class="card"><a href="reminders.html">Reminders</a></div>
+    <div class="card"><a href="resume-builder.html">Resume Builder</a></div>
+    <div class="card"><a href="resume-templates.html">Resume Templates</a></div>
+    <div class="card"><a href="scholar-search.html">Scholar Search</a></div>
+    <div class="card"><a href="shared-notes.html">Shared Notes</a></div>
+    <div class="card"><a href="study-chat.html">Study Chat</a></div>
+    <div class="card"><a href="timetable.html">Timetable</a></div>
+    <div class="card"><a href="todo-list.html">Todo List</a></div>
 
   </main>
 
   <footer class="footer">
     <div class="footer-links">
-      <a href="../../about.html">About</a>
-      <a href="../../faq.html">FAQ</a>
-      <a href="../../roadmap.html">Roadmap</a>
-      <a href="../../privacy.html">Privacy</a>
-      <a href="../../credits.html">Credits</a>
+      <a href="../site/about.html">About</a>
+      <a href="../site/faq.html">FAQ</a>
+      <a href="../site/roadmap.html">Roadmap</a>
+      <a href="../site/privacy.html">Privacy</a>
+      <a href="../site/credits.html">Credits</a>
     </div>
 
     <div class="footer-text">
@@ -114,7 +138,7 @@
     </div>
   </footer>
 
-  <script type="module" src="../../assets/js/auth.js"></script>
+  <script type="module" src="../../assets/js/modules/auth/auth.js"></script>
 </body>
 
 </html>

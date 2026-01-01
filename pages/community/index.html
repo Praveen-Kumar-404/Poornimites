@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Lounge - Poornimites</title>
+  <link rel="stylesheet" href="../../chat/style.css">
+  <link rel="stylesheet" href="../../assets/css/header.css">
+  <link rel="stylesheet" href="../../assets/css/footer.css">
+  <link rel="stylesheet" href="../../assets/css/bento-grid.css">
+  <link rel="stylesheet" href="../../assets/css/sub-page.css">
+  <link rel="stylesheet" href="../../assets/css/modules/community/student-lounge.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="../../tools.html">Tools</a>
+      <a href="../resources/notes.html">Notes</a>
+      <a href="../../index.html">Planner</a>
+      <a href="community.html" class="active">Community</a>
+      <a href="../resources/career.html">Career</a>
+    </nav>
+    <div class="nav-icons" id="navIcons">
+      <a href="#" id="auth-btn">👤</a>
+      <a href="../user/profile.html">⚙️</a>
+    </div>
+  </header>
+
+  <main class="lounge-container">
+    <div class="lounge-header">
+      <h1>💬 Student Lounge</h1>
+      <p class="subtitle">The anonymous, safe space for campus conversations. NO ACADEMIC PRESSURE.</p>
+    </div>
+
+    <!-- Layout: Tabs + Content -->
+    <nav class="lounge-tabs">
+      <button class="tab-btn active" data-tab="confessions">🤫 Confessions</button>
+      <button class="tab-btn" data-tab="forums">🗣️ Forums</button>
+      <button class="tab-btn" data-tab="memes">😂 Memes</button>
+      <button class="tab-btn" data-tab="polls">📊 Polls</button>
+    </nav>
+
+    <div class="lounge-content">
+      <!-- Left Feed -->
+      <section class="feed-container" id="feed-container">
+        <!-- Content injected by JS -->
+        <div class="loading-state">
+          <p>Loading the tea... ☕</p>
+        </div>
+      </section>
+
+      <!-- Right Sidebar -->
+      <aside class="side-panel">
+        <div class="panel-card">
+          <h3>🔥 Trending Now</h3>
+          <ul class="trend-list">
+            <li class="trend-item"><a href="#">#HostelCurfew</a></li>
+            <li class="trend-item"><a href="#">#ExamStress</a></li>
+            <li class="trend-item"><a href="#">#CanteenFood</a></li>
+            <li class="trend-item"><a href="#">#FreshersParty</a></li>
+          </ul>
+        </div>
+
+        <div class="panel-card">
+          <h3>🛑 Community Rules</h3>
+          <ul class="trend-list">
+            <li class="trend-item">1. No targeting specific students/faculty.</li>
+            <li class="trend-item">2. No hate speech or bullying.</li>
+            <li class="trend-item">3. Keep it fun and supportive.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <button class="fab" id="createPostBtn" aria-label="Create Post">
+      ✎
+    </button>
+  </main>
+
+  <!-- Modal: Create Post -->
+  <div class="modal" id="createModal">
+    <div class="modal-content">
+      <div class="lounge-header" style="margin-bottom: 1rem; padding-bottom: 1rem;">
+        <h2 id="modalTitle">Create Post</h2>
+        <button class="modal-close" id="closeModalBtn"
+          style="float:right; border:none; background:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+      </div>
+
+      <form id="createPostForm">
+        <!-- Dynamic Category Select -->
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label style="display:block; font-weight:bold; margin-bottom:0.5rem">Post Type</label>
+          <select id="postType" class="form-control"
+            style="width:100%; padding:0.5rem; border-radius:8px; border:1px solid #ccc;">
+            <option value="confessions">Confession (Anonymous)</option>
+            <option value="forums">Forum Discussion</option>
+            <option value="memes">Meme</option>
+            <option value="polls">Campus Poll</option>
+          </select>
+        </div>
+
+        <!-- Dynamic Fields Container -->
+        <div id="dynamicFields">
+          <!-- Text Area (Default) -->
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label style="display:block; font-weight:bold; margin-bottom:0.5rem">Content</label>
+            <textarea id="postContent" rows="5" class="form-control" placeholder="Speak your mind..."
+              style="width:100%; padding:0.5rem; border-radius:8px; border:1px solid #ccc;"></textarea>
+            <div id="charCount" style="text-align:right; font-size:0.8rem; color:#666;">0/500</div>
+          </div>
+
+          <!-- Tags -->
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label style="display:block; font-weight:bold; margin-bottom:0.5rem">Tags (Optional)</label>
+            <div class="tags-input" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <label><input type="checkbox" name="tags" value="Academic"> Academic</label>
+              <label><input type="checkbox" name="tags" value="Relationships"> Relationships</label>
+              <label><input type="checkbox" name="tags" value="Funny"> Funny</label>
+              <label><input type="checkbox" name="tags" value="Rant"> Rant</label>
+              <label><input type="checkbox" name="tags" value="Campus Life"> Campus Life</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary"
+          style="background:#0066cc; color:white; border:none; padding:0.8rem 1.5rem; border-radius:8px; width:100%; font-size:1rem; cursor:pointer; margin-top:1rem;">Post</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="../site/about.html">About</a>
+      <a href="../site/faq.html">FAQ</a>
+      <a href="../site/roadmap.html">Roadmap</a>
+      <a href="../site/privacy.html">Privacy</a>
+      <a href="../site/credits.html">Credits</a>
+    </div>
+    <div class="footer-text">
+      Made with 💙 by Students for Students. © 2025 Poornimites
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core/main.js"></script>
+  <script src="../../assets/js/modules/community/student-lounge.js"></script>
+</body>
+
+</html>

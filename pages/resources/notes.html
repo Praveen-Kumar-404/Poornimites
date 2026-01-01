@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poornimites - Dashboard</title>
+  <link rel="stylesheet" href="../../chat/style.css">
+  <link rel="stylesheet" href="../../assets/css/header.css">
+  <link rel="stylesheet" href="../../assets/css/footer.css">
+  <link rel="stylesheet" href="../../assets/css/bento-grid.css">
+  <link rel="stylesheet" href="../../assets/css/neumorphism.css">
+  <title>Poornimites</title>
+
+</head>
+
+<body class="neuro-body">
+
+  <header class="navbar">
+    <div class="logo">🎓 <a href="../../index.html">Poornimites</a></div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="../../tools.html">Tools</a>
+      <a href="notes.html">Notes</a>
+      <a href="planner.html">Planner</a>
+      <a href="community.html">Community</a>
+      <a href="career.html">Career</a>
+    </nav>
+
+    <div class="nav-icons" id="navIcons">
+      <a href="#" id="auth-btn">👤</a>
+      <a href="../user/profile.html">⚙️</a>
+    </div>
+  </header>
+
+  <main class="bento-grid neuro-grid">
+
+    <!-- Subject Pages with PDF Unlock Logic -->
+    <div class="card neuro-card pdf-card" data-src="../../assets/paper/ads.html">
+      <h2>Advanced Data Structure</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card neuro-card pdf-card" data-src="../../assets/paper/iot.html">
+      <h2>Internet of Things</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card neuro-card pdf-card" data-src="../../assets/paper/ems.html">
+      <h2>Entrepreneurial & Managment Skills</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card neuro-card pdf-card" data-src="../../assets/paper/asp.html">
+      <h2>ASP.Net</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card neuro-card pdf-card" data-src="../../assets/paper/web.html">
+      <h2>Web Services</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+    <div class="card neuro-card pdf-card" data-src="../../assets/paper/mad.html">
+      <h2>Mobile Application Development</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+
+    <div class="card neuro-card pdf-card" data-src="../../assets/paper/ai.html">
+      <h2>Artificial Intelligence</h2>
+      <div class="pdf-frame"></div>
+    </div>
+
+  </main>
+
+  <div id="disclaimer-modal" class="neuro-modal" style="display:none;">
+    <div class="neuro-modal-content">
+      <h2>Disclaimer</h2>
+      <p>This website is for educational purposes only. Access to certain content is restricted until the scheduled
+        time.</p>
+      <button id="accept-btn" class="neuro-btn neuro-btn-primary"><span>Accept</span></button>
+    </div>
+  </div>
+
+  <div id="creator-modal" class="neuro-modal" style="display:none;">
+    <div class="neuro-modal-content">
+      <h2>Creator Info</h2>
+      <p>Developed by Praveen Kumar 🚀</p>
+      <button id="close-creator" class="neuro-btn neuro-btn-primary"><span>Close</span></button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+      <a href="../site/about.html">About</a>
+      <a href="../site/faq.html">FAQ</a>
+      <a href="../site/roadmap.html">Roadmap</a>
+      <a href="../site/privacy.html">Privacy</a>
+      <a href="../site/credits.html">Credits</a>
+    </div>
+
+    <div class="footer-text">
+      Made with 💙 by Students for Students. © 2025 StudentHub
+    </div>
+  </footer>
+
+  <script>
+    const pdfCards = document.querySelectorAll('.pdf-card');
+    const modal = document.getElementById('disclaimer-modal');
+    const acceptBtn = document.getElementById('accept-btn');
+    const creatorBtn = document.getElementById('creator-btn');
+    const creatorModal = document.getElementById('creator-modal');
+    const closeCreator = document.getElementById('close-creator');
+
+    const unlockTimes = {
+      "ads.html": new Date("2025-11-26T20:00:00"),
+      "iot.html": new Date("2025-12-04T20:00:00"),
+      "ems.html": new Date("2025-12-09T20:00:00"),
+      "asp.html": new Date("2025-11-28T20:00:00"),
+      "web.html": new Date("2025-12-05T20:00:00"),
+      "mad.html": new Date("2025-11-30T20:00:00"),
+      "ai.html": new Date("2025-12-03T20:00:00")
+    };
+
+    const enableUnlockedPages = () => {
+      const now = new Date();
+
+      pdfCards.forEach(card => {
+        const src = card.getAttribute('data-src');
+        const filename = src.split('/').pop();
+        const unlockTime = unlockTimes[filename];
+        const frame = card.querySelector('.pdf-frame');
+
+        if (unlockTime && now >= unlockTime) {
+          frame.innerHTML = `<a href="${src}" class="neuro-link">Let's Learn →</a>`;
+        } else if (unlockTime) {
+          const countdown = document.createElement('span');
+          countdown.classList.add('countdown', 'neuro-countdown');
+          frame.innerHTML = `⏳ Unlocks on ${unlockTime.toDateString()}<br>`;
+          frame.appendChild(countdown);
+          updateCountdown(countdown, unlockTime);
+          setInterval(() => updateCountdown(countdown, unlockTime), 1000);
+        } else {
+          frame.innerHTML = `<a href="${src}" class="neuro-link">Let's Learn →</a>`;
+        }
+      });
+    };
+
+    function updateCountdown(element, unlockTime) {
+      const now = new Date();
+      const remaining = unlockTime - now;
+
+      if (remaining <= 0) {
+        element.textContent = "Unlocked!";
+        return;
+      }
+
+      const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+      element.textContent = `⏱ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const disclaimerShown = sessionStorage.getItem('disclaimerAccepted');
+    if (!disclaimerShown) {
+      modal.style.display = 'flex';
+    } else {
+      enableUnlockedPages();
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      sessionStorage.setItem('disclaimerAccepted', 'true');
+      enableUnlockedPages();
+    });
+
+    if (creatorBtn && closeCreator) {
+      creatorBtn.addEventListener('click', () => {
+        creatorModal.style.display = 'flex';
+      });
+
+      closeCreator.addEventListener('click', () => {
+        creatorModal.style.display = 'none';
+      });
+    }
+  </script>
+
+  <script type="module">
+    import { supabase } from "./assets/js/core/supabase-init.js";
+
+    // Authentication protection - hide content if not logged in
+    document.addEventListener('DOMContentLoaded', async function () {
+      const mainContent = document.querySelector('main.bento-grid');
+      const loginMessage = document.createElement('div');
+      loginMessage.className = 'login-message';
+      loginMessage.innerHTML = `
+        <div class="neuro-login-message">
+          <h2>Login Required</h2>
+          <p>Please log in to access the notes.</p>
+          <p>Click the 👤 icon in the top right corner to log in.</p>
+        </div>
+      `;
+
+      // Initially hide the content
+      mainContent.style.display = 'none';
+      document.body.insertBefore(loginMessage, mainContent);
+
+      supabase.auth.onAuthStateChange((event, session) => {
+        const user = session ? session.user : null;
+        if (user) {
+          // User is logged in, show content
+          mainContent.style.display = 'grid';
+          loginMessage.style.display = 'none';
+        } else {
+          // User is not logged in, keep content hidden
+          mainContent.style.display = 'none';
+          loginMessage.style.display = 'block';
+        }
+        updateAuthButton(user);
+      });
+    });
+
+    const authBtn = document.getElementById("auth-btn");
+
+    function updateAuthButton(user) {
+      if (user) {
+        authBtn.textContent = "🚪";
+        authBtn.href = "#";
+        authBtn.onclick = async (e) => {
+          e.preventDefault();
+          const { error } = await supabase.auth.signOut();
+          if (error) {
+            console.error(error);
+            alert("Logout failed");
+          } else {
+            alert("Logged out successfully");
+          }
+        };
+      } else {
+        authBtn.textContent = "👤";
+        authBtn.href = "#";
+        authBtn.onclick = (e) => {
+          e.preventDefault();
+          // Redirect to auth page
+          window.location.href = `auth.html?redirect=${encodeURIComponent(window.location.pathname.split('/').pop() || '../../index.html')}`;
+        };
+      }
+    }
+  </script>
+
+
+</body>
+
+</html>

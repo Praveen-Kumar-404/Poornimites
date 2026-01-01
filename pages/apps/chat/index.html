@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat - Poornimites</title>
+    <link rel="stylesheet" href="../../../chat/style.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🎓 <a href="../../../index.html">Poornimites</a></div>
+        <nav class="nav-links" id="navLinks">
+            <a href="../../../tools.html">Tools</a>
+            <a href="../../resources/notes.html">Notes</a>
+            <a href="../../../index.html">Planner</a>
+            <a href="community.html">Community</a>
+            <a href="../../resources/career.html">Career</a>
+        </nav>
+        <div class="nav-icons" id="navIcons">
+            <a href="#" id="auth-btn">👤</a>
+            <a href="../../user/profile.html">⚙️</a>
+        </div>
+    </header>
+
+    <!-- Chat Application Container -->
+    <div id="chat-root">
+        <!-- Chat app will be loaded here -->
+    </div>
+
+    <!-- Load Auth -->
+    <script type="module" src="../../../assets/js/modules/auth/auth.js"></script>
+
+    <!-- Load Chat App -->
+    <script type="module" src="chat-app.js"></script>
+</body>
+
+</html>
