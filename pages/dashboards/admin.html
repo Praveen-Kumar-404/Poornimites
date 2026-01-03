@@ -17,7 +17,36 @@
             display: block;
             opacity: 1;
         }
+
+        body {
+            visibility: hidden;
+            /* Hide content until auth check passes */
+        }
     </style>
+    <script type="module">
+        import { supabase } from "../../assets/js/core/supabase-init.js";
+
+        async function checkAdminAccess() {
+            const { data: { session } } = await supabase.auth.getSession();
+
+            if (!session) {
+                window.location.href = "../auth/login.html";
+                return;
+            }
+
+            const userEmail = session.user.email;
+            const ADMIN_EMAIL = "2023bcapraveen14906@poornima.edu.in";
+
+            if (userEmail !== ADMIN_EMAIL) {
+                alert("Access Denied: You are not authorized to view this page.");
+                window.location.href = "../../index.html";
+            } else {
+                document.body.style.visibility = "visible";
+            }
+        }
+
+        checkAdminAccess();
+    </script>
 </head>
 
 <body class="theme-admin" data-role="admin">

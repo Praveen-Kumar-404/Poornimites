@@ -133,14 +133,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // SPA Navigation Logic
-    // Show default section (dashboard) if no active section
+    // 1. Check for Hash in URL
+    const hash = window.location.hash;
+    let initialSectionId = null;
+
+    if (hash) {
+        // Remove '#'
+        const id = hash.substring(1);
+        const target = document.getElementById(id);
+        if (target && target.classList.contains('dashboard-section')) {
+            initialSectionId = id;
+        }
+    }
+
+    // 2. Activate Initial Section
     const sections = document.querySelectorAll('.dashboard-section');
-    if (sections.length > 0 && !document.querySelector('.dashboard-section.active')) {
-        sections[0].classList.add('active');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    if (initialSectionId) {
+        // Hide all
+        sections.forEach(s => s.classList.remove('active'));
+        // Show target
+        document.getElementById(initialSectionId).classList.add('active');
+
+        // Update Sidebar
+        navItems.forEach(nav => {
+            nav.classList.remove('active');
+            if (nav.getAttribute('data-section') === initialSectionId) {
+                nav.classList.add('active');
+            }
+        });
+    } else {
+        // Default to first section (Dashboard) if no hash or invalid hash
+        if (sections.length > 0 && !document.querySelector('.dashboard-section.active')) {
+            sections[0].classList.add('active');
+            // Ensure first nav item is active
+            if (navItems.length > 0) navItems[0].classList.add('active');
+        }
     }
 
     // Navigation Click Handlers
-    const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
             const targetSectionId = item.getAttribute('data-section');
