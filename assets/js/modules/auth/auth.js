@@ -71,17 +71,27 @@ if (authBtn) {
       authBtn.href = "#";
       authBtn.onclick = async (e) => {
         e.preventDefault();
-        const { error } = await supabase.auth.signOut();
-        if (error) {
-          console.error(error);
-          alert("Logout failed");
-        } else {
-          // Record logout time
+
+        // 1. Set status to offline BEFORE signing out (while still authenticated)
+        try {
           await supabase.from("users").update({
-            // lastLogout: new Date().toISOString() // if column exists
             status: 'offline'
           }).eq('id', user.id);
+        } catch (err) {
+          console.warn("Failed to update status before logout:", err);
+          // Continue with logout anyway
+        }
+
+        // 2. Perform Sign Out
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+          console.error(error);
+          alert("Logout failed: " + error.message);
+        } else {
           alert("Logged out successfully");
+          // Optional: Redirect to home or refresh
+          window.location.reload();
         }
       };
     } else {
