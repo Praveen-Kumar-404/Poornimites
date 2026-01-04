@@ -1,5 +1,6 @@
 // assets/js/dashboard.js
 import { supabase } from '../../core/supabase-init.js';
+import { hasPermission } from '../../core/rbac.js';
 
 
 /**
@@ -222,13 +223,25 @@ function initDashboard(role, data) {
     renderStats(data.stats);
 
     // 3. Render Role-Specific Widgets
-    if (role === 'student') renderStudentWidgets(data);
-    if (role === 'teacher') renderTeacherWidgets(data);
-    if (role === 'admin') {
+    // Convert single string role to array for RBAC
+    currentUserRoles = [role]; // Update global state
+    const userRoles = currentUserRoles;
+
+    if (hasPermission(userRoles, 'courses.view') && role === 'student') renderStudentWidgets(data);
+    if (hasPermission(userRoles, 'courses.manage') && role === 'teacher') renderTeacherWidgets(data);
+
+    // Admin & Moderator Views
+    if (hasPermission(userRoles, 'system.view_logs')) {
         renderAdminWidgets(data);
-        initUserManagement();
     }
-    if (role === 'moderator') renderModeratorWidgets(data);
+
+    if (hasPermission(userRoles, 'users.manage')) {
+        initUserManagement(userRoles);
+    }
+
+    if (hasPermission(userRoles, 'moderation.view_queue')) {
+        renderModeratorWidgets(data);
+    }
 }
 
 /**
@@ -314,7 +327,8 @@ function renderTeacherWidgets(data) {
                     </div>
                     <div style="text-align:right;">
                         <div style="font-weight:600; color:var(--accent-color);">${c.time}</div>
-                        <button class="icon-btn" style="font-size:0.9rem;">Start Class</button>
+                        <!-- Permission Check for Action -->
+                        <button class="icon-btn" style="font-size:0.9rem;" ${!hasPermission(['teacher'], 'courses.manage') ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>Start Class</button>
                     </div>
                 </div>
             </div>
@@ -419,7 +433,11 @@ function renderModeratorWidgets(data) {
                 </div>
                 <p style="margin:0.5rem 0; font-size:0.95rem;">${q.item}</p>
                 <div style="display:flex; gap:0.5rem; justify-content:flex-end;">
-                    <button class="btn-primary" style="background:#ef4444; padding:0.25rem 0.75rem; font-size:0.8rem;" onclick="alert('User Banned!')">Ban User</button>
+                    <!-- Permission Check: moderation.suspend_user -->
+                    <button class="btn-primary" 
+                        style="background:#ef4444; padding:0.25rem 0.75rem; font-size:0.8rem; ${!hasPermission(currentUserRoles, 'moderation.suspend_user') ? 'opacity:0.5; cursor:not-allowed;' : ''}" 
+                        onclick="${hasPermission(currentUserRoles, 'moderation.suspend_user') ? "alert('User Banned!')" : "alert('Permission Denied')"}"
+                    >Ban User</button>
                     <button class="btn-primary" style="background:#64748b; padding:0.25rem 0.75rem; font-size:0.8rem;">Ignore</button>
                 </div>
             </div>
@@ -463,12 +481,13 @@ function renderModeratorWidgets(data) {
 /**
  * USER MANAGEMENT LOGIC (Admin)
  */
+let currentUserRoles = []; // Module-level state for RBAC
 let allUsers = [];
 let currentSort = { field: 'username', dir: 'asc' }; // 'username' matches DB column
 let currentPage = 1;
 const USERS_PER_PAGE = 20;
 
-async function initUserManagement() {
+async function initUserManagement(roles) {
     console.log("Initializing User Management...");
 
     // Event Listeners
@@ -502,6 +521,7 @@ async function initUserManagement() {
     }
 
     // Initial Fetch
+    // Store current user roles globally is handled in initDashboard now
     await fetchAndRenderUsers();
 }
 
@@ -624,7 +644,11 @@ function renderUserTable(users) {
                 <span class="status-pill ${getStatusBadgeClass(u.status)}">${u.status || 'Offline'}</span>
             </td>
             <td>
-                <button class="icon-btn" onclick="window.openEditModal('${u.id}')" title="Edit Roles">✏️</button>
+                <!-- Permission Check: users.manage AND users.assign_role needed to edit -->
+                ${hasPermission(currentUserRoles, 'users.assign_role') ?
+                `<button class="icon-btn" onclick="window.openEditModal('${u.id}')" title="Edit Roles">✏️</button>` :
+                `<span style="color:#cbd5e1; cursor:not-allowed;">🔒</span>`
+            }
             </td>
         </tr>
     `}).join('');
@@ -681,6 +705,14 @@ async function handleRoleSave(e) {
     const originalText = btn.innerText;
     btn.disabled = true;
     btn.innerText = "Saving...";
+
+    // Security Check
+    if (!hasPermission(currentUserRoles, 'users.assign_role')) {
+        alert("You do not have permission to assign roles.");
+        btn.disabled = false;
+        btn.innerText = originalText;
+        return;
+    }
 
     const userId = document.getElementById('editUserId').value;
     const checkboxes = document.querySelectorAll('#editRoleForm input[name="role"]:checked');

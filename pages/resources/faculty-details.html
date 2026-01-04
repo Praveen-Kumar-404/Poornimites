@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <script>
+    <script type="module">
         // Faculty and Staff Data
         const facultyData = [
             // Chairman
@@ -511,6 +511,15 @@
             }
         ];
 
+        // MOCK USER ROLE - In a real app this comes from Auth logic
+        // Changing this value will toggle the UI state for testing
+        // Options: 'admin', 'moderator', 'teacher', 'student'
+        const CURRENT_USER_ROLE = document.body.getAttribute('data-role') || 'student';
+
+        // Initialize permissions
+        import { hasPermission } from '../../assets/js/core/rbac.js';
+
+
         // Initialize the page
         let currentFilter = 'all';
         let userRatings = JSON.parse(localStorage.getItem('facultyRatings') || '{}');
@@ -581,7 +590,7 @@
                                 </div>
                             </div>
                             
-                            <div class="rating-section">
+                            <div class="rating-section" style="${!hasPermission([CURRENT_USER_ROLE], 'faculty.rate') ? 'display:none;' : ''}">
                                 <div class="rating-header">
                                     <span class="rating-label">Overall Rating</span>
                                     <span class="rating-score">${person.rating.toFixed(1)}/5.0</span>
@@ -594,6 +603,13 @@
                                 <div class="rating-count">${person.ratingCount} ratings</div>
                                 <button class="rate-btn" onclick="submitRating('${person.email}')">
                                     ${userRating > 0 ? 'Update Rating' : 'Rate Now'}
+                                </button>
+                            </div>
+
+                            <!-- Edit Controls (Admin/Mod Only) -->
+                             <div class="edit-section" style="${!hasPermission([CURRENT_USER_ROLE], 'faculty.edit') ? 'display:none;' : 'margin-top:1rem; border-top:1px solid #e2e8f0; padding-top:1rem;'}">
+                                <button class="contact-btn" style="width:100%; justify-content:center; background:#f1f5f9; color:#475569;" onclick="alert('Edit Faculty: ${person.name}')">
+                                    ✏️ Edit Details
                                 </button>
                             </div>
                             
