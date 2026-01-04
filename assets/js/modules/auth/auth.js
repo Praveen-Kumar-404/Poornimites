@@ -86,6 +86,12 @@ if (authBtn) {
         const { error } = await supabase.auth.signOut();
 
         if (error) {
+          // If session is missing, we are already logged out from the client's perspective
+          if (error.message.includes("Auth session missing")) {
+            console.warn("Session was already missing. Treating as successful logout.");
+            window.location.reload();
+            return;
+          }
           console.error(error);
           alert("Logout failed: " + error.message);
         } else {
