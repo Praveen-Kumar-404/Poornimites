@@ -150,45 +150,74 @@
                     <div class="card" style="grid-column: 1 / -1;">
                         <div class="card-header">
                             <h3 class="card-title">User Management</h3>
-                            <button class="btn-primary">Add User +</button>
+                            <button class="btn-primary" onclick="alert('Feature coming soon: Invite via Email')">Add
+                                User +</button>
                         </div>
-                        <div style="margin-bottom:1rem; display:flex; gap:1rem;">
-                            <input type="text" placeholder="Search users..."
-                                style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px; flex:1;">
-                            <select style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px;">
-                                <option>All Roles</option>
-                                <option>Student</option>
-                                <option>Teacher</option>
+                        <div style="margin-bottom:1rem; display:flex; gap:1rem; flex-wrap: wrap;">
+                            <input type="text" id="userSearch" placeholder="Search by name or email..."
+                                style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px; flex:1; min-width: 200px;">
+                            <select id="roleFilter"
+                                style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px;">
+                                <option value="all">All Roles</option>
+                                <option value="Student">Student</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Moderator">Moderator</option>
+                                <option value="Administrator">Administrator</option>
+                            </select>
+                            <select id="sortOption"
+                                style="padding:0.5rem; border:1px solid #e2e8f0; border-radius:4px;">
+                                <option value="name">Sort by Name</option>
+                                <option value="role">Sort by Role</option>
+                                <option value="status">Sort by Status</option>
                             </select>
                         </div>
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Role</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Praveen Kumar</td>
-                                    <td><span class="status-pill status-success">Student</span></td>
-                                    <td>praveen@example.com</td>
-                                    <td>Active</td>
-                                    <td><button class="icon-btn">✏️</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Dr. Sarah Wilson</td>
-                                    <td><span class="status-pill status-warning">Teacher</span></td>
-                                    <td>sarah@example.com</td>
-                                    <td>Active</td>
-                                    <td><button class="icon-btn">✏️</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th style="cursor:pointer" onclick="handleSort('name')">Name ↕</th>
+                                        <th style="cursor:pointer" onclick="handleSort('email')">Email ↕</th>
+                                        <th style="cursor:pointer" onclick="handleSort('role')">Role(s) ↕</th>
+                                        <th style="cursor:pointer" onclick="handleSort('status')">Status ↕</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="userTableBody">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="tablePagination"
+                            style="margin-top: 1rem; display: flex; justify-content: flex-end; gap: 0.5rem;">
+                            <!-- Pagination controls if needed -->
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- MODAL: EDIT ROLE -->
+            <div id="editRoleModal"
+                style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+                <div class="card" style="width:400px; max-width:90%; position:relative;">
+                    <button onclick="closeEditModal()"
+                        style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.2rem; cursor:pointer;">✕</button>
+                    <h3>Edit User Roles</h3>
+                    <p id="editModalUserName" style="color:var(--text-secondary); margin-bottom:1rem;">User Name</p>
+
+                    <form id="editRoleForm">
+                        <input type="hidden" id="editUserId">
+                        <div style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.5rem;">
+                            <label><input type="checkbox" name="role" value="Student"> Student</label>
+                            <label><input type="checkbox" name="role" value="Teacher"> Teacher</label>
+                            <label><input type="checkbox" name="role" value="Moderator"> Moderator</label>
+                            <label><input type="checkbox" name="role" value="Administrator"> Administrator</label>
+                        </div>
+                        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+                            <button type="button" class="btn-primary" style="background:#cbd5e1; color:#0f172a;"
+                                onclick="closeEditModal()">Cancel</button>
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -357,7 +386,7 @@
 
         </div>
     </main>
-    <script src="../../assets/js/modules/dashboards/dashboard.js"></script>
+    <script type="module" src="../../assets/js/modules/dashboards/dashboard.js"></script>
 </body>
 
 </html>

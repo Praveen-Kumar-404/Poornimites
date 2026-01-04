@@ -1,4 +1,6 @@
 // assets/js/dashboard.js
+import { supabase } from '../../core/supabase-init.js';
+
 
 /**
  * MOCK DATA
@@ -59,6 +61,9 @@ const MOCK_DATA = {
     // ADMIN DATA
     admin: {
         user: { name: "System Admin", role: "Administrator", avatar: "SA" },
+        // EXTENDED MOCK USERS FOR MANAGEMENT
+        // EXTENDED MOCK USERS REMOVED - FETCHING FROM DB
+        users: [],
         stats: [
             { label: "Total Users", value: "2,450", icon: "🌐" },
             { label: "Active Sessions", value: "118", icon: "⚡" },
@@ -219,7 +224,10 @@ function initDashboard(role, data) {
     // 3. Render Role-Specific Widgets
     if (role === 'student') renderStudentWidgets(data);
     if (role === 'teacher') renderTeacherWidgets(data);
-    if (role === 'admin') renderAdminWidgets(data);
+    if (role === 'admin') {
+        renderAdminWidgets(data);
+        initUserManagement();
+    }
     if (role === 'moderator') renderModeratorWidgets(data);
 }
 
@@ -451,3 +459,260 @@ function renderModeratorWidgets(data) {
          `;
     }
 }
+
+/**
+ * USER MANAGEMENT LOGIC (Admin)
+ */
+let allUsers = [];
+let currentSort = { field: 'username', dir: 'asc' }; // 'username' matches DB column
+let currentPage = 1;
+const USERS_PER_PAGE = 20;
+
+async function initUserManagement() {
+    console.log("Initializing User Management...");
+
+    // Event Listeners
+    const searchInput = document.getElementById('userSearch');
+    const roleFilter = document.getElementById('roleFilter');
+    const sortSelect = document.getElementById('sortOption');
+    const editForm = document.getElementById('editRoleForm');
+
+    // Debounce search
+    let searchTimeout;
+    if (searchInput) searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            currentPage = 1;
+            fetchAndRenderUsers();
+        }, 300);
+    });
+
+    if (roleFilter) roleFilter.addEventListener('change', () => {
+        currentPage = 1;
+        fetchAndRenderUsers();
+    });
+
+    if (sortSelect) sortSelect.addEventListener('change', (e) => {
+        currentSort.field = e.target.value;
+        fetchAndRenderUsers();
+    });
+
+    if (editForm) {
+        editForm.addEventListener('submit', handleRoleSave);
+    }
+
+    // Initial Fetch
+    await fetchAndRenderUsers();
+}
+
+async function fetchAndRenderUsers() {
+    const tbody = document.getElementById('userTableBody');
+    if (!tbody) return;
+
+    // Loading State
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem;"><div class="loader">Loading users...</div></td></tr>`;
+
+    const searchVal = document.getElementById('userSearch')?.value.trim();
+    const roleVal = document.getElementById('roleFilter')?.value || 'all';
+
+    try {
+        let query = supabase
+            .from('users')
+            .select('*', { count: 'exact' });
+
+        // Search
+        if (searchVal) {
+            query = query.or(`username.ilike.%${searchVal}%,email.ilike.%${searchVal}%`);
+        }
+
+        // Role Filter (Note: 'roles' column assumed to be JSONB array or text array)
+        if (roleVal !== 'all') {
+            // Using logic assuming roles is an array column
+            query = query.contains('roles', [roleVal]);
+        }
+
+        // Sort
+        // Mapping UI sort keys to DB columns
+        let dbSortField = currentSort.field;
+        if (dbSortField === 'name') dbSortField = 'username';
+        if (dbSortField === 'role') dbSortField = 'roles'; // Sorting by array is tricky, might default to something else or trust Postgres
+        if (dbSortField === 'status') dbSortField = 'status';
+
+        query = query.order(dbSortField, { ascending: currentSort.dir === 'asc' });
+
+        // Pagination
+        const from = (currentPage - 1) * USERS_PER_PAGE;
+        const to = from + USERS_PER_PAGE - 1;
+        query = query.range(from, to);
+
+        const { data, error, count } = await query;
+
+        if (error) throw error;
+
+        allUsers = data; // Store for local access (e.g. modals)
+        renderUserTable(data);
+        renderPagination(count, from, to);
+
+    } catch (err) {
+        console.error('Error fetching users:', err);
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:red; padding:2rem;">Error loading users: ${err.message}</td></tr>`;
+    }
+}
+
+function renderPagination(totalCount, currentFrom, currentTo) {
+    const paginationContainer = document.getElementById('tablePagination');
+    if (!paginationContainer) return;
+
+    const totalPages = Math.ceil(totalCount / USERS_PER_PAGE);
+
+    let html = `<span style="align-self:center; font-size:0.9rem; color:#64748b;">Showing ${currentFrom + 1}-${Math.min(currentTo + 1, totalCount)} of ${totalCount}</span>`;
+
+    if (totalPages > 1) {
+        html += `
+            <button class="btn-primary" ${currentPage === 1 ? 'disabled style="opacity:0.5"' : ''} onclick="changePage(${currentPage - 1})" style="padding:0.25rem 0.75rem;">Prev</button>
+            <button class="btn-primary" ${currentPage === totalPages ? 'disabled style="opacity:0.5"' : ''} onclick="changePage(${currentPage + 1})" style="padding:0.25rem 0.75rem;">Next</button>
+        `;
+    }
+    paginationContainer.innerHTML = html;
+}
+
+// Make globally available
+window.changePage = function (page) {
+    currentPage = page;
+    fetchAndRenderUsers();
+}
+
+window.handleSort = function (field) {
+    if (currentSort.field === field) {
+        currentSort.dir = currentSort.dir === 'asc' ? 'desc' : 'asc';
+    } else {
+        currentSort.field = field;
+        currentSort.dir = 'asc';
+    }
+
+    const sortSelect = document.getElementById('sortOption');
+    if (sortSelect) sortSelect.value = field;
+
+    fetchAndRenderUsers();
+}
+
+function renderUserTable(users) {
+    const tbody = document.getElementById('userTableBody');
+    if (!tbody) return;
+
+    if (!users || users.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem; color:#64748b;">No users found.</td></tr>`;
+        return;
+    }
+
+    tbody.innerHTML = users.map(u => {
+        // Handle missing roles gracefully
+        const userRoles = u.roles || ['Student'];
+        // Handle date
+        const lastLogin = u.last_login ? new Date(u.last_login).toLocaleDateString() : 'Never';
+
+        return `
+        <tr>
+            <td>
+                <div style="font-weight:600;">${u.username || 'Unknown'}</div>
+            </td>
+            <td>${u.email}</td>
+            <td>
+                ${userRoles.map(r => `<span class="status-pill ${getRoleBadgeClass(r)}">${r}</span>`).join(' ')}
+            </td>
+            <td>
+                <span class="status-pill ${getStatusBadgeClass(u.status)}">${u.status || 'Offline'}</span>
+            </td>
+            <td>
+                <button class="icon-btn" onclick="window.openEditModal('${u.id}')" title="Edit Roles">✏️</button>
+            </td>
+        </tr>
+    `}).join('');
+}
+
+function getRoleBadgeClass(role) {
+    switch (role) {
+        case 'Administrator': return 'status-primary';
+        case 'Teacher': return 'status-warning';
+        case 'Moderator': return 'status-danger';
+        case 'Student': return 'status-success';
+        default: return 'status-neutral';
+    }
+}
+
+function getStatusBadgeClass(status) {
+    switch (status) {
+        case 'online': return 'status-success'; // Matches 'status' in DB ('online')
+        case 'Active': return 'status-success';
+        case 'Warning': return 'status-warning';
+        case 'Banned': return 'status-danger';
+        default: return 'status-neutral';
+    }
+}
+
+// === MODAL LOGIC ===
+window.openEditModal = function (userId) {
+    const user = allUsers.find(u => u.id == userId); // loose match for string/int IDs
+    if (!user) return;
+
+    // Populate Modal
+    document.getElementById('editUserId').value = user.id;
+    document.getElementById('editModalUserName').innerText = `Editing: ${user.username} (${user.email})`;
+
+    const currentRoles = user.roles || ['Student'];
+
+    // Reset Checkboxes
+    document.querySelectorAll('#editRoleForm input[name="role"]').forEach(cb => {
+        cb.checked = currentRoles.includes(cb.value);
+    });
+
+    // Show Modal
+    const modal = document.getElementById('editRoleModal');
+    modal.style.display = 'flex';
+}
+
+window.closeEditModal = function () {
+    document.getElementById('editRoleModal').style.display = 'none';
+}
+
+async function handleRoleSave(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+    btn.disabled = true;
+    btn.innerText = "Saving...";
+
+    const userId = document.getElementById('editUserId').value;
+    const checkboxes = document.querySelectorAll('#editRoleForm input[name="role"]:checked');
+    const newRoles = Array.from(checkboxes).map(cb => cb.value);
+
+    // Ensure at least Student? optional rule.
+    if (newRoles.length === 0) {
+        alert("A user must have at least one role.");
+        btn.disabled = false;
+        btn.innerText = originalText;
+        return;
+    }
+
+    try {
+        const { error } = await supabase
+            .from('users')
+            .update({ roles: newRoles })
+            .eq('id', userId);
+
+        if (error) throw error;
+
+        // Success
+        await fetchAndRenderUsers(); // Refresh list
+        alert('Roles updated successfully!');
+        window.closeEditModal();
+
+    } catch (err) {
+        console.error("Error updating roles:", err);
+        alert(`Failed to update roles: ${err.message}`);
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
