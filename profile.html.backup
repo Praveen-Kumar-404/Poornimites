@@ -11,20 +11,8 @@
     <link rel="stylesheet" href="assets/css/sub-page.css">
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">🎓 <a href="index.html">Poornimites</a></div>
-    <nav class="nav-links" id="navLinks">
-      <a href="tools.html">Tools</a>
-      <a href="notes.html">Notes</a>
-      <a href="pages/planner/index.html">Planner</a>
-      <a href="community.html">Community</a>
-      <a href="career.html">Career</a>
-    </nav>
-    <div class="nav-icons" id="navIcons">
-      <a href="#" id="auth-btn">👤</a>
-      <a href="settings.html">⚙️</a>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
+  <script src="/scripts/header-loader.js"></script>
   <main class="bento-grid">
     <div class="page-header">
       <h1>🧑 Your Profile</h1>
