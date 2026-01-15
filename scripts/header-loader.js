@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
       logoutBtn.addEventListener('click', () => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('userName');
-        window.location.href = rootPath + 'pages/auth/login.html';
+        window.location.href = rootPath + 'index.html';
       });
     }
   }
