@@ -1,18 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
   const placeholder = document.getElementById("header-placeholder");
   if (placeholder) {
-    // Determine the path to the root based on the script tag's src
     const scriptTag = document.querySelector('script[src*="header-loader.js"]');
     let rootPath = "";
     if (scriptTag) {
       const src = scriptTag.getAttribute("src");
-      // Extract the prefix before 'scripts/header-loader.js'
       if (src.indexOf("scripts/header-loader.js") !== -1) {
         rootPath = src.split("scripts/header-loader.js")[0];
       }
     }
 
-    // Inline header HTML to avoid CORS issues with file:// protocol and allow local testing
+    // Check authentication status
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const userName = localStorage.getItem('userName') || 'Student';
+
+    // Build header with conditional profile dropdown
+    const profileSection = isLoggedIn ? `
+        <div class="profile-dropdown-container">
+          <button class="profile-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Account menu">
+            <span class="user-name">${userName}</span>
+            <span class="profile-icon">👤</span>
+          </button>
+          <div class="profile-dropdown" role="menu" hidden>
+            <a href="/pages/user/profile.html" role="menuitem">Profile</a>
+            <a href="/pages/dashboards/student.html" role="menuitem">Dashboard</a>
+            <a href="/pages/user/settings.html" role="menuitem">Settings</a>
+            <button class="logout-btn" role="menuitem">Logout</button>
+          </div>
+        </div>
+    ` : '';
+
     const headerHTML = `
     <nav class="navbar">
       <div class="logo">
@@ -24,43 +41,123 @@ document.addEventListener("DOMContentLoaded", function () {
         <a href="/pages/tools/tools.html">Tools</a>
         <a href="/pages/resources/notes.html">Notes</a>
         <a href="/pages/community/index.html">Lounge</a>
-        <a href="/pages/user/profile.html">Profile</a>
       </div>
 
       <div class="nav-icons">
         <span class="icon">🔔</span>
-        <span class="icon">⚙️</span>
+        ${profileSection}
       </div>
     </nav>
     `;
 
     placeholder.innerHTML = headerHTML;
 
-    // Highlight active link
     const currentPath = window.location.pathname;
     const navLinks = placeholder.querySelectorAll(".nav-links a");
 
     navLinks.forEach((link) => {
       let linkPath = link.getAttribute("href");
 
-      // Optional: Rewrite links to be relative for file:// support
       if (window.location.protocol === 'file:') {
         if (linkPath.startsWith('/')) {
-          // Remove leading slash and prepend rootPath
           const relativePath = rootPath + linkPath.substring(1);
           link.setAttribute('href', relativePath);
-          // Update linkPath for active check
           linkPath = relativePath;
         }
       }
 
-      // Check for active link
-      // We use checks that handle both file path variations and server paths
       if (currentPath.endsWith(linkPath) ||
         (linkPath.endsWith("index.html") && currentPath.endsWith("/")) ||
-        currentPath.includes(linkPath.replace(/^\.\.\//, ''))) { // rough match for relative
+        currentPath.includes(linkPath.replace(/^\.\.\//, ''))) {
         link.classList.add("active");
       }
     });
+
+    // If not logged in, redirect to login page
+    if (!isLoggedIn) {
+      const protectedPaths = ['/pages/user/profile.html', '/pages/dashboards/', '/pages/user/settings.html'];
+      const isProtected = protectedPaths.some(path => currentPath.includes(path));
+
+      if (isProtected) {
+        window.location.href = rootPath + 'pages/auth/login.html';
+      }
+      return;
+    }
+
+    // Profile dropdown functionality (only if logged in)
+    const profileBtn = placeholder.querySelector('.profile-trigger');
+    const dropdown = placeholder.querySelector('.profile-dropdown');
+
+    if (!profileBtn || !dropdown) return;
+
+    const dropdownLinks = dropdown.querySelectorAll('a[role="menuitem"]');
+
+    function openDropdown() {
+      dropdown.hidden = false;
+      profileBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDropdown() {
+      dropdown.hidden = true;
+      profileBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    // Click to toggle
+    profileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    });
+
+    // Keyboard support
+    profileBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      }
+    });
+
+    // Click outside to close
+    document.addEventListener('click', () => {
+      closeDropdown();
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && profileBtn.getAttribute('aria-expanded') === 'true') {
+        closeDropdown();
+      }
+    });
+
+    // Fix links for file:// protocol
+    if (window.location.protocol === 'file:') {
+      dropdownLinks.forEach(link => {
+        let linkPath = link.getAttribute('href');
+        if (linkPath.startsWith('/')) {
+          const relativePath = rootPath + linkPath.substring(1);
+          link.setAttribute('href', relativePath);
+        }
+      });
+    }
+
+    // Logout button handler
+    const logoutBtn = dropdown.querySelector('.logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userName');
+        window.location.href = rootPath + 'pages/auth/login.html';
+      });
+    }
   }
 });
+
