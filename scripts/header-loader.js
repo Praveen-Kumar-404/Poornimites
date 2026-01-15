@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const userName = localStorage.getItem('userName') || 'Student';
 
-    // Build header with conditional profile dropdown
+    // Build header with profile section (always visible)
     const profileSection = isLoggedIn ? `
         <div class="profile-dropdown-container">
           <button class="profile-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Account menu">
@@ -28,7 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
             <button class="logout-btn" role="menuitem">Logout</button>
           </div>
         </div>
-    ` : '';
+    ` : `
+        <a href="/pages/auth/login.html" class="login-link">Login</a>
+    `;
 
     const headerHTML = `
     <nav class="navbar">
@@ -72,17 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
         link.classList.add("active");
       }
     });
-
-    // If not logged in, redirect to login page
-    if (!isLoggedIn) {
-      const protectedPaths = ['/pages/user/profile.html', '/pages/dashboards/', '/pages/user/settings.html'];
-      const isProtected = protectedPaths.some(path => currentPath.includes(path));
-
-      if (isProtected) {
-        window.location.href = rootPath + 'pages/auth/login.html';
-      }
-      return;
-    }
 
     // Profile dropdown functionality (only if logged in)
     const profileBtn = placeholder.querySelector('.profile-trigger');
