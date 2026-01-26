@@ -152,23 +152,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Google login button handler (when not logged in)
     const googleLoginBtn = placeholder.querySelector('#google-login-btn');
+    console.log('Google login button found:', googleLoginBtn);
+
     if (googleLoginBtn) {
+      console.log('Attaching click handler to Google login button');
+
       googleLoginBtn.addEventListener('click', async (e) => {
         e.preventDefault();
+        console.log('Google login button clicked!');
 
         // Function to get or load Supabase client
         async function getSupabaseClient() {
+          console.log('Getting Supabase client...');
+
           // Try global instance first
           if (window.__SUPABASE_CLIENT__) {
+            console.log('Found global Supabase instance');
             return window.__SUPABASE_CLIENT__;
           }
 
+          console.log('Global instance not found, waiting...');
           // Wait a bit for module to load (in case auth.js is loading)
           await new Promise(resolve => setTimeout(resolve, 100));
           if (window.__SUPABASE_CLIENT__) {
+            console.log('Found Supabase instance after waiting');
             return window.__SUPABASE_CLIENT__;
           }
 
+          console.log('Dynamically loading Supabase module...');
           // Dynamically load Supabase by injecting the module script
           return new Promise((resolve, reject) => {
             const script = document.createElement('script');
@@ -181,10 +192,14 @@ document.addEventListener("DOMContentLoaded", function () {
             document.head.appendChild(script);
 
             window.addEventListener('supabase-loaded', () => {
+              console.log('Supabase loaded via dynamic import');
               resolve(window.__SUPABASE_CLIENT__);
             }, { once: true });
 
-            setTimeout(() => reject(new Error('Supabase load timeout')), 5000);
+            setTimeout(() => {
+              console.error('Supabase load timeout');
+              reject(new Error('Supabase load timeout'));
+            }, 5000);
           });
         }
 
@@ -195,7 +210,10 @@ document.addEventListener("DOMContentLoaded", function () {
             throw new Error('Could not initialize Supabase');
           }
 
+          console.log('Initiating Google OAuth...');
           const redirectUrl = window.location.href;
+          console.log('Redirect URL:', redirectUrl);
+
           const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
@@ -208,16 +226,24 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           });
 
+          console.log('OAuth response:', { data, error });
+
           if (error) {
             console.error('Google sign-in error:', error);
             alert('Failed to initiate Google sign-in: ' + error.message);
+          } else {
+            console.log('OAuth initiated successfully, should redirect...');
           }
           // If no error, Supabase will redirect to Google OAuth page
         } catch (error) {
           console.error('Unexpected error during Google sign-in:', error);
-          alert('Authentication system is unavailable. Please try refreshing the page.');
+          alert('Authentication system is unavailable. Error: ' + error.message);
         }
       });
+
+      console.log('Click handler attached successfully');
+    } else {
+      console.warn('Google login button not found in DOM');
     }
   }
 });
