@@ -12,4 +12,7 @@ if (SUPABASE_URL === "https://pcwibkgvpxjbxnerctzy.supabase.co") {
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// Expose to window for non-module scripts (like header-loader.js)
+window.__SUPABASE_CLIENT__ = supabase;
+
 console.log("Supabase initialized");

@@ -156,9 +156,44 @@ document.addEventListener("DOMContentLoaded", function () {
       googleLoginBtn.addEventListener('click', async (e) => {
         e.preventDefault();
 
-        // Dynamically import Supabase if available
+        // Function to get or load Supabase client
+        async function getSupabaseClient() {
+          // Try global instance first
+          if (window.__SUPABASE_CLIENT__) {
+            return window.__SUPABASE_CLIENT__;
+          }
+
+          // Wait a bit for module to load (in case auth.js is loading)
+          await new Promise(resolve => setTimeout(resolve, 100));
+          if (window.__SUPABASE_CLIENT__) {
+            return window.__SUPABASE_CLIENT__;
+          }
+
+          // Dynamically load Supabase by injecting the module script
+          return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.textContent = `
+              import { supabase } from '/assets/js/core/supabase-init.js';
+              window.__SUPABASE_CLIENT__ = supabase;
+              window.dispatchEvent(new CustomEvent('supabase-loaded'));
+            `;
+            document.head.appendChild(script);
+
+            window.addEventListener('supabase-loaded', () => {
+              resolve(window.__SUPABASE_CLIENT__);
+            }, { once: true });
+
+            setTimeout(() => reject(new Error('Supabase load timeout')), 5000);
+          });
+        }
+
         try {
-          const { supabase } = await import('/assets/js/core/supabase-init.js');
+          const supabase = await getSupabaseClient();
+
+          if (!supabase) {
+            throw new Error('Could not initialize Supabase');
+          }
 
           const redirectUrl = window.location.href;
           const { data, error } = await supabase.auth.signInWithOAuth({
@@ -177,12 +212,12 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Google sign-in error:', error);
             alert('Failed to initiate Google sign-in: ' + error.message);
           }
+          // If no error, Supabase will redirect to Google OAuth page
         } catch (error) {
-          console.error('Failed to load Supabase or initiate login:', error);
-          alert('Authentication system unavailable. Please try again later.');
+          console.error('Unexpected error during Google sign-in:', error);
+          alert('Authentication system is unavailable. Please try refreshing the page.');
         }
       });
     }
   }
 });
-
