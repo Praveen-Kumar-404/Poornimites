@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
     ` : `
-        <a href="/pages/auth/login.html" class="profile-icon-link" aria-label="Login">👤</a>
+        <button id="google-login-btn" class="profile-icon-link" aria-label="Login with Google">👤</button>
     `;
 
     const headerHTML = `
@@ -147,6 +147,40 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('userName');
         window.location.href = rootPath + 'index.html';
+      });
+    }
+
+    // Google login button handler (when not logged in)
+    const googleLoginBtn = placeholder.querySelector('#google-login-btn');
+    if (googleLoginBtn) {
+      googleLoginBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        // Dynamically import Supabase if available
+        try {
+          const { supabase } = await import('/assets/js/core/supabase-init.js');
+
+          const redirectUrl = window.location.href;
+          const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: redirectUrl,
+              queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
+                hd: 'poornima.edu.in'
+              }
+            }
+          });
+
+          if (error) {
+            console.error('Google sign-in error:', error);
+            alert('Failed to initiate Google sign-in: ' + error.message);
+          }
+        } catch (error) {
+          console.error('Failed to load Supabase or initiate login:', error);
+          alert('Authentication system unavailable. Please try again later.');
+        }
       });
     }
   }
