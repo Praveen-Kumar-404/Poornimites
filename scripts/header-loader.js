@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
     ` : `
-        <a href="/pages/auth/login.html" class="login-link">Login</a>
+        <a href="/pages/auth/login.html" class="profile-icon-link" aria-label="Login">👤</a>
     `;
 
     const headerHTML = `

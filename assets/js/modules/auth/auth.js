@@ -103,11 +103,31 @@ if (authBtn) {
     } else {
       authBtn.textContent = "👤";
       authBtn.href = "#";
-      authBtn.onclick = (e) => {
+      authBtn.onclick = async (e) => {
         e.preventDefault();
-        // Redirect to auth page with current page as redirect parameter
-        const redirectUrl = window.location.href;
-        window.location.href = `${window.location.origin}/pages/auth/login.html?redirect=${encodeURIComponent(redirectUrl)}`;
+        // Directly trigger Google sign-in, skipping auth page
+        try {
+          const redirectUrl = window.location.href;
+          const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: redirectUrl, // Redirect back to current page after auth
+              queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
+                hd: 'poornima.edu.in' // Restrict to poornima.edu.in domain
+              }
+            }
+          });
+
+          if (error) {
+            console.error('Google sign-in error:', error);
+            alert('Failed to initiate Google sign-in: ' + error.message);
+          }
+        } catch (error) {
+          console.error('Unexpected error during Google sign-in:', error);
+          alert('An unexpected error occurred. Please try again.');
+        }
       };
     }
   });
