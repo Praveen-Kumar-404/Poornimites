@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -125,11 +125,11 @@
 
 <body>
     <div id="header-placeholder"></div>
-  <script src="/scripts/header-loader.js"></script>
+  <script src="/scripts/header-loader.js?v=2.0"></script>
 
     <main class="toolkit-container">
         <div class="toolkit-header">
-            <h1>🧮 Scientific Calculator</h1>
+            <h1>?? Scientific Calculator</h1>
             <p>Advanced calculator with scientific functions and history</p>
         </div>
 
@@ -159,27 +159,27 @@
                         <button class="calc-btn function" onclick="calculator.addFunction('log(')">log</button>
 
                         <!-- Row 3: More Functions -->
-                        <button class="calc-btn function" onclick="calculator.addFunction('sqrt(')">√</button>
+                        <button class="calc-btn function" onclick="calculator.addFunction('sqrt(')">v</button>
                         <button class="calc-btn function" onclick="calculator.addToExpression('^')">x^y</button>
                         <button class="calc-btn function" onclick="calculator.addToExpression('(')">(</button>
                         <button class="calc-btn function" onclick="calculator.addToExpression(')')">)</button>
 
                         <!-- Row 4: Clear and Backspace -->
                         <button class="calc-btn special" onclick="calculator.clear()">C</button>
-                        <button class="calc-btn special" onclick="calculator.backspace()">⌫</button>
+                        <button class="calc-btn special" onclick="calculator.backspace()">?</button>
                         <button class="calc-btn operator" onclick="calculator.addToExpression('%')">%</button>
-                        <button class="calc-btn operator" onclick="calculator.addToExpression('/')">÷</button>
+                        <button class="calc-btn operator" onclick="calculator.addToExpression('/')">�</button>
 
                         <!-- Row 5-7: Numbers and Operators -->
                         <button class="calc-btn" onclick="calculator.addToExpression('7')">7</button>
                         <button class="calc-btn" onclick="calculator.addToExpression('8')">8</button>
                         <button class="calc-btn" onclick="calculator.addToExpression('9')">9</button>
-                        <button class="calc-btn operator" onclick="calculator.addToExpression('*')">×</button>
+                        <button class="calc-btn operator" onclick="calculator.addToExpression('*')">�</button>
 
                         <button class="calc-btn" onclick="calculator.addToExpression('4')">4</button>
                         <button class="calc-btn" onclick="calculator.addToExpression('5')">5</button>
                         <button class="calc-btn" onclick="calculator.addToExpression('6')">6</button>
-                        <button class="calc-btn operator" onclick="calculator.addToExpression('-')">−</button>
+                        <button class="calc-btn operator" onclick="calculator.addToExpression('-')">-</button>
 
                         <button class="calc-btn" onclick="calculator.addToExpression('1')">1</button>
                         <button class="calc-btn" onclick="calculator.addToExpression('2')">2</button>
@@ -193,8 +193,8 @@
                     </div>
 
                     <div class="mt-3 d-flex gap-2">
-                        <button class="btn btn-secondary btn-sm" onclick="calculator.copyResult()">📋 Copy</button>
-                        <button class="btn btn-secondary btn-sm" onclick="calculator.clearHistory()">🗑️ Clear
+                        <button class="btn btn-secondary btn-sm" onclick="calculator.copyResult()">?? Copy</button>
+                        <button class="btn btn-secondary btn-sm" onclick="calculator.clearHistory()">??? Clear
                             History</button>
                     </div>
                 </div>
@@ -202,17 +202,17 @@
 
             <div>
                 <div class="tool-section">
-                    <h2>📜 History</h2>
+                    <h2>?? History</h2>
                     <div class="history-panel" id="historyPanel">
                         <p class="text-muted text-center">No calculations yet</p>
                     </div>
                 </div>
 
                 <div class="tool-section mt-3">
-                    <h2>ℹ️ Instructions</h2>
+                    <h2>?? Instructions</h2>
                     <ul>
-                        <li><strong>Basic Operations:</strong> +, −, ×, ÷</li>
-                        <li><strong>Scientific:</strong> sin, cos, tan, log, √</li>
+                        <li><strong>Basic Operations:</strong> +, -, �, �</li>
+                        <li><strong>Scientific:</strong> sin, cos, tan, log, v</li>
                         <li><strong>Memory:</strong> M+ (add), M- (subtract), MR (recall), MC (clear)</li>
                         <li><strong>Keyboard:</strong> Use number keys and operators</li>
                         <li><strong>History:</strong> Click any history item to reuse</li>
@@ -229,7 +229,7 @@
             <a href="../site/privacy.html">Privacy</a>
         </div>
         <div class="footer-text">
-            Made with 💙 by Students for Students. © 2025 Poornimites
+            Made with ?? by Students for Students. � 2025 Poornimites
         </div>
     </footer>
 
@@ -280,7 +280,7 @@
                         .replace(/log\(/g, 'Math.log10(')
                         .replace(/sqrt\(/g, 'Math.sqrt(')
                         .replace(/\^/g, '**')
-                        .replace(/π/g, 'Math.PI')
+                        .replace(/p/g, 'Math.PI')
                         .replace(/e/g, 'Math.E');
 
                     // Evaluate

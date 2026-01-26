@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,7 +17,7 @@
 <body class="neuro-body">
 
   <div id="header-placeholder"></div>
-  <script src="/scripts/header-loader.js"></script>
+  <script src="/scripts/header-loader.js?v=2.0"></script>
 
   <main class="bento-grid neuro-grid">
 
@@ -72,7 +72,7 @@
   <div id="creator-modal" class="neuro-modal" style="display:none;">
     <div class="neuro-modal-content">
       <h2>Creator Info</h2>
-      <p>Developed by Praveen Kumar 🚀</p>
+      <p>Developed by Praveen Kumar ??</p>
       <button id="close-creator" class="neuro-btn neuro-btn-primary"><span>Close</span></button>
     </div>
   </div>
@@ -87,7 +87,7 @@
     </div>
 
     <div class="footer-text">
-      Made with 💙 by Students for Students. © 2025 StudentHub
+      Made with ?? by Students for Students. � 2025 StudentHub
     </div>
   </footer>
 
@@ -119,16 +119,16 @@
         const frame = card.querySelector('.pdf-frame');
 
         if (unlockTime && now >= unlockTime) {
-          frame.innerHTML = `<a href="${src}" class="neuro-link">Let's Learn →</a>`;
+          frame.innerHTML = `<a href="${src}" class="neuro-link">Let's Learn ?</a>`;
         } else if (unlockTime) {
           const countdown = document.createElement('span');
           countdown.classList.add('countdown', 'neuro-countdown');
-          frame.innerHTML = `⏳ Unlocks on ${unlockTime.toDateString()}<br>`;
+          frame.innerHTML = `? Unlocks on ${unlockTime.toDateString()}<br>`;
           frame.appendChild(countdown);
           updateCountdown(countdown, unlockTime);
           setInterval(() => updateCountdown(countdown, unlockTime), 1000);
         } else {
-          frame.innerHTML = `<a href="${src}" class="neuro-link">Let's Learn →</a>`;
+          frame.innerHTML = `<a href="${src}" class="neuro-link">Let's Learn ?</a>`;
         }
       });
     };
@@ -147,7 +147,7 @@
       const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
 
-      element.textContent = `⏱ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      element.textContent = `? ${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     const disclaimerShown = sessionStorage.getItem('disclaimerAccepted');
@@ -186,7 +186,7 @@
         <div class="neuro-login-message">
           <h2>Login Required</h2>
           <p>Please log in to access the notes.</p>
-          <p>Click the 👤 icon in the top right corner to log in.</p>
+          <p>Click the ?? icon in the top right corner to log in.</p>
         </div>
       `;
 
@@ -213,7 +213,7 @@
 
     function updateAuthButton(user) {
       if (user) {
-        authBtn.textContent = "🚪";
+        authBtn.textContent = "??";
         authBtn.href = "#";
         authBtn.onclick = async (e) => {
           e.preventDefault();
@@ -226,7 +226,7 @@
           }
         };
       } else {
-        authBtn.textContent = "👤";
+        authBtn.textContent = "??";
         authBtn.href = "#";
         authBtn.onclick = (e) => {
           e.preventDefault();

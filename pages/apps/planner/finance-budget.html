@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,14 +11,14 @@
 </head>
 <body>
     <div id="header-placeholder"></div>
-  <script src="/scripts/header-loader.js"></script>
+  <script src="/scripts/header-loader.js?v=2.0"></script>
 
     <main class="container">
         <h1>Finance & Budget</h1>
 
         <section id="summary">
             <div style="margin-bottom: 1rem;">
-                <h4 style="color: #004080; margin-bottom: 0.75rem;">💳 Daily Expenses</h4>
+                <h4 style="color: #004080; margin-bottom: 0.75rem;">?? Daily Expenses</h4>
                 <div class="expense-input-section">
                     <div class="expense-input-row">
                         <input type="text" id="new-expense-description" placeholder="Expense description" class="expense-description form-input">
@@ -37,7 +37,7 @@
 
             
             <div style="margin-bottom: 1rem;">
-                <h4 style="color: #004080; margin-bottom: 0.75rem;">💰 Savings Tracker</h4>
+                <h4 style="color: #004080; margin-bottom: 0.75rem;">?? Savings Tracker</h4>
                 <div class="savings-tracker-section">
                     <div class="savings-input-row">
                         <input type="number" id="savings-goal" placeholder="Monthly Goal" class="savings-input form-input">
@@ -56,7 +56,7 @@
             <div class="no-spend-challenge" style="margin-top: 1.5rem;">
                 <label class="checkbox-container" style="display: flex; align-items: center; cursor: pointer;">
                     <input type="checkbox" id="no-spend" style="margin-right: 0.5rem;">
-                    <span class="checkmark" style="font-weight: bold; color: #004080;">🚫 No-spend day challenge</span>
+                    <span class="checkmark" style="font-weight: bold; color: #004080;">?? No-spend day challenge</span>
                 </label>
             </div>
         </div>
@@ -85,7 +85,7 @@
                     li.innerHTML = `
                         <span>${expense.description}</span>
                         <span style="font-weight: bold;">INR ${expense.amount.toFixed(2)}</span>
-                        <button class="remove-btn" data-index="${index}">✖</button>
+                        <button class="remove-btn" data-index="${index}">?</button>
                     `;
                     dailyExpensesList.appendChild(li);
                     total += expense.amount;

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -147,14 +147,14 @@
 </head>
 <body>
     <div id="header-placeholder"></div>
-  <script src="/scripts/header-loader.js"></script>
+  <script src="/scripts/header-loader.js?v=2.0"></script>
 
     <main class="container">
         <h1>Todo Lists</h1>
 
         <div class="todo-container">
             <div class="todo-category">
-                <h4>💼 Work Tasks</h4>
+                <h4>?? Work Tasks</h4>
                 <ul class="todo-list" id="work-tasks-list">
                 </ul>
                 <div class="add-todo-item">
@@ -164,7 +164,7 @@
             </div>
             
             <div class="todo-category">
-                <h4>🏠 Personal Tasks</h4>
+                <h4>?? Personal Tasks</h4>
                 <ul class="todo-list" id="personal-tasks-list">
                 </ul>
                 <div class="add-todo-item">
@@ -174,7 +174,7 @@
             </div>
             
             <div class="todo-category">
-                <h4>🛒 Errands</h4>
+                <h4>?? Errands</h4>
                 <ul class="todo-list" id="errands-list">
                 </ul>
                 <div class="add-todo-item">
@@ -223,7 +223,7 @@
                         li.innerHTML = `
                             <input type="checkbox" id="${category}-${index}" ${todo.completed ? 'checked' : ''}>
                             <label for="${category}-${index}">${todo.text}</label>
-                            <button class="remove-todo-btn" data-category="${category}" data-index="${index}">✖</button>
+                            <button class="remove-todo-btn" data-category="${category}" data-index="${index}">?</button>
                         `;
                         todoCategories[category].appendChild(li);
                     });
