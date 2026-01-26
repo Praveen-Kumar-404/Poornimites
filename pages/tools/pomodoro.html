@@ -117,7 +117,7 @@
 
     <main class="toolkit-container">
         <div class="toolkit-header">
-            <h1>?? Pomodoro Timer</h1>
+            <h1>⏰ Pomodoro Timer</h1>
             <p>Stay focused with the Pomodoro Technique</p>
         </div>
 
@@ -136,7 +136,7 @@
                 </div>
 
                 <div class="tool-section">
-                    <h2>?? Settings</h2>
+                    <h2>👤 Settings</h2>
                     <div class="settings-grid">
                         <div class="form-group">
                             <label class="form-label">Work Duration (min)</label>
@@ -166,13 +166,13 @@
                             <input type="checkbox" id="soundEnabled" checked> Enable sound notifications
                         </label>
                     </div>
-                    <button class="btn btn-primary" onclick="pomodoro.saveSettings()">?? Save Settings</button>
+                    <button class="btn btn-primary" onclick="pomodoro.saveSettings()">👤 Save Settings</button>
                 </div>
             </div>
 
             <div>
                 <div class="tool-section">
-                    <h2>?? Today's Statistics</h2>
+                    <h2>👤 Today's Statistics</h2>
                     <div class="settings-grid">
                         <div class="stat-card">
                             <div class="stat-value" id="completedSessions">0</div>
@@ -190,14 +190,14 @@
                 </div>
 
                 <div class="tool-section">
-                    <h2>?? Session History</h2>
+                    <h2>👤 Session History</h2>
                     <div id="sessionHistory" style="max-height: 300px; overflow-y: auto;">
                         <p class="text-muted text-center">No sessions completed yet</p>
                     </div>
                 </div>
 
                 <div class="tool-section">
-                    <h2>?? About Pomodoro Technique</h2>
+                    <h2>👤 About Pomodoro Technique</h2>
                     <p>The Pomodoro Technique is a time management method:</p>
                     <ol>
                         <li>Work for 25 minutes (one "Pomodoro")</li>
@@ -217,7 +217,7 @@
             <a href="../site/privacy.html">Privacy</a>
         </div>
         <div class="footer-text">
-            Made with ?? by Students for Students. � 2025 Poornimites
+            Made with ❤️ by Students for Students.  2025 Poornimites
         </div>
     </footer>
 
@@ -417,7 +417,7 @@
 
                     new Notification('Pomodoro Timer', {
                         body: labels[this.currentSession],
-                        icon: '??'
+                        icon: '👤'
                     });
                 } else if ('Notification' in window && Notification.permission !== 'denied') {
                     Notification.requestPermission();

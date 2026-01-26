@@ -199,7 +199,7 @@
             <a href="../site/privacy.html">Privacy</a>
         </div>
         <div class="footer-text">
-            Made with ?? by Students for Students. � 2025 Poornimites
+            Made with ❤️ by Students for Students.  2025 Poornimites
         </div>
     </footer>
 
@@ -322,10 +322,10 @@
                                     <span class="badge badge-${task.priority === 'high' ? 'danger' : task.priority === 'medium' ? 'warning' : 'success'}">
                                         ${task.priority.toUpperCase()}
                                     </span>
-                                    ${task.category ? `<span>?? ${task.category}</span>` : ''}
+                                    ${task.category ? `<span>👤 ${task.category}</span>` : ''}
                                     ${task.dueDate ? `
                                         <span class="${isOverdue ? 'text-danger' : ''}">
-                                            ?? ${new Date(task.dueDate).toLocaleDateString()}
+                                            👤 ${new Date(task.dueDate).toLocaleDateString()}
                                             ${isOverdue ? '(Overdue!)' : ''}
                                         </span>
                                     ` : ''}
@@ -334,7 +334,7 @@
                             
                             <button class="btn btn-danger btn-sm" 
                                     onclick="todoList.deleteTask('${task.id}')"
-                                    style="height: fit-content;">�</button>
+                                    style="height: fit-content;"></button>
                         </div>
                     </div>
                 `;
