@@ -31,8 +31,7 @@
   width: 200px;
 }
 
-.nav-icons span {
-  margin-left: 15px;
+.nav-icons>.icon {
   font-size: 1.2rem;
 }
 

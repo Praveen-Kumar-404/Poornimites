@@ -1,5 +1,5 @@
 // Import supabase-init FIRST to ensure Supabase is initialized
-import '../../assets/js/supabase-init.js';
+import '../../../assets/js/core/supabase-init.js';
 import { AuthService } from './modules/auth.js';
 import { UI } from './modules/ui.js';
 import { FirestoreService } from './modules/firestore.js';

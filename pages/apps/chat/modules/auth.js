@@ -1,4 +1,4 @@
-import { supabase } from '../../../assets/js/supabase-init.js';
+import { supabase } from '../../../../assets/js/core/supabase-init.js';
 
 export const AuthService = {
     // Observer
