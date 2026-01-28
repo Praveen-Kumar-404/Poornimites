@@ -67,7 +67,7 @@
         <div class="profile-header-info">
           <h1 id="profileName">Student Name</h1>
           <div class="profile-subtitle" id="profileSubtitle">
-            <span id="profileBranch">Computer Science Engineering</span> 
+            <span id="profileBranch">Computer Science Engineering</span>
             <span id="profileYear">3rd Year</span>
           </div>
           <div class="profile-stats">
@@ -360,23 +360,23 @@
             <div class="achievements-list" id="achievementsList">
               <div class="achievement-item">
                 <div class="achievement-title">First Prize - Smart India Hackathon 2024</div>
-                <div class="achievement-details">National Level Hackathon  March 2024</div>
+                <div class="achievement-details">National Level Hackathon March 2024</div>
               </div>
               <div class="achievement-item">
                 <div class="achievement-title">AWS Certified Cloud Practitioner</div>
-                <div class="achievement-details">Amazon Web Services  January 2024</div>
+                <div class="achievement-details">Amazon Web Services January 2024</div>
               </div>
               <div class="achievement-item">
                 <div class="achievement-title">Google Code Jam Finalist</div>
-                <div class="achievement-details">Competitive Programming  2023</div>
+                <div class="achievement-details">Competitive Programming 2023</div>
               </div>
               <div class="achievement-item">
                 <div class="achievement-title">Best Project Award</div>
-                <div class="achievement-details">College Tech Fest  December 2023</div>
+                <div class="achievement-details">College Tech Fest December 2023</div>
               </div>
               <div class="achievement-item">
                 <div class="achievement-title">Microsoft Learn Student Ambassador</div>
-                <div class="achievement-details">Microsoft  2023-2024</div>
+                <div class="achievement-details">Microsoft 2023-2024</div>
               </div>
             </div>
           </div>
@@ -505,13 +505,75 @@
       </section>
 
     </div>
+
+    <!-- Profile Completion Modal -->
+    <div class="profile-modal-overlay hidden" id="profileCompletionModal">
+      <div class="profile-modal">
+        <div class="modal-header">
+          <h2>Complete Your Profile</h2>
+          <p>Please provide a few more details to finish setting up your account.</p>
+        </div>
+        <form id="profileCompletionForm" class="modal-form">
+          <div class="form-group">
+            <label for="modalFullName">Full Name</label>
+            <input type="text" id="modalFullName" name="fullName" required placeholder="Enter your full name">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modalBranch">Branch</label>
+              <select id="modalBranch" name="branch" required>
+                <option value="" disabled selected>Select Branch</option>
+                <option value="Computer Science & Engineering">CSE (Core)</option>
+                <option value="Artificial Intelligence & Data Science">AI & DS</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Cyber Security">Cyber Security</option>
+                <option value="Cloud Technology">Cloud Technology</option>
+                <option value="Computer Applications">BCA</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="modalYear">Year</label>
+              <select id="modalYear" name="year" required>
+                <option value="" disabled selected>Select Year</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modalSection">Section</label>
+              <input type="text" id="modalSection" name="section" placeholder="e.g. A" required maxlength="5">
+            </div>
+            <div class="form-group">
+              <label for="modalRollNumber">University Roll No.</label>
+              <input type="text" id="modalRollNumber" name="rollNumber" placeholder="e.g. 2023BCA..." required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="modalPhone">Phone Number</label>
+            <input type="tel" id="modalPhone" name="phone" placeholder="+91 98765 43210" required>
+          </div>
+
+          <div class="modal-actions">
+            <button type="submit" class="save-btn" id="saveProfileBtn">Save Profile</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </main>
 
   <div id="footer-placeholder"></div>
   <script src="../../scripts/footer-loader.js"></script>
 
   <script src="../../assets/js/core/main.js"></script>
-  <script src="../../assets/js/modules/user/profile.js"></script>
+  <script type="module" src="../../assets/js/modules/user/profile.js"></script>
 </body>
 
 </html>

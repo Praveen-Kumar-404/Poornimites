@@ -1,4 +1,6 @@
 // Profile Page JavaScript - Duolingo-Style Navigation
+import { db as supabase } from "../../shared/auth-manager.js";
+import { parseStudentEmail } from "../../utils/email-parser.js";
 
 // Edit mode state
 let isEditMode = false;
@@ -15,6 +17,7 @@ const editableFields = document.querySelectorAll('.info-value.editable');
 
 // Initialize profile page
 document.addEventListener('DOMContentLoaded', function () {
+    checkProfileCompletion();
     loadProfileData();
     initNavigation();
     setupEditMode();
@@ -431,4 +434,150 @@ function importProfile(file) {
         }
     };
     reader.readAsText(file);
+}
+
+// Check if profile is complete (New User Detection)
+async function checkProfileCompletion() {
+    console.log("Checking profile completion...");
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        console.log("No user logged in.");
+        return; // Handle not logged in (redirect?) - handled by auth-handler likely
+    }
+
+    try {
+        const { data: profile, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq('id', user.id)
+            .single();
+
+        if (error && error.code !== 'PGRST116') {
+            console.error("Error fetching profile:", error);
+            return;
+        }
+
+        // Logic: specific fields missing? OR no profile record?
+        // We assume auth-handler creates a basic record.
+        // Let's check for 'branch' or 'roll_number'
+        const isIncomplete = !profile || !profile.branch || !profile.roll_number || !profile.year;
+
+        if (isIncomplete) {
+            console.log("Profile incomplete. Showing modal.");
+            const parsedData = parseStudentEmail(user.email);
+            showProfileCompletionModal(user, profile, parsedData);
+        }
+    } catch (err) {
+        console.error("Unexpected error checking profile:", err);
+    }
+}
+
+// Show the modal and pre-fill data
+function showProfileCompletionModal(user, currentProfile, parsedData) {
+    const modal = document.getElementById('profileCompletionModal');
+    const form = document.getElementById('profileCompletionForm');
+
+    if (!modal || !form) return;
+
+    // Pre-fill fields
+    const inputs = {
+        fullName: document.getElementById('modalFullName'),
+        branch: document.getElementById('modalBranch'),
+        year: document.getElementById('modalYear'),
+        section: document.getElementById('modalSection'),
+        rollNumber: document.getElementById('modalRollNumber'),
+        phone: document.getElementById('modalPhone')
+    };
+
+    // Prioritize existing profile data, then parsed data, then user metadata
+    const name = (currentProfile && currentProfile.full_name) || (parsedData && parsedData.name) || user.user_metadata.full_name || '';
+    if (inputs.fullName) inputs.fullName.value = name;
+
+    if (inputs.branch && parsedData && parsedData.program) {
+        // Try to match dropdown values
+        // This is tricky because dropdown values are full names (Computer Science & Engineering) 
+        // and parser gives codes (BCA).
+        // Best effort:
+        if (parsedData.program === 'BCA') inputs.branch.value = 'Computer Applications';
+        // Add more mappings if needed or rely on user
+    }
+
+    if (inputs.year && parsedData && parsedData.studentYear) {
+        inputs.year.value = parsedData.studentYear;
+    }
+
+    if (inputs.rollNumber && parsedData && parsedData.uniqueId && parsedData.admissionYear && parsedData.program) {
+        // Construct standard roll number if missing?
+        // Actually user has full email.
+        // Let's just use the parsed ID or pre-fill with what we can.
+        // The modal asks for "University Roll No.", e.g. 2023BCA...
+        // We can reconstruct it:
+        const constructedRoll = `${parsedData.admissionYear}${parsedData.program}${parsedData.name.toLowerCase()}${parsedData.uniqueId}`;
+        // Wait, roll number usually is different from email.
+        // The user request said "2023bcapraveen14906@poornima.edu.in"
+        // Breakdown: 14906-> unique roll/registration identifier.
+        // So the Roll No might be the full string before @?
+        // Let's pre-fill with the email username part as a good guess.
+        inputs.rollNumber.value = user.email.split('@')[0];
+    }
+
+    // Show modal
+    modal.classList.remove('hidden');
+
+    // Handle Submit
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const updates = {
+            full_name: formData.get('fullName'),
+            branch: formData.get('branch'),
+            year: formData.get('year'),
+            section: formData.get('section'),
+            roll_number: formData.get('rollNumber'),
+            phone_number: formData.get('phone'),
+            updated_at: new Date().toISOString()
+        };
+
+        const btn = document.getElementById('saveProfileBtn');
+        const originalText = btn.textContent;
+        btn.textContent = 'Saving...';
+        btn.disabled = true;
+
+        try {
+            const { error: updateError } = await supabase
+                .from('users')
+                .update(updates)
+                .eq('id', user.id);
+
+            if (updateError) throw updateError;
+
+            // Success
+            modal.classList.add('hidden');
+            showNotification('Profile setup complete!', 'success');
+
+            // Sync to LocalStorage (for compatibility with existing profile.js logic)
+            const localProfile = {
+                fullName: updates.full_name,
+                branch: updates.branch,
+                year: updates.year,
+                section: updates.section,
+                phone: updates.phone_number,
+                // Add others as needed to match profile.js expected keys
+            };
+            // Merge with existing
+            const existingLocal = JSON.parse(localStorage.getItem('studentProfile') || '{}');
+            localStorage.setItem('studentProfile', JSON.stringify({ ...existingLocal, ...localProfile }));
+
+            // Update UI
+            updateProfileDisplay({ ...existingLocal, ...localProfile });
+
+        } catch (err) {
+            console.error('Error saving profile:', err);
+            showNotification('Failed to save profile. Please try again.', 'error');
+        } finally {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }
+    };
 }
