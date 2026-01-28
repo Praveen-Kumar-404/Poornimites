@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
     ` : `
-        <button id="google-login-btn" class="profile-icon-link" aria-label="Login with Google">👤</button>
+        <button id="google-login-btn" class="profile-icon-link" aria-label="Login with Google">
+          <span class="profile-icon">👤</span>
+          <span class="login-text">Login</span>
+        </button>
     `;
 
     const headerHTML = `
@@ -79,75 +82,75 @@ document.addEventListener("DOMContentLoaded", function () {
     const profileBtn = placeholder.querySelector('.profile-trigger');
     const dropdown = placeholder.querySelector('.profile-dropdown');
 
-    if (!profileBtn || !dropdown) return;
+    if (profileBtn && dropdown) {
+      const dropdownLinks = dropdown.querySelectorAll('a[role="menuitem"]');
 
-    const dropdownLinks = dropdown.querySelectorAll('a[role="menuitem"]');
-
-    function openDropdown() {
-      dropdown.hidden = false;
-      profileBtn.setAttribute('aria-expanded', 'true');
-    }
-
-    function closeDropdown() {
-      dropdown.hidden = true;
-      profileBtn.setAttribute('aria-expanded', 'false');
-    }
-
-    // Click to toggle
-    profileBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
-      if (isExpanded) {
-        closeDropdown();
-      } else {
-        openDropdown();
+      function openDropdown() {
+        dropdown.hidden = false;
+        profileBtn.setAttribute('aria-expanded', 'true');
       }
-    });
 
-    // Keyboard support
-    profileBtn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
+      function closeDropdown() {
+        dropdown.hidden = true;
+        profileBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      // Click to toggle
+      profileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
         if (isExpanded) {
           closeDropdown();
         } else {
           openDropdown();
         }
-      }
-    });
+      });
 
-    // Click outside to close
-    document.addEventListener('click', () => {
-      closeDropdown();
-    });
-
-    // ESC to close
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && profileBtn.getAttribute('aria-expanded') === 'true') {
-        closeDropdown();
-      }
-    });
-
-    // Fix links for file:// protocol
-    if (window.location.protocol === 'file:') {
-      dropdownLinks.forEach(link => {
-        let linkPath = link.getAttribute('href');
-        if (linkPath.startsWith('/')) {
-          const relativePath = rootPath + linkPath.substring(1);
-          link.setAttribute('href', relativePath);
+      // Keyboard support
+      profileBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
+          if (isExpanded) {
+            closeDropdown();
+          } else {
+            openDropdown();
+          }
         }
       });
-    }
 
-    // Logout button handler
-    const logoutBtn = dropdown.querySelector('.logout-btn');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userName');
-        window.location.href = rootPath + 'index.html';
+      // Click outside to close
+      document.addEventListener('click', () => {
+        closeDropdown();
       });
+
+      // ESC to close
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && profileBtn.getAttribute('aria-expanded') === 'true') {
+          closeDropdown();
+        }
+      });
+
+      // Fix links for file:// protocol
+      if (window.location.protocol === 'file:') {
+        dropdownLinks.forEach(link => {
+          let linkPath = link.getAttribute('href');
+          if (linkPath.startsWith('/')) {
+            const relativePath = rootPath + linkPath.substring(1);
+            link.setAttribute('href', relativePath);
+          }
+        });
+      }
+
+      // Logout button handler
+      const logoutBtn = dropdown.querySelector('.logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.removeItem('isLoggedIn');
+          localStorage.removeItem('userName');
+          window.location.href = rootPath + 'index.html';
+        });
+      }
     }
 
     // Google login button handler (when not logged in)
@@ -159,89 +162,72 @@ document.addEventListener("DOMContentLoaded", function () {
 
       googleLoginBtn.addEventListener('click', async (e) => {
         e.preventDefault();
+
+        // 1. VISUAL FEEDBACK
+        const loginText = googleLoginBtn.querySelector('.login-text');
+        const originalText = loginText ? loginText.textContent : 'Login';
+        if (loginText) loginText.textContent = 'Logging in...';
+        googleLoginBtn.style.opacity = '0.7';
+        googleLoginBtn.style.cursor = 'wait';
+
         console.log('Google login button clicked!');
 
-        // Function to get or load Supabase client
-        async function getSupabaseClient() {
-          console.log('Getting Supabase client...');
-
-          // Try global instance first
-          if (window.__SUPABASE_CLIENT__) {
-            console.log('Found global Supabase instance');
-            return window.__SUPABASE_CLIENT__;
-          }
-
-          console.log('Global instance not found, waiting...');
-          // Wait a bit for module to load (in case auth.js is loading)
-          await new Promise(resolve => setTimeout(resolve, 100));
-          if (window.__SUPABASE_CLIENT__) {
-            console.log('Found Supabase instance after waiting');
-            return window.__SUPABASE_CLIENT__;
-          }
-
-          console.log('Dynamically loading Supabase module...');
-          // Dynamically load Supabase by injecting the module script
-          return new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.type = 'module';
-            script.textContent = `
-              import { supabase } from '/assets/js/core/supabase-init.js';
-              window.__SUPABASE_CLIENT__ = supabase;
-              window.dispatchEvent(new CustomEvent('supabase-loaded'));
-            `;
-            document.head.appendChild(script);
-
-            window.addEventListener('supabase-loaded', () => {
-              console.log('Supabase loaded via dynamic import');
-              resolve(window.__SUPABASE_CLIENT__);
-            }, { once: true });
-
-            setTimeout(() => {
-              console.error('Supabase load timeout');
-              reject(new Error('Supabase load timeout'));
-            }, 5000);
-          });
-        }
-
         try {
+          // 2. LOAD SUPABASE (Robust UMD Loader)
+          const getSupabaseClient = async () => {
+            if (window.__SUPABASE_CLIENT__) return window.__SUPABASE_CLIENT__;
+
+            console.log('Loading Supabase UMD script...');
+            return new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              // STRICT UMD PATH - Critical for file:// protocol
+              script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js';
+
+              script.onload = () => {
+                console.log('Supabase script loaded successfully');
+                try {
+                  const SUPABASE_URL = "https://pcwibkgvpxjbxnerctzy.supabase.co";
+                  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjd2lia2d2cHhqYnhuZXJjdHp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY5MzU1OTIsImV4cCI6MjA4MjUxMTU5Mn0.utuX_SvSr3NJJRrjv1e_spDEKWS77t6b5Rmg6DgG23o";
+
+                  if (!window.supabase || !window.supabase.createClient) {
+                    throw new Error('Supabase global object missing');
+                  }
+
+                  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                  window.__SUPABASE_CLIENT__ = client;
+                  resolve(client);
+                } catch (err) { reject(err); }
+              };
+              script.onerror = () => reject(new Error('Failed to load Supabase script from CDN'));
+              document.head.appendChild(script);
+            });
+          };
+
           const supabase = await getSupabaseClient();
+          if (!supabase) throw new Error('Supabase initialization failed');
 
-          if (!supabase) {
-            throw new Error('Could not initialize Supabase');
-          }
-
+          // 3. INITIATE OAUTH
           console.log('Initiating Google OAuth...');
-          const redirectUrl = window.location.href;
-          console.log('Redirect URL:', redirectUrl);
-
-          const { data, error } = await supabase.auth.signInWithOAuth({
+          const { error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-              redirectTo: redirectUrl,
-              queryParams: {
-                access_type: 'offline',
-                prompt: 'consent',
-                hd: 'poornima.edu.in'
-              }
+              redirectTo: window.location.href,
+              queryParams: { access_type: 'offline', prompt: 'select_account', hd: 'poornima.edu.in' }
             }
           });
 
-          console.log('OAuth response:', { data, error });
+          if (error) throw error;
 
-          if (error) {
-            console.error('Google sign-in error:', error);
-            alert('Failed to initiate Google sign-in: ' + error.message);
-          } else {
-            console.log('OAuth initiated successfully, should redirect...');
-          }
-          // If no error, Supabase will redirect to Google OAuth page
         } catch (error) {
-          console.error('Unexpected error during Google sign-in:', error);
-          alert('Authentication system is unavailable. Error: ' + error.message);
+          console.error('Login error:', error);
+          alert('Login failed: ' + (error.message || 'Unknown error'));
+
+          // Revert UI on error
+          if (loginText) loginText.textContent = originalText;
+          googleLoginBtn.style.opacity = '1';
+          googleLoginBtn.style.cursor = 'pointer';
         }
       });
-
-      console.log('Click handler attached successfully');
     } else {
       console.warn('Google login button not found in DOM');
     }
