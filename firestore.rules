@@ -18,7 +18,7 @@ service cloud.firestore {
     function getUserRoles() {
       return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles;
     }
-    
+       
     function hasPermission(permission) {
       // Admin has all permissions (wildcard check)
       return isSignedIn() && (
