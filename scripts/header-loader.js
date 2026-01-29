@@ -10,226 +10,185 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Check authentication status
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const userName = localStorage.getItem('userName') || 'Student';
+    // --- NEW: Inject Auth Listener Module ---
+    // This ensures auth state is monitored globally and local storage is kept in sync.
+    const authScript = document.createElement('script');
+    authScript.type = 'module';
+    authScript.src = rootPath + 'assets/js/modules/auth/auth-listener.js';
+    document.head.appendChild(authScript);
+    // ----------------------------------------
 
-    // Build header with profile section (always visible)
-    const profileSection = isLoggedIn ? `
-        <div class="profile-dropdown-container">
-          <button class="profile-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Account menu">
-            <span class="user-name">${userName}</span>
+    // Function to render the header content
+    function renderHeader(user) {
+      const isLoggedIn = !!user || localStorage.getItem('isLoggedIn') === 'true';
+      // Prefer live user data, fallback to storage
+      const userName = (user?.user_metadata?.full_name || user?.user_metadata?.display_name)
+        || localStorage.getItem('userName')
+        || 'Student';
+
+      // Build Profile Section
+      const profileSection = isLoggedIn ? `
+            <div class="profile-dropdown-container">
+            <button class="profile-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Account menu">
+                <span class="user-name">${userName}</span>
+                <span class="profile-icon">👤</span>
+            </button>
+            <div class="profile-dropdown" role="menu" hidden>
+                <a href="${rootPath}pages/user/profile.html" role="menuitem">Profile</a>
+                <a href="${rootPath}pages/dashboards/student.html" role="menuitem">Dashboard</a>
+                <a href="${rootPath}pages/user/settings.html" role="menuitem">Settings</a>
+                <button class="logout-btn" role="menuitem">Logout</button>
+            </div>
+            </div>
+        ` : `
+            <button id="google-login-btn" class="profile-icon-link" aria-label="Login with Google">
             <span class="profile-icon">👤</span>
-          </button>
-          <div class="profile-dropdown" role="menu" hidden>
-            <a href="/pages/user/profile.html" role="menuitem">Profile</a>
-            <a href="/pages/dashboards/student.html" role="menuitem">Dashboard</a>
-            <a href="/pages/user/settings.html" role="menuitem">Settings</a>
-            <button class="logout-btn" role="menuitem">Logout</button>
-          </div>
+            <span class="login-text">Login</span>
+            </button>
+        `;
+
+      const headerHTML = `
+        <nav class="navbar">
+        <div class="logo">
+            <a href="${rootPath}index.html">Poornimites</a>
         </div>
-    ` : `
-        <button id="google-login-btn" class="profile-icon-link" aria-label="Login with Google">
-          <span class="profile-icon">👤</span>
-          <span class="login-text">Login</span>
-        </button>
-    `;
 
-    const headerHTML = `
-    <nav class="navbar">
-      <div class="logo">
-        <a href="/index.html">Poornimites</a>
-      </div>
+        <div class="nav-links">
+            <a href="${rootPath}index.html">Home</a>
+            <a href="${rootPath}pages/tools/tools.html">Tools</a>
+            <a href="${rootPath}pages/resources/notes.html">Notes</a>
+            <a href="${rootPath}pages/community/index.html">Lounge</a>
+        </div>
 
-      <div class="nav-links">
-        <a href="/index.html">Home</a>
-        <a href="/pages/tools/tools.html">Tools</a>
-        <a href="/pages/resources/notes.html">Notes</a>
-        <a href="/pages/community/index.html">Lounge</a>
-      </div>
+        <div class="nav-icons">
+            <span class="icon">🔔</span>
+            ${profileSection}
+        </div>
+        </nav>
+        `;
 
-      <div class="nav-icons">
-        <span class="icon">🔔</span>
-        ${profileSection}
-      </div>
-    </nav>
-    `;
+      placeholder.innerHTML = headerHTML;
 
-    placeholder.innerHTML = headerHTML;
+      // Re-attach all event listeners (navigation, dropdown, login)
+      attachEventListeners(rootPath);
+    }
 
-    const currentPath = window.location.pathname;
-    const navLinks = placeholder.querySelectorAll(".nav-links a");
+    // Function to attach all event listeners after render
+    function attachEventListeners(rootPath) {
+      // 1. Navigation Highlighting
+      const currentPath = window.location.pathname;
+      const navLinks = placeholder.querySelectorAll(".nav-links a");
 
-    navLinks.forEach((link) => {
-      let linkPath = link.getAttribute("href");
+      navLinks.forEach((link) => {
+        let linkPath = link.getAttribute("href");
+        // Fix file protocol paths
+        if (window.location.protocol === 'file:') {
+          // If it's absolute from root (starts with /), and we have a rootPath
+          // But simplified: the renderHeader uses rootPath prefix, so hrefs are likely relative or correct already.
+          // Just check for active state.
+          // NOTE: If we used rootPath in renderHeader, linkPath is already relative.
+        }
 
-      if (window.location.protocol === 'file:') {
-        if (linkPath.startsWith('/')) {
-          const relativePath = rootPath + linkPath.substring(1);
-          link.setAttribute('href', relativePath);
-          linkPath = relativePath;
+        // Simple active state check
+        if (currentPath.endsWith(linkPath) ||
+          (linkPath.endsWith('index.html') && currentPath.endsWith('/'))) {
+          link.classList.add("active");
+        }
+      });
+
+      // 2. Profile Dropdown Logic
+      const profileBtn = placeholder.querySelector('.profile-trigger');
+      const dropdown = placeholder.querySelector('.profile-dropdown');
+
+      if (profileBtn && dropdown) {
+        function openDropdown() {
+          dropdown.hidden = false;
+          profileBtn.setAttribute('aria-expanded', 'true');
+        }
+        function closeDropdown() {
+          dropdown.hidden = true;
+          profileBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        profileBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
+          isExpanded ? closeDropdown() : openDropdown();
+        });
+
+        document.addEventListener('click', () => closeDropdown());
+
+        // Logout
+        const logoutBtn = dropdown.querySelector('.logout-btn');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', async () => {
+            // Use global supabase client if available, or just clear local storage
+            const sb = window.__SUPABASE_CLIENT__;
+            if (sb) {
+              await sb.auth.signOut();
+              // The auth-listener will catch this and trigger update, 
+              // but we might want to reload to be sure.
+            }
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userName');
+            window.location.href = rootPath + 'index.html';
+          });
         }
       }
 
-      if (currentPath.endsWith(linkPath) ||
-        (linkPath.endsWith("index.html") && currentPath.endsWith("/")) ||
-        currentPath.includes(linkPath.replace(/^\.\.\//, ''))) {
-        link.classList.add("active");
+      // 3. Login Button Logic
+      const googleLoginBtn = placeholder.querySelector('#google-login-btn');
+      if (googleLoginBtn) {
+        googleLoginBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const loginText = googleLoginBtn.querySelector('.login-text');
+          const originalText = loginText ? loginText.textContent : 'Login';
+          if (loginText) loginText.textContent = 'Logging in...';
+
+          try {
+            // Wait for Supabase to be available (injected by auth-listener)
+            // We can poll or just check window.__SUPABASE_CLIENT__
+            let sb = window.__SUPABASE_CLIENT__;
+
+            if (!sb) {
+              // Fallback: wait a bit or load it manually? 
+              // Since we injected auth-listener, it should be ready or initializing.
+              // Let's simplified load if missing (just in case auth-listener failed or is slow)
+              console.log("Supabase client not ready, waiting...");
+              await new Promise(r => setTimeout(r, 500));
+              sb = window.__SUPABASE_CLIENT__;
+            }
+
+            if (!sb) throw new Error("Authentication system not initialized. Please refresh.");
+
+            const { error } = await sb.auth.signInWithOAuth({
+              provider: 'google',
+              options: {
+                redirectTo: window.location.href, // Stay on same page or go to index? plan said index but staying is better ux
+                queryParams: { access_type: 'offline', prompt: 'select_account', hd: 'poornima.edu.in' }
+              }
+            });
+            if (error) throw error;
+
+          } catch (err) {
+            console.error("Login failed:", err);
+            alert(err.message);
+            if (loginText) loginText.textContent = originalText;
+          }
+        });
       }
+    }
+
+    // --- INITIAL RENDER ---
+    // Render immediately with whatever is in localStorage (fast)
+    renderHeader(null);
+
+    // --- REACTIVE UPDATE ---
+    // Listen for updates from auth-listener.js
+    window.addEventListener('auth-state-changed', (e) => {
+      console.log("Header received auth update:", e.detail);
+      renderHeader(e.detail.user);
     });
 
-    // Profile dropdown functionality (only if logged in)
-    const profileBtn = placeholder.querySelector('.profile-trigger');
-    const dropdown = placeholder.querySelector('.profile-dropdown');
-
-    if (profileBtn && dropdown) {
-      const dropdownLinks = dropdown.querySelectorAll('a[role="menuitem"]');
-
-      function openDropdown() {
-        dropdown.hidden = false;
-        profileBtn.setAttribute('aria-expanded', 'true');
-      }
-
-      function closeDropdown() {
-        dropdown.hidden = true;
-        profileBtn.setAttribute('aria-expanded', 'false');
-      }
-
-      // Click to toggle
-      profileBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) {
-          closeDropdown();
-        } else {
-          openDropdown();
-        }
-      });
-
-      // Keyboard support
-      profileBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
-          if (isExpanded) {
-            closeDropdown();
-          } else {
-            openDropdown();
-          }
-        }
-      });
-
-      // Click outside to close
-      document.addEventListener('click', () => {
-        closeDropdown();
-      });
-
-      // ESC to close
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && profileBtn.getAttribute('aria-expanded') === 'true') {
-          closeDropdown();
-        }
-      });
-
-      // Fix links for file:// protocol
-      if (window.location.protocol === 'file:') {
-        dropdownLinks.forEach(link => {
-          let linkPath = link.getAttribute('href');
-          if (linkPath.startsWith('/')) {
-            const relativePath = rootPath + linkPath.substring(1);
-            link.setAttribute('href', relativePath);
-          }
-        });
-      }
-
-      // Logout button handler
-      const logoutBtn = dropdown.querySelector('.logout-btn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-          localStorage.removeItem('isLoggedIn');
-          localStorage.removeItem('userName');
-          window.location.href = rootPath + 'index.html';
-        });
-      }
-    }
-
-    // Google login button handler (when not logged in)
-    const googleLoginBtn = placeholder.querySelector('#google-login-btn');
-    console.log('Google login button found:', googleLoginBtn);
-
-    if (googleLoginBtn) {
-      console.log('Attaching click handler to Google login button');
-
-      googleLoginBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-
-        // 1. VISUAL FEEDBACK
-        const loginText = googleLoginBtn.querySelector('.login-text');
-        const originalText = loginText ? loginText.textContent : 'Login';
-        if (loginText) loginText.textContent = 'Logging in...';
-        googleLoginBtn.style.opacity = '0.7';
-        googleLoginBtn.style.cursor = 'wait';
-
-        console.log('Google login button clicked!');
-
-        try {
-          // 2. LOAD SUPABASE (Robust UMD Loader)
-          const getSupabaseClient = async () => {
-            if (window.__SUPABASE_CLIENT__) return window.__SUPABASE_CLIENT__;
-
-            console.log('Loading Supabase UMD script...');
-            return new Promise((resolve, reject) => {
-              const script = document.createElement('script');
-              // STRICT UMD PATH - Critical for file:// protocol
-              script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js';
-
-              script.onload = () => {
-                console.log('Supabase script loaded successfully');
-                try {
-                  const SUPABASE_URL = "https://pcwibkgvpxjbxnerctzy.supabase.co";
-                  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjd2lia2d2cHhqYnhuZXJjdHp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY5MzU1OTIsImV4cCI6MjA4MjUxMTU5Mn0.utuX_SvSr3NJJRrjv1e_spDEKWS77t6b5Rmg6DgG23o";
-
-                  if (!window.supabase || !window.supabase.createClient) {
-                    throw new Error('Supabase global object missing');
-                  }
-
-                  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                  window.__SUPABASE_CLIENT__ = client;
-                  resolve(client);
-                } catch (err) { reject(err); }
-              };
-              script.onerror = () => reject(new Error('Failed to load Supabase script from CDN'));
-              document.head.appendChild(script);
-            });
-          };
-
-          const supabase = await getSupabaseClient();
-          if (!supabase) throw new Error('Supabase initialization failed');
-
-          // 3. INITIATE OAUTH
-          console.log('Initiating Google OAuth...');
-          const { error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-              redirectTo: window.location.href,
-              queryParams: { access_type: 'offline', prompt: 'select_account', hd: 'poornima.edu.in' }
-            }
-          });
-
-          if (error) throw error;
-
-        } catch (error) {
-          console.error('Login error:', error);
-          alert('Login failed: ' + (error.message || 'Unknown error'));
-
-          // Revert UI on error
-          if (loginText) loginText.textContent = originalText;
-          googleLoginBtn.style.opacity = '1';
-          googleLoginBtn.style.cursor = 'pointer';
-        }
-      });
-    } else {
-      console.warn('Google login button not found in DOM');
-    }
   }
 });

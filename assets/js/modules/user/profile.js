@@ -130,13 +130,66 @@ function closeMobileSidebar() {
     }
 }
 
-// Load profile data from localStorage or use defaults
-function loadProfileData() {
+// Load profile data from Supabase and sync with localStorage
+async function loadProfileData() {
+    // 1. Load from LocalStorage first (for instant load)
     const savedProfile = localStorage.getItem('studentProfile');
-
     if (savedProfile) {
-        const profile = JSON.parse(savedProfile);
+        try {
+            const profile = JSON.parse(savedProfile);
+            updateProfileDisplay(profile);
+        } catch (e) {
+            console.error('Error parsing local profile', e);
+        }
+    }
+
+    // 2. Fetch fresh data from Supabase
+    try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return; // Not logged in
+
+        const { data: remoteProfile, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq('id', user.id)
+            .single();
+
+        if (error) {
+            // If error is no rows found, we just stick to local
+            if (error.code !== 'PGRST116') {
+                console.log('Error fetching remote profile:', error);
+            }
+            return;
+        }
+
+        if (!remoteProfile) return;
+
+        // 3. Map DB snake_case to App camelCase
+        const profile = {
+            fullName: remoteProfile.full_name || '',
+            dob: remoteProfile.dob || '',
+            gender: remoteProfile.gender || '',
+            bloodGroup: remoteProfile.blood_group || '',
+            nationality: remoteProfile.nationality || '',
+            section: remoteProfile.section || '',
+            personalEmail: remoteProfile.personal_email || '',
+            phone: remoteProfile.phone_number || '',
+            address: remoteProfile.address || '',
+            emergencyName: remoteProfile.emergency_name || '',
+            emergencyRelation: remoteProfile.emergency_relation || '',
+            emergencyPhone: remoteProfile.emergency_phone || '',
+            branch: remoteProfile.branch || '',
+            year: remoteProfile.year || '',
+            cgpa: remoteProfile.cgpa || ''
+        };
+
+        // 4. Update UI and LocalStorage
         updateProfileDisplay(profile);
+        localStorage.setItem('studentProfile', JSON.stringify(profile));
+        console.log('Profile synced from cloud');
+
+    } catch (err) {
+        console.error('Profile sync error:', err);
     }
 }
 
@@ -246,8 +299,8 @@ function disableEditMode() {
     }
 }
 
-// Save profile data to localStorage
-function saveProfileData() {
+// Save profile data to Supabase and localStorage
+async function saveProfileData() {
     const fullNameEl = document.getElementById('fullName');
     const dobEl = document.getElementById('dob');
     const genderEl = document.getElementById('gender');
@@ -282,10 +335,56 @@ function saveProfileData() {
         cgpa: statCGPAEl ? statCGPAEl.textContent : ''
     };
 
+    // 1. Optimistic Update: Save to LocalStorage immediately
     localStorage.setItem('studentProfile', JSON.stringify(profile));
 
-    // Show success message
-    showNotification('Profile saved successfully!', 'success');
+    // UI Feedback
+    showNotification('Saving changes...', 'info');
+
+    // 2. Sync to Supabase
+    try {
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (!user) {
+            showNotification('Saved locally (Not logged in)', 'warning');
+            return;
+        }
+
+        const updates = {
+            full_name: profile.fullName,
+            dob: profile.dob,
+            gender: profile.gender,
+            blood_group: profile.bloodGroup,
+            nationality: profile.nationality,
+            section: profile.section,
+            personal_email: profile.personalEmail,
+            phone_number: profile.phone,
+            address: profile.address,
+            emergency_name: profile.emergencyName,
+            emergency_relation: profile.emergencyRelation,
+            emergency_phone: profile.emergencyPhone,
+            branch: profile.branch,
+            year: profile.year,
+            cgpa: profile.cgpa,
+            updated_at: new Date().toISOString()
+        };
+
+        const { error } = await supabase
+            .from('users')
+            .update(updates)
+            .eq('id', user.id);
+
+        if (error) {
+            console.error('Supabase update error:', error);
+            throw error;
+        }
+
+        showNotification('Profile synced successfully!', 'success');
+
+    } catch (err) {
+        console.error('Cloud save error:', err);
+        showNotification('Saved locally. Cloud sync failed.', 'warning');
+    }
 }
 
 // Setup profile avatar
