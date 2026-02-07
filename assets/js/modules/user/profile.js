@@ -5,30 +5,23 @@ import { parseStudentEmail } from "../../utils/email-parser.js";
 // Edit mode state
 let isEditMode = false;
 
-// DOM Elements
-const navItems = document.querySelectorAll('.nav-item');
-const tabPanels = document.querySelectorAll('.tab-panel');
-const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
-const profileSidebar = document.getElementById('profileSidebar');
-const sidebarClose = document.getElementById('sidebarClose');
-const editProfileBtnInline = document.getElementById('editProfileBtnInline');
-const editBtnTextInline = document.getElementById('editBtnTextInline');
-const editableFields = document.querySelectorAll('.info-value.editable');
-
 // Initialize profile page
 document.addEventListener('DOMContentLoaded', function () {
     checkProfileCompletion();
     loadProfileData();
     initNavigation();
-    setupEditMode();
+    setupSectionEdit();
     setupProfileAvatar();
     setupMobileSidebar();
     animateProgressBars();
     loadActiveTab();
 });
 
+
+// Initialize navigation
 // Initialize navigation
 function initNavigation() {
+    const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
         item.addEventListener('click', function () {
             const sectionId = this.getAttribute('data-section');
@@ -46,6 +39,7 @@ function initNavigation() {
 
 // Switch between tabs
 function switchTab(sectionId) {
+    const tabPanels = document.querySelectorAll('.tab-panel');
     // Hide all panels
     tabPanels.forEach(panel => {
         panel.classList.remove('active');
@@ -71,6 +65,7 @@ function switchTab(sectionId) {
 
 // Set active navigation item
 function setActiveNav(activeItem) {
+    const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
         item.classList.remove('active');
     });
@@ -84,31 +79,50 @@ function saveActiveTab(sectionId) {
 
 // Load active tab from localStorage
 function loadActiveTab() {
-    const savedTab = localStorage.getItem('activeProfileTab');
-    if (savedTab) {
-        const targetNav = document.querySelector(`[data-section="${savedTab}"]`);
-        if (targetNav) {
-            switchTab(savedTab);
-            setActiveNav(targetNav);
-        }
+    let savedTab = localStorage.getItem('activeProfileTab');
+
+    // Redirect old tabs to new mapped tabs
+    const validTabs = ['personal', 'academic', 'skills-achievements'];
+    if (!savedTab || !validTabs.includes(savedTab)) {
+        savedTab = 'personal';
+    }
+
+    const targetNav = document.querySelector(`[data-section="${savedTab}"]`);
+    if (targetNav) {
+        switchTab(savedTab);
+        setActiveNav(targetNav);
     }
 }
 
 // Setup mobile sidebar
 function setupMobileSidebar() {
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const profileSidebar = document.getElementById('profileSidebar');
+
     if (mobileSidebarToggle) {
-        mobileSidebarToggle.addEventListener('click', openMobileSidebar);
+        // Remove existing listeners if any (by replacing node or just adding new one safely)
+        mobileSidebarToggle.onclick = function (e) {
+            e.stopPropagation();
+            openMobileSidebar();
+        };
     }
 
     if (sidebarClose) {
-        sidebarClose.addEventListener('click', closeMobileSidebar);
+        sidebarClose.onclick = function (e) {
+            e.stopPropagation();
+            closeMobileSidebar();
+        };
     }
 
     // Close sidebar when clicking outside on mobile
     document.addEventListener('click', function (e) {
+        const toggle = document.getElementById('mobileSidebarToggle');
+        const sidebar = document.getElementById('profileSidebar');
+
         if (window.innerWidth <= 768) {
-            if (profileSidebar && profileSidebar.classList.contains('open')) {
-                if (!profileSidebar.contains(e.target) && !mobileSidebarToggle.contains(e.target)) {
+            if (sidebar && sidebar.classList.contains('open')) {
+                if (!sidebar.contains(e.target) && (!toggle || !toggle.contains(e.target))) {
                     closeMobileSidebar();
                 }
             }
@@ -118,6 +132,7 @@ function setupMobileSidebar() {
 
 // Open mobile sidebar
 function openMobileSidebar() {
+    const profileSidebar = document.getElementById('profileSidebar');
     if (profileSidebar) {
         profileSidebar.classList.add('open');
     }
@@ -125,6 +140,7 @@ function openMobileSidebar() {
 
 // Close mobile sidebar
 function closeMobileSidebar() {
+    const profileSidebar = document.getElementById('profileSidebar');
     if (profileSidebar) {
         profileSidebar.classList.remove('open');
     }
@@ -193,6 +209,25 @@ async function loadProfileData() {
     }
 }
 
+// Helper to set value or textContent
+function setElementValue(element, value) {
+    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+        element.value = value;
+    } else {
+        element.textContent = value;
+    }
+}
+
+// Helper to get value or textContent
+function getElementValue(element) {
+    if (!element) return '';
+    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+        return element.value;
+    } else {
+        return element.textContent;
+    }
+}
+
 // Update profile display with data
 function updateProfileDisplay(profile) {
     // Update header
@@ -200,7 +235,7 @@ function updateProfileDisplay(profile) {
         const profileNameEl = document.getElementById('profileName');
         const fullNameEl = document.getElementById('fullName');
         if (profileNameEl) profileNameEl.textContent = profile.fullName;
-        if (fullNameEl) fullNameEl.textContent = profile.fullName;
+        if (fullNameEl) setElementValue(fullNameEl, profile.fullName);
     }
 
     if (profile.branch) {
@@ -213,6 +248,12 @@ function updateProfileDisplay(profile) {
     if (profile.year) {
         const profileYearEl = document.getElementById('profileYear');
         if (profileYearEl) profileYearEl.textContent = profile.year;
+    }
+
+    // Update section (input)
+    if (profile.section) {
+        const sectionEl = document.getElementById('section');
+        if (sectionEl) setElementValue(sectionEl, profile.section);
     }
 
     // Update stats
@@ -228,7 +269,7 @@ function updateProfileDisplay(profile) {
     personalFields.forEach(field => {
         if (profile[field]) {
             const element = document.getElementById(field);
-            if (element) element.textContent = profile[field];
+            if (element) setElementValue(element, profile[field]);
         }
     });
 
@@ -237,7 +278,7 @@ function updateProfileDisplay(profile) {
     contactFields.forEach(field => {
         if (profile[field]) {
             const element = document.getElementById(field);
-            if (element) element.textContent = profile[field];
+            if (element) setElementValue(element, profile[field]);
         }
     });
 
@@ -246,58 +287,77 @@ function updateProfileDisplay(profile) {
     emergencyFields.forEach(field => {
         if (profile[field]) {
             const element = document.getElementById(field);
-            if (element) element.textContent = profile[field];
+            if (element) setElementValue(element, profile[field]);
         }
     });
 }
 
-// Setup edit mode functionality
-function setupEditMode() {
-    if (editProfileBtnInline) {
-        editProfileBtnInline.addEventListener('click', function () {
-            isEditMode = !isEditMode;
 
-            if (isEditMode) {
-                enableEditMode();
-            } else {
-                disableEditMode();
-                saveProfileData();
-            }
+// Setup section-specific edit functionality
+function setupSectionEdit() {
+    const editButtons = document.querySelectorAll('.section-edit-btn');
+
+    editButtons.forEach(btn => {
+        // Prevent multiple listeners
+        btn.onclick = null;
+
+        btn.onclick = function (e) {
+            e.stopPropagation(); // prevent bubbling
+            const targetSectionId = this.getAttribute('data-target');
+            handleSectionEdit(this, targetSectionId);
+        };
+    });
+    console.log(`Attached listeners to ${editButtons.length} section edit buttons.`);
+}
+
+// Handle toggle edit for a specific section
+function handleSectionEdit(btn, sectionId) {
+    const container = document.querySelector(`.profile-section[data-editable-section="${sectionId}"]`);
+    if (!container) {
+        console.error(`Container for ${sectionId} not found.`);
+        return;
+    }
+
+    const isEditing = btn.classList.contains('editing');
+    const editableFields = container.querySelectorAll('.info-value.editable');
+
+    if (!isEditing) {
+        // Enable Edit Mode
+        console.log(`Enabling edit for ${sectionId}`);
+
+        editableFields.forEach(field => {
+            field.disabled = false;
         });
+
+        // Focus first field
+        if (editableFields.length > 0) {
+            editableFields[0].focus();
+        }
+
+        // Update Button State
+        btn.classList.add('editing');
+        btn.innerHTML = '💾'; // Change icon to save
+        btn.title = "Save Changes";
+
+    } else {
+        // Save Mode
+        console.log(`Saving changes for ${sectionId}`);
+
+        // Disable Edit Mode
+        editableFields.forEach(field => {
+            field.disabled = true;
+        });
+
+        // Trigger global save
+        saveProfileData();
+
+        // Reset Button State
+        btn.classList.remove('editing');
+        btn.innerHTML = '✏️';
+        btn.title = "Edit Section";
     }
 }
 
-// Enable edit mode
-function enableEditMode() {
-    editableFields.forEach(field => {
-        field.contentEditable = 'true';
-        field.style.borderColor = 'var(--profile-accent)';
-        field.style.backgroundColor = '#fff';
-    });
-
-    if (editBtnTextInline) {
-        editBtnTextInline.textContent = 'Save Profile';
-    }
-    if (editProfileBtnInline) {
-        editProfileBtnInline.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-    }
-}
-
-// Disable edit mode
-function disableEditMode() {
-    editableFields.forEach(field => {
-        field.contentEditable = 'false';
-        field.style.borderColor = '';
-        field.style.backgroundColor = '';
-    });
-
-    if (editBtnTextInline) {
-        editBtnTextInline.textContent = 'Edit Profile';
-    }
-    if (editProfileBtnInline) {
-        editProfileBtnInline.style.background = '';
-    }
-}
 
 // Save profile data to Supabase and localStorage
 async function saveProfileData() {
@@ -318,18 +378,18 @@ async function saveProfileData() {
     const statCGPAEl = document.getElementById('statCGPA');
 
     const profile = {
-        fullName: fullNameEl ? fullNameEl.textContent : '',
-        dob: dobEl ? dobEl.textContent : '',
-        gender: genderEl ? genderEl.textContent : '',
-        bloodGroup: bloodGroupEl ? bloodGroupEl.textContent : '',
-        nationality: nationalityEl ? nationalityEl.textContent : '',
-        section: sectionEl ? sectionEl.textContent : '',
-        personalEmail: personalEmailEl ? personalEmailEl.textContent : '',
-        phone: phoneEl ? phoneEl.textContent : '',
-        address: addressEl ? addressEl.textContent : '',
-        emergencyName: emergencyNameEl ? emergencyNameEl.textContent : '',
-        emergencyRelation: emergencyRelationEl ? emergencyRelationEl.textContent : '',
-        emergencyPhone: emergencyPhoneEl ? emergencyPhoneEl.textContent : '',
+        fullName: getElementValue(fullNameEl),
+        dob: getElementValue(dobEl),
+        gender: getElementValue(genderEl),
+        bloodGroup: getElementValue(bloodGroupEl),
+        nationality: getElementValue(nationalityEl),
+        section: getElementValue(sectionEl),
+        personalEmail: getElementValue(personalEmailEl),
+        phone: getElementValue(phoneEl),
+        address: getElementValue(addressEl),
+        emergencyName: getElementValue(emergencyNameEl),
+        emergencyRelation: getElementValue(emergencyRelationEl),
+        emergencyPhone: getElementValue(emergencyPhoneEl),
         branch: branchEl ? branchEl.textContent : '',
         year: profileYearEl ? profileYearEl.textContent : '',
         cgpa: statCGPAEl ? statCGPAEl.textContent : ''

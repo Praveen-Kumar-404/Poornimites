@@ -255,13 +255,20 @@
     grid-column: 1 / -1;
 }
 
+
 .section-header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--profile-border);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .section-icon {
@@ -273,6 +280,38 @@
     color: var(--profile-primary);
     font-size: 1.25rem;
 }
+
+/* Section specific edit button (Small icon) */
+.section-edit-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: all 0.2s;
+    color: var(--profile-text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    box-shadow: none;
+}
+
+.section-edit-btn:hover {
+    background: rgba(0, 102, 204, 0.1);
+    color: var(--profile-accent);
+    transform: scale(1.1);
+    box-shadow: none;
+}
+
+.section-edit-btn.saving {
+    background: transparent;
+    /* Keep transparent, icon will change */
+}
+
+/* Old button style override if needed, or just let this cascade handle it */
 
 /* Info Items */
 .info-grid {
@@ -300,16 +339,42 @@
     padding: 0.5rem;
     background: var(--profile-bg);
     border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    font-family: inherit;
 }
 
-.info-value.editable {
-    border: 1px solid var(--profile-border);
-    cursor: pointer;
-    transition: border-color 0.2s;
+input.info-value,
+textarea.info-value {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
 }
 
-.info-value.editable:hover {
+textarea.info-value {
+    resize: none;
+    min-height: 2.5rem;
+}
+
+/* Disabled State: Look like plain text */
+.info-value:disabled {
+    background-color: var(--profile-bg);
+    border-color: transparent;
+    cursor: default;
+    color: var(--profile-text-light);
+    opacity: 1;
+}
+
+/* Enabled State: Look like input */
+.info-value:not(:disabled) {
+    background-color: white;
     border-color: var(--profile-accent);
+    cursor: text;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+    outline: none;
+    transition: all 0.2s;
 }
 
 /* Skills & Tags */
@@ -681,5 +746,46 @@
     .form-row {
         flex-direction: column;
         gap: 1.25rem;
+    }
+}
+
+/* Global Edit Profile Button in Header */
+.edit-profile-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    /* Push to right */
+    backdrop-filter: blur(5px);
+}
+
+.edit-profile-btn:hover {
+    background: white;
+    color: var(--profile-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.edit-profile-btn.saving {
+    background: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .edit-profile-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+        margin-left: 0;
     }
 }

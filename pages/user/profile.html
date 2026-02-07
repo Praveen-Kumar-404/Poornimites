@@ -18,43 +18,27 @@
   <main class="profile-layout">
     <!-- Mobile Sidebar Toggle -->
     <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
-      <span class="hamburger-icon">?</span>
+      <span class="hamburger-icon">☰</span>
     </button>
 
     <!-- Left Sidebar Navigation -->
     <aside class="profile-sidebar" id="profileSidebar">
       <div class="sidebar-header">
         <h3>Profile</h3>
-        <button class="sidebar-close" id="sidebarClose">?</button>
+        <button class="sidebar-close" id="sidebarClose">✕</button>
       </div>
       <nav class="sidebar-nav">
-        <button class="nav-item active" data-section="overview">
-          <span class="nav-icon">👤</span>
-          <span class="nav-label">Overview</span>
-        </button>
-        <button class="nav-item" data-section="academic">
-          <span class="nav-icon">👤</span>
-          <span class="nav-label">Academic</span>
-        </button>
-        <button class="nav-item" data-section="personal">
+        <button class="nav-item active" data-section="personal">
           <span class="nav-icon">👤</span>
           <span class="nav-label">Personal Details</span>
         </button>
-        <button class="nav-item" data-section="skills">
-          <span class="nav-icon">👤</span>
-          <span class="nav-label">Skills & Interests</span>
+        <button class="nav-item" data-section="academic">
+          <span class="nav-icon">🎓</span>
+          <span class="nav-label">Academic</span>
         </button>
-        <button class="nav-item" data-section="achievements">
-          <span class="nav-icon">👤</span>
-          <span class="nav-label">Achievements</span>
-        </button>
-        <button class="nav-item" data-section="social">
-          <span class="nav-icon">👤</span>
-          <span class="nav-label">Social Links</span>
-        </button>
-        <button class="nav-item" data-section="settings">
-          <span class="nav-icon">👤</span>
-          <span class="nav-label">Settings</span>
+        <button class="nav-item" data-section="skills-achievements">
+          <span class="nav-icon">🏆</span>
+          <span class="nav-label">Skills & Achievements</span>
         </button>
       </nav>
     </aside>
@@ -85,57 +69,12 @@
             </div>
           </div>
         </div>
+
       </div>
 
       <!-- Tab Panels -->
 
-      <!-- Overview Panel -->
-      <section class="tab-panel active" id="overview-panel">
-        <h2 class="panel-title">Overview</h2>
-        <div class="panel-grid">
-          <div class="profile-section">
-            <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Quick Stats</h3>
-            </div>
-            <div class="info-grid">
-              <div class="info-item">
-                <span class="info-label">Current Semester</span>
-                <div class="info-value">6th Semester</div>
-              </div>
-              <div class="info-item">
-                <span class="info-label">Overall CGPA</span>
-                <div class="info-value">8.5 / 10.0</div>
-              </div>
-              <div class="info-item">
-                <span class="info-label">Credits Completed</span>
-                <div class="info-value">120 / 180</div>
-              </div>
-              <div class="info-item">
-                <span class="info-label">Attendance</span>
-                <div class="info-value">92%</div>
-              </div>
-            </div>
-          </div>
 
-          <div class="profile-section">
-            <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Contact Info</h3>
-            </div>
-            <div class="info-grid">
-              <div class="info-item">
-                <span class="info-label">Email</span>
-                <div class="info-value">student@example.com</div>
-              </div>
-              <div class="info-item">
-                <span class="info-label">Phone</span>
-                <div class="info-value">+91 98765 43210</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- Academic Panel -->
       <section class="tab-panel" id="academic-panel">
@@ -143,8 +82,11 @@
         <div class="panel-grid">
           <div class="profile-section" data-editable-section="academic-info">
             <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Academic Details</h3>
+              <div class="header-left">
+                <span class="section-icon">🎓</span>
+                <h3>Academic Details</h3>
+              </div>
+              <button class="section-edit-btn" data-target="academic-info">✏️</button>
             </div>
             <div class="info-grid">
               <div class="info-item">
@@ -161,7 +103,7 @@
               </div>
               <div class="info-item">
                 <span class="info-label">Section</span>
-                <div class="info-value editable" contenteditable="false" id="section">A</div>
+                <input type="text" class="info-value editable" id="section" value="A" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Batch</span>
@@ -176,7 +118,7 @@
 
           <div class="profile-section">
             <div class="section-header">
-              <span class="section-icon">👤</span>
+              <span class="section-icon">📈</span>
               <h3>Semester Progress</h3>
             </div>
             <div id="academicProgress">
@@ -231,47 +173,53 @@
       </section>
 
       <!-- Personal Details Panel -->
-      <section class="tab-panel" id="personal-panel">
+      <section class="tab-panel active" id="personal-panel">
         <h2 class="panel-title">Personal Details</h2>
         <div class="panel-grid">
           <div class="profile-section" data-editable-section="personal-info">
             <div class="section-header">
-              <span class="section-icon">👤👤?</span>
-              <h3>Personal Information</h3>
+              <div class="header-left">
+                <span class="section-icon">🆔</span>
+                <h3>Personal Information</h3>
+              </div>
+              <button class="section-edit-btn" data-target="personal-info">✏️</button>
             </div>
             <div class="info-grid">
               <div class="info-item">
                 <span class="info-label">Full Name</span>
-                <div class="info-value editable" contenteditable="false" id="fullName">John Doe</div>
+                <input type="text" class="info-value editable" id="fullName" value="John Doe" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Date of Birth</span>
-                <div class="info-value editable" contenteditable="false" id="dob">15/08/2003</div>
+                <input type="text" class="info-value editable" id="dob" value="15/08/2003" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Gender</span>
-                <div class="info-value editable" contenteditable="false" id="gender">Male</div>
+                <input type="text" class="info-value editable" id="gender" value="Male" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Blood Group</span>
-                <div class="info-value editable" contenteditable="false" id="bloodGroup">O+</div>
+                <input type="text" class="info-value editable" id="bloodGroup" value="O+" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Nationality</span>
-                <div class="info-value editable" contenteditable="false" id="nationality">Indian</div>
+                <input type="text" class="info-value editable" id="nationality" value="Indian" disabled>
               </div>
             </div>
           </div>
 
           <div class="profile-section" data-editable-section="contact-info">
             <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Contact Information</h3>
+              <div class="header-left">
+                <span class="section-icon">📞</span>
+                <h3>Contact Information</h3>
+              </div>
+              <button class="section-edit-btn" data-target="contact-info">✏️</button>
             </div>
             <div class="info-grid">
               <div class="info-item">
                 <span class="info-label">Email (Personal)</span>
-                <div class="info-value editable" contenteditable="false" id="personalEmail">student@example.com</div>
+                <input type="email" class="info-value editable" id="personalEmail" value="student@example.com" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Email (University)</span>
@@ -279,45 +227,80 @@
               </div>
               <div class="info-item">
                 <span class="info-label">Phone Number</span>
-                <div class="info-value editable" contenteditable="false" id="phone">+91 98765 43210</div>
+                <input type="tel" class="info-value editable" id="phone" value="+91 98765 43210" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Address</span>
-                <div class="info-value editable" contenteditable="false" id="address">Jaipur, Rajasthan, India</div>
+                <textarea class="info-value editable" id="address" rows="2" disabled>Jaipur, Rajasthan, India</textarea>
               </div>
             </div>
           </div>
 
           <div class="profile-section" data-editable-section="emergency-contact">
             <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Emergency Contact</h3>
+              <div class="header-left">
+                <span class="section-icon">🚑</span>
+                <h3>Emergency Contact</h3>
+              </div>
+              <button class="section-edit-btn" data-target="emergency-contact">✏️</button>
             </div>
             <div class="info-grid">
               <div class="info-item">
                 <span class="info-label">Contact Name</span>
-                <div class="info-value editable" contenteditable="false" id="emergencyName">Parent/Guardian Name</div>
+                <input type="text" class="info-value editable" id="emergencyName" value="Parent/Guardian Name" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Relationship</span>
-                <div class="info-value editable" contenteditable="false" id="emergencyRelation">Father</div>
+                <input type="text" class="info-value editable" id="emergencyRelation" value="Father" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Phone Number</span>
-                <div class="info-value editable" contenteditable="false" id="emergencyPhone">+91 98765 00000</div>
+                <input type="tel" class="info-value editable" id="emergencyPhone" value="+91 98765 00000" disabled>
               </div>
+            </div>
+          </div>
+          <div class="profile-section full-width">
+            <div class="section-header">
+              <span class="section-icon">🔗</span>
+              <h3>Social Links</h3>
+            </div>
+            <div class="social-links" id="socialLinks">
+              <a href="#" class="social-link">
+                <span class="social-icon">🔗</span>
+                LinkedIn
+              </a>
+              <a href="#" class="social-link">
+                <span class="social-icon">🐱</span>
+                GitHub
+              </a>
+              <a href="#" class="social-link">
+                <span class="social-icon">🐦</span>
+                Twitter
+              </a>
+              <a href="#" class="social-link">
+                <span class="social-icon">📧</span>
+                Email
+              </a>
+              <a href="#" class="social-link">
+                <span class="social-icon">🌐</span>
+                Portfolio
+              </a>
+              <a href="#" class="social-link">
+                <span class="social-icon">📷</span>
+                Instagram
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Skills & Interests Panel -->
-      <section class="tab-panel" id="skills-panel">
-        <h2 class="panel-title">Skills & Interests</h2>
+      <!-- Skills & Achievements Panel -->
+      <section class="tab-panel" id="skills-achievements-panel">
+        <h2 class="panel-title">Skills & Achievements</h2>
         <div class="panel-grid">
           <div class="profile-section">
             <div class="section-header">
-              <span class="section-icon">👤</span>
+              <span class="section-icon">🛠️</span>
               <h3>Technical Skills</h3>
             </div>
             <div class="skills-container" id="technicalSkills">
@@ -334,7 +317,7 @@
 
           <div class="profile-section">
             <div class="section-header">
-              <span class="section-icon">👤</span>
+              <span class="section-icon">💡</span>
               <h3>Interests</h3>
             </div>
             <div class="skills-container" id="interests">
@@ -345,16 +328,10 @@
               <span class="skill-tag">Open Source</span>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Achievements Panel -->
-      <section class="tab-panel" id="achievements-panel">
-        <h2 class="panel-title">Achievements & Certifications</h2>
-        <div class="panel-grid">
           <div class="profile-section full-width">
             <div class="section-header">
-              <span class="section-icon">👤</span>
+              <span class="section-icon">🏆</span>
               <h3>Achievements</h3>
             </div>
             <div class="achievements-list" id="achievementsList">
@@ -380,127 +357,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- Social Links Panel -->
-      <section class="tab-panel" id="social-panel">
-        <h2 class="panel-title">Social Links</h2>
-        <div class="panel-grid">
-          <div class="profile-section full-width">
-            <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Connect With Me</h3>
-            </div>
-            <div class="social-links" id="socialLinks">
-              <a href="#" class="social-link">
-                <span class="social-icon">👤</span>
-                LinkedIn
-              </a>
-              <a href="#" class="social-link">
-                <span class="social-icon">👤</span>
-                GitHub
-              </a>
-              <a href="#" class="social-link">
-                <span class="social-icon">👤</span>
-                Twitter
-              </a>
-              <a href="#" class="social-link">
-                <span class="social-icon">👤</span>
-                Email
-              </a>
-              <a href="#" class="social-link">
-                <span class="social-icon">👤</span>
-                Portfolio
-              </a>
-              <a href="#" class="social-link">
-                <span class="social-icon">👤</span>
-                Instagram
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Settings Panel -->
-      <section class="tab-panel" id="settings-panel">
-        <h2 class="panel-title">Settings</h2>
-        <div class="panel-grid">
-          <div class="profile-section full-width">
-            <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Edit Profile Sections</h3>
-            </div>
-            <div class="settings-info">
-              <p>Click the edit button for any section below to enable editing for that specific section. Each section
-                can be edited independently.</p>
-            </div>
-          </div>
-
-          <!-- Personal Information Edit Control -->
-          <div class="profile-section">
-            <div class="section-header">
-              <span class="section-icon">👤👤?</span>
-              <h3>Personal Information</h3>
-            </div>
-            <div class="settings-section-control">
-              <p class="control-description">Edit your personal details including name, date of birth, gender, blood
-                group, and nationality.</p>
-              <button class="section-edit-btn" data-section="personal-info">
-                <span class="btn-icon">👤</span>
-                <span class="btn-text">Edit Personal Info</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Contact Information Edit Control -->
-          <div class="profile-section">
-            <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Contact Information</h3>
-            </div>
-            <div class="settings-section-control">
-              <p class="control-description">Edit your contact details including personal email, phone number, and
-                address.</p>
-              <button class="section-edit-btn" data-section="contact-info">
-                <span class="btn-icon">👤</span>
-                <span class="btn-text">Edit Contact Info</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Emergency Contact Edit Control -->
-          <div class="profile-section">
-            <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Emergency Contact</h3>
-            </div>
-            <div class="settings-section-control">
-              <p class="control-description">Edit emergency contact information including name, relationship, and phone
-                number.</p>
-              <button class="section-edit-btn" data-section="emergency-contact">
-                <span class="btn-icon">👤</span>
-                <span class="btn-text">Edit Emergency Contact</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Academic Section Edit Control -->
-          <div class="profile-section">
-            <div class="section-header">
-              <span class="section-icon">👤</span>
-              <h3>Academic Details</h3>
-            </div>
-            <div class="settings-section-control">
-              <p class="control-description">Edit your academic information including section and other editable
-                academic fields.</p>
-              <button class="section-edit-btn" data-section="academic-info">
-                <span class="btn-icon">👤</span>
-                <span class="btn-text">Edit Academic Info</span>
-              </button>
-            </div>
-          </div>
-
         </div>
       </section>
 
