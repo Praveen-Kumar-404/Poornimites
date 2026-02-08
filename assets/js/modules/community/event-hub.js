@@ -11,7 +11,8 @@ const eventsData = [
         description: "Join us for a night of music, dance, and fun to welcome the new batch of 2029!",
         organizer: "Student Council",
         image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 245
+        rsvp: 245,
+        coordinates: { x: 45.5, y: 30.2 } // Example: Auditorium general area
     },
     {
         id: 2,
@@ -23,7 +24,8 @@ const eventsData = [
         description: "24-hour coding marathon. Win prizes up to ₹50,000! Teams of 4.",
         organizer: "Coding Club",
         image: "https://images.unsplash.com/photo-1504384308090-c54be3855833?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 112
+        rsvp: 112,
+        coordinates: { x: 72.0, y: 15.5 } // Example: Tech Park area
     },
     {
         id: 3,
@@ -35,7 +37,8 @@ const eventsData = [
         description: "Track and field events, football finals, and more. Register at the gym.",
         organizer: "Sports Dep.",
         image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 89
+        rsvp: 89,
+        coordinates: { x: 20.0, y: 65.0 } // Example: Sports ground area
     },
     {
         id: 4,
@@ -47,7 +50,8 @@ const eventsData = [
         description: "Showcasing student artwork from the Department of Fine Arts.",
         organizer: "Arts Club",
         image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 45
+        rsvp: 45,
+        coordinates: { x: 55.0, y: 80.0 } // Example: Arts block
     },
     {
         id: 5,
@@ -59,7 +63,8 @@ const eventsData = [
         description: "A talk by Dr. S. Gupta on the future of Artificial Intelligence.",
         organizer: "Tech Society",
         image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 156
+        rsvp: 156,
+        coordinates: { x: 48.0, y: 35.0 } // Example: Seminar hall
     }
 ];
 
@@ -231,10 +236,80 @@ function renderCalendarView(events) {
 
 function renderMapView(events) {
     eventsContainer.innerHTML = `
-        <div class="map-view">
-            <p>🗺️ Interactive Campus Map View <br><small>(Coming Soon)</small></p>
+        <div class="map-view-container" style="position: relative; width: 100%; height: 600px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+            <img src="../../assets/images/campus-map.png" alt="Campus Map" style="width: 100%; height: 100%; object-fit: contain;">
+            <div id="map-overlays"></div>
         </div>
     `;
+
+    const overlaysContainer = document.getElementById('map-overlays');
+
+    events.forEach(event => {
+        if (event.coordinates) {
+            const pin = document.createElement('div');
+            pin.className = 'map-pin';
+            pin.style.position = 'absolute';
+            pin.style.left = `${event.coordinates.x}%`;
+            pin.style.top = `${event.coordinates.y}%`;
+            pin.style.transform = 'translate(-50%, -100%)';
+            pin.style.cursor = 'pointer';
+            pin.innerHTML = `<span style="font-size: 24px;">📍</span>`;
+            pin.title = event.title; // Simple tooltip
+
+            // Add custom tooltip on hover
+            const tooltip = document.createElement('div');
+            tooltip.className = 'map-tooltip';
+            tooltip.style.display = 'none';
+            tooltip.style.position = 'absolute';
+            tooltip.style.bottom = '100%';
+            tooltip.style.left = '50%';
+            tooltip.style.transform = 'translateX(-50%)';
+            tooltip.style.backgroundColor = 'white';
+            tooltip.style.padding = '5px 10px';
+            tooltip.style.borderRadius = '4px';
+            tooltip.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            tooltip.style.zIndex = '10';
+            tooltip.style.whiteSpace = 'nowrap';
+            tooltip.textContent = event.title;
+
+            pin.appendChild(tooltip);
+
+            pin.addEventListener('mouseenter', () => tooltip.style.display = 'block');
+            pin.addEventListener('mouseleave', () => tooltip.style.display = 'none');
+
+            overlaysContainer.appendChild(pin);
+        }
+    });
+}
+
+// Map Selection Logic for Form
+const mapContainer = document.getElementById('map-selector-container');
+const mapImage = document.getElementById('campus-map-image');
+const mapPin = document.getElementById('map-pin');
+const inputX = document.getElementById('map-x');
+const inputY = document.getElementById('map-y');
+
+if (mapContainer && mapImage) {
+    mapContainer.addEventListener('click', (e) => {
+        const rect = mapImage.getBoundingClientRect();
+
+        // Calculate click position relative to the image
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Calculate percentage (0-100)
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+
+        // Update inputs
+        inputX.value = xPercent.toFixed(2);
+        inputY.value = yPercent.toFixed(2);
+
+        // Show and position pin
+        mapPin.style.display = 'block';
+        mapPin.style.left = `${xPercent}%`;
+        mapPin.style.top = `${yPercent}%`;
+    });
 }
 
 function renderGalleries() {
