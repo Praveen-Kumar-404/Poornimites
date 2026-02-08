@@ -47,6 +47,32 @@
 
         checkAdminAccess();
     </script>
+    <script type="module">
+        import { renderPendingEvents } from "../../assets/js/modules/dashboards/event-manager.js";
+
+        // Expose to window for the refresh button (optional, or attach listener)
+        window.loadPendingEvents = () => {
+            const container = document.getElementById('pending-events-container');
+            renderPendingEvents(container);
+        };
+
+        // Hook into dashboard navigation to load events when section is active
+        document.addEventListener('DOMContentLoaded', () => {
+            // Basic observer for section changes (since dashboard.js handles navigation class toggling)
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.target.id === 'section-approvals' && mutation.target.classList.contains('active')) {
+                        window.loadPendingEvents();
+                    }
+                });
+            });
+
+            const section = document.getElementById('section-approvals');
+            if (section) {
+                observer.observe(section, { attributes: true, attributeFilter: ['class'] });
+            }
+        });
+    </script>
 </head>
 
 <body class="theme-admin" data-role="admin">
@@ -56,6 +82,7 @@
             <a href="#" class="nav-item active" data-section="section-dashboard"><i>📊</i> Dashboard</a>
             <a href="#" class="nav-item" data-section="section-users"><i>👥</i> User Management</a>
             <a href="#" class="nav-item" data-section="section-roles"><i>🛡️</i> Roles & Permissions</a>
+            <a href="#" class="nav-item" data-section="section-approvals"><i>✅</i> Event Approvals</a>
             <a href="#" class="nav-item" data-section="section-content"><i>📦</i> Content Control</a>
             <a href="#" class="nav-item" data-section="section-settings"><i>⚙️</i> Platform Settings</a>
             <a href="#" class="nav-item" data-section="section-backups"><i>💾</i> Backups</a>
@@ -259,6 +286,22 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- SECTION: EVENT APPROVALS -->
+                <div id="section-approvals" class="dashboard-section">
+                    <div class="dashboard-grid">
+                        <div class="card" style="grid-column: 1 / -1;">
+                            <div class="card-header">
+                                <h3 class="card-title">Pending Event Approvals</h3>
+                                <button class="btn-primary" onclick="loadPendingEvents()">Refresh</button>
+                            </div>
+                            <div id="pending-events-container">
+                                <!-- Injected via JS -->
+                                <p>Loading pending events...</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

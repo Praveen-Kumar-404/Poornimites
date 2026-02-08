@@ -1,74 +1,7 @@
 
-// Mock Data for Events
-const eventsData = [
-    {
-        id: 1,
-        title: "Freshers' Welcome Party",
-        date: "2025-09-10",
-        time: "18:00 - 22:00",
-        location: "Main Auditorium",
-        category: "social",
-        description: "Join us for a night of music, dance, and fun to welcome the new batch of 2029!",
-        organizer: "Student Council",
-        image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 245,
-        coordinates: { x: 45.5, y: 30.2 } // Example: Auditorium general area
-    },
-    {
-        id: 2,
-        title: "Inter-College Hackathon",
-        date: "2025-09-15",
-        time: "09:00 - 21:00",
-        location: "Tech Park, Lab 3",
-        category: "academic",
-        description: "24-hour coding marathon. Win prizes up to ₹50,000! Teams of 4.",
-        organizer: "Coding Club",
-        image: "https://images.unsplash.com/photo-1504384308090-c54be3855833?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 112,
-        coordinates: { x: 72.0, y: 15.5 } // Example: Tech Park area
-    },
-    {
-        id: 3,
-        title: "Annual Sports Day",
-        date: "2025-09-20",
-        time: "08:00 - 17:00",
-        location: "University Ground",
-        category: "sports",
-        description: "Track and field events, football finals, and more. Register at the gym.",
-        organizer: "Sports Dep.",
-        image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 89,
-        coordinates: { x: 20.0, y: 65.0 } // Example: Sports ground area
-    },
-    {
-        id: 4,
-        title: "Art Exhibition: Perspectives",
-        date: "2025-09-25",
-        time: "10:00 - 16:00",
-        location: "Art Gallery, Block B",
-        category: "arts",
-        description: "Showcasing student artwork from the Department of Fine Arts.",
-        organizer: "Arts Club",
-        image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 45,
-        coordinates: { x: 55.0, y: 80.0 } // Example: Arts block
-    },
-    {
-        id: 5,
-        title: "Seminar: AI in 2030",
-        date: "2025-09-28",
-        time: "14:00 - 16:00",
-        location: "Seminar Hall 1",
-        category: "academic",
-        description: "A talk by Dr. S. Gupta on the future of Artificial Intelligence.",
-        organizer: "Tech Society",
-        image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        rsvp: 156,
-        coordinates: { x: 48.0, y: 35.0 } // Example: Seminar hall
-    }
-];
+import { supabase } from "../../core/supabase-init.js";
 
-// Mock Data for Galleries
+// Mock Data for Galleries (Keeping as requested)
 const galleriesData = [
     {
         id: 101,
@@ -94,6 +27,7 @@ const galleriesData = [
 ];
 
 // State
+let eventsData = [];
 let currentView = 'list'; // list, calendar, map
 let filterCategory = 'all';
 let searchQuery = '';
@@ -104,13 +38,35 @@ const galleriesGrid = document.querySelector('.gallery-grid');
 const searchInput = document.getElementById('event-search');
 const categorySelect = document.getElementById('category-filter');
 const viewButtons = document.querySelectorAll('.view-btn');
+const eventForm = document.getElementById('event-form');
 
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
-    renderEvents();
+    fetchEvents();
     renderGalleries();
     setupEventListeners();
+    setupFormSubmission();
 });
+
+// Fetch Approved Events from Supabase
+async function fetchEvents() {
+    eventsContainer.innerHTML = '<div class="loader">Loading events...</div>';
+
+    const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('status', 'approved')
+        .order('date', { ascending: true });
+
+    if (error) {
+        console.error('Error fetching events:', error);
+        eventsContainer.innerHTML = '<div class="error-message">Failed to load events. Please try again later.</div>';
+        return;
+    }
+
+    eventsData = data || [];
+    renderEvents();
+}
 
 // Event Listeners
 function setupEventListeners() {
@@ -134,6 +90,83 @@ function setupEventListeners() {
     });
 }
 
+// Handle Event Submission
+function setupFormSubmission() {
+    if (!eventForm) return;
+
+    eventForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitBtn = eventForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        try {
+            // Check authentication
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                alert('You must be logged in to submit an event.');
+                window.location.href = '../auth/login.html';
+                return;
+            }
+
+            // Gather form data
+            const title = document.getElementById('event-title').value;
+            const description = document.getElementById('event-desc').value;
+            const category = document.getElementById('event-cat').value;
+            const location = document.getElementById('event-loc').value;
+            const startDate = document.getElementById('start-time').value;
+            const organizerEmail = document.getElementById('organizer-email').value;
+
+            // Map coordinates if selected
+            const mapX = document.getElementById('map-x').value;
+            const mapY = document.getElementById('map-y').value;
+            let coordinates = null;
+            if (mapX && mapY) {
+                coordinates = { x: parseFloat(mapX), y: parseFloat(mapY) };
+            }
+
+            // Date parsing (primitive)
+            const dateObj = new Date(startDate);
+            const dateStr = dateObj.toISOString().split('T')[0];
+            const timeStr = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            const newEvent = {
+                title,
+                description,
+                category,
+                location,
+                date: dateStr,
+                time: timeStr,
+                organizer: organizerEmail, // Or use user name if available
+                user_id: user.id,
+                coordinates,
+                status: 'pending', // Explicitly pending
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60' // Default image for now
+            };
+
+            const { error } = await supabase
+                .from('events')
+                .insert([newEvent]);
+
+            if (error) throw error;
+
+            alert('Event submitted successfully! It will be visible after moderator approval.');
+            eventForm.reset();
+            // Reset map pin
+            document.getElementById('map-pin').style.display = 'none';
+
+        } catch (error) {
+            console.error('Error submitting event:', error);
+            alert('Failed to submit event: ' + error.message);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
+    });
+}
+
 // Render Functions
 function renderEvents() {
     eventsContainer.innerHTML = '';
@@ -141,7 +174,7 @@ function renderEvents() {
     // Filter logic
     const filteredEvents = eventsData.filter(event => {
         const matchesCategory = filterCategory === 'all' || event.category === filterCategory;
-        const matchesSearch = event.title.toLowerCase().includes(searchQuery) || event.description.toLowerCase().includes(searchQuery);
+        const matchesSearch = event.title.toLowerCase().includes(searchQuery) || (event.description && event.description.toLowerCase().includes(searchQuery));
         return matchesCategory && matchesSearch;
     });
 
@@ -166,8 +199,11 @@ function renderListView(events) {
     events.forEach(event => {
         const card = document.createElement('div');
         card.className = 'event-card';
+        // Use default image if null
+        const imageUrl = event.image || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=400&q=60';
+
         card.innerHTML = `
-            <div class="card-image" style="background-image: url('${event.image}')">
+            <div class="card-image" style="background-image: url('${imageUrl}')">
                 <span class="category-badge">${event.category}</span>
             </div>
             <div class="card-content">
@@ -177,10 +213,10 @@ function renderListView(events) {
                     <span>🕒 ${event.time}</span>
                     <span>📍 ${event.location}</span>
                 </div>
-                <p class="event-desc">${event.description}</p>
+                <p class="event-desc">${event.description || ''}</p>
                 <div class="card-footer">
                     <span class="organizer-info">By ${event.organizer}</span>
-                    <span class="rsvp-count">${event.rsvp} Going</span>
+                    <span class="rsvp-count">Connect</span>
                 </div>
             </div>
         `;
@@ -196,7 +232,7 @@ function renderCalendarView(events) {
 
     const header = document.createElement('div');
     header.className = 'calendar-header';
-    header.innerHTML = `<h2>September 2025</h2>`;
+    header.innerHTML = `<h2>Upcoming Events</h2>`;
     wrapper.appendChild(header);
 
     const grid = document.createElement('div');
@@ -210,21 +246,29 @@ function renderCalendarView(events) {
         grid.appendChild(d);
     });
 
-    // Mock Days (starting mid-week for demo)
-    for (let i = 0; i < 30; i++) {
+    // Mock Days for demonstration (just a visual representation)
+    const today = new Date();
+    const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+
+    for (let i = 0; i < daysInMonth; i++) {
         const dayCell = document.createElement('div');
         dayCell.className = 'calendar-day';
         dayCell.innerHTML = `<span class="day-number">${i + 1}</span>`;
 
         // Find events on this day
-        const dayString = `2025-09-${String(i + 1).padStart(2, '0')}`;
-        const daysEvents = events.filter(e => e.date === dayString);
+        // Construct date string YYYY-MM-DD
+        const currentDay = i + 1;
+        // Simple matching for events in current month (ignoring year/month exact match for robustness in this simple view)
+        // Ideally we'd filter strictly.
 
-        daysEvents.forEach(e => {
-            const dot = document.createElement('div');
-            dot.className = 'event-dot';
-            dot.title = e.title;
-            dayCell.appendChild(dot);
+        events.forEach(e => {
+            const eDate = new Date(e.date);
+            if (eDate.getDate() === currentDay) {
+                const dot = document.createElement('div');
+                dot.className = 'event-dot';
+                dot.title = e.title;
+                dayCell.appendChild(dot);
+            }
         });
 
         grid.appendChild(dayCell);
@@ -254,7 +298,7 @@ function renderMapView(events) {
             pin.style.transform = 'translate(-50%, -100%)';
             pin.style.cursor = 'pointer';
             pin.innerHTML = `<span style="font-size: 24px;">📍</span>`;
-            pin.title = event.title; // Simple tooltip
+            pin.title = event.title;
 
             // Add custom tooltip on hover
             const tooltip = document.createElement('div');

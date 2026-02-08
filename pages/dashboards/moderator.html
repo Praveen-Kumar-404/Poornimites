@@ -18,6 +18,28 @@
             opacity: 1;
         }
     </style>
+    <script type="module">
+        import { renderPendingEvents } from "../../assets/js/modules/dashboards/event-manager.js";
+
+        window.loadPendingEvents = () => {
+            const container = document.getElementById('pending-events-container');
+            renderPendingEvents(container);
+        };
+
+        // Listen for section activation
+        document.addEventListener('DOMContentLoaded', () => {
+            const section = document.getElementById('section-approvals');
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.target.classList.contains('active')) {
+                        window.loadPendingEvents();
+                    }
+                });
+            });
+
+            if (section) observer.observe(section, { attributes: true, attributeFilter: ['class'] });
+        });
+    </script>
 </head>
 
 <body class="theme-moderator" data-role="moderator">
@@ -26,6 +48,7 @@
         <nav class="nav-menu">
             <a href="#" class="nav-item active" data-section="section-dashboard"><i>📊</i> Dashboard</a>
             <a href="#" class="nav-item" data-section="section-reports"><i>🚩</i> Reports Queue</a>
+            <a href="#" class="nav-item" data-section="section-approvals"><i>✅</i> Event Approvals</a>
             <a href="#" class="nav-item" data-section="section-monitor"><i>👁️</i> Content Monitor</a>
             <a href="#" class="nav-item" data-section="section-actions"><i>⚠️</i> User Actions</a>
             <a href="#" class="nav-item" data-section="section-guidelines"><i>📜</i> Guidelines</a>
@@ -144,6 +167,21 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- SECTION: EVENT APPROVALS -->
+                <div id="section-approvals" class="dashboard-section">
+                    <div class="dashboard-grid">
+                        <div class="card" style="grid-column: 1 / -1;">
+                            <div class="card-header">
+                                <h3 class="card-title">Pending Event Approvals</h3>
+                                <button class="btn-primary" onclick="loadPendingEvents()">Refresh</button>
+                            </div>
+                            <div id="pending-events-container">
+                                <p>Loading pending events...</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
