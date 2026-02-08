@@ -1,4 +1,4 @@
-import { db, collection, getDocs, query, where, updateDoc, doc, orderBy } from "../../core/firebase-init.js";
+import { supabase } from "../../core/supabase-init.js";
 
 /**
  * Fetches events based on status.
@@ -7,27 +7,19 @@ import { db, collection, getDocs, query, where, updateDoc, doc, orderBy } from "
  */
 export async function fetchEventsByStatus(status = 'pending') {
     console.log(`Fetching events with status: ${status}`);
-    try {
-        const eventsRef = collection(db, 'events');
-        const q = query(
-            eventsRef,
-            where('status', '==', status),
-            orderBy('created_at', 'desc')
-        );
+    const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('status', status)
+        .order('created_at', { ascending: false });
 
-        const snapshot = await getDocs(q);
-        const events = snapshot.docs.map(docSnapshot => ({
-            id: docSnapshot.id,
-            ...docSnapshot.data()
-        }));
-
-        console.log(`Found ${events.length} events for status ${status}`);
-        return events;
-    } catch (error) {
+    if (error) {
         console.error(`Error fetching ${status} events:`, error);
         alert(`Error fetching events: ${error.message}`);
         return [];
     }
+    console.log(`Found ${data.length} events for status ${status}`);
+    return data;
 }
 
 /**
@@ -37,15 +29,17 @@ export async function fetchEventsByStatus(status = 'pending') {
  * @returns {Promise<boolean>} success
  */
 export async function updateEventStatus(eventId, newStatus) {
-    try {
-        const eventRef = doc(db, 'events', eventId);
-        await updateDoc(eventRef, { status: newStatus });
-        return true;
-    } catch (error) {
+    const { error } = await supabase
+        .from('events')
+        .update({ status: newStatus })
+        .eq('id', eventId);
+
+    if (error) {
         console.error(`Error updating event ${eventId} to ${newStatus}:`, error);
         alert(`Failed to update event: ${error.message}`);
         return false;
     }
+    return true;
 }
 
 /**

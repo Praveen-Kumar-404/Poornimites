@@ -1,7 +1,5 @@
 
-import { db, collection, getDocs, addDoc, query, where, orderBy } from "../../core/firebase-init.js";
-import { supabase } from "../../core/supabase-init.js"; // Keep for auth check
-
+import { supabase } from "../../core/supabase-init.js";
 
 // Mock Data for Galleries (Keeping as requested)
 const galleriesData = [
@@ -50,29 +48,24 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFormSubmission();
 });
 
-// Fetch Approved Events from Firestore
+// Fetch Approved Events from Supabase
 async function fetchEvents() {
     eventsContainer.innerHTML = '<div class="loader">Loading events...</div>';
 
-    try {
-        const eventsRef = collection(db, 'events');
-        const q = query(
-            eventsRef,
-            where('status', '==', 'approved'),
-            orderBy('date', 'asc')
-        );
+    const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('status', 'approved')
+        .order('date', { ascending: true });
 
-        const snapshot = await getDocs(q);
-        eventsData = snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        }));
-
-        renderEvents();
-    } catch (error) {
+    if (error) {
         console.error('Error fetching events:', error);
         eventsContainer.innerHTML = '<div class="error-message">Failed to load events. Please try again later.</div>';
+        return;
     }
+
+    eventsData = data || [];
+    renderEvents();
 }
 
 // Event Listeners
@@ -147,15 +140,17 @@ function setupFormSubmission() {
                 date: dateStr,
                 time: timeStr,
                 organizer: organizerEmail,
-                user_id: user.id, // Still using Supabase user ID
+                user_id: user.id,
                 coordinates,
                 status: 'pending',
-                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
-                created_at: new Date().toISOString()
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60'
             };
 
-            // Add to Firestore
-            await addDoc(collection(db, 'events'), newEvent);
+            const { error } = await supabase
+                .from('events')
+                .insert([newEvent]);
+
+            if (error) throw error;
 
             alert('Event submitted successfully! It will be visible after moderator approval.');
             eventForm.reset();
