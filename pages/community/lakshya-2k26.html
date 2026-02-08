@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="../../assets/css/core/header.css">
     <link rel="stylesheet" href="../../assets/css/core/footer.css">
     <link rel="stylesheet" href="../../assets/css/modules/community/lakshya-2k26.css">
+
+    <!-- Auth Guard - Require Login -->
+    <script>
+        // Check if user is logged in, redirect to login if not
+        (function () {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                // Store current page to redirect back after login
+                sessionStorage.setItem('redirectAfterLogin', window.location.pathname);
+                window.location.href = '/pages/auth/login.html';
+            }
+        })();
+    </script>
 </head>
 
 <body>
