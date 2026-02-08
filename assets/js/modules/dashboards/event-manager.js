@@ -6,19 +6,19 @@ import { supabase } from "../../core/supabase-init.js";
  * @returns {Promise<Array>} List of events
  */
 export async function fetchEventsByStatus(status = 'pending') {
+    console.log(`Fetching events with status: ${status}`);
     const { data, error } = await supabase
         .from('events')
-        .select(`
-            *,
-            users:user_id (email, full_name)
-        `)
+        .select('*')
         .eq('status', status)
         .order('created_at', { ascending: false });
 
     if (error) {
         console.error(`Error fetching ${status} events:`, error);
+        alert(`Error fetching events: ${error.message}`); // Visible feedback
         return [];
     }
+    console.log(`Found ${data.length} events for status ${status}`);
     return data;
 }
 
@@ -64,7 +64,7 @@ export async function renderPendingEvents(container) {
                 <div>
                     <h4 style="margin: 0 0 0.5rem 0;">${event.title}</h4>
                     <p style="margin: 0; color: #64748b; font-size: 0.9rem;">
-                        <strong>By:</strong> ${event.users?.full_name || event.organizer || 'Unknown'} (${event.users?.email || 'No Email'})<br>
+                        <strong>Organizer Email:</strong> ${event.organizer || 'N/A'}<br>
                         <strong>Date:</strong> ${event.date} at ${event.time}<br>
                         <strong>Location:</strong> ${event.location}
                     </p>
