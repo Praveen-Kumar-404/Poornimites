@@ -5,10 +5,24 @@ import { supabase } from "../../core/supabase-init.js";
 
 const allowedDomain = "poornima.edu.in";
 
-// Get redirect URL from query parameter
+// Get redirect URL from query parameter, sessionStorage, or default to Lakshya 2k26
 function getRedirectUrl() {
+    // First check if there's a stored redirect from auth guard
+    const storedRedirect = sessionStorage.getItem('redirectAfterLogin');
+    if (storedRedirect) {
+        sessionStorage.removeItem('redirectAfterLogin'); // Clear it after use
+        return storedRedirect;
+    }
+
+    // Then check URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('redirect') || 'index.html';
+    const paramRedirect = urlParams.get('redirect');
+    if (paramRedirect) {
+        return paramRedirect;
+    }
+
+    // Default to Lakshya 2k26 page
+    return '/pages/community/lakshya-2k26.html';
 }
 
 // Show error message
