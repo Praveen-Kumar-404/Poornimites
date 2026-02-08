@@ -65,6 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
             ${profileSection}
         </div>
         </nav>
+        
+        <!-- Development Notice -->
+        <div class="dev-notice">
+          <div class="dev-notice-content">
+            ⚠️ <strong>Site Under Development:</strong> This site is currently in development. Some features may not work as intended.
+          </div>
+        </div>
         `;
 
       placeholder.innerHTML = headerHTML;

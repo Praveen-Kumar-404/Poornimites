@@ -241,3 +241,34 @@
     font-size: 1.3rem;
   }
 }
+/* Development Notice Banner */
+.dev-notice {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    border-bottom: 2px solid #f39c12;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(243, 156, 18, 0.2);
+}
+
+.dev-notice-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #856404;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.dev-notice-content strong {
+    font-weight: 700;
+}
+
+/* Mobile adjustments for dev notice */
+@media (max-width: 768px) {
+    .dev-notice {
+        padding: 0.625rem 0.75rem;
+    }
+    
+    .dev-notice-content {
+        font-size: 0.85rem;
+    }
+}
