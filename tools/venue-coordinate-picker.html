@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Venue Coordinate Picker - Lakshya 2k26</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 0;
+        }
+
+        .map-section {
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+
+        .map-container {
+            position: relative;
+            background: white;
+            border: 3px solid #0066cc;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: crosshair;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .crosshair {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid red;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        .crosshair::before,
+        .crosshair::after {
+            content: '';
+            position: absolute;
+            background: red;
+        }
+
+        .crosshair::before {
+            width: 2px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .crosshair::after {
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .sidebar {
+            padding: 2rem;
+            background: white;
+            border-left: 2px solid #e0e0e0;
+            overflow-y: auto;
+            max-height: calc(100vh - 140px);
+        }
+
+        .upload-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px dashed #0066cc;
+        }
+
+        .upload-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .upload-btn:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .coordinates-section {
+            margin-bottom: 2rem;
+        }
+
+        .coordinates-section h3 {
+            color: #004080;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .coord-display {
+            background: #f0f8ff;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+            margin-bottom: 1rem;
+        }
+
+        .coord-display .label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .coord-display .value {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #004080;
+            font-weight: 600;
+        }
+
+        .code-output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .copy-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        .history-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .history-item {
+            background: #f8f9fa;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item .coords {
+            color: #0066cc;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .instructions h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructions ol {
+            margin-left: 1.5rem;
+            color: #856404;
+        }
+
+        .instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                border-left: none;
+                border-top: 2px solid #e0e0e0;
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Venue Coordinate Picker</h1>
+            <p>Click on the campus map to get precise coordinates for venue locations</p>
+        </div>
+
+        <div class="content">
+            <div class="map-section">
+                <div class="upload-section">
+                    <label for="file-input" class="upload-btn">
+                        📁 Upload Campus Map Image
+                    </label>
+                    <input type="file" id="file-input" accept="image/*">
+                </div>
+
+                <div class="instructions">
+                    <h4>📋 Quick Instructions:</h4>
+                    <ol>
+                        <li>Upload your campus map image above</li>
+                        <li>Click on any venue location on the map</li>
+                        <li>Coordinates appear in sidebar → Click "Copy Code"</li>
+                        <li>Paste into <code>venue-map.js</code> file</li>
+                    </ol>
+                </div>
+
+                <div class="map-container" id="map-container">
+                    <img id="map-image" src="../assets/images/campus-map.png" alt="Campus Map">
+                    <div class="crosshair" id="crosshair"></div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="coordinates-section">
+                    <h3>📍 Current Coordinates</h3>
+                    <div class="coord-display">
+                        <div class="label">X Position (Horizontal)</div>
+                        <div class="value" id="x-coord">--</div>
+                    </div>
+                    <div class="coord-display">
+                        <div class="label">Y Position (Vertical)</div>
+                        <div class="value" id="y-coord">--</div>
+                    </div>
+                </div>
+
+                <div class="coordinates-section">
+                    <h3>💻 Copy Code</h3>
+                    <div class="code-output" id="code-output">
+                        Click on the map to generate code...
+                    </div>
+                    <button class="copy-btn" id="copy-btn" disabled>📋 Copy to Clipboard</button>
+                </div>
+
+                <div class="history-section">
+                    <h3>📜 Click History</h3>
+                    <div id="history-list">
+                        <p style="color: #999; font-size: 0.9rem;">Your clicks will appear here...</p>
+                    </div>
+                    <button class="clear-btn" id="clear-history" style="margin-top: 1rem; width: 100%;">🗑️ Clear
+                        History</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const mapContainer = document.getElementById('map-container');
+        const mapImage = document.getElementById('map-image');
+        const crosshair = document.getElementById('crosshair');
+        const xCoordElem = document.getElementById('x-coord');
+        const yCoordElem = document.getElementById('y-coord');
+        const codeOutput = document.getElementById('code-output');
+        const copyBtn = document.getElementById('copy-btn');
+        const fileInput = document.getElementById('file-input');
+        const historyList = document.getElementById('history-list');
+        const clearHistoryBtn = document.getElementById('clear-history');
+
+        let clickHistory = [];
+
+        // Handle image upload
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    mapImage.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle map clicks
+        mapContainer.addEventListener('click', (e) => {
+            const rect = mapImage.getBoundingClientRect();
+            const x = Math.round(((e.clientX - rect.left) / rect.width) * 100);
+            const y = Math.round(((e.clientY - rect.top) / rect.height) * 100);
+
+            // Update crosshair position
+            crosshair.style.left = `${((e.clientX - rect.left) / rect.width) * 100}%`;
+            crosshair.style.top = `${((e.clientY - rect.top) / rect.height) * 100}%`;
+            crosshair.style.display = 'block';
+
+            // Update coordinate display
+            xCoordElem.textContent = `${x}%`;
+            yCoordElem.textContent = `${y}%`;
+
+            // Generate code
+            const code = `"Venue Name": { x: ${x}, y: ${y}, icon: "📍" },`;
+            codeOutput.textContent = code;
+            copyBtn.disabled = false;
+
+            // Add to history
+            addToHistory(x, y);
+
+            // Log to console
+            console.log(`Clicked: { x: ${x}, y: ${y} }`);
+        });
+
+        // Copy to clipboard
+        copyBtn.addEventListener('click', () => {
+            const text = codeOutput.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            });
+        });
+
+        // Add to history
+        function addToHistory(x, y) {
+            const code = `"Venue Name": { x: ${x}, y: ${y}, icon: "📍" },`;
+            clickHistory.unshift({ x, y, code });
+
+            // Keep only last 10 clicks
+            if (clickHistory.length > 10) {
+                clickHistory.pop();
+            }
+
+            renderHistory();
+        }
+
+        // Render history
+        function renderHistory() {
+            if (clickHistory.length === 0) {
+                historyList.innerHTML = '<p style="color: #999; font-size: 0.9rem;">Your clicks will appear here...</p>';
+                return;
+            }
+
+            historyList.innerHTML = clickHistory.map((item, index) => `
+                <div class="history-item">
+                    <span class="coords">x: ${item.x}, y: ${item.y}</span>
+                    <button class="clear-btn" onclick="copyHistoryItem(${index})" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Copy</button>
+                </div>
+            `).join('');
+        }
+
+        // Copy history item
+        window.copyHistoryItem = function (index) {
+            const item = clickHistory[index];
+            navigator.clipboard.writeText(item.code);
+        };
+
+        // Clear history
+        clearHistoryBtn.addEventListener('click', () => {
+            clickHistory = [];
+            renderHistory();
+        });
+    </script>
+</body>
+
+</html>

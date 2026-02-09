@@ -204,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTabs();
     initFilters();
     renderDay(currentDay);
+    initCampusMap();
 });
 
 function initTabs() {
@@ -283,6 +284,9 @@ function renderDay(day) {
             </table>
         </div>
     `;
+
+    // Update campus map markers for current day
+    updateCampusMap(filteredEvents);
 }
 
 function createEventRow(event) {
@@ -530,3 +534,298 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial filter count
     updateActiveFilterCount();
 });
+
+
+// ============================================
+// CAMPUS MAP FUNCTIONALITY
+// ============================================
+
+/**
+ * Initialize campus map toggle and markers
+ */
+function initCampusMap() {
+    const toggleBtn = document.getElementById('map-toggle-btn');
+    const mapContainer = document.getElementById('map-container');
+
+    if (!toggleBtn || !mapContainer) return;
+
+    let isMapVisible = false;
+
+    toggleBtn.addEventListener('click', () => {
+        isMapVisible = !isMapVisible;
+
+        if (isMapVisible) {
+            mapContainer.style.display = 'block';
+            toggleBtn.querySelector('.toggle-text').textContent = 'Hide Map';
+            // Render markers for current day's filtered events
+            const allEvents = LAKSHYA_EVENTS[currentDay];
+            const filteredEvents = applyFilters(allEvents);
+            updateCampusMap(filteredEvents);
+        } else {
+            mapContainer.style.display = 'none';
+            toggleBtn.querySelector('.toggle-text').textContent = 'Show Map';
+        }
+    });
+    
+    // Initialize zoom and pan functionality for mobile
+    initMapZoom();
+}
+
+/**
+ * Get committee class for an event
+ */
+function getCommitteeClass(committee) {
+    const committeeLower = committee.toLowerCase();
+    if (committeeLower.includes('sport') && !committeeLower.includes('e-sport')) return 'sports';
+    if (committeeLower.includes('e-sport') || committeeLower.includes('esport')) return 'esports';
+    if (committeeLower.includes('cultural')) return 'cultural';
+    if (committeeLower.includes('edufun')) return 'edufun';
+    return 'other';
+}
+
+/**
+ * Update campus map with markers for given events
+ */
+function updateCampusMap(events) {
+    const markersContainer = document.getElementById('map-markers');
+    if (!markersContainer) return;
+
+    // Clear existing markers
+    markersContainer.innerHTML = '';
+
+    // Group events by venue
+    const venueGroups = groupEventsByVenue(events);
+
+    // Create markers for each venue
+    venueGroups.forEach(group => {
+        const marker = createMarker(group);
+        if (marker) {
+            markersContainer.appendChild(marker);
+        }
+    });
+}
+
+/**
+ * Create a marker for a venue with events
+ */
+function createMarker(venueGroup) {
+    const { venue, coordinates, events } = venueGroup;
+
+    if (!coordinates) return null;
+
+    // Determine primary committee for marker color
+    const primaryCommittee = events.length > 0 ? events[0].committee : '-';
+    const committeeClass = getCommitteeClass(primaryCommittee);
+
+    // Create marker element
+    const marker = document.createElement('div');
+    marker.className = `event-marker ${committeeClass}`;
+    marker.style.left = `${coordinates.x}%`;
+    marker.style.top = `${coordinates.y}%`;
+
+    // Add marker pin with committee emoji
+    const pin = document.createElement('div');
+    pin.className = 'marker-pin';
+
+    // Use category-specific emoji instead of venue icon
+    const categoryEmojis = {
+        'sports': '⚽',
+        'esports': '🎮',
+        'cultural': '🎭',
+        'edufun': '🎨',
+        'other': '📍'
+    };
+    pin.textContent = categoryEmojis[committeeClass] || '📍';
+    marker.appendChild(pin);
+
+    // Add event count badge if multiple events
+    if (events.length > 1) {
+        const badge = document.createElement('div');
+        badge.className = 'marker-badge';
+        badge.textContent = events.length;
+        marker.appendChild(badge);
+    }
+
+    // Add popup with event details
+    const popup = createPopup(venue, events);
+    marker.appendChild(popup);
+
+    return marker;
+}
+
+/**
+ * Create popup element for a venue's events
+ */
+function createPopup(venue, events) {
+    const popup = document.createElement('div');
+    popup.className = 'event-popup';
+
+    // Popup header
+    const header = document.createElement('div');
+    header.className = 'popup-header';
+
+    const venueTitle = document.createElement('div');
+    venueTitle.className = 'popup-venue';
+    venueTitle.textContent = venue;
+
+    header.appendChild(venueTitle);
+    popup.appendChild(header);
+
+    // Events list
+    const eventsList = document.createElement('div');
+    eventsList.className = 'popup-events';
+
+    events.forEach(event => {
+        const eventDiv = document.createElement('div');
+        eventDiv.className = 'popup-event';
+
+        // Event name
+        const name = document.createElement('div');
+        name.className = 'popup-event-name';
+        name.textContent = event.event;
+        eventDiv.appendChild(name);
+
+        // Event time
+        const time = document.createElement('div');
+        time.className = 'popup-event-time';
+        time.textContent = `⏰ ${event.time}`;
+        eventDiv.appendChild(time);
+
+        // Committee badge
+        if (event.committee && event.committee !== '-') {
+            const committeeClass = getCommitteeClass(event.committee);
+            const badge = document.createElement('span');
+            badge.className = `popup-event-committee committee-badge ${committeeClass}`;
+            badge.textContent = event.committee;
+            eventDiv.appendChild(badge);
+        }
+
+        // Coordinators
+        if (event.coordinators && event.coordinators !== '-') {
+            const coords = document.createElement('div');
+            coords.className = 'popup-event-time';
+            coords.textContent = `👤 ${event.coordinators}`;
+            eventDiv.appendChild(coords);
+        }
+
+        eventsList.appendChild(eventDiv);
+    });
+
+    popup.appendChild(eventsList);
+
+    return popup;
+}
+
+
+/**
+ * Initialize pinch-to-zoom and pan functionality for the campus map
+ */
+function initMapZoom() {
+    const mapWrapper = document.querySelector('.map-wrapper');
+    const mapImage = document.querySelector('.campus-map-image');
+
+    if (!mapWrapper || !mapImage) return;
+
+    let scale = 1;
+    let initialDistance = 0;
+    let lastScale = 1;
+    let isPanning = false;
+    let startX = 0;
+    let startY = 0;
+    let translateX = 0;
+    let translateY = 0;
+
+    // Touch start - detect pinch or pan
+    mapWrapper.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            // Pinch gesture
+            initialDistance = getDistance(e.touches[0], e.touches[1]);
+            lastScale = scale;
+        } else if (e.touches.length === 1 && scale > 1) {
+            // Single touch pan (only when zoomed)
+            isPanning = true;
+            startX = e.touches[0].clientX - translateX;
+            startY = e.touches[0].clientY - translateY;
+        }
+    }, { passive: true });
+
+    // Touch move - handle zoom or pan
+    mapWrapper.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+            // Pinch zoom
+            e.preventDefault();
+            const currentDistance = getDistance(e.touches[0], e.touches[1]);
+            scale = Math.max(1, Math.min(4, lastScale * (currentDistance / initialDistance)));
+            updateTransform();
+        } else if (isPanning && e.touches.length === 1) {
+            // Pan
+            e.preventDefault();
+            translateX = e.touches[0].clientX - startX;
+            translateY = e.touches[0].clientY - startY;
+
+            // Constrain panning to image bounds
+            const maxTranslate = (scale - 1) * mapImage.offsetWidth / 2;
+            translateX = Math.max(-maxTranslate, Math.min(maxTranslate, translateX));
+            translateY = Math.max(-maxTranslate, Math.min(maxTranslate, translateY));
+
+            updateTransform();
+        }
+    }, { passive: false });
+
+    // Touch end
+    mapWrapper.addEventListener('touchend', (e) => {
+        if (e.touches.length < 2) {
+            initialDistance = 0;
+        }
+        if (e.touches.length === 0) {
+            isPanning = false;
+        }
+    }, { passive: true });
+
+    // Mouse wheel zoom for desktop
+    mapWrapper.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? 0.9 : 1.1;
+        scale = Math.max(1, Math.min(4, scale * delta));
+
+        // Reset translate when zooming out to 1
+        if (scale === 1) {
+            translateX = 0;
+            translateY = 0;
+        }
+
+        updateTransform();
+    }, { passive: false });
+
+    // Double tap to reset zoom
+    let lastTap = 0;
+    mapWrapper.addEventListener('touchend', (e) => {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+
+        if (tapLength < 300 && tapLength > 0) {
+            // Double tap detected
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            updateTransform();
+        }
+
+        lastTap = currentTime;
+    }, { passive: true });
+
+    // Apply transform to image
+    function updateTransform() {
+        mapImage.style.transform = `scale(${scale}) translate(${translateX / scale}px, ${translateY / scale}px)`;
+        mapImage.style.transformOrigin = 'center center';
+        mapImage.style.transition = isPanning ? 'none' : 'transform 0.1s ease-out';
+    }
+
+    // Helper: Calculate distance between two touch points
+    function getDistance(touch1, touch2) {
+        const dx = touch1.clientX - touch2.clientX;
+        const dy = touch1.clientY - touch2.clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+}
+

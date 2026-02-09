@@ -89,6 +89,34 @@
             </div>
         </div>
 
+        <!-- Campus Map Section -->
+        <section class="campus-map-section" id="campus-map-section">
+            <div class="map-header">
+                <h3>📍 Event Locations Map</h3>
+                <button class="map-toggle-btn" id="map-toggle-btn">
+                    <span class="toggle-icon">🗺️</span>
+                    <span class="toggle-text">Show Map</span>
+                </button>
+            </div>
+
+            <div class="map-container" id="map-container" style="display: none;">
+                <div class="map-wrapper">
+                    <img src="../../assets/images/campus-map.png" alt="Campus Map" class="campus-map-image"
+                        id="campus-map-img">
+                    <div class="map-markers" id="map-markers">
+                        <!-- Markers will be rendered here dynamically -->
+                    </div>
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-dot sports"></span> Sports</div>
+                    <div class="legend-item"><span class="legend-dot esports"></span> E-Sports</div>
+                    <div class="legend-item"><span class="legend-dot cultural"></span> Cultural</div>
+                    <div class="legend-item"><span class="legend-dot edufun"></span> Edufun</div>
+                    <div class="legend-item"><span class="legend-dot other"></span> Other</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Content Area -->
         <div class="lakshya-content">
             <div id="day-content">
@@ -114,6 +142,7 @@
     </footer>
 
     <script src="../../assets/js/core/main.js"></script>
+    <script src="../../assets/js/modules/community/venue-map.js"></script>
     <script src="../../assets/js/modules/community/lakshya-2k26.js"></script>
 </body>
 
