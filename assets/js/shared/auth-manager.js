@@ -1,7 +1,7 @@
 
 // assets/js/shared/auth-manager.js
 // Centralized authentication manager (Supabase Adapter)
-import { supabase } from "../supabase-init.js";
+import { supabase } from "../core/supabase-init.js";
 
 // Export auth and db instances (Adapting to Supabase client)
 export const auth = supabase.auth;

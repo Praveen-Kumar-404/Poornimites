@@ -69,7 +69,10 @@
             </div>
           </div>
         </div>
-
+        <button class="edit-profile-btn" id="editProfileBtn">
+          <span class="btn-icon">✏️</span>
+          <span class="btn-text">Edit Profile</span>
+        </button>
       </div>
 
       <!-- Tab Panels -->
@@ -80,38 +83,36 @@
       <section class="tab-panel" id="academic-panel">
         <h2 class="panel-title">Academic Information</h2>
         <div class="panel-grid">
-          <div class="profile-section" data-editable-section="academic-info">
+          <div class="profile-section">
             <div class="section-header">
-              <div class="header-left">
-                <span class="section-icon">🎓</span>
-                <h3>Academic Details</h3>
-              </div>
-              <button class="section-edit-btn" data-target="academic-info">✏️</button>
+              <span class="section-icon">🎓</span>
+              <h3>Academic Details</h3>
             </div>
             <div class="info-grid">
               <div class="info-item">
                 <span class="info-label">University Roll Number</span>
-                <div class="info-value" id="rollNumber">1MS21CS001</div>
+                <input type="text" class="info-value editable-field" id="rollNumber" value="1MS21CS001" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Branch</span>
-                <div class="info-value" id="branch">Computer Science & Engineering</div>
+                <input type="text" class="info-value editable-field" id="branch" value="Computer Science & Engineering"
+                  disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Semester</span>
-                <div class="info-value" id="semester">6th Semester</div>
+                <input type="text" class="info-value editable-field" id="semester" value="6th Semester" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Section</span>
-                <input type="text" class="info-value editable" id="section" value="A" disabled>
+                <input type="text" class="info-value editable-field" id="section" value="A" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Batch</span>
-                <div class="info-value" id="batch">2021-2025</div>
+                <input type="text" class="info-value editable-field" id="batch" value="2021-2025" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Current CGPA</span>
-                <div class="info-value" id="cgpa">8.5 / 10.0</div>
+                <input type="text" class="info-value editable-field" id="cgpa" value="8.5 / 10.0" disabled>
               </div>
             </div>
           </div>
@@ -176,86 +177,82 @@
       <section class="tab-panel active" id="personal-panel">
         <h2 class="panel-title">Personal Details</h2>
         <div class="panel-grid">
-          <div class="profile-section" data-editable-section="personal-info">
+          <div class="profile-section">
             <div class="section-header">
-              <div class="header-left">
-                <span class="section-icon">🆔</span>
-                <h3>Personal Information</h3>
-              </div>
-              <button class="section-edit-btn" data-target="personal-info">✏️</button>
+              <span class="section-icon">🆔</span>
+              <h3>Personal Information</h3>
             </div>
             <div class="info-grid">
               <div class="info-item">
                 <span class="info-label">Full Name</span>
-                <input type="text" class="info-value editable" id="fullName" value="John Doe" disabled>
+                <input type="text" class="info-value editable-field" id="fullName" value="John Doe" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Date of Birth</span>
-                <input type="text" class="info-value editable" id="dob" value="15/08/2003" disabled>
+                <input type="date" class="info-value editable-field" id="dob" value="2003-08-15" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Gender</span>
-                <input type="text" class="info-value editable" id="gender" value="Male" disabled>
+                <input type="text" class="info-value editable-field" id="gender" value="Male" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Blood Group</span>
-                <input type="text" class="info-value editable" id="bloodGroup" value="O+" disabled>
+                <input type="text" class="info-value editable-field" id="bloodGroup" value="O+" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Nationality</span>
-                <input type="text" class="info-value editable" id="nationality" value="Indian" disabled>
+                <input type="text" class="info-value editable-field" id="nationality" value="Indian" disabled>
               </div>
             </div>
           </div>
 
-          <div class="profile-section" data-editable-section="contact-info">
+          <div class="profile-section">
             <div class="section-header">
-              <div class="header-left">
-                <span class="section-icon">📞</span>
-                <h3>Contact Information</h3>
-              </div>
-              <button class="section-edit-btn" data-target="contact-info">✏️</button>
+              <span class="section-icon">📞</span>
+              <h3>Contact Information</h3>
             </div>
             <div class="info-grid">
               <div class="info-item">
                 <span class="info-label">Email (Personal)</span>
-                <input type="email" class="info-value editable" id="personalEmail" value="student@example.com" disabled>
+                <input type="email" class="info-value editable-field" id="personalEmail" value="student@example.com"
+                  disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Email (University)</span>
-                <div class="info-value" id="universityEmail">1ms21cs001@poornima.org</div>
+                <input type="email" class="info-value" id="universityEmail" value="1ms21cs001@poornima.org" disabled
+                  readonly>
               </div>
               <div class="info-item">
                 <span class="info-label">Phone Number</span>
-                <input type="tel" class="info-value editable" id="phone" value="+91 98765 43210" disabled>
+                <input type="tel" class="info-value editable-field" id="phone" value="+91 98765 43210" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Address</span>
-                <textarea class="info-value editable" id="address" rows="2" disabled>Jaipur, Rajasthan, India</textarea>
+                <textarea class="info-value editable-field" id="address" rows="2"
+                  disabled>Jaipur, Rajasthan, India</textarea>
               </div>
             </div>
           </div>
 
-          <div class="profile-section" data-editable-section="emergency-contact">
+          <div class="profile-section">
             <div class="section-header">
-              <div class="header-left">
-                <span class="section-icon">🚑</span>
-                <h3>Emergency Contact</h3>
-              </div>
-              <button class="section-edit-btn" data-target="emergency-contact">✏️</button>
+              <span class="section-icon">🚑</span>
+              <h3>Emergency Contact</h3>
             </div>
             <div class="info-grid">
               <div class="info-item">
                 <span class="info-label">Contact Name</span>
-                <input type="text" class="info-value editable" id="emergencyName" value="Parent/Guardian Name" disabled>
+                <input type="text" class="info-value editable-field" id="emergencyName" value="Parent/Guardian Name"
+                  disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Relationship</span>
-                <input type="text" class="info-value editable" id="emergencyRelation" value="Father" disabled>
+                <input type="text" class="info-value editable-field" id="emergencyRelation" value="Father" disabled>
               </div>
               <div class="info-item">
                 <span class="info-label">Phone Number</span>
-                <input type="tel" class="info-value editable" id="emergencyPhone" value="+91 98765 00000" disabled>
+                <input type="tel" class="info-value editable-field" id="emergencyPhone" value="+91 98765 00000"
+                  disabled>
               </div>
             </div>
           </div>
@@ -264,31 +261,47 @@
               <span class="section-icon">🔗</span>
               <h3>Social Links</h3>
             </div>
-            <div class="social-links" id="socialLinks">
-              <a href="#" class="social-link">
-                <span class="social-icon">🔗</span>
-                LinkedIn
-              </a>
-              <a href="#" class="social-link">
+            <div class="social-links-editor">
+              <div class="social-link-item">
+                <span class="social-icon">💼</span>
+                <div class="social-input-wrapper">
+                  <input type="url" class="info-value editable-field" id="linkedinUrl"
+                    placeholder="https://linkedin.com/in/yourprofile" disabled>
+                  <a href="#" class="social-visit-btn" id="linkedinVisit" target="_blank" title="Visit LinkedIn">
+                    <span>🔗</span>
+                  </a>
+                </div>
+              </div>
+              <div class="social-link-item">
                 <span class="social-icon">🐱</span>
-                GitHub
-              </a>
-              <a href="#" class="social-link">
+                <div class="social-input-wrapper">
+                  <input type="url" class="info-value editable-field" id="githubUrl"
+                    placeholder="https://github.com/yourusername" disabled>
+                  <a href="#" class="social-visit-btn" id="githubVisit" target="_blank" title="Visit GitHub">
+                    <span>🔗</span>
+                  </a>
+                </div>
+              </div>
+              <div class="social-link-item">
                 <span class="social-icon">🐦</span>
-                Twitter
-              </a>
-              <a href="#" class="social-link">
-                <span class="social-icon">📧</span>
-                Email
-              </a>
-              <a href="#" class="social-link">
+                <div class="social-input-wrapper">
+                  <input type="url" class="info-value editable-field" id="twitterUrl"
+                    placeholder="https://twitter.com/yourhandle" disabled>
+                  <a href="#" class="social-visit-btn" id="twitterVisit" target="_blank" title="Visit Twitter">
+                    <span>🔗</span>
+                  </a>
+                </div>
+              </div>
+              <div class="social-link-item">
                 <span class="social-icon">🌐</span>
-                Portfolio
-              </a>
-              <a href="#" class="social-link">
-                <span class="social-icon">📷</span>
-                Instagram
-              </a>
+                <div class="social-input-wrapper">
+                  <input type="url" class="info-value editable-field" id="portfolioUrl"
+                    placeholder="https://yourportfolio.com" disabled>
+                  <a href="#" class="social-visit-btn" id="portfolioVisit" target="_blank" title="Visit Portfolio">
+                    <span>🔗</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
