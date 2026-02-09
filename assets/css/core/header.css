@@ -272,3 +272,34 @@
         font-size: 0.85rem;
     }
 }
+
+/* Instagram link in dev notice */
+.dev-notice-divider {
+    margin: 0 0.5rem;
+    opacity: 0.5;
+}
+
+.dev-instagram-link {
+    color: #856404;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid #856404;
+    transition: all 0.2s ease;
+}
+
+.dev-instagram-link:hover {
+    color: #e1306c;
+    border-bottom-color: #e1306c;
+}
+
+@media (max-width: 768px) {
+    .dev-notice-content {
+        font-size: 0.8rem;
+    }
+    
+    .dev-notice-divider {
+        display: block;
+        margin: 0.25rem 0;
+        opacity: 0;
+    }
+}

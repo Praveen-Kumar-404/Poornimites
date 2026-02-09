@@ -45,8 +45,15 @@
             <button class="tab-btn" data-day="day4">Day 4</button>
         </div>
 
+        <!-- Filter Toggle Button (Mobile Only) -->
+        <button class="filter-toggle-btn" id="filter-toggle" aria-expanded="false">
+            <span class="toggle-icon">🔽</span>
+            <span class="toggle-text">Show Filters</span>
+            <span class="active-filter-count" id="active-filter-count"></span>
+        </button>
+
         <!-- Filter Controls -->
-        <div class="filter-section">
+        <div class="filter-section" id="filter-section">
             <!-- Search Bar -->
             <div class="search-container">
                 <input type="text" id="event-search" class="search-input"
