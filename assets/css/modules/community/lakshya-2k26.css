@@ -374,9 +374,11 @@
         font-size: 1.1rem;
     }
 }
+
 /* Filter Toggle Button - Mobile Only */
 .filter-toggle-btn {
-    display: none; /* Hidden on desktop */
+    display: none;
+    /* Hidden on desktop */
 }
 
 @media (max-width: 768px) {
@@ -516,6 +518,7 @@
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -564,9 +567,11 @@
         transform: translate(-50%, -150%) scale(0);
         opacity: 0;
     }
+
     60% {
         transform: translate(-50%, -90%) scale(1.1);
     }
+
     100% {
         transform: translate(-50%, -100%) scale(1);
         opacity: 1;
@@ -578,6 +583,7 @@
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     transition: all 0.3s ease;
     position: relative;
+    z-index: 5;
 }
 
 .event-marker:hover .marker-pin {
@@ -602,14 +608,29 @@
     font-weight: bold;
     border: 2px solid white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 3;
 }
 
 /* Marker by Committee Type */
-.event-marker.sports .marker-pin { color: #1565c0; }
-.event-marker.esports .marker-pin { color: #6a1b9a; }
-.event-marker.cultural .marker-pin { color: #e65100; }
-.event-marker.edufun .marker-pin { color: #2e7d32; }
-.event-marker.other .marker-pin { color: #666; }
+.event-marker.sports .marker-pin {
+    color: #1565c0;
+}
+
+.event-marker.esports .marker-pin {
+    color: #6a1b9a;
+}
+
+.event-marker.cultural .marker-pin {
+    color: #e65100;
+}
+
+.event-marker.edufun .marker-pin {
+    color: #2e7d32;
+}
+
+.event-marker.other .marker-pin {
+    color: #666;
+}
 
 /* Event Popup */
 .event-popup {
@@ -624,7 +645,7 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     min-width: 280px;
     max-width: 350px;
-    z-index: 1000;
+    z-index: 50;
     display: none;
     animation: popupFadeIn 0.2s ease-out;
     border: 2px solid var(--accent-color);
@@ -635,6 +656,7 @@
         opacity: 0;
         transform: translateX(-50%) translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
@@ -682,7 +704,9 @@
     line-height: 1;
 }
 
-.popup-close:hover { color: #333; }
+.popup-close:hover {
+    color: #333;
+}
 
 .popup-events {
     max-height: 300px;
@@ -749,54 +773,156 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.legend-dot.sports { background: #1565c0; }
-.legend-dot.esports { background: #6a1b9a; }
-.legend-dot.cultural { background: #e65100; }
-.legend-dot.edufun { background: #2e7d32; }
-.legend-dot.other { background: #666; }
-
-
-/* Map Zoom & Pan Enhancements */
-.map-wrapper {
-    touch-action: none;
-    user-select: none;
-    -webkit-user-select: none;
+.legend-dot.sports {
+    background: #1565c0;
 }
 
-.campus-map-image {
-    cursor: grab;
-    will-change: transform;
+.legend-dot.esports {
+    background: #6a1b9a;
 }
 
-.campus-map-image:active {
-    cursor: grabbing;
+.legend-dot.cultural {
+    background: #e65100;
 }
 
-/* Zoom indicator/helper text */
-.map-wrapper::after {
-    content: 'Pinch to zoom  Double tap to reset';
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
+.legend-dot.edufun {
+    background: #2e7d32;
 }
 
-.map-container:hover .map-wrapper::after {
-    opacity: 1;
+.legend-dot.other {
+    background: #666;
 }
 
+/* Responsive Design for Campus Map */
 @media (max-width: 768px) {
-    .map-wrapper::after {
+    .campus-map-section {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+    }
+
+    .map-header {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+
+    .map-header h3 {
+        font-size: 1.15rem;
+        text-align: center;
+    }
+
+    .map-toggle-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .map-container {
+        margin-top: 1rem;
+    }
+
+    .map-wrapper {
+        border-radius: 8px;
+    }
+
+    .marker-pin {
+        font-size: 1.5rem;
+    }
+
+    .marker-badge {
+        width: 18px;
+        height: 18px;
         font-size: 0.65rem;
-        padding: 4px 8px;
+        top: -6px;
+        right: -6px;
+    }
+
+    .event-popup {
+        min-width: 250px;
+        max-width: 90vw;
+        padding: 0.875rem;
+        font-size: 0.9rem;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+    }
+
+    .popup-venue {
+        font-size: 0.95rem;
+    }
+
+    .popup-event-name {
+        font-size: 0.85rem;
+    }
+
+    .popup-event-time {
+        font-size: 0.8rem;
+    }
+
+    .popup-event-committee {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+
+    .map-legend {
+        gap: 0.75rem;
+        padding: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .legend-item {
+        font-size: 0.8rem;
+    }
+
+    .legend-dot {
+        width: 12px;
+        height: 12px;
     }
 }
 
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .campus-map-section {
+        padding: 0.5rem;
+    }
+
+    .map-header h3 {
+        font-size: 1rem;
+    }
+
+    .map-toggle-btn {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .marker-pin {
+        font-size: 1.25rem;
+    }
+
+    .event-popup {
+        min-width: 220px;
+        padding: 0.75rem;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    .popup-venue {
+        font-size: 0.9rem;
+    }
+
+    .popup-events {
+        max-height: 250px;
+    }
+
+    .map-legend {
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .legend-item {
+        font-size: 0.75rem;
+        flex: 0 0 calc(50% - 0.25rem);
+    }
+}
