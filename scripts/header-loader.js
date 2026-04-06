@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderHeader(user) {
       const isLoggedIn = !!user || localStorage.getItem('isLoggedIn') === 'true';
       // Prefer live user data, fallback to storage
-      const userName = (user?.user_metadata?.full_name || user?.user_metadata?.display_name)
+      const userName = (user?.displayName || user?.user_metadata?.full_name || user?.user_metadata?.display_name)
         || localStorage.getItem('userName')
         || 'Student';
 
@@ -123,12 +123,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const logoutBtn = dropdown.querySelector('.logout-btn');
         if (logoutBtn) {
           logoutBtn.addEventListener('click', async () => {
-            // Use global supabase client if available, or just clear local storage
-            const sb = window.__SUPABASE_CLIENT__;
-            if (sb) {
-              await sb.auth.signOut();
-              // The auth-listener will catch this and trigger update, 
-              // but we might want to reload to be sure.
+            if (window.AuthListener) {
+              try {
+                await window.AuthListener.logout();
+              } catch (err) {
+                console.error("Logout failed:", err);
+              }
             }
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('userName');
@@ -147,30 +147,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (loginText) loginText.textContent = 'Logging in...';
 
           try {
-            // Wait for Supabase to be available (injected by auth-listener)
-            // We can poll or just check window.__SUPABASE_CLIENT__
-            let sb = window.__SUPABASE_CLIENT__;
-
-            if (!sb) {
-              // Fallback: wait a bit or load it manually? 
-              // Since we injected auth-listener, it should be ready or initializing.
-              // Let's simplified load if missing (just in case auth-listener failed or is slow)
-              console.log("Supabase client not ready, waiting...");
+            if (!window.AuthListener) {
+              console.log("Auth listener not ready, waiting...");
               await new Promise(r => setTimeout(r, 500));
-              sb = window.__SUPABASE_CLIENT__;
             }
 
-            if (!sb) throw new Error("Authentication system not initialized. Please refresh.");
+            if (!window.AuthListener) throw new Error("Authentication system not initialized. Please refresh.");
 
-            const { error } = await sb.auth.signInWithOAuth({
-              provider: 'google',
-              options: {
-                redirectTo: window.location.href, // Stay on same page or go to index? plan said index but staying is better ux
-                queryParams: { access_type: 'offline', prompt: 'select_account', hd: 'poornima.edu.in' }
-              }
-            });
-            if (error) throw error;
-
+            await window.AuthListener.loginWithGoogle();
           } catch (err) {
             console.error("Login failed:", err);
             alert(err.message);
