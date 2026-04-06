@@ -136,3 +136,6 @@ if (typeof module !== 'undefined' && module.exports) {
         groupEventsByVenue
     };
 }
+
+// ES6 Export for event-hub.js
+export { VENUE_COORDINATES, getVenueCoordinates, extractVenuesFromEvents, groupEventsByVenue };

@@ -1,5 +1,6 @@
 
 import { supabase } from "../../core/supabase-init.js";
+import { VENUE_COORDINATES } from './venue-map.js';
 
 // Mock Data for Galleries (Keeping as requested)
 const galleriesData = [
@@ -32,16 +33,24 @@ let currentView = 'list'; // list, calendar, map
 let filterCategory = 'all';
 let searchQuery = '';
 
-// DOM Elements
-const eventsContainer = document.getElementById('events-container');
-const galleriesGrid = document.querySelector('.gallery-grid');
-const searchInput = document.getElementById('event-search');
-const categorySelect = document.getElementById('category-filter');
-const viewButtons = document.querySelectorAll('.view-btn');
-const eventForm = document.getElementById('event-form');
-
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements - query after DOM is loaded
+    const eventsContainer = document.getElementById('events-container');
+    const galleriesGrid = document.querySelector('.gallery-grid');
+    const searchInput = document.getElementById('event-search');
+    const categorySelect = document.getElementById('category-filter');
+    const viewButtons = document.querySelectorAll('.view-btn');
+    const eventForm = document.getElementById('event-form');
+
+    // Make them globally accessible
+    window.eventsContainer = eventsContainer;
+    window.galleriesGrid = galleriesGrid;
+    window.searchInput = searchInput;
+    window.categorySelect = categorySelect;
+    window.viewButtons = viewButtons;
+    window.eventForm = eventForm;
+
     fetchEvents();
     renderGalleries();
     setupEventListeners();
@@ -50,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Fetch Approved Events from Supabase
 async function fetchEvents() {
-    eventsContainer.innerHTML = '<div class="loader">Loading events...</div>';
+    window.eventsContainer.innerHTML = '<div class="loader">Loading events...</div>';
 
     const { data, error } = await supabase
         .from('events')
@@ -60,7 +69,7 @@ async function fetchEvents() {
 
     if (error) {
         console.error('Error fetching events:', error);
-        eventsContainer.innerHTML = '<div class="error-message">Failed to load events. Please try again later.</div>';
+        window.eventsContainer.innerHTML = '<div class="error-message">Failed to load events. Please try again later.</div>';
         return;
     }
 
@@ -70,21 +79,21 @@ async function fetchEvents() {
 
 // Event Listeners
 function setupEventListeners() {
-    viewButtons.forEach(btn => {
+    window.viewButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            viewButtons.forEach(b => b.classList.remove('active'));
+            window.viewButtons.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
             currentView = e.target.dataset.view;
             renderEvents();
         });
     });
 
-    searchInput.addEventListener('input', (e) => {
+    window.searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value.toLowerCase();
         renderEvents();
     });
 
-    categorySelect.addEventListener('change', (e) => {
+    window.categorySelect.addEventListener('change', (e) => {
         filterCategory = e.target.value;
         renderEvents();
     });
@@ -92,12 +101,12 @@ function setupEventListeners() {
 
 // Handle Event Submission
 function setupFormSubmission() {
-    if (!eventForm) return;
+    if (!window.eventForm) return;
 
-    eventForm.addEventListener('submit', async (e) => {
+    window.eventForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const submitBtn = eventForm.querySelector('button[type="submit"]');
+        const submitBtn = window.eventForm.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.textContent;
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
@@ -153,7 +162,7 @@ function setupFormSubmission() {
             if (error) throw error;
 
             alert('Event submitted successfully! It will be visible after moderator approval.');
-            eventForm.reset();
+            window.eventForm.reset();
             // Reset map pin
             document.getElementById('map-pin').style.display = 'none';
 
@@ -169,7 +178,7 @@ function setupFormSubmission() {
 
 // Render Functions
 function renderEvents() {
-    eventsContainer.innerHTML = '';
+    window.eventsContainer.innerHTML = '';
 
     // Filter logic
     const filteredEvents = eventsData.filter(event => {
@@ -179,7 +188,7 @@ function renderEvents() {
     });
 
     if (filteredEvents.length === 0) {
-        eventsContainer.innerHTML = '<div class="no-results">No events found matching your criteria.</div>';
+        window.eventsContainer.innerHTML = '<div class="no-results">No events found matching your criteria.</div>';
         return;
     }
 
@@ -222,7 +231,7 @@ function renderListView(events) {
         `;
         grid.appendChild(card);
     });
-    eventsContainer.appendChild(grid);
+    window.eventsContainer.appendChild(grid);
 }
 
 function renderCalendarView(events) {
@@ -275,55 +284,146 @@ function renderCalendarView(events) {
     }
 
     wrapper.appendChild(grid);
-    eventsContainer.appendChild(wrapper);
+    window.eventsContainer.appendChild(wrapper);
 }
 
 function renderMapView(events) {
-    eventsContainer.innerHTML = `
-        <div class="map-view-container" style="position: relative; width: 100%; height: 600px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
-            <img src="../../assets/images/campus-map.png" alt="Campus Map" style="width: 100%; height: 100%; object-fit: contain;">
-            <div id="map-overlays"></div>
+    window.eventsContainer.innerHTML = `
+        <div class="map-view-container">
+            <div class="map-wrapper">
+                <img src="../../assets/images/campus-map.png" alt="Campus Map" class="campus-map-image">
+                <div class="map-markers" id="map-markers"></div>
+            </div>
+            <div class="map-legend">
+                <div class="legend-item"><span class="legend-dot academic"></span> Academic</div>
+                <div class="legend-item"><span class="legend-dot sports"></span> Sports</div>
+                <div class="legend-item"><span class="legend-dot arts"></span> Arts</div>
+                <div class="legend-item"><span class="legend-dot clubs"></span> Clubs</div>
+                <div class="legend-item"><span class="legend-dot social"></span> Social</div>
+            </div>
         </div>
     `;
 
-    const overlaysContainer = document.getElementById('map-overlays');
+    const markersContainer = document.getElementById('map-markers');
+
+    // Group events by location for markers
+    const locationMap = {};
 
     events.forEach(event => {
-        if (event.coordinates) {
-            const pin = document.createElement('div');
-            pin.className = 'map-pin';
-            pin.style.position = 'absolute';
-            pin.style.left = `${event.coordinates.x}%`;
-            pin.style.top = `${event.coordinates.y}%`;
-            pin.style.transform = 'translate(-50%, -100%)';
-            pin.style.cursor = 'pointer';
-            pin.innerHTML = `<span style="font-size: 24px;">📍</span>`;
-            pin.title = event.title;
+        // Try to match venue from VENUE_COORDINATES
+        let coordinates = event.coordinates;
 
-            // Add custom tooltip on hover
-            const tooltip = document.createElement('div');
-            tooltip.className = 'map-tooltip';
-            tooltip.style.display = 'none';
-            tooltip.style.position = 'absolute';
-            tooltip.style.bottom = '100%';
-            tooltip.style.left = '50%';
-            tooltip.style.transform = 'translateX(-50%)';
-            tooltip.style.backgroundColor = 'white';
-            tooltip.style.padding = '5px 10px';
-            tooltip.style.borderRadius = '4px';
-            tooltip.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-            tooltip.style.zIndex = '10';
-            tooltip.style.whiteSpace = 'nowrap';
-            tooltip.textContent = event.title;
+        // If no coordinates, try to find venue in VENUE_COORDINATES
+        if (!coordinates && event.location) {
+            const venueKey = Object.keys(VENUE_COORDINATES).find(key =>
+                event.location.toLowerCase().includes(key.toLowerCase()) ||
+                key.toLowerCase().includes(event.location.toLowerCase())
+            );
 
-            pin.appendChild(tooltip);
+            if (venueKey) {
+                coordinates = VENUE_COORDINATES[venueKey];
+            }
+        }
 
-            pin.addEventListener('mouseenter', () => tooltip.style.display = 'block');
-            pin.addEventListener('mouseleave', () => tooltip.style.display = 'none');
-
-            overlaysContainer.appendChild(pin);
+        if (coordinates) {
+            const locKey = `${coordinates.x},${coordinates.y}`;
+            if (!locationMap[locKey]) {
+                locationMap[locKey] = {
+                    coordinates,
+                    events: []
+                };
+            }
+            locationMap[locKey].events.push(event);
         }
     });
+
+    // Create markers
+    Object.values(locationMap).forEach(location => {
+        const marker = createMapMarker(location);
+        markersContainer.appendChild(marker);
+    });
+}
+
+// Helper: Get category emoji
+function getCategoryEmoji(category) {
+    const emojiMap = {
+        'academic': '📚',
+        'sports': '⚽',
+        'arts': '🎨',
+        'clubs': '🎭',
+        'social': '🤝'
+    };
+    return emojiMap[category] || '📍';
+}
+
+// Helper: Get category class
+function getCategoryClass(category) {
+    return category || 'other';
+}
+
+// Helper: Create map marker
+function createMapMarker(location) {
+    const { coordinates, events } = location;
+    const primaryEvent = events[0];
+    const categoryClass = getCategoryClass(primaryEvent.category);
+    const emoji = getCategoryEmoji(primaryEvent.category);
+
+    const marker = document.createElement('div');
+    marker.className = `event-marker ${categoryClass}`;
+    marker.style.left = `${coordinates.x}%`;
+    marker.style.top = `${coordinates.y}%`;
+
+    // Marker pin
+    const pin = document.createElement('div');
+    pin.className = 'marker-pin';
+    pin.textContent = emoji;
+    marker.appendChild(pin);
+
+    // Badge for multiple events
+    if (events.length > 1) {
+        const badge = document.createElement('div');
+        badge.className = 'marker-badge';
+        badge.textContent = events.length;
+        marker.appendChild(badge);
+    }
+
+    // Popup
+    const popup = createEventPopup(location.events, primaryEvent.location);
+    marker.appendChild(popup);
+
+    return marker;
+}
+
+// Helper: Create event popup
+function createEventPopup(events, venueName) {
+    const popup = document.createElement('div');
+    popup.className = 'event-popup';
+
+    const header = document.createElement('div');
+    header.className = 'popup-header';
+    header.innerHTML = `
+        <div class="popup-venue">${venueName || events[0].location}</div>
+        <div class="popup-count">${events.length} event${events.length > 1 ? 's' : ''}</div>
+    `;
+    popup.appendChild(header);
+
+    const eventsList = document.createElement('div');
+    eventsList.className = 'popup-events';
+
+    events.forEach(event => {
+        const eventItem = document.createElement('div');
+        eventItem.className = 'popup-event-item';
+        eventItem.innerHTML = `
+            <div class="popup-event-name">${event.title}</div>
+            <div class="popup-event-time">🕒 ${event.date} • ${event.time}</div>
+            <div class="popup-event-category ${getCategoryClass(event.category)}">${event.category}</div>
+        `;
+        eventsList.appendChild(eventItem);
+    });
+
+    popup.appendChild(eventsList);
+
+    return popup;
 }
 
 // Map Selection Logic for Form
@@ -357,7 +457,7 @@ if (mapContainer && mapImage) {
 }
 
 function renderGalleries() {
-    if (!galleriesGrid) return;
+    if (!window.galleriesGrid) return;
 
     galleriesData.forEach(gallery => {
         const item = document.createElement('div');
@@ -372,6 +472,6 @@ function renderGalleries() {
                 <p>${gallery.date} • ${gallery.count} Photos</p>
             </div>
         `;
-        galleriesGrid.appendChild(item);
+        window.galleriesGrid.appendChild(item);
     });
 }
