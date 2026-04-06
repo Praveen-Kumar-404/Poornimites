@@ -65,15 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ${profileSection}
         </div>
         </nav>
-        
-        <!-- Development Notice -->
-        <div class="dev-notice">
-          <div class="dev-notice-content">
-            ⚠️ <strong>Site Under Development:</strong> This site is currently in development. Some features may not work as intended.
-            <span class="dev-notice-divider">•</span>
-            Follow the developer on Instagram: <a href="https://www.instagram.com/praveen._.kumar.13/" target="_blank" rel="noopener noreferrer" class="dev-instagram-link">@praveen._.kumar.13</a>
-          </div>
-        </div>
+
         `;
 
       placeholder.innerHTML = headerHTML;
